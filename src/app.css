@@ -1,0 +1,15 @@
+.grid01 {
+    display: flex;
+}
+
+.w_15 {
+    width: 15%;
+}
+
+.w_20 {
+    width: 20%;
+}
+
+.w_80 {
+    width: 80%;
+}

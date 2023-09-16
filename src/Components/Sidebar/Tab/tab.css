@@ -1,0 +1,29 @@
+.tab01 {
+    height: 50px;
+    cursor: pointer;
+    display: flex;
+    margin: 5px 0;
+    padding: 0 5px;
+}
+
+.tab01:hover {
+    background-color: rgb(240, 240, 240);
+    border-radius: 5px;
+    transition: background-color 0.3s;
+}
+
+.tab01:hover .tab02 {
+    transform: scale(1.03);
+}
+
+.tab02 {
+    width: 35px;
+    display: flex;
+    align-items: center;
+}
+
+.tab03 {
+    text-transform: capitalize;
+    display: flex;
+    align-items: center;
+}
