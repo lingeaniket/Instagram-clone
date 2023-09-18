@@ -1,5 +1,4 @@
 import Sidebar from "../Sidebar/Sidebar";
-import Timeline from "../Timeline/Timeline";
 import { Outlet } from "react-router-dom";
 
 const Home = () => {

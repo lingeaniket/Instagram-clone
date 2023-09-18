@@ -1,0 +1,14 @@
+api key : kp1JW1W8rry9wiiwps6Igw==1XHtfunB3i7golPe
+
+
+code = 
+
+method: 'GET',
+    url: 'https://api.api-ninjas.com/v1/randomimage?category=' + category,
+    headers: { 'X-Api-Key': 'YOUR_API_KEY', 'Accept': 'image/jpg'},
+
+
+
+    avatar = https://cloudflare-ipfs.com/ipfs/Qmd3W5DuhgHirLHGVixi6V76LhCkZUz6pnFt5AJBiyvHye/avatar/{id}.jpg  id = [1-1244];
+
+    images = https://picsum.photos/id/{id}/200/300  id = [1-1084]

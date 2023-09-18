@@ -1,8 +1,6 @@
-import { useNavigate } from "react-router-dom";
 import "./tab.css";
 
 const Tab = ({ tab }) => {
-    const navigate = useNavigate();
     return (
         <div className="tab01">
             <div className="tab02">{tab.icon}</div>
