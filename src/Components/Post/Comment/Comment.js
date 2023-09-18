@@ -17,6 +17,7 @@ const Comment = ({ comment }) => {
                 );
             });
         console.log("rendered");
+        // eslint-disable-next-line
     }, []);
     return (
         <div
@@ -35,7 +36,7 @@ const Comment = ({ comment }) => {
                     }}
                 >
                     {userData.username}
-                </span>{" "}
+                </span>{"  "}
                 {comment.text}
             </div>
             <div style={{ display: "flex",cursor: 'pointer' }}>

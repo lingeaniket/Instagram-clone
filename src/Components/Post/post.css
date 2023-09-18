@@ -1,0 +1,207 @@
+.post001 {
+    margin-bottom: 12px;
+    padding-bottom: 20px;
+    border-bottom: 1px solid rgb(219, 219, 219);
+}
+
+.post002 {
+    display: flex;
+    width: 100%;
+    justify-content: space-between;
+    margin-bottom: 15px;
+}
+
+.post003 {
+    display: flex;
+    margin: 8px 4px 8px 5px;
+    padding: unset;
+}
+
+.post004 {
+    height: 32px;
+    width: 32px;
+    position: relative;
+    border: 0.5px solid rgba(0, 0, 0, 0.4);
+    border-radius: 50%;
+    cursor: pointer;
+    overflow: hidden;
+}
+
+.post005 {
+    width: 100%;
+}
+
+.post006 {
+    padding: 0 15px;
+    font-size: 14px;
+    font-weight: 600;
+    display: flex;
+    align-items: center;
+    padding: 0 15px;
+    font-size: 14px;
+    font-weight: 600;
+    display: flex;
+    align-items: center;
+}
+
+.post007 {
+    cursor: pointer;
+}
+
+.post008 {
+    display: flex;
+    justify-content: center;
+    border: 1px solid rgb(239, 239, 239);
+    border-radius: 4px;
+}
+
+.post009 {
+    display: flex;
+    justify-content: space-between;
+    margin: 4px 0;
+}
+
+.post010 {
+    display: flex;
+    align-items: center;
+    width: 28%;
+    justify-content: space-between;
+}
+
+.post011 {
+    display: flex;
+    justify-content: center;
+    padding: 8px;
+    cursor: pointer;
+}
+
+.post012 {
+    margin-left: -8px;
+}
+
+.post013 {
+    font-weight: 600;
+    line-height: 18px;
+    cursor: pointer;
+}
+
+.post014 {
+    margin-top: 8px;
+}
+
+.post015 {
+    font-weight: 600;
+    cursor: pointer;
+}
+
+.post016 {
+    color: rgb(116, 116, 116);
+    margin-top: 8px;
+    cursor: pointer;
+}
+
+.post017 {
+    width: 100%;
+    border: none;
+    height: 18px;
+    outline: none;
+}
+
+.post018 {
+    margin-right: -8px;
+}
+
+.animeicon {
+    transform: scale(1);
+}
+
+/* .heart_icon {
+    transform: scale(0);
+    opacity: 0;
+    pointer-events: none;
+} */
+
+.heart_icon.clicked {
+    animation-duration: 1000ms;
+    animation-name: like-heart-animation;
+    animation-timing-function: ease-in-out;
+}
+
+.animeicon.clicked {
+    animation-timing-function: ease-in-out;
+    animation-duration: 0.45s;
+    animation-name: likeAnimation;
+}
+
+@keyframes likeAnimation {
+    0% {
+        transform: scale(1);
+    }
+    25% {
+        transform: scale(1.2);
+    }
+    50% {
+        transform: scale(0.95);
+    }
+
+    100% {
+        transform: scale(1);
+    }
+}
+
+@keyframes like-heart-animation {
+    0% {
+        opacity: 0;
+        transform: scale(0);
+    }
+
+    15% {
+        opacity: 0.9;
+        transform: scale(1.2);
+    }
+    30% {
+        transform: scale(0.95);
+    }
+    45%,
+    80% {
+        opacity: 0.9;
+        transform: scale(1);
+    }
+    100% {
+        opacity: 0;
+        transform: scale(0);
+    }
+}
+
+.heartIconDiv {
+    align-items: stretch;
+    border: 0;
+    bottom: 0;
+    box-sizing: border-box;
+    display: flex;
+    flex-direction: column;
+    flex-shrink: 0;
+    font: inherit;
+    font-size: 100%;
+    justify-content: center;
+    left: 0;
+    margin: 0;
+    padding: 0;
+    pointer-events: none;
+    position: absolute;
+    right: 0;
+    top: 0;
+    vertical-align: baseline;
+}
+
+.heart_icon {
+    border: 0;
+    font: inherit;
+    font-size: 100%;
+    margin: 0 auto;
+    opacity: 0;
+    padding: 0;
+    pointer-events: none;
+    transform: scale(0);
+    vertical-align: baseline;
+}
