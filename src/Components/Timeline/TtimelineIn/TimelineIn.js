@@ -2,12 +2,13 @@ import { useEffect, useState } from "react";
 import axios from "axios";
 import "./timelineIn.css";
 import Post from "../../Post/Post";
+import { apiSite } from "../../../Website/website";
 
 const TimelineIn = () => {
     const [data, setData] = useState([]);
     useEffect(() => {
         axios
-            .get("https://instagram-api-aniket.onrender.com/api/v1/posts/1")
+            .get(`${apiSite}/posts/1`)
             .then((response) => {
                 setData(response.data.posts);
             });

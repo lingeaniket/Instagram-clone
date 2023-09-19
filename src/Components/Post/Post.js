@@ -11,6 +11,7 @@ import Save from "../Icons/Save/Save";
 import Like from "../Icons/Like/Like";
 import Options from "../Icons/Options/Options";
 import ImageLike from "../Icons/ImageLike/ImageLike";
+import { apiSite } from "../../Website/website";
 
 const Post = ({ post, id }) => {
     const [userData, setUserData] = useState({});
@@ -22,11 +23,9 @@ const Post = ({ post, id }) => {
 
     const handleImageLiked = (e) => {
         imagelikeref.current.classList.add("clicked");
-        // console.log("is called?")
         setTimeout(() => {
             imagelikeref.current.classList.remove("clicked");
             console.log("is called?");
-            // console.log(imagelikeref.current.classList)
         }, 1200);
         if (!liked) handleLiked(e);
     };
@@ -47,7 +46,7 @@ const Post = ({ post, id }) => {
     };
     useEffect(() => {
         axios
-            .get("https://instagram-api-aniket.onrender.com/api/v1/users")
+            .get(`${apiSite}/users`)
             .then((response) => {
                 setUserData(
                     response.data.users.filter((user) => user.id === id)[0]
@@ -109,20 +108,27 @@ const Post = ({ post, id }) => {
                     <div className="post010">
                         <div
                             ref={likeref}
-                            className="post011 post012 animeicon"
+                            className={`post011 post012 animeicon ${
+                                !liked ? "post019" : ""
+                            }`}
                             onClick={handleLiked}
                         >
                             <Like liked={liked} />
                         </div>
-                        <div className="post011">
+                        <div className="post011 post019">
                             <CommentIcon />
                         </div>
-                        <div className="post011">
+                        <div className="post011 post019">
                             <Share />
                         </div>
                     </div>
                     <div>
-                        <div className="post011 post018" onClick={handleSaved}>
+                        <div
+                            className={`post011 post018 ${
+                                !saved ? "post019" : ""
+                            }`}
+                            onClick={handleSaved}
+                        >
                             <Save saved={saved} />
                         </div>
                     </div>

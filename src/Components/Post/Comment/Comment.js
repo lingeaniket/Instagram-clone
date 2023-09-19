@@ -1,6 +1,7 @@
 import FavoriteBorderRoundedIcon from "@mui/icons-material/FavoriteBorderRounded";
 import axios from "axios";
 import { useEffect, useState } from "react";
+import { apiSite } from "../../../Website/website";
 
 const Comment = ({ comment }) => {
     // console.log(comment)
@@ -8,7 +9,7 @@ const Comment = ({ comment }) => {
     const [userData, setUserData] = useState({});
     useEffect(() => {
         axios
-            .get("https://instagram-api-aniket.onrender.com/api/v1/users")
+            .get(`${apiSite}/users`)
             .then((response) => {
                 setUserData(
                     response.data.users.filter(

@@ -1,4 +1,4 @@
-const Save = () => {
+const Save = ({saved}) => {
     return (
         <svg
             aria-label="Save"
@@ -12,7 +12,7 @@ const Save = () => {
         >
             <title>Save</title>
             <polygon
-                fill="none"
+                fill={saved ? "black" : "none"}
                 points="20 21 12 13.44 4 21 4 3 20 3 20 21"
                 stroke="currentColor"
                 strokeLinecap="round"

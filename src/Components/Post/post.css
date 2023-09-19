@@ -111,6 +111,14 @@
     margin-right: -8px;
 }
 
+.post019 {
+    opacity: 1;
+}
+
+.post019:hover {
+    opacity: 0.5;
+}
+
 .animeicon {
     transform: scale(1);
 }

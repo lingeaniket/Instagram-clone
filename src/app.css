@@ -21,8 +21,14 @@
     /* letter-spacing: 1px; */
 }
 
+body {
+    padding: 0;
+    margin: 0;
+}
+
 *, body {
     box-sizing: border-box;
+
 }
 
 .grid01 {
