@@ -4,7 +4,8 @@ import Back from "../Icons/Back/Back";
 
 import ImageComponent from "./ImageComponent/ImageComponent";
 import PostDetailComponent from "./PostDetailComponent/PostDetailComponent";
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
+import * as React from "react";
 
 const FullPost = ({
     post,
@@ -14,6 +15,10 @@ const FullPost = ({
     setSelectedpost,
     userData,
 }) => {
+    const imageRef = useRef();
+    const detailRef = useRef();
+    const prevBtnRef = useRef();
+    const nextBtnRef = useRef();
     // console.log(post)
     const [selected, setSelected] = useState({});
     const handleNext = () => {
@@ -24,9 +29,23 @@ const FullPost = ({
         setSelectedpost((prev) => prev - 1);
     };
 
+    const handleModalClose = (e) => {
+        if (
+            !(
+                imageRef.current.contains(e.target) ||
+                detailRef.current.contains(e.target) ||
+                (prevBtnRef.current && prevBtnRef.current.contains(e.target)) ||
+                (nextBtnRef.current && nextBtnRef.current.contains(e.target))
+            )
+        ) {
+            handleClose();
+        }
+    };
+
     useEffect(() => {
         setSelected(() => userPosts[post]);
     }, [post, userPosts]);
+
     return (
         <div
             className="fullPost001"
@@ -35,7 +54,7 @@ const FullPost = ({
             }}
         >
             <div className="fullPost002">
-                <div className="fullPost003">
+                <div className="fullPost003" onClick={handleModalClose}>
                     <div className="fullPost004"></div>
                     <div className="fullPost005" onClick={handleClose}>
                         <div className="fullPost006 fullPost016">
@@ -43,10 +62,20 @@ const FullPost = ({
                         </div>
                     </div>
                     <div className="fullPost007">
-                        <div className="fullPost008 fullPost042">
+                        <div
+                            className="fullPost008 fullPost042"
+                            style={{
+                                width: "100%",
+                            }}
+                        >
                             <div className="fullPost009">
                                 <div className="fullPost010 fullPost063 fullPost016">
-                                    <div className="fullPost011">
+                                    <div
+                                        className="fullPost011"
+                                        style={{
+                                            justifyContent: "center",
+                                        }}
+                                    >
                                         <div>
                                             <div className="fullPost012 fullPost063">
                                                 <div className="fullPost013 fullPost063">
@@ -57,6 +86,7 @@ const FullPost = ({
                                                                 left: 0,
                                                             }}
                                                             onClick={handlePrev}
+                                                            ref={prevBtnRef}
                                                         >
                                                             <button className="fullPost015 fullPost016 fullPost006">
                                                                 <div className="fullPost016">
@@ -74,6 +104,7 @@ const FullPost = ({
                                                             className="fullPost014"
                                                             style={{ right: 0 }}
                                                             onClick={handleNext}
+                                                            ref={nextBtnRef}
                                                         >
                                                             <button className="fullPost015 fullPost016 fullPost006">
                                                                 <div className="fullPost016">
@@ -87,16 +118,60 @@ const FullPost = ({
                                                 </div>
                                             </div>
                                         </div>
-                                        <div className="fullPost019">
+                                        <div
+                                            className="fullPost019"
+                                            style={{
+                                                alignItems: "stretch",
+                                            }}
+                                        >
                                             <div className="fullPost020 fullPost042">
-                                                <div className="fullPost021">
-                                                    <ImageComponent
-                                                        id={selected?.id}
-                                                    />
-                                                    <PostDetailComponent
-                                                        post={selected}
-                                                        userData={userData}
-                                                    />
+                                                <div
+                                                    style={{
+                                                        width: "100%",
+                                                        maxHeight: "inherit",
+                                                        padding: "0",
+                                                    }}
+                                                >
+                                                    <div
+                                                        style={{
+                                                            maxHeight:
+                                                                "inherit",
+                                                            maxWidth: "inherit",
+                                                            overflow: "visible",
+                                                            alignContent:
+                                                                "stretch",
+                                                            flexShrink: 0,
+                                                            alignSelf: "auto",
+                                                            flexGrow: 0,
+                                                        }}
+                                                    >
+                                                        <div className="fullPost021">
+                                                            <div
+                                                                className="fullPost022 fullPost024 fullPost042"
+                                                                ref={imageRef}
+                                                            >
+                                                                <ImageComponent
+                                                                    id={
+                                                                        selected?.id
+                                                                    }
+                                                                />
+                                                            </div>
+
+                                                            <div
+                                                                className="fullPost028 fullPost062 fullPost024 fullPost042"
+                                                                ref={detailRef}
+                                                            >
+                                                                <PostDetailComponent
+                                                                    post={
+                                                                        selected
+                                                                    }
+                                                                    userData={
+                                                                        userData
+                                                                    }
+                                                                />
+                                                            </div>
+                                                        </div>
+                                                    </div>
                                                 </div>
                                             </div>
                                         </div>

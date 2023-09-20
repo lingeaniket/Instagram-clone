@@ -1,5 +1,5 @@
 import React from "react";
-import Comment from "../Comment/Comment";
+import CommentsDiv from "../CommentsDiv/CommentsDiv";
 
 const CommentDiv = ({ userData, post }) => {
     return (
@@ -13,8 +13,8 @@ const CommentDiv = ({ userData, post }) => {
                                     style={{
                                         height: "32px",
                                         width: "32px",
-                                        borderRadius: '50%',
-                                        overflow: 'hidden',
+                                        borderRadius: "50%",
+                                        overflow: "hidden",
                                     }}
                                 >
                                     <img
@@ -28,11 +28,13 @@ const CommentDiv = ({ userData, post }) => {
                             </div>
                             <div>
                                 <h2 className="fullPost053">
-                                    <div className="fullPost054">{userData?.username}</div>
+                                    <div className="fullPost054">
+                                        {userData?.username}
+                                    </div>
                                 </h2>
                                 <div className="fullPost055">
-                                    <h1 className="fullPost056">{post?.caption}
-                                        
+                                    <h1 className="fullPost056">
+                                        {post?.caption}
                                     </h1>
                                 </div>
                                 <div className="fullPost057">
@@ -51,35 +53,9 @@ const CommentDiv = ({ userData, post }) => {
                 </div>
             </div>
             {/**Other comments */}
-            {post?.comments?.map((comment)=>
-            <div className="fullPost060">
-                {/** this is comment div */}
-                <Comment comment={comment}  />
-                <div>
-                    <div className="fullPost067">
-                        <span>
-                            <div className="fullPost068">
-                                <button className="fullPost069">
-                                    <div className="fullPost070"></div>
-                                    <span className="fullPost071">
-                                        show replies(`{comment?.reply?.length}`)
-                                    </span>
-                                </button>
-                            </div>
-                        </span>
-                        <div>
-                            {/** this show uld be reusab;e */}
-                            {/* usecomments div here  */}
-                            {
-                                comment?.reply?.map((reply)=>
-                                <Comment comment={reply} />
-                                )
-                            }
-                        </div>
-                    </div>
-                </div>
-            </div>
-            )}
+            {post?.comments?.map((comment) => (
+                <CommentsDiv comment={comment} />
+            ))}
         </div>
     );
 };

@@ -4,17 +4,22 @@
     position: fixed;
     right: 0;
     top: 0;
+    /* position: relative; */
     z-index: 3;
 }
 
 .fullPost002 {
     position: relative;
+    z-index: 0;
 }
 
 .fullPost003 {
     display: flex;
     min-height: 100vh;
     position: relative;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
 }
 
 .fullPost004 {
@@ -45,6 +50,7 @@
     flex-grow: inherit;
     flex-shrink: inherit;
     justify-content: inherit;
+    align-content: inherit;
     max-height: inherit;
     min-width: 100%;
     position: relative;
@@ -70,6 +76,7 @@
     overflow-x: hidden;
     overflow-y: hidden;
     position: relative;
+    z-index: 0;
 }
 
 .fullPost011 {
@@ -138,6 +145,8 @@
     max-width: calc(100% - 64px - 64px);
     overflow-x: auto;
     overflow-y: auto;
+    max-height: calc(100vh - 40px);
+    width: 100%;
 }
 
 .fullPost020 {
@@ -153,14 +162,14 @@
 }
 
 .fullPost022 {
-    aspect-ratio: 1440 / 1800;
+    aspect-ratio: 1/1;
     background-color: black;
-    flex-basis: 488.8px;
+    flex-basis: 600px;
     flex-grow: 1;
     flex-shrink: 1;
     justify-content: center;
-    max-height: 611px;
-    max-width: 488.8px;
+    max-height: 600px;
+    max-width: 600px;
     min-height: 450px;
     overflow: hidden;
     pointer-events: auto;
@@ -347,6 +356,10 @@
     position: absolute;
 }
 
+.fullPost048::-webkit-scrollbar {
+    display: none;
+}
+
 .fullPost049 {
     overflow: visible;
     padding: 5px 16px 16px 0;
@@ -445,6 +458,9 @@
 
 .fullPost066 {
     margin-top: 9px;
+    width: 24px;
+    display: flex;
+    justify-content: flex-end;
 }
 
 .fullPost067 {

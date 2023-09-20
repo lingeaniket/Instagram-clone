@@ -1,5 +1,7 @@
 .side01 {
     border-right: 2px solid rgb(240, 240, 240);
+    position: relative;
+    z-index: 1;
 }
 
 .side02 {

@@ -10,39 +10,38 @@ import ProfileHeader from "./ProfileHeader/ProfileHeader";
 import Tabs from "./Tabs/Tabs";
 import FullPost from "../Fullpost/FullPost";
 import { apiSite } from "../../Website/website";
+import { arrayFill } from "./arrayFillFunction";
 
-const Profile = ({ id = 12 }) => {
+const Profile = ({ id }) => {
     const [userData, setUserData] = useState({});
     const [userPosts, setUserPosts] = useState([]);
-    const [selectedPost, setSelectedpost] = useState(null)
+    const [selectedPost, setSelectedpost] = useState(null);
     const [open, setOpen] = useState(false);
 
-    const handleClose = ()=>{
-        setOpen(()=> false);
-    }
+    const handleClose = () => {
+        document.body.style.overflow = "auto";
+        setOpen(() => false);
+    };
 
-    const handlePost = (id)=> {
+    const handlePost = (id) => {
         handleClose();
-        setSelectedpost(()=> Number(id));
-        setTimeout(()=>{
-            setOpen(()=> true);
-        }, 250)
-    }
+        setSelectedpost(() => Number(id));
+        setTimeout(() => {
+            setOpen(() => true);
+            document.body.style.overflow = "hidden";
+        }, 250);
+    };
 
     useEffect(() => {
-        axios
-            .get(`${apiSite}/users`)
-            .then((response) => {
-                setUserData(
-                    response.data.users.filter((user) => user.id === id)[0]
-                );
+        if (id) {
+            axios.get(`${apiSite}/users/${id}`).then((response) => {
+                setUserData(response.data);
             });
-        axios
-            .get(`${apiSite}/posts/${id}`)
-            .then((response) => {
+            axios.get(`${apiSite}/posts/${id}`).then((response) => {
                 setUserPosts(response.data.posts);
-                setSelectedpost(response.data.posts[0]) //for reference 
+                setSelectedpost(response.data.posts[0]); //for reference
             });
+        }
     }, [id]);
     return (
         <div
@@ -127,7 +126,6 @@ const Profile = ({ id = 12 }) => {
                         paddingTop: "0px",
                         position: "relative",
                     }}
-                    className="image-container"
                 >
                     {Array.from({
                         length: Math.ceil(userPosts.length / 3),
@@ -139,88 +137,97 @@ const Profile = ({ id = 12 }) => {
                                     alignItems: "stretch",
                                     boxSizing: "border-box",
                                     display: "flex",
-                                    flexShrink: 1,
+                                    flexShrink: 0,
                                     position: "relative",
                                     marginBottom: "4px",
                                 }}
                             >
-                                {userPosts
-                                    .slice(i * 3, i * 3 + 3)
-                                    .map((post, index) => (
-                                        <div className="image-container" onClick={()=> handlePost((i*3)+index)}>
-                                            <div>
-                                                <LazyLoadImage
-                                                    style={{
-                                                        maxWidth: "100%",
-                                                    }}
-                                                    effect="blur"
-                                                    src={`https://picsum.photos/id/${post.id}/500/500`}
-                                                    alt=""
-                                                />
-                                            </div>
-                                            <div className="hoverIcons">
+                                {arrayFill(
+                                    userPosts.slice(i * 3, i * 3 + 3)
+                                ).map((post, index) => (
+                                    <div
+                                        className="image-container"
+                                        onClick={() =>
+                                            handlePost(i * 3 + index)
+                                        }
+                                    >
+                                        <div>
+                                            <LazyLoadImage
+                                                style={
+                                                    {
+                                                        // maxWidth: "100%",
+                                                    }
+                                                }
+                                                effect="blur"
+                                                src={`https://picsum.photos/id/${post?.id}/500/500`}
+                                                alt=""
+                                            />
+                                        </div>
+                                        <div className="hoverIcons">
+                                            <div
+                                                style={{
+                                                    display: "flex",
+                                                    justifyContent: "center",
+                                                }}
+                                            >
                                                 <div
                                                     style={{
+                                                        marginRight: "30px",
                                                         display: "flex",
-                                                        justifyContent:
-                                                            "center",
+                                                        alignItems: "center",
+                                                        fontSize: "16px",
+                                                        fontWeight: "700",
                                                     }}
                                                 >
                                                     <div
                                                         style={{
-                                                            marginRight: "30px",
-                                                            display: "flex",
-                                                            alignItems:
-                                                                "center",
-                                                            fontSize: "16px",
-                                                            fontWeight: "700",
+                                                            marginRight: "7px",
                                                         }}
                                                     >
-                                                        <div
-                                                            style={{
-                                                                marginRight:
-                                                                    "7px",
-                                                            }}
-                                                        >
-                                                            <Like
-                                                                liked={true}
-                                                                white="white"
-                                                            />
-                                                        </div>{" "}
-                                                        {post.likes}
-                                                    </div>
+                                                        <Like
+                                                            liked={true}
+                                                            white="white"
+                                                        />
+                                                    </div>{" "}
+                                                    {post.likes}
+                                                </div>
+                                                <div
+                                                    style={{
+                                                        display: "flex",
+                                                        alignItems: "center",
+                                                        fontSize: "16px",
+                                                        fontWeight: "700",
+                                                    }}
+                                                >
                                                     <div
                                                         style={{
-                                                            display: "flex",
-                                                            alignItems:
-                                                                "center",
-                                                            fontSize: "16px",
-                                                            fontWeight: "700",
+                                                            marginRight: "7px",
                                                         }}
                                                     >
-                                                        <div
-                                                            style={{
-                                                                marginRight:
-                                                                    "7px",
-                                                            }}
-                                                        >
-                                                            <Comment
-                                                                fill="white"
-                                                                color="white"
-                                                            />
-                                                        </div>{" "}
-                                                        {post.comments.length}
-                                                    </div>
+                                                        <Comment
+                                                            fill="white"
+                                                            color="white"
+                                                        />
+                                                    </div>{" "}
+                                                    {post?.comments?.length}
                                                 </div>
                                             </div>
                                         </div>
-                                    ))}
+                                    </div>
+                                ))}
                             </div>
                         );
                     })}
                 </div>
             </div>
-            <FullPost post={selectedPost} open={open} handleClose={handleClose} userPosts={userPosts} setSelectedpost={setSelectedpost} userData={userData}/>
+            <FullPost
+                post={selectedPost}
+                open={open}
+                handleClose={handleClose}
+                userPosts={userPosts}
+                setSelectedpost={setSelectedpost}
+                userData={userData}
+            />
         </div>
     );
 };

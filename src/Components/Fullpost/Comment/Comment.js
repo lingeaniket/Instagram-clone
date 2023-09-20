@@ -1,6 +1,19 @@
+import { useEffect, useState } from "react";
 import Like from "../../Icons/Like/Like";
+import axios from "axios";
+import { apiSite } from "../../../Website/website";
 
 const Comment = ({ comment }) => {
+    const [userData, setUserData] = useState({});
+
+    useEffect(() => {
+        // if (comment !== undefined && comment.userId !== undefined) {
+        axios.get(`${apiSite}/users/${comment.userId}`).then((response) => {
+            setUserData(response.data);
+            // console.log(response.data);
+        });
+        // }
+    }, [comment]);
     return (
         <div className="fullPost061">
             <div className="fullPost050">
@@ -10,14 +23,24 @@ const Comment = ({ comment }) => {
                             style={{
                                 height: "32px",
                                 width: "32px",
+                                borderRadius: "50%",
+                                overflow: "hidden",
                             }}
                         >
-                            image2
+                            <img
+                                style={{
+                                    maxWidth: "100%",
+                                }}
+                                src={`https://cloudflare-ipfs.com/ipfs/Qmd3W5DuhgHirLHGVixi6V76LhCkZUz6pnFt5AJBiyvHye/avatar/${userData?.avatar}.jpg`}
+                                alt=""
+                            />
                         </div>
                     </div>
                     <div>
                         <h2 className="fullPost053">
-                            <div className="fullPost054">Username</div>
+                            <div className="fullPost054">
+                                {userData?.username}
+                            </div>
                         </h2>
                         <div className="fullPost055">
                             <h1 className="fullPost056">{comment?.text}</h1>
@@ -43,7 +66,7 @@ const Comment = ({ comment }) => {
                     </div>
                 </div>
                 <div className="fullPost066">
-                    <Like />
+                    <Like size={12} />
                 </div>
             </div>
         </div>

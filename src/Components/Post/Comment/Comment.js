@@ -9,12 +9,10 @@ const Comment = ({ comment }) => {
     const [userData, setUserData] = useState({});
     useEffect(() => {
         axios
-            .get(`${apiSite}/users`)
+            .get(`${apiSite}/users/${comment.userId}`)
             .then((response) => {
                 setUserData(
-                    response.data.users.filter(
-                        (user) => user.id === comment.useId
-                    )[0]
+                    response.data
                 );
             });
         console.log("rendered");

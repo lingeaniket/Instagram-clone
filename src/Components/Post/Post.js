@@ -12,6 +12,7 @@ import Like from "../Icons/Like/Like";
 import Options from "../Icons/Options/Options";
 import ImageLike from "../Icons/ImageLike/ImageLike";
 import { apiSite } from "../../Website/website";
+import { useNavigate } from "react-router-dom";
 
 const Post = ({ post, id }) => {
     const [userData, setUserData] = useState({});
@@ -21,13 +22,15 @@ const Post = ({ post, id }) => {
     const likeref = useRef(null);
     const imagelikeref = useRef(null);
 
-    const handleImageLiked = (e) => {
+    const navigate = useNavigate();
+
+    const handleImageLiked = () => {
         imagelikeref.current.classList.add("clicked");
         setTimeout(() => {
             imagelikeref.current.classList.remove("clicked");
             console.log("is called?");
-        }, 1200);
-        if (!liked) handleLiked(e);
+        }, 500);
+        if (!liked) handleLiked();
     };
 
     const animateDiv = () => {
@@ -37,27 +40,29 @@ const Post = ({ post, id }) => {
         }, 500);
     };
 
-    const handleLiked = (e) => {
+    const handleLiked = () => {
         animateDiv();
         setLiked((liked) => !liked);
     };
+
     const handleSaved = () => {
         setSaved((saved) => !saved);
     };
+
+    const handleNavigate =()=>{
+        navigate(`/p/${id}`)
+    }
+
     useEffect(() => {
-        axios
-            .get(`${apiSite}/users`)
-            .then((response) => {
-                setUserData(
-                    response.data.users.filter((user) => user.id === id)[0]
-                );
-            });
+        axios.get(`${apiSite}/users/${id}`).then((response) => {
+            setUserData(response.data);
+        });
     }, [id]);
     return (
         <div className="timelineIn01 post001">
             <div className="post002">
                 <div className="post003">
-                    <div className="post004">
+                    <div className="post004" onClick={handleNavigate}>
                         <img
                             className="post005"
                             src={`https://cloudflare-ipfs.com/ipfs/Qmd3W5DuhgHirLHGVixi6V76LhCkZUz6pnFt5AJBiyvHye/avatar/${userData.avatar}.jpg`}
@@ -108,12 +113,10 @@ const Post = ({ post, id }) => {
                     <div className="post010">
                         <div
                             ref={likeref}
-                            className={`post011 post012 animeicon ${
-                                !liked ? "post019" : ""
-                            }`}
+                            className={`post011 post012 animeicon`}
                             onClick={handleLiked}
                         >
-                            <Like liked={liked} />
+                            <Like liked={liked} size={24} />
                         </div>
                         <div className="post011 post019">
                             <CommentIcon />

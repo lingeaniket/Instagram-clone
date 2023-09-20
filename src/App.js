@@ -3,6 +3,7 @@ import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import "./app.css";
 import Home from "./Components/Home/Home";
 import Profile from "./Components/Profile/Profile";
+import UserProfile from "./Components/UserProfile/UserProfile";
 
 const router = createBrowserRouter([
     {
@@ -16,6 +17,10 @@ const router = createBrowserRouter([
             {
                 path: '/profile',
                 element: <Profile/>
+            },
+            {
+                path: '/p/:id',
+                element: <UserProfile/>
             }
         ],
     },
