@@ -1,0 +1,26 @@
+.searchField {
+    padding-top: 12px;
+    display: flex;
+    flex-direction: column;
+    overflow-x: hidden;
+    overflow-y: auto;
+    flex-grow: 1;
+    width: 100%;
+}
+
+.searchResults {
+  display: block;
+  cursor: pointer;
+}
+
+.searchResults:hover {
+  background-color: rgb(235, 235, 235);
+}
+
+.searchField::-webkit-scrollbar {
+  display: none;
+}
+
+.searchField > .searchResults:last-of-type {
+  margin-bottom: 10px;
+}
