@@ -8,13 +8,9 @@ const Comment = ({ comment }) => {
 
     const [userData, setUserData] = useState({});
     useEffect(() => {
-        axios
-            .get(`${apiSite}/users/${comment.userId}`)
-            .then((response) => {
-                setUserData(
-                    response.data
-                );
-            });
+        axios.get(`${apiSite}/users/${comment.userId}`).then((response) => {
+            setUserData(response.data);
+        });
         console.log("rendered");
         // eslint-disable-next-line
     }, []);
@@ -35,12 +31,12 @@ const Comment = ({ comment }) => {
                     }}
                 >
                     {userData.username}
-                </span>{"  "}
+                </span>
+                {"  "}
                 {comment.text}
             </div>
-            <div style={{ display: "flex",cursor: 'pointer' }}>
+            <div style={{ display: "flex", cursor: "pointer" }}>
                 <FavoriteBorderRoundedIcon sx={{ fontSize: "16px" }} />
-                {/* {comment.likes} */}
             </div>
         </div>
     );

@@ -1,7 +1,15 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
+import CircularProgress from "@mui/material/CircularProgress";
 import CommentsDiv from "../CommentsDiv/CommentsDiv";
 
-const CommentDiv = ({ userData, post }) => {
+const CommentsComponent = ({ userData, post }) => {
+    const [loading, setLoading] = useState(false);
+    useEffect(() => {
+        setLoading(true);
+        setTimeout(() => {
+            setLoading(false);
+        }, 1200);
+    }, [post, userData]);
     return (
         <div className="fullPost048 fullPost063">
             <div>
@@ -52,12 +60,24 @@ const CommentDiv = ({ userData, post }) => {
                     </div>
                 </div>
             </div>
-            {/**Other comments */}
-            {post?.comments?.map((comment) => (
-                <CommentsDiv comment={comment} />
-            ))}
+            {loading ? (
+                <div style={{
+                    display: 'flex',
+                    justifyContent: 'center',
+                    alignItems: 'center',
+                }}>
+
+                    <CircularProgress />
+                </div>
+            ) : (
+                <>
+                    {post?.comments?.map((comment) => (
+                        <CommentsDiv comment={comment} />
+                    ))}
+                </>
+            )}
         </div>
     );
 };
 
-export default CommentDiv;
+export default CommentsComponent;

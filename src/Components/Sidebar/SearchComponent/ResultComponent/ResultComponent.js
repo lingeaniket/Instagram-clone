@@ -1,5 +1,7 @@
 import React from "react";
 import { useNavigate } from "react-router-dom";
+import './resultComponent.css'
+import Close from "../../../Icons/Close/Close";
 
 const ResultComponent = ({
     result,
@@ -14,50 +16,21 @@ const ResultComponent = ({
     };
     return (
         <div className="searchResults">
-            <div
-                style={{
-                    padding: "8px 24px",
-                    display: "flex",
-                    flexDirection: "column",
-                    alignItems: "stretch",
-                    justifyContent: "flex-start",
-                }}
+            <div className="resComp001"
+               
             >
-                <div
-                    style={{
-                        display: "flex",
-                        justifyContent: "center",
-                        flexDirection: "column",
-                        flexGrow: 1,
-                        alignItems: "stretch",
-                        position: "relative",
-                    }}
+                <div className="resComp002"
+                  
                 >
-                    <div
-                        style={{
-                            flexWrap: "nowrap",
-                            display: "flex",
-                            alignItems: "center",
-                            justifyContent: "space-between",
-                            position: "relative",
-                        }}
+                    <div className="resComp003"
+                      
                     >
-                        <div
+                        <div className="resComp004"
                             onClick={handleClick}
-                            style={{
-                                marginRight: "12px",
-                                display: "flex",
-                                justifyContent: "flex-start",
-                                alignItems: "stretch",
-                            }}
+                            
                         >
-                            <span
-                                style={{
-                                    height: "44px",
-                                    width: "44px",
-                                    borderRadius: "50%",
-                                    overflow: "hidden",
-                                }}
+                            <span className="resComp005"
+                                
                             >
                                 <img
                                     src={`https://cloudflare-ipfs.com/ipfs/Qmd3W5DuhgHirLHGVixi6V76LhCkZUz6pnFt5AJBiyvHye/avatar/${result.avatar}.jpg`}
@@ -65,55 +38,28 @@ const ResultComponent = ({
                                 />
                             </span>
                         </div>
-                        <div
+                        <div className="resComp006"
                             onClick={handleClick}
-                            style={{
-                                flexShrink: 1,
-                                display: "flex",
-                                alignItems: "center",
-                                justifyContent: "space-between",
-                                position: "relative",
-                                flexGrow: 1,
-                            }}
+                           
                         >
-                            <div
-                                style={{
-                                    maxWidth: "100%",
-                                    flexGrow: 1,
-                                    display: "flex",
-                                    flexDirection: "column",
-                                    position: "relative",
-                                }}
+                            <div className="resComp007"
+                                
                             >
-                                <div
-                                    style={{
-                                        display: "flex",
-                                        flexDirection: "column",
-                                        justifyContent: "flex-start",
-                                        alignItems: "flex-start",
-                                        flexGrow: 1,
-                                    }}
+                                <div className="resComp008"
+                                   
                                 >
-                                    <div
-                                        style={{
-                                            display: "flex",
-                                            justifyContent: "flex-start",
-                                            alignItems: "center",
-                                        }}
+                                    <div className="resComp009"
+                                        
                                     >
-                                        <span
-                                            style={{
-                                                fontWeight: 600,
-                                            }}
+                                        <span className="resComp010"
+                                            
                                         >
                                             {" "}
                                             {result.username}
                                         </span>
                                     </div>
-                                    <div
-                                        style={{
-                                            fontWeight: 400,
-                                        }}
+                                    <div className="resComp011"
+                                        
                                     >
                                         {result.first_name} {result.last_name}
                                     </div>
@@ -125,62 +71,19 @@ const ResultComponent = ({
                                 onClick={() => {
                                     handleSearchHistory(result.id, "remove");
                                 }}
-                                style={{
-                                    display: "flex",
-                                    alignItems: "center",
-                                    flexDirection: "column",
-                                    maxWidth: "100%",
-                                }}
+                                className="resComp012"
+                                
                             >
-                                <div
-                                    style={{
-                                        flexShrink: 1,
-                                        marginLeft: "12px",
-                                        display: "flex",
-                                        alignItems: "stretch",
-                                        justifyContent: "flex-start",
-                                    }}
+                                <div className="resComp013"
+                                   
                                 >
-                                    <div
+                                    <div className="resComp014"
                                         style={{
-                                            padding: "8px",
-                                            display: "flex",
-                                            justifyContent: "center",
-                                            alignItems: "center",
-                                            cursor: "pointer",
+                                            
                                         }}
                                     >
-                                        <svg
-                                            aria-label="Close"
-                                            class="x1lliihq x1n2onr6"
-                                            color="rgb(115, 115, 115)"
-                                            fill="rgb(115, 115, 115)"
-                                            height="16"
-                                            role="img"
-                                            viewBox="0 0 24 24"
-                                            width="16"
-                                        >
-                                            <title>Close</title>
-                                            <polyline
-                                                fill="none"
-                                                points="20.643 3.357 12 12 3.353 20.647"
-                                                stroke="currentColor"
-                                                stroke-linecap="round"
-                                                stroke-linejoin="round"
-                                                stroke-width="3"
-                                            ></polyline>
-                                            <line
-                                                fill="none"
-                                                stroke="currentColor"
-                                                stroke-linecap="round"
-                                                stroke-linejoin="round"
-                                                stroke-width="3"
-                                                x1="20.649"
-                                                x2="3.354"
-                                                y1="20.649"
-                                                y2="3.354"
-                                            ></line>
-                                        </svg>
+                                        <Close color="rgb(115, 115, 115)" size="16" title="remove"/>
+                                        
                                     </div>
                                 </div>
                             </div>

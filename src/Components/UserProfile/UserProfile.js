@@ -7,7 +7,7 @@ const UserProfile = () => {
     const [userId, setUserId] = useState();
     useEffect(() => {
         setUserId(Number(id));
-        console.log(id)
+        console.log(id);
     }, [id]);
     return <Profile id={userId} />;
 };

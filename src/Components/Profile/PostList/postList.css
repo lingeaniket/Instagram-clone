@@ -1,0 +1,36 @@
+.postList001 {
+    display: flex;
+    flex-direction: column;
+    padding-bottom: 0px;
+    padding-top: 0px;
+    position: relative;
+}
+
+.postList002 {
+    align-items: stretch;
+    box-sizing: border-box;
+    display: flex;
+    flex-shrink: 0;
+    position: relative;
+    margin-bottom: 4px;
+}
+
+.postList003 {
+    display: flex;
+    justify-content: center;
+}
+
+.postList004 {
+    display: flex;
+    align-items: center;
+    font-size: 16px;
+    font-weight: 700;
+}
+
+.postList005 {
+    margin-right: 7px;
+}
+
+.postList006 {
+    margin-right: 30px;
+}

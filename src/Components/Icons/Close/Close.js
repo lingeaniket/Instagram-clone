@@ -1,16 +1,16 @@
-const Close =()=>{
+const Close =({color, size, title})=>{
   return (
     <svg
                                 aria-label="Close"
                                 class="x1lliihq x1n2onr6"
-                                color="rgb(255, 255, 255)"
-                                fill="rgb(255, 255, 255)"
-                                height="18"
+                                color={color}
+                                fill={color}
+                                height={size}
                                 role="img"
                                 viewBox="0 0 24 24"
-                                width="18"
+                                width={size}
                             >
-                                <title>Close</title>
+                                <title>{title}</title>
                                 <polyline
                                     fill="none"
                                     points="20.643 3.357 12 12 3.353 20.647"

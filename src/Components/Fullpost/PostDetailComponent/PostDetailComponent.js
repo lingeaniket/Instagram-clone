@@ -4,7 +4,7 @@ import Options from "../../Icons/Options/Options";
 import Like from "../../Icons/Like/Like";
 import Comment from "../../Icons/Comment/Comment";
 import Share from "../../Icons/Share/Share";
-import CommentDiv from "../CommentDiv/CommentDiv";
+import CommentsComponent from "../CommentsComponent/CommentsComponent";
 
 const PostDetailComponent = ({ post, userData }) => {
     return (
@@ -15,15 +15,58 @@ const PostDetailComponent = ({ post, userData }) => {
                         <div className="fullPost033">
                             <div>
                                 <div className="fullPost034">
-                                    <div className="fullPost035">
-                                        <img
+                                    {post?.collab ? (
+                                        <>
+                                            <div
+                                                className="fullPost035"
+                                                style={{
+                                                    position: "absolute",
+                                                    top: 0,
+                                                    left: 0,
+                                                }}
+                                            >
+                                                <img
+                                                    style={{
+                                                        maxWidth: "100%",
+                                                    }}
+                                                    src={`https://cloudflare-ipfs.com/ipfs/Qmd3W5DuhgHirLHGVixi6V76LhCkZUz6pnFt5AJBiyvHye/avatar/${userData?.avatar}.jpg`}
+                                                    alt=""
+                                                />
+                                            </div>
+                                            <div
+                                                className="fullPost035"
+                                                style={{
+                                                    position: "absolute",
+                                                    bottom: 0,
+                                                    right: 0,
+                                                }}
+                                            >
+                                                <img
+                                                    style={{
+                                                        maxWidth: "100%",
+                                                    }}
+                                                    src={`https://cloudflare-ipfs.com/ipfs/Qmd3W5DuhgHirLHGVixi6V76LhCkZUz6pnFt5AJBiyvHye/avatar/${userData?.avatar}.jpg`}
+                                                    alt=""
+                                                />
+                                            </div>
+                                        </>
+                                    ) : (
+                                        <div
+                                            className="fullPost035"
                                             style={{
-                                                maxWidth: "100%",
+                                                height: "32px",
+                                                width: "32px",
                                             }}
-                                            src={`https://cloudflare-ipfs.com/ipfs/Qmd3W5DuhgHirLHGVixi6V76LhCkZUz6pnFt5AJBiyvHye/avatar/${userData?.avatar}.jpg`}
-                                            alt=""
-                                        />
-                                    </div>
+                                        >
+                                            <img
+                                                style={{
+                                                    maxWidth: "100%",
+                                                }}
+                                                src={`https://cloudflare-ipfs.com/ipfs/Qmd3W5DuhgHirLHGVixi6V76LhCkZUz6pnFt5AJBiyvHye/avatar/${userData?.avatar}.jpg`}
+                                                alt=""
+                                            />
+                                        </div>
+                                    )}
                                 </div>
                             </div>
                             <div className="fullPost036 fullPost024 fullPost042">
@@ -101,7 +144,7 @@ const PostDetailComponent = ({ post, userData }) => {
                         </span>
                     </div>
                     <div className="fullPost047 fullPost024 fullPost042">
-                        <CommentDiv userData={userData} post={post} />
+                        <CommentsComponent userData={userData} post={post} />
                     </div>
                     <div className="fullPost072">
                         <span className="fullPost073">1 day agot</span>

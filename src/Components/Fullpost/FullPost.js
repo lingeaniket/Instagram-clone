@@ -58,7 +58,7 @@ const FullPost = ({
                     <div className="fullPost004"></div>
                     <div className="fullPost005" onClick={handleClose}>
                         <div className="fullPost006 fullPost016">
-                            <Close />
+                            <Close color="white" size="18" title="close" />
                         </div>
                     </div>
                     <div className="fullPost007">
@@ -91,7 +91,7 @@ const FullPost = ({
                                                             <button className="fullPost015 fullPost016 fullPost006">
                                                                 <div className="fullPost016">
                                                                     <span className="fullPost017">
-                                                                        <Back />
+                                                                        <Back title="Go back" />
                                                                     </span>
                                                                 </div>
                                                             </button>
@@ -109,7 +109,7 @@ const FullPost = ({
                                                             <button className="fullPost015 fullPost016 fullPost006">
                                                                 <div className="fullPost016">
                                                                     <span className="fullPost018">
-                                                                        <Back />
+                                                                        <Back title="Next" />
                                                                     </span>
                                                                 </div>
                                                             </button>

@@ -1,0 +1,100 @@
+.resComp001 {
+    padding: 8px 24px;
+    display: flex;
+    flex-direction: column;
+    align-items: stretch;
+    justify-content: flex-start;
+}
+
+.resComp002 {
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    flex-grow: 1;
+    align-items: stretch;
+    position: relative;
+}
+
+.resComp003 {
+    flex-wrap: nowrap;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    position: relative;
+}
+
+.resComp004 {
+    margin-right: 12px;
+    display: flex;
+    justify-content: flex-start;
+    align-items: stretch;
+}
+
+.resComp005 {
+    height: 44px;
+    width: 44px;
+    border-radius: 50%;
+    overflow: hidden;
+}
+
+.resComp006 {
+    flex-shrink: 1;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    position: relative;
+    flex-grow: 1;
+}
+
+.resComp007 {
+    max-width: 100%;
+    flex-grow: 1;
+    display: flex;
+    flex-direction: column;
+    position: relative;
+}
+
+.resComp008 {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: flex-start;
+    flex-grow: 1;
+}
+
+.resComp009 {
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+}
+
+.resComp010 {
+    font-weight: 600;
+}
+
+.resComp011 {
+    font-weight: 400;
+}
+
+.resComp012 {
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    max-width: 100%;
+}
+
+.resComp013 {
+    flex-shrink: 1;
+    margin-left: 12px;
+    display: flex;
+    align-items: stretch;
+    justify-content: flex-start;
+}
+
+.resComp014 {
+    padding: 8px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+}
