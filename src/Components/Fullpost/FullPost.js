@@ -14,14 +14,12 @@ const FullPost = ({
     userPosts,
     setSelectedpost,
     userData,
-    explore=false
+    explore = false,
 }) => {
-    // console.log(post, open, userPosts, userData);
     const imageRef = useRef();
     const detailRef = useRef();
     const prevBtnRef = useRef();
     const nextBtnRef = useRef();
-    // console.log(post)
     const [selected, setSelected] = useState({});
     const handleNext = () => {
         setSelectedpost((prev) => prev + 1);
@@ -45,12 +43,12 @@ const FullPost = ({
     };
 
     useEffect(() => {
-        if(explore) {
-
+        if (explore) {
             setSelected(() => userPosts[post]?.post);
         } else {
             setSelected(() => userPosts[post]);
         }
+        // eslint-disable-next-line
     }, [post, userPosts]);
 
     return (
@@ -85,47 +83,52 @@ const FullPost = ({
                                     >
                                         <div>
                                             <div className="fullPost012 fullPost063">
-                                                {
-                                                    !explore && 
-                                                <div className="fullPost013 fullPost063">
-                                                    {post > 0 && (
-                                                        <div
-                                                            className="fullPost014"
-                                                            style={{
-                                                                left: 0,
-                                                            }}
-                                                            onClick={handlePrev}
-                                                            ref={prevBtnRef}
-                                                        >
-                                                            <button className="fullPost015 fullPost016 fullPost006">
-                                                                <div className="fullPost016">
-                                                                    <span className="fullPost017">
-                                                                        <Back title="Go back" />
-                                                                    </span>
-                                                                </div>
-                                                            </button>
-                                                        </div>
-                                                    )}
-                                                    {post <
-                                                        userPosts.length -
-                                                            1 && (
-                                                        <div
-                                                            className="fullPost014"
-                                                            style={{ right: 0 }}
-                                                            onClick={handleNext}
-                                                            ref={nextBtnRef}
-                                                        >
-                                                            <button className="fullPost015 fullPost016 fullPost006">
-                                                                <div className="fullPost016">
-                                                                    <span className="fullPost018">
-                                                                        <Back title="Next" />
-                                                                    </span>
-                                                                </div>
-                                                            </button>
-                                                        </div>
-                                                    )}
-                                                </div>
-                                                }
+                                                {!explore && (
+                                                    <div className="fullPost013 fullPost063">
+                                                        {post > 0 && (
+                                                            <div
+                                                                className="fullPost014"
+                                                                style={{
+                                                                    left: 0,
+                                                                }}
+                                                                onClick={
+                                                                    handlePrev
+                                                                }
+                                                                ref={prevBtnRef}
+                                                            >
+                                                                <button className="fullPost015 fullPost016 fullPost006">
+                                                                    <div className="fullPost016">
+                                                                        <span className="fullPost017">
+                                                                            <Back title="Go back" />
+                                                                        </span>
+                                                                    </div>
+                                                                </button>
+                                                            </div>
+                                                        )}
+                                                        {post <
+                                                            userPosts.length -
+                                                                1 && (
+                                                            <div
+                                                                className="fullPost014"
+                                                                style={{
+                                                                    right: 0,
+                                                                }}
+                                                                onClick={
+                                                                    handleNext
+                                                                }
+                                                                ref={nextBtnRef}
+                                                            >
+                                                                <button className="fullPost015 fullPost016 fullPost006">
+                                                                    <div className="fullPost016">
+                                                                        <span className="fullPost018">
+                                                                            <Back title="Next" />
+                                                                        </span>
+                                                                    </div>
+                                                                </button>
+                                                            </div>
+                                                        )}
+                                                    </div>
+                                                )}
                                             </div>
                                         </div>
                                         <div

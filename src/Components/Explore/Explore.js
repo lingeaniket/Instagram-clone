@@ -1,15 +1,12 @@
 import React, { useEffect, useState } from "react";
 import InfiniteScroll from "react-infinite-scroll-component";
-
-import Like from "../Icons/Like/Like";
-import Comment from "../Icons/Comment/Comment";
 import "react-lazy-load-image-component/src/effects/blur.css";
 import "./explore.css";
 import { generateRandomUsersAndPosts } from "./function";
 // import Reel from '../Icons/Reel/Reel'
 import Loader from "../Icons/Loader/Loader";
 import ImagePost from "./ImagePost/ImagePost";
-import ReelPost from "./ReelPost/ReelPost";
+// import ReelPost from "./ReelPost/ReelPost";
 import FullPost from "../Fullpost/FullPost";
 const Explore = () => {
     const [posts, setPosts] = useState([]);
@@ -32,23 +29,14 @@ const Explore = () => {
     };
 
     useEffect(() => {
-        // for(let i=0; i<4; i++) {
         const generateRandom = async () => {
             const data1 = await generateRandomUsersAndPosts();
             const data2 = await generateRandomUsersAndPosts();
-            // console.log([data1, data2]);
 
             setPosts((prev) => [...prev, data1, data2]);
         };
 
         generateRandom();
-        // console.log(generateRandomUsersAndPosts())
-        // setPosts(async (posts) => [
-        //     ...posts,
-        //     await generateRandomUsersAndPosts(),
-        //     await generateRandomUsersAndPosts(),
-        // ]);
-        // }
     }, []);
 
     return (
@@ -88,21 +76,18 @@ const Explore = () => {
                             </>
                         }
                     >
-                        {posts.map((user, index) => {
-                            // console.log(user);
-                            return (
-                                <div className="explore004">
-                                    {user?.map((post, idx) => (
-                                        <ImagePost
-                                            post={post.post}
-                                            handlePost={handlePost}
-                                            mainDiv={index}
-                                            index={idx}
-                                        />
-                                    ))}
-                                </div>
-                            );
-                        })}
+                        {posts.map((user, index) => (
+                            <div className="explore004">
+                                {user?.map((post, idx) => (
+                                    <ImagePost
+                                        post={post.post}
+                                        handlePost={handlePost}
+                                        mainDiv={index}
+                                        index={idx}
+                                    />
+                                ))}
+                            </div>
+                        ))}
                     </InfiniteScroll>
                 </div>
             </div>
