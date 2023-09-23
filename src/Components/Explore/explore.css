@@ -1,19 +1,108 @@
-.loader001 {
-    animation-duration: 0.8s;
-    animation-timing-function: steps(12, end);
-    animation-iteration-count: infinite;
-    animation-name: loader;
+.explore001 {
+    padding: 24px 20px 0;
+    width: calc(100% - 40px);
+    margin: 0 auto 30px;
+    display: flex;
+    flex-direction: column;
+    flex-grow: 1;
+    max-width: 975px;
 }
 
-.loaderFill {
-  fill: rgb(85,85,85);
+.explore002 {
+    margin: 0 -28px 0 0;
+    flex-direction: column;
+    display: flex;
+    position: relative;
 }
 
-@keyframes loader {
-    0% {
-        transform: rotate(0deg);
-    }
-    100% {
-        transform: rotate(360deg);
-    }
+.explore003 {
+    display: flex;
+    flex-direction: column;
+    padding-top: 0;
+    position: relative;
 }
+
+.explore004 {
+    overflow-y: visible;
+    position: relative;
+    flex-shrink: 0;
+    overflow-x: visible;
+    align-self: auto;
+    flex-grow: 0;
+}
+
+.explore005 {
+    width: calc(33.3333% - 4px);
+    margin-bottom: 4px;
+    margin-right: 4px;
+    position: relative;
+    vertical-align: baseline;
+    cursor: pointer;
+}
+
+.explore006 {
+    float: left;
+}
+.explore007 {
+    float: right;
+}
+
+.explore008{
+    width:100%;
+    position:relative;
+    }
+
+    .explore009{
+        width:100%;
+        }
+
+        .explore010{
+            overflow:hidden;
+            }
+
+            .explore010:hover > .hoverIcons {
+                display: flex;
+            }
+
+            .explore011{
+                margin:15px 15px 0 0;
+                align-items:flex-end;
+                display:flex;
+                flex-direction:column;
+                justify-content:flex-start;
+                position:absolute;
+                inset:0;
+                }
+
+                .explore012 {
+                    overflow:visible;
+                    }
+
+                    .explore013{
+                        align-items:stretch;
+                        border:0;
+                        box-sizing:border-box;
+                        display:flex;
+                        flex-direction:column;
+                        flex-shrink:0;
+                        font:inherit;
+                        font-size:100%;
+                        height:48px;
+                        margin:0;
+                        margin-top:40px;
+                        padding:0;
+                        position:relative;
+                        vertical-align:baseline;
+                        }
+
+                        .explore014{
+                            height:32px;
+                            width:32px;
+                            top:50%;
+                            left:50%;
+                            justify-content:center;
+                            display:flex;
+                            flex-direction:column;
+                            transform:translate(-50%,-50%);
+                            position:absolute;
+                            }

@@ -1,519 +1,125 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
+import InfiniteScroll from "react-infinite-scroll-component";
+
+import Like from "../Icons/Like/Like";
+import Comment from "../Icons/Comment/Comment";
+import "react-lazy-load-image-component/src/effects/blur.css";
 import "./explore.css";
-// import Reel from "../Icons/Reel/Reel";
+import { generateRandomUsersAndPosts } from "./function";
+// import Reel from '../Icons/Reel/Reel'
+import Loader from "../Icons/Loader/Loader";
+import ImagePost from "./ImagePost/ImagePost";
+import ReelPost from "./ReelPost/ReelPost";
+import FullPost from "../Fullpost/FullPost";
 const Explore = () => {
+    const [posts, setPosts] = useState([]);
+    const [selectedPost, setSelectedpost] = useState();
+    const [userPost, setUserPost] = useState([]);
+    const [open, setOpen] = useState(false);
+    const handleClose = () => {
+        document.body.style.overflow = "auto";
+        setOpen(() => false);
+    };
+
+    const handlePost = (mainIndex, index) => {
+        handleClose();
+        setSelectedpost(() => Number(index));
+        setUserPost(() => posts[mainIndex]);
+        setTimeout(() => {
+            setOpen(() => true);
+            document.body.style.overflow = "hidden";
+        }, 250);
+    };
+
+    useEffect(() => {
+        // for(let i=0; i<4; i++) {
+        const generateRandom = async () => {
+            const data1 = await generateRandomUsersAndPosts();
+            const data2 = await generateRandomUsersAndPosts();
+            // console.log([data1, data2]);
+
+            setPosts((prev) => [...prev, data1, data2]);
+        };
+
+        generateRandom();
+        // console.log(generateRandomUsersAndPosts())
+        // setPosts(async (posts) => [
+        //     ...posts,
+        //     await generateRandomUsersAndPosts(),
+        //     await generateRandomUsersAndPosts(),
+        // ]);
+        // }
+    }, []);
 
     return (
-        <div
-            style={{
-                padding: "24px 20px 0",
-                width: "calc(100% - 40px)",
-                margin: "0 auto 30px",
-                display: "flex",
-                flexDirection: "column",
-                flexGrow: 1,
-                maxWidth: "975px",
-            }}
-        >
-            <div
-                style={{
-                    margin: "0 -28px 0 0",
-                    flexDirection: "column",
-                    display: "flex",
-                    position: "relative",
-                }}
-            >
-                <div
-                    style={{
-                        display: "flex",
-                        flexDirection: "column",
-                        paddingTop: 0,
-                        position: "relative",
-                    }}
-                >
+        <div className="explore001">
+            <div className="explore002">
+                <div className="explore003">
                     {/* main list five component div */}
-                    <div
-                        style={{
-                            overflowY: "visible",
-                            position: "relative",
-                            flexShrink: 0,
+                    <InfiniteScroll
+                        style={{ overflow: "hidden" }}
+                        dataLength={posts.length}
+                        next={async () => {
+                            const data = await generateRandomUsersAndPosts();
 
-                            overflowX: "visible",
-                            alignSelf: "auto",
-                            flexGrow: 0,
+                            setPosts((prev) => [...prev, data]);
                         }}
-                    >
-                        {/* all list components */}
-                        {/* reel component */}
-                        {/* <div
-                            style={{
-                                width: "calc(33.3333% - 4px)",
-                                marginBottom: "4px",
-                                marginRight: "4px",
-                                position: "relative",
-                                float: "left",
-                                verticalAlign: "baseline",
-                            }}
-                        >
-                            <div>
-                                <div
-                                    style={{
-                                        width: "100%",
-                                        position: "relative",
-                                    }}
-                                >
-                                    <div
-                                        style={{
-                                            width: "100%",
-                                        }}
-                                    >
-                                        <div
-                                            style={{
-                                                overflow: "hidden",
-                                            }}
-                                        >
-                                            Reel image
-                                        </div>
+                        hasMore={true}
+                        loader={
+                            <>
+                                {/* <div className="explore013">
+                                    <div className="explore014">
+                                        <Loader />
                                     </div>
-                                </div>
-                                <div
+                                </div> */}
+                                {/* <div
                                     style={{
-                                        margin: "15px 15px 0 0",
-                                        alignItems: "flex-end",
                                         display: "flex",
-                                        flexDirection: "column",
-                                        justifyContent: "flex-start",
-                                        position: "absolute",
-                                        inset: 0,
+                                        justifyContent: "center",
+                                        width: "100%",
+                                        height: "100px",
+                                        alignItems: "center",
                                     }}
                                 >
-                                    <Reel />
-                                </div>
-                            </div>
-                        </div> */}
-                        
-                        {/* post component */}
-                        <div
-                            style={{
-                                width: "calc(33.3333% - 4px)",
-                                marginBottom: "4px",
-                                marginRight: "4px",
-                                position: "relative",
-                                float: "left",
-                                verticalAlign: "baseline",
-                            }}
-                        >
-                            <div
-                                style={{
-                                    width: "100%",
-                                    overflow: "visible",
-                                    position: "relative",
-                                }}
-                            >
-                                <div>
-                                    <div
-                                        style={{
-                                            width: "100%",
-                                            position: "relative",
-                                        }}
-                                    >
-                                        <div
-                                            style={{
-                                                width: "100%",
-                                            }}
-                                        >
-                                            <div
-                                                style={{
-                                                    overflow: "hidden",
-                                                }}
-                                            >
-                                                post 01
-                                            </div>
-                                        </div>
+                                    <div className="explore014">
+                                        <Loader />
                                     </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div
-                            style={{
-                                width: "calc(33.3333% - 4px)",
-                                marginBottom: "4px",
-                                marginRight: "4px",
-                                position: "relative",
-                                float: "left",
-                                verticalAlign: "baseline",
-                            }}
-                        >
-                            <div
-                                style={{
-                                    width: "100%",
-                                    overflow: "visible",
-                                    position: "relative",
-                                }}
-                            >
-                                <div>
-                                    <div
-                                        style={{
-                                            width: "100%",
-                                            position: "relative",
-                                        }}
-                                    >
-                                        <div
-                                            style={{
-                                                width: "100%",
-                                            }}
-                                        >
-                                            <div
-                                                style={{
-                                                    overflow: "hidden",
-                                                }}
-                                            >
-                                                post 02
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div
-                            style={{
-                                width: "calc(33.3333% - 4px)",
-                                marginBottom: "4px",
-                                marginRight: "4px",
-                                position: "relative",
-                                float: "left",
-                                verticalAlign: "baseline",
-                            }}
-                        >
-                            <div
-                                style={{
-                                    width: "100%",
-                                    overflow: "visible",
-                                    position: "relative",
-                                }}
-                            >
-                                <div>
-                                    <div
-                                        style={{
-                                            width: "100%",
-                                            position: "relative",
-                                        }}
-                                    >
-                                        <div
-                                            style={{
-                                                width: "100%",
-                                            }}
-                                        >
-                                            <div
-                                                style={{
-                                                    overflow: "hidden",
-                                                }}
-                                            >
-                                                post 03
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div
-                            style={{
-                                width: "calc(33.3333% - 4px)",
-                                marginBottom: "4px",
-                                marginRight: "4px",
-                                position: "relative",
-                                float: "left",
-                                verticalAlign: "baseline",
-                            }}
-                        >
-                            <div
-                                style={{
-                                    width: "100%",
-                                    overflow: "visible",
-                                    position: "relative",
-                                }}
-                            >
-                                <div>
-                                    <div
-                                        style={{
-                                            width: "100%",
-                                            position: "relative",
-                                        }}
-                                    >
-                                        <div
-                                            style={{
-                                                width: "100%",
-                                            }}
-                                        >
-                                            <div
-                                                style={{
-                                                    overflow: "hidden",
-                                                }}
-                                            >
-                                                post 04
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div
-                            style={{
-                                width: "calc(33.3333% - 4px)",
-                                marginBottom: "4px",
-                                marginRight: "4px",
-                                position: "relative",
-                                float: "left",
-                                verticalAlign: "baseline",
-                            }}
-                        >
-                            <div
-                                style={{
-                                    width: "100%",
-                                    overflow: "visible",
-                                    position: "relative",
-                                }}
-                            >
-                                <div>
-                                    <div
-                                        style={{
-                                            width: "100%",
-                                            position: "relative",
-                                        }}
-                                    >
-                                        <div
-                                            style={{
-                                                width: "100%",
-                                            }}
-                                        >
-                                            <div
-                                                style={{
-                                                    overflow: "hidden",
-                                                }}
-                                            >
-                                                post 05
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div
-                            style={{
-                                width: "calc(33.3333% - 4px)",
-                                marginBottom: "4px",
-                                marginRight: "4px",
-                                position: "relative",
-                                float: "left",
-                                verticalAlign: "baseline",
-                            }}
-                        >
-                            <div
-                                style={{
-                                    width: "100%",
-                                    overflow: "visible",
-                                    position: "relative",
-                                }}
-                            >
-                                <div>
-                                    <div
-                                        style={{
-                                            width: "100%",
-                                            position: "relative",
-                                        }}
-                                    >
-                                        <div
-                                            style={{
-                                                width: "100%",
-                                            }}
-                                        >
-                                            <div
-                                                style={{
-                                                    overflow: "hidden",
-                                                }}
-                                            >
-                                                post 06
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div
-                style={{
-                    alignItems: "stretch",
-                    border: 0,
-                    boxSizing: "border-box",
-                    display: "flex",
-                    flexDirection: "column",
-                    flexShrink: 0,
-                    font: "inherit",
-                    fontSize: "100%",
-                    height: "48px",
-                    margin: 0,
-                    marginTop: "40px",
-                    padding: 0,
-                    position: "relative",
-                    verticalAlign: "baseline",
-                }}
-            >
-                <div
-                    style={{
-                        height: "32px",
-                        width: "32px",
-                        top: "50%",
-                        left: "50%",
-                        justifyContent: "center",
-                        display: "flex",
-                        flexDirection: "column",
-                        transform: "translate(-50%,-50%)",
-                        position: "absolute",
-                    }}
-                >
-                    <svg
-                        aria-label="Loading..."
-                        className="loader001"
-                        role="img"
-                        viewBox="0 0 100 100"
+                                </div> */}
+                            </>
+                        }
                     >
-                        <rect
-                            class="loaderFill"
-                            height="6"
-                            opacity="0"
-                            rx="3"
-                            ry="3"
-                            transform="rotate(-90 50 50)"
-                            width="25"
-                            x="72"
-                            y="47"
-                        ></rect>
-                        <rect
-                            class="loaderFill"
-                            height="6"
-                            opacity="0.08333333333333333"
-                            rx="3"
-                            ry="3"
-                            transform="rotate(-60 50 50)"
-                            width="25"
-                            x="72"
-                            y="47"
-                        ></rect>
-                        <rect
-                            class="loaderFill"
-                            height="6"
-                            opacity="0.16666666666666666"
-                            rx="3"
-                            ry="3"
-                            transform="rotate(-30 50 50)"
-                            width="25"
-                            x="72"
-                            y="47"
-                        ></rect>
-                        <rect
-                            class="loaderFill"
-                            height="6"
-                            opacity="0.25"
-                            rx="3"
-                            ry="3"
-                            transform="rotate(0 50 50)"
-                            width="25"
-                            x="72"
-                            y="47"
-                        ></rect>
-                        <rect
-                            class="loaderFill"
-                            height="6"
-                            opacity="0.3333333333333333"
-                            rx="3"
-                            ry="3"
-                            transform="rotate(30 50 50)"
-                            width="25"
-                            x="72"
-                            y="47"
-                        ></rect>
-                        <rect
-                            class="loaderFill"
-                            height="6"
-                            opacity="0.4166666666666667"
-                            rx="3"
-                            ry="3"
-                            transform="rotate(60 50 50)"
-                            width="25"
-                            x="72"
-                            y="47"
-                        ></rect>
-                        <rect
-                            class="loaderFill"
-                            height="6"
-                            opacity="0.5"
-                            rx="3"
-                            ry="3"
-                            transform="rotate(90 50 50)"
-                            width="25"
-                            x="72"
-                            y="47"
-                        ></rect>
-                        <rect
-                            class="loaderFill"
-                            height="6"
-                            opacity="0.5833333333333334"
-                            rx="3"
-                            ry="3"
-                            transform="rotate(120 50 50)"
-                            width="25"
-                            x="72"
-                            y="47"
-                        ></rect>
-                        <rect
-                            class="loaderFill"
-                            height="6"
-                            opacity="0.6666666666666666"
-                            rx="3"
-                            ry="3"
-                            transform="rotate(150 50 50)"
-                            width="25"
-                            x="72"
-                            y="47"
-                        ></rect>
-                        <rect
-                            class="loaderFill"
-                            height="6"
-                            opacity="0.75"
-                            rx="3"
-                            ry="3"
-                            transform="rotate(180 50 50)"
-                            width="25"
-                            x="72"
-                            y="47"
-                        ></rect>
-                        <rect
-                            class="loaderFill"
-                            height="6"
-                            opacity="0.8333333333333334"
-                            rx="3"
-                            ry="3"
-                            transform="rotate(210 50 50)"
-                            width="25"
-                            x="72"
-                            y="47"
-                        ></rect>
-                        <rect
-                            class="loaderFill"
-                            height="6"
-                            opacity="0.9166666666666666"
-                            rx="3"
-                            ry="3"
-                            transform="rotate(240 50 50)"
-                            width="25"
-                            x="72"
-                            y="47"
-                        ></rect>
-                    </svg>
+                        {posts.map((user, index) => {
+                            // console.log(user);
+                            return (
+                                <div className="explore004">
+                                    {user?.map((post, idx) => (
+                                        <ImagePost
+                                            post={post.post}
+                                            handlePost={handlePost}
+                                            mainDiv={index}
+                                            index={idx}
+                                        />
+                                    ))}
+                                </div>
+                            );
+                        })}
+                    </InfiniteScroll>
                 </div>
             </div>
+            <div className="explore013">
+                <div className="explore014">
+                    <Loader />
+                </div>
+            </div>
+            <FullPost
+                post={selectedPost}
+                open={open}
+                handleClose={handleClose}
+                userPosts={userPost}
+                setSelectedpost={setSelectedpost}
+                userData={userPost[selectedPost]?.account}
+                explore={true}
+            />
         </div>
     );
 };

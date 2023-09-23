@@ -1,29 +1,49 @@
 import axios from "axios";
+import { apiSite } from "../../Website/website";
 
 export const generateRandomUsersAndPosts = async () => {
-    const users = generate5users();
-    const data = users.map((id) => loadPosts(id));
+    const users = await generate6users();
+    // const promisedata = users.map((id) => loadPosts(id));
+    // const data = await Promise.all(promisedata);
+    // console.log(users);
+
+    return users.filter((post) => post !== null);
 };
 
-const generate5users = () => {
+const generate6users = async () => {
+    const data = [];
     const users = [];
-    for (let i = 0; i < 5; i++) {
-        let id = generateRandom(0, 100);
-        while (users.includes(id)) {
-            id = generateRandom(0, 100);
+    for (let i = 0; i < 6; i++) {
+        let id = generateRandom(1, 100);
+        let account = await accountData(id);
+        while (users.includes(id) || account.private) {
+            id = generateRandom(1, 100);
+            account = await accountData(id);
         }
         users.push(id);
+        data.push({
+            account,
+            post: await loadPosts(id),
+        });
     }
-
-    return users;
+    return data;
 };
 
 const generateRandom = (first, last) => {
     return Math.floor(Math.random() * (last - first)) + first;
 };
 
-// const loadPosts = async (id) => {
-//   try {
-//       // const promise = await axios.get(`${}`)
-//   }
-// };
+const accountData = async (id) => {
+    const data = await axios.get(`${apiSite}/users/${id}`);
+    return data.data;
+};
+
+const loadPosts = async (id) => {
+    try {
+        const promise = await axios.get(`${apiSite}/posts/${id}`);
+        const randomPost = generateRandom(0, promise?.data?.posts?.length);
+        return promise?.data?.posts[randomPost];
+    } catch (err) {
+        console.log(err);
+    }
+};

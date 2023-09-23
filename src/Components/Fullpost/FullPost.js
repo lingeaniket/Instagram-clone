@@ -14,7 +14,9 @@ const FullPost = ({
     userPosts,
     setSelectedpost,
     userData,
+    explore=false
 }) => {
+    // console.log(post, open, userPosts, userData);
     const imageRef = useRef();
     const detailRef = useRef();
     const prevBtnRef = useRef();
@@ -43,7 +45,12 @@ const FullPost = ({
     };
 
     useEffect(() => {
-        setSelected(() => userPosts[post]);
+        if(explore) {
+
+            setSelected(() => userPosts[post]?.post);
+        } else {
+            setSelected(() => userPosts[post]);
+        }
     }, [post, userPosts]);
 
     return (
@@ -78,6 +85,8 @@ const FullPost = ({
                                     >
                                         <div>
                                             <div className="fullPost012 fullPost063">
+                                                {
+                                                    !explore && 
                                                 <div className="fullPost013 fullPost063">
                                                     {post > 0 && (
                                                         <div
@@ -116,6 +125,7 @@ const FullPost = ({
                                                         </div>
                                                     )}
                                                 </div>
+                                                }
                                             </div>
                                         </div>
                                         <div
