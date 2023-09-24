@@ -20,6 +20,7 @@ const ImagePost = ({ post, handlePost, mainDiv, index }) => {
                                         effect="blur"
                                         style={{
                                             maxWidth: "100%",
+                                            verticalAlign: 'middle',
                                         }}
                                         src={`https://picsum.photos/id/${post?.id}/500/500`}
                                         alt=""
