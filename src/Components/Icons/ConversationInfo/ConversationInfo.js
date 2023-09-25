@@ -4,7 +4,6 @@ const ConversatitionInfo = () => {
     return (
         <svg
             aria-label="Conversation information"
-            class="x1lliihq x1n2onr6"
             color="rgb(0, 0, 0)"
             fill="rgb(0, 0, 0)"
             height="24"
@@ -19,17 +18,17 @@ const ConversatitionInfo = () => {
                 fill="none"
                 r="10.5"
                 stroke="currentColor"
-                stroke-linecap="round"
-                stroke-linejoin="round"
-                stroke-width="2"
+                strokeLinecap="round"
+                strokeLinejoin="round"
+                strokeWidth="2"
             ></circle>
             <circle cx="11.819" cy="7.709" r="1.25"></circle>
             <line
                 fill="none"
                 stroke="currentColor"
-                stroke-linecap="round"
-                stroke-linejoin="round"
-                stroke-width="2"
+                strokeLinecap="round"
+                strokeLinejoin="round"
+                strokeWidth="2"
                 x1="10.569"
                 x2="13.432"
                 y1="16.777"
@@ -39,9 +38,9 @@ const ConversatitionInfo = () => {
                 fill="none"
                 points="10.569 11.05 12 11.05 12 16.777"
                 stroke="currentColor"
-                stroke-linecap="round"
-                stroke-linejoin="round"
-                stroke-width="2"
+                strokeLinecap="round"
+                strokeLinejoin="round"
+                strokeWidth="2"
             ></polyline>
         </svg>
     );

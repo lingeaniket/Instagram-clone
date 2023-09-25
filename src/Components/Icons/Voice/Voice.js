@@ -4,7 +4,6 @@ const Voice = () => {
     return (
         <svg
             aria-label="Voice clip"
-            class="x1lliihq x1n2onr6"
             color="rgb(0, 0, 0)"
             fill="rgb(0, 0, 0)"
             height="24"
@@ -17,15 +16,15 @@ const Voice = () => {
                 d="M19.5 10.671v.897a7.5 7.5 0 0 1-15 0v-.897"
                 fill="none"
                 stroke="currentColor"
-                stroke-linecap="round"
-                stroke-linejoin="round"
-                stroke-width="2"
+                strokeLinecap="round"
+                strokeLinejoin="round"
+                strokeWidth="2"
             ></path>
             <line
                 fill="none"
                 stroke="currentColor"
-                stroke-linejoin="round"
-                stroke-width="2"
+                strokeLinejoin="round"
+                strokeWidth="2"
                 x1="12"
                 x2="12"
                 y1="19.068"
@@ -34,9 +33,9 @@ const Voice = () => {
             <line
                 fill="none"
                 stroke="currentColor"
-                stroke-linecap="round"
-                stroke-linejoin="round"
-                stroke-width="2"
+                strokeLinecap="round"
+                strokeLinejoin="round"
+                strokeWidth="2"
                 x1="8.706"
                 x2="15.104"
                 y1="22"
@@ -46,9 +45,9 @@ const Voice = () => {
                 d="M12 15.745a4 4 0 0 1-4-4V6a4 4 0 0 1 8 0v5.745a4 4 0 0 1-4 4Z"
                 fill="none"
                 stroke="currentColor"
-                stroke-linecap="round"
-                stroke-linejoin="round"
-                stroke-width="2"
+                strokeLinecap="round"
+                strokeLinejoin="round"
+                strokeWidth="2"
             ></path>
         </svg>
     );

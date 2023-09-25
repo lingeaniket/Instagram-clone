@@ -4,7 +4,6 @@ const Arrow = () => {
     return (
         <svg
             aria-label="Down Chevron Icon"
-            class="x1lliihq x1n2onr6"
             color="rgb(0, 0, 0)"
             fill="rgb(0, 0, 0)"
             height="12"

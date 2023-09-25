@@ -2,7 +2,6 @@ const Comment = ({fill = 'none', color= 'black'}) => {
     return (
         <svg
             aria-label="Comment"
-            className="x1lliihq x1n2onr6"
             color={color}
             fill={color}
             height="24"

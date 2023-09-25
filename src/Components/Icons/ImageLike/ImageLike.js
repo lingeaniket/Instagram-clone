@@ -4,7 +4,6 @@ const ImageLike = () => {
             <svg
                 className="animeicon"
                 aria-label="Unlike"
-                class="x1lliihq x1n2onr6"
                 color="rgb(255, 255, 255)"
                 fill="rgb(255, 255, 255)"
                 height="70"

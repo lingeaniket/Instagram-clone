@@ -4,7 +4,6 @@ const Posts = () => {
     return (
         <svg
             aria-label=""
-            class="_ab6-"
             color="rgb(0, 0, 0)"
             fill="rgb(0, 0, 0)"
             height="12"

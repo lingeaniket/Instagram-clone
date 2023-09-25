@@ -7,6 +7,7 @@ import UserProfile from "./Components/UserProfile/UserProfile";
 import Explore from "./Components/Explore/Explore";
 import Message from "./Components/Message/Message";
 import ChatComponent from "./Components/Message/ChatComponent/ChatComponent";
+import EmptyChatComponent from "./Components/Message/EmptyChatComponent/EmptyChatComponent";
 
 const router = createBrowserRouter([
     {
@@ -34,6 +35,10 @@ const router = createBrowserRouter([
                 element: <Message />,
                 children: [
                     {
+                        path: "/direct",
+                        element: <EmptyChatComponent/>
+                    },
+                    {
                         path: "/direct/t/:id",
                         element: <ChatComponent />,
                     },
@@ -42,10 +47,19 @@ const router = createBrowserRouter([
             {
                 path: "/direct/inbox",
                 element: <Message />,
+                children: [{
+                    path: "/direct/inbox",
+                    element: <EmptyChatComponent/>
+                }]
+                
             },
             {
-                path: "/direct/t/",
+                path: "/direct/t",
                 element: <Message />,
+                children: [{
+                    path: "/direct/t",
+                    element: <EmptyChatComponent/>
+                }]
             },
         ],
     },

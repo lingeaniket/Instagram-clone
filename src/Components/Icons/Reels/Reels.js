@@ -4,7 +4,6 @@ const Reels = () => {
     return (
         <svg
             aria-label=""
-            class="_ab6-"
             color="rgb(115, 115, 115)"
             fill="rgb(115, 115, 115)"
             height="12"

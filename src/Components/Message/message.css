@@ -50,11 +50,12 @@
 
 .messageIn008 {
     border-right: 1px solid rgb(219, 219, 219);
-    max-width: 398px;
+    /* max-width: 398px; */
+    width: 398px;
     min-height: 100%;
     position: relative;
     top: 0;
-    width: max-content;
+    /* width: max-content; */
 }
 
 .messageIn009 {
@@ -580,10 +581,18 @@
 
 .messageIn097 {
     font-weight: 500;
+    font-size: 0.75rem;
 }
 
 .messageIn099 {
     position: relative;
+}
+
+.messageIn099 .messageIn117.messageIn107{
+    visibility: hidden;
+}
+.messageIn099:hover .messageIn117.messageIn107{
+    visibility: visible;
 }
 
 .messageIn101 {
@@ -762,6 +771,7 @@
 
 .messageIn130 {
     min-height: 20px;
+    width: 100%;
 }
 
 .messageIn131 {

@@ -4,7 +4,7 @@ const Like = ({ liked, white="rgb(255, 48, 64)", size }) => {
             {liked ? (
                 <svg className="animeicon"
                     aria-label="Unlike"
-                    class="x1lliihq x1n2onr6"
+                 
                     color={white}
                     fill={white}
                     height={size}
@@ -18,7 +18,6 @@ const Like = ({ liked, white="rgb(255, 48, 64)", size }) => {
             ) : (
                 <svg
                     aria-label="Like"
-                    className="x1lliihq x1n2onr6"
                     color="rgb(0, 0, 0)"
                     fill="rgb(0, 0, 0)"
                     height={size}
