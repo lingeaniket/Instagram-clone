@@ -13,23 +13,39 @@ import Options from "../Icons/Options/Options";
 import ImageLike from "../Icons/ImageLike/ImageLike";
 import { apiSite } from "../../Website/website";
 import { useNavigate } from "react-router-dom";
+import FullPost from "../Fullpost/FullPost";
 
 const Post = ({ post, id }) => {
     const [userData, setUserData] = useState({});
+    const userId = JSON.parse(localStorage.getItem("userId"));
     const [liked, setLiked] = useState(false);
     const [saved, setSaved] = useState(false);
+    const [open, setOpen] = useState(false);
 
     const likeref = useRef(null);
     const imagelikeref = useRef(null);
 
     const navigate = useNavigate();
+    const handleClose = () => {
+        document.body.style.overflow = "auto";
+        setOpen(() => false);
+    };
+
+    const handlePost = (id) => {
+        handleClose();
+        // setSelectedpost(() => Number(id));
+        setTimeout(() => {
+            setOpen(() => true);
+            document.body.style.overflow = "hidden";
+        }, 250);
+    };
 
     const handleImageLiked = () => {
         imagelikeref.current.classList.add("clicked");
         setTimeout(() => {
             imagelikeref.current.classList.remove("clicked");
             console.log("is called?");
-        }, 500);
+        }, 1000);
         if (!liked) handleLiked();
     };
 
@@ -42,6 +58,21 @@ const Post = ({ post, id }) => {
 
     const handleLiked = () => {
         animateDiv();
+        if (liked) {
+            axios.put(`${apiSite}/posts/post-like`, {
+                method: "unlike",
+                user: userId,
+                postUser: id,
+                postId: post.id,
+            });
+        } else {
+            axios.put(`${apiSite}/posts/post-like`, {
+                method: "like",
+                user: userId,
+                postUser: id,
+                postId: post.id,
+            });
+        }
         setLiked((liked) => !liked);
     };
 
@@ -49,15 +80,17 @@ const Post = ({ post, id }) => {
         setSaved((saved) => !saved);
     };
 
-    const handleNavigate =()=>{
-        navigate(`/p/${id}`)
-    }
+    const handleNavigate = () => {
+        navigate(`/p/${id}`);
+    };
 
     useEffect(() => {
         axios.get(`${apiSite}/users/${id}`).then((response) => {
             setUserData(response.data);
         });
-    }, [id]);
+        setLiked(() => post.likedBy?.includes(userId));
+        // eslint-disable-next-line
+    }, [id, post]);
     return (
         <div className="timelineIn01 post001">
             <div className="post002">
@@ -118,7 +151,7 @@ const Post = ({ post, id }) => {
                         >
                             <Like liked={liked} size={24} />
                         </div>
-                        <div className="post011 post019">
+                        <div className="post011 post019" onClick={handlePost}>
                             <CommentIcon />
                         </div>
                         <div className="post011 post019">
@@ -153,6 +186,15 @@ const Post = ({ post, id }) => {
                     <input className="post017" placeholder="Add a comment..." />
                 </div>
             </div>
+            <FullPost
+                post={post}
+                open={open}
+                handleClose={handleClose}
+                // userPosts={userPosts}
+                // setSelectedpost={setSelectedpost}
+                userData={userData}
+                timeline={true}
+            />
         </div>
     );
 };

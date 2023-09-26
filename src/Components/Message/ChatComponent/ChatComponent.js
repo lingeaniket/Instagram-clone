@@ -14,9 +14,10 @@ import axios from "axios";
 import { apiSite } from "../../../Website/website";
 import { formatDate } from "./functions";
 
-const ChatComponent = ({ user = 1 }) => {
+const ChatComponent = () => {
     // const socket = io("http://localhost:4000");
     const socket = io("https://instagram-api-aniket.onrender.com/");
+    const user = JSON.parse(localStorage.getItem("userId"));
 
     const { id } = useParams();
     const [message, setMessage] = useState("");
@@ -79,7 +80,7 @@ const ChatComponent = ({ user = 1 }) => {
 
     useEffect(() => {
         socket.on("message", (data) => {
-            console.log(data)
+            console.log(data);
             const loadData = async () => {
                 await axios
                     .get(

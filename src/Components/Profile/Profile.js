@@ -121,6 +121,7 @@ const Profile = ({ id }) => {
                 userPosts={userPosts}
                 setSelectedpost={setSelectedpost}
                 userData={userData}
+                
             />
         </div>
     );

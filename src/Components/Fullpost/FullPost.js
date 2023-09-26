@@ -11,10 +11,11 @@ const FullPost = ({
     post,
     open,
     handleClose,
-    userPosts,
+    userPosts=[],
     setSelectedpost,
     userData,
     explore = false,
+    timeline = false,
 }) => {
     const imageRef = useRef();
     const detailRef = useRef();
@@ -45,6 +46,8 @@ const FullPost = ({
     useEffect(() => {
         if (explore) {
             setSelected(() => userPosts[post]?.post);
+        } else if (timeline) {
+            setSelected(() => post);
         } else {
             setSelected(() => userPosts[post]);
         }
