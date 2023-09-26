@@ -147,6 +147,10 @@
     position: relative;
 }
 
+.messageIn023:hover {
+    background-color: rgb(239,239,239);
+}
+
 .messageIn024 {
     align-items: stretch;
     justify-content: center;
@@ -826,4 +830,11 @@
     height: 32px;
     line-height: 18px;
     padding: 0 16px;
+}
+
+
+.newScroll {
+    height: 100%;
+    width: 100%;
+    overflow-y: scroll;
 }

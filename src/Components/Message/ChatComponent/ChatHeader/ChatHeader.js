@@ -3,21 +3,29 @@ import VideoCall from "../../../Icons/VideoCall/VideoCall";
 import AudioCall from "../../../Icons/AudioCall/AudioCall";
 import ConversationInfo from "../../../Icons/ConversationInfo/ConversationInfo";
 
-const ChatHeader = () => {
+const ChatHeader = ({ userData }) => {
     return (
         <div className="messageIn052">
             <div className="messageIn053">
                 <div className="messageIn054">
                     <div className="messageIn055 messageIn107">
                         <div className="messageIn056">
-                            <span className="messageIn057">Image</span>
+                            <div className="messageIn057">
+                                <img
+                                    style={{
+                                        maxWidth: "100%",
+                                    }}
+                                    src={`https://cloudflare-ipfs.com/ipfs/Qmd3W5DuhgHirLHGVixi6V76LhCkZUz6pnFt5AJBiyvHye/avatar/${userData.avatar}.jpg`}
+                                    alt=""
+                                />
+                            </div>
                             <div className="messageIn058"></div>
                         </div>
                     </div>
                     <div className="messageIn059 messageIn065 messageIn107">
                         <div className="messageIn060 messageIn107">
                             <div className="messageIn061">
-                                <span className="messageIn062">Aniket</span>
+                                <span className="messageIn062">{userData?.first_name} {userData?.last_name}</span>
                             </div>
                             <span className="messageIn063">
                                 <div className="messageIn064">

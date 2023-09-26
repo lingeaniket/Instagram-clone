@@ -4,7 +4,7 @@ import Reply from "../../../Icons/Reply/Reply";
 import MessageMoreOption from "../../../Icons/MessageMoreOption/MessageMoreOption";
 
 const SingleMessage = ({ message }) => {
-    // message = { time,text,reactions,isReplied,repliedTo,repliedToIndex,seen}
+    // message = { time,messageType, text,reactions,isReplied,repliedTo,repliedToIndex,seen}
     return (
         <div className="messageIn022">
             <div>
@@ -19,8 +19,11 @@ const SingleMessage = ({ message }) => {
                         <div
                             className="messageIn105"
                             style={{
-                                // if sender
-                                flexDirection: "row-reverse",
+                                flexDirection: `${
+                                    message?.messageType === "sent"
+                                        ? "row-reverse"
+                                        : "row"
+                                }`,
                             }}
                         >
                             <div className="messageIn106 messageIn107">
@@ -29,7 +32,11 @@ const SingleMessage = ({ message }) => {
                                         className="messageIn108"
                                         style={{
                                             // if sender
-                                            justifyContent: "flex-end",
+                                            justifyContent: `${
+                                                message?.messageType === "sent"
+                                                    ? "flex-end"
+                                                    : "flex-start"
+                                            }`,
                                             // else
                                             // justifyContent: 'flex-start'
                                         }}
@@ -37,26 +44,33 @@ const SingleMessage = ({ message }) => {
                                         <div
                                             className="messageIn109"
                                             style={{
-                                                // backgroundColor:
-                                                //     "rgb(239,239,239)",
-                                                backgroundColor:
-                                                    "rgb(55, 151, 240)",
+                                                backgroundColor: `${
+                                                    message?.messageType ===
+                                                    "sent"
+                                                        ? "rgb(55, 151, 240)"
+                                                        : "rgb(239,239,239)"
+                                                }`,
                                             }}
                                         >
                                             <div
                                                 className="messageIn110"
                                                 style={{
-                                                    color: "white", // if sent else black
+                                                    color: `${
+                                                        message?.messageType ===
+                                                        "sent"
+                                                            ? "white"
+                                                            : "rgb(0,0,0)"
+                                                    }`, // if sent else black
                                                 }}
                                             >
                                                 {message.text}
                                             </div>
                                         </div>
                                     </div>
-                                    
-                                        <div className="messageIn111 messageIn107" style={{
-                                          visibility: `${message?.reactions?.length >0 ? 'visible' : 'hidden'}`
-                                        }}>
+                                    {message?.reactions?.length > 0 && (
+                                        <div
+                                            className="messageIn111 messageIn107"
+                                        >
                                             <div className="messageIn112">
                                                 <div className="messageIn113">
                                                     <div className="messageIn114 messageIn067">
@@ -73,11 +87,16 @@ const SingleMessage = ({ message }) => {
                                                 </div>
                                             </div>
                                         </div>
-                                   
+                                    )}
                                 </div>
                             </div>
                             <div className="messageIn117 messageIn107">
-                                <div className="messageIn118 messageIn107">
+                                <div
+                                    className="messageIn118 messageIn107"
+                                    style={{
+                                        padding: 0,
+                                    }}
+                                >
                                     <div className="messageIn119">
                                         {/* reaction single div */}
                                         <div>

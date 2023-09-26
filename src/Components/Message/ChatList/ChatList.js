@@ -1,10 +1,16 @@
 import React, { useEffect, useState } from "react";
 import NewMessage from "../../Icons/NewMessage/NewMessage";
 import axios from "axios";
+import { useNavigate } from "react-router-dom";
 import { apiSite } from "../../../Website/website";
+import SingleItem from "./SingleItem/SingleItem";
 
 const ChatList = ({ id = 1 }) => {
     const [chatList, setChatList] = useState([]);
+    const navigate = useNavigate();
+    const handleChats = (id) => {
+        navigate(`/direct/t/${id}`);
+    };
 
     useEffect(() => {
         const loadChats = async () => {
@@ -45,56 +51,12 @@ const ChatList = ({ id = 1 }) => {
                                     <div>
                                         <div className="messageIn022">
                                             {/* chat list map */}
-                                            {chatList.map((chat) => (
-                                                <div className="messageIn023">
-                                                    <div className="messageIn024 messageIn065 messageIn107">
-                                                        <div className="messageIn025 messageIn002">
-                                                            <div className="messageIn026 messageIn107">
-                                                                <div className="messageIn027">
-                                                                    <div className="messageIn028">
-                                                                        <span className="messageIn029">
-                                                                            image
-                                                                        </span>
-                                                                        {/* onlinedot */}
-                                                                        <div className="messageIn030"></div>
-                                                                    </div>
-                                                                </div>
-                                                            </div>
-                                                            <div className="messageIn031">
-                                                                <div className="messageIn032 messageIn107">
-                                                                    <div className="messageIn033">
-                                                                        <span className="messageIn034">
-                                                                            Name
-                                                                        </span>
-                                                                        {/* if verified */}
-                                                                        <div className="messageIn035">
-                                                                            verified
-                                                                        </div>
-                                                                    </div>
-                                                                    <div className="messageIn036"></div>
-                                                                    <div className="messageIn037">
-                                                                        <div className="messageIn038">
-                                                                            <span className="messageIn039">
-                                                                                Hii
-                                                                            </span>
-                                                                            <span className="messageIn040"></span>
-                                                                            <div className="messageIn041">
-                                                                                1m
-                                                                            </div>
-                                                                        </div>
-                                                                    </div>
-                                                                </div>
-                                                            </div>
-                                                            <div className="messageIn042 messageIn107">
-                                                                <div className="messageIn043">
-                                                                    <div className="messageIn044">
-                                                                        <span className="messageIn045 messageIn067"></span>
-                                                                    </div>
-                                                                </div>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                </div>
+                                            {chatList.map((chat, index) => (
+                                                <SingleItem
+                                                    chat={chat}
+                                                    id={chat.receiverId}
+                                                    handleChats={handleChats}
+                                                />
                                             ))}
                                         </div>
                                     </div>

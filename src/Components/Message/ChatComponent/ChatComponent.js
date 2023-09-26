@@ -1,4 +1,7 @@
 import React, { useEffect, useState } from "react";
+import ScrollToBottom from "react-scroll-to-bottom";
+
+import io from "socket.io-client";
 
 import Reaction from "../../Icons/Reaction/Reaction";
 import AddPhoto from "../../Icons/AddPhoto/AddPhoto";
@@ -9,10 +12,87 @@ import ChatHeader from "./ChatHeader/ChatHeader";
 import SingleMessage from "./SingleMessage/SingleMessage";
 import axios from "axios";
 import { apiSite } from "../../../Website/website";
+import { formatDate } from "./functions";
 
 const ChatComponent = ({ user = 1 }) => {
+    // const socket = io("http://localhost:3001");
+    const socket = io("https://instagram-api-aniket.onrender.com/");
+
     const { id } = useParams();
+    const [message, setMessage] = useState("");
+    const [userData, setUserData] = useState({});
+    const handleMessage = (e) => {
+        setMessage(e.target.value);
+    };
+
+    function formatDateToDDMMYY(date) {
+        const day = String(date.getDate()).padStart(2, "0");
+        const month = String(date.getMonth() + 1).padStart(2, "0"); // Month is zero-based
+        const year = String(date.getFullYear()).slice(-2); // Get the last two digits of the year
+        return `${day}${month}${year}`;
+    }
+
+    const handleSendMessage = async () => {
+        if (message.length > 0) {
+            const date = new Date();
+            socket.emit("message", {
+                sender: user,
+                receiver: id,
+                date: formatDateToDDMMYY(date),
+                message: {
+                    time: date.getTime(),
+                    messageType: "sent",
+                    text: message,
+                    reactions: [],
+                    isReplied: false,
+                    repliedTo: "self",
+                    repliedToIndex: -1,
+                    seen: false,
+                },
+            });
+            setMessage("");
+        }
+        // if (message.length > 0) {
+        //     await axios
+        //         .put(`${apiSite}/messages/update`, {
+        //             sender: user,
+        //             receiver: id,
+        //             date: formatDateToDDMMYY(date),
+        //             message: {
+        //                 time: date.getTime(),
+        //                 messageType: "sent",
+        //                 text: message,
+        //                 reactions: [],
+        //                 isReplied: false,
+        //                 repliedTo: "self",
+        //                 repliedToIndex: -1,
+        //                 seen: false,
+        //             },
+        //         })
+        //         .then((data) => {
+        //             console.log(data.data);
+        //         });
+        // }
+    };
+
     const [chats, setChats] = useState([]); //[{ date, messages: [ { time,text,reactions,isReplied,repliedTo,repliedToIndex,seen}]}]
+
+    useEffect(() => {
+        socket.on("message", () => {
+            const loadData = async () => {
+                await axios
+                    .get(
+                        `${apiSite}/messages/getChats?sender=${user}&receiver=${id}`
+                    )
+                    .then((response) => {
+                        setChats(() => response.data.day); // data = {receiverId, day [ { date, messages: [ { time,text,reactions,isReplied,repliedTo,repliedToIndex,seen,}]}]}
+                    });
+            };
+
+            loadData();
+        });
+        // eslint-disable-next-line
+    }, [socket]);
 
     useEffect(() => {
         const loadData = async () => {
@@ -21,22 +101,31 @@ const ChatComponent = ({ user = 1 }) => {
                     `${apiSite}/messages/getChats?sender=${user}&receiver=${id}`
                 )
                 .then((response) => {
-                    // console.log(response.data.day)
+                    console.log(response.data);
                     setChats(() => response.data.day); // data = {receiverId, day [ { date, messages: [ { time,text,reactions,isReplied,repliedTo,repliedToIndex,seen,}]}]}
                 });
+
+            await axios.get(`${apiSite}/users/${id}`).then((response) => {
+                setUserData(() => response.data);
+            });
         };
 
         loadData();
     }, [id, user]);
     return (
         <div className="messageIn046 messageIn065 messageIn107">
-            <div className="messageIn047 messageIn065 messageIn107">
+            <div
+                className="messageIn047 messageIn065 messageIn107"
+                style={{
+                    height: "100vh",
+                }}
+            >
                 {/* converstation div */}
                 <div className="messageIn048 messageIn065 messageIn107">
                     <div className="messageIn049 messageIn065 messageIn107">
                         <div className="messageIn050">
                             <div className="messageIn051 messageIn065 messageIn107">
-                                <ChatHeader />
+                                <ChatHeader userData={userData} />
                                 <div className="messageIn069">
                                     <div className="messageIn070">
                                         <div className="messageIn071 messageIn065 messageIn107">
@@ -46,86 +135,114 @@ const ChatComponent = ({ user = 1 }) => {
                                                         <div className="messageIn075 messageIn065 messageIn107">
                                                             <div className="messageIn076 messageIn065 messageIn107">
                                                                 <div className="messageIn076 messageIn065 messageIn107">
-                                                                    <div className="messageIn021 messageIn065 messageIn107">
-                                                                        <div className="messageIn078 messageIn107">
-                                                                            <div className="messageIn079"></div>
-                                                                            <div className="messageIn080 messageIn077 messageIn107">
-                                                                                <div className="messageIn081">
-                                                                                    <div className="messageIn082">
-                                                                                        <span className="messageIn083">
-                                                                                            imge
+                                                                    <div
+                                                                        className="messageIn021 messageIn065 messageIn107"
+                                                                        style={{
+                                                                            height: "0px",
+                                                                        }}
+                                                                    >
+                                                                        <ScrollToBottom className="newScroll">
+                                                                            <div className="messageIn078 messageIn107">
+                                                                                <div className="messageIn079"></div>
+                                                                                <div className="messageIn080 messageIn077 messageIn107">
+                                                                                    <div className="messageIn081">
+                                                                                        <div className="messageIn082">
+                                                                                            <div className="messageIn083">
+                                                                                                <img
+                                                                                                    style={{
+                                                                                                        maxWidth:
+                                                                                                            "100%",
+                                                                                                    }}
+                                                                                                    src={`https://cloudflare-ipfs.com/ipfs/Qmd3W5DuhgHirLHGVixi6V76LhCkZUz6pnFt5AJBiyvHye/avatar/${userData.avatar}.jpg`}
+                                                                                                    alt=""
+                                                                                                />
+                                                                                            </div>
+                                                                                        </div>
+                                                                                    </div>
+                                                                                    <div className="messageIn084">
+                                                                                        <div className="messageIn085">
+                                                                                            <span className="messageIn086">
+                                                                                                {
+                                                                                                    userData.first_name
+                                                                                                }{" "}
+                                                                                                {
+                                                                                                    userData.last_name
+                                                                                                }
+                                                                                            </span>
+                                                                                        </div>
+                                                                                    </div>
+                                                                                    <div className="messageIn087">
+                                                                                        <span className="messageIn088">
+                                                                                            {
+                                                                                                userData.username
+                                                                                            }
+
+                                                                                            .
+                                                                                            Instagram
                                                                                         </span>
                                                                                     </div>
-                                                                                </div>
-                                                                                <div className="messageIn084">
-                                                                                    <div className="messageIn085">
-                                                                                        <span className="messageIn086">
-                                                                                            Aniket
-                                                                                        </span>
+                                                                                    <div className="messageIn089">
+                                                                                        <div className="messageIn090 messageIn067">
+                                                                                            View
+                                                                                            Profile
+                                                                                        </div>
                                                                                     </div>
                                                                                 </div>
-                                                                                <div className="messageIn087">
-                                                                                    <span className="messageIn088">
-                                                                                        editzbyaniket
-                                                                                        .
-                                                                                        Instagram
-                                                                                    </span>
-                                                                                </div>
-                                                                                <div className="messageIn089">
-                                                                                    <div className="messageIn090 messageIn067">
-                                                                                        View
-                                                                                        Profile
-                                                                                    </div>
-                                                                                </div>
+                                                                                <div className="messageIn091"></div>
                                                                             </div>
-                                                                            <div className="messageIn091"></div>
-                                                                        </div>
-                                                                        <div>
-                                                                            <div className="messageIn022">
-                                                                                {chats?.map(
-                                                                                    //[{ date, messages: [ { time,text,reactions,isReplied,repliedTo,repliedToIndex,seen}]}]
-                                                                                    (
-                                                                                        chat
-                                                                                    ) => (
-                                                                                        <>
-                                                                                            {chat?.messages.map( //[ { time,text,reactions,isReplied,repliedTo,repliedToIndex,seen}]
-                                                                                                (
-                                                                                                    message,
-                                                                                                    index
-                                                                                                ) => (
-                                                                                                    <div>
-                                                                                                        {index ===
-                                                                                                            0 && (
-                                                                                                            <div>
-                                                                                                                <div className="messageIn093">
-                                                                                                                    <div className="messageIn094">
-                                                                                                                        <div className="messageIn095">
-                                                                                                                            <span className="messageIn096">
-                                                                                                                                <span className="messageIn097">
-                                                                                                                                    {
-                                                                                                                                        chat.date
-                                                                                                                                    }
+                                                                            <div>
+                                                                                <div className="messageIn022">
+                                                                                    {chats?.map(
+                                                                                        //[{ date, messages: [ { time,text,reactions,isReplied,repliedTo,repliedToIndex,seen}]}]
+                                                                                        (
+                                                                                            chat
+                                                                                        ) => (
+                                                                                            <>
+                                                                                                {chat?.messages.map(
+                                                                                                    //[ { time,text,reactions,isReplied,repliedTo,repliedToIndex,seen}]
+                                                                                                    (
+                                                                                                        message,
+                                                                                                        index
+                                                                                                    ) => (
+                                                                                                        <div>
+                                                                                                            {index ===
+                                                                                                                0 && (
+                                                                                                                <div>
+                                                                                                                    <div className="messageIn093">
+                                                                                                                        <div className="messageIn094">
+                                                                                                                            <div className="messageIn095">
+                                                                                                                                <span className="messageIn096">
+                                                                                                                                    <span className="messageIn097">
+                                                                                                                                        {formatDate(
+                                                                                                                                            chat.date
+                                                                                                                                        )}
+                                                                                                                                    </span>
                                                                                                                                 </span>
-                                                                                                                            </span>
+                                                                                                                            </div>
                                                                                                                         </div>
                                                                                                                     </div>
                                                                                                                 </div>
-                                                                                                            </div>
-                                                                                                        )}
-                                                                                                        {/* this is day message component */}
-                                                                                                        <SingleMessage message={message} />
-                                                                                                    </div>
-                                                                                                )
-                                                                                            )}
-                                                                                        </>
-                                                                                    )
-                                                                                )}
-                                                                                {/* chat day list */}
-                                                                                {/* <div>
+                                                                                                            )}
+                                                                                                            {/* this is day message component */}
+                                                                                                            <SingleMessage
+                                                                                                                message={
+                                                                                                                    message
+                                                                                                                }
+                                                                                                            />
+                                                                                                        </div>
+                                                                                                    )
+                                                                                                )}
+                                                                                            </>
+                                                                                        )
+                                                                                    )}
+
+                                                                                    {/* chat day list */}
+                                                                                    {/* <div>
                                                                                     <SingleMessage />
                                                                                 </div> */}
+                                                                                </div>
                                                                             </div>
-                                                                        </div>
+                                                                        </ScrollToBottom>
                                                                     </div>
                                                                 </div>
                                                             </div>
@@ -134,6 +251,7 @@ const ChatComponent = ({ user = 1 }) => {
                                                 </div>
                                             </div>
                                             <div>
+                                                {/* <button onClick={handleSendMessage}>Send message</button> */}
                                                 <div className="messageIn126 messageIn107">
                                                     <div className="messageIn127">
                                                         <div className="messageIn128">
@@ -145,6 +263,12 @@ const ChatComponent = ({ user = 1 }) => {
                                                                     type="text"
                                                                     name=""
                                                                     id=""
+                                                                    value={
+                                                                        message
+                                                                    }
+                                                                    onChange={
+                                                                        handleMessage
+                                                                    }
                                                                     placeholder="Message..."
                                                                     style={{
                                                                         width: "100%",
@@ -156,36 +280,51 @@ const ChatComponent = ({ user = 1 }) => {
                                                             </div>
                                                         </div>
                                                         {/* if message is typing... */}
-                                                        <div className="messageIn131">
-                                                            Send
-                                                        </div>
-                                                        {/* if no message then show this div */}
-                                                        <div className="messageIn101">
-                                                            <div className="messageIn066 messageIn067">
-                                                                <div className="messageIn067">
-                                                                    <Voice />
-                                                                </div>
-                                                            </div>
-                                                            <input
-                                                                accept="audio/*,.mp4,.mov,.png,.jpg,.jpeg"
+                                                        {message.length > 0 ? (
+                                                            <div
+                                                                className="messageIn131"
                                                                 style={{
-                                                                    display:
-                                                                        "none",
+                                                                    cursor: "pointer",
                                                                 }}
-                                                                multiple=""
-                                                                type="file"
-                                                            />
-                                                            <div className="messageIn066 messageIn067">
-                                                                <div className="messageIn067">
-                                                                    <AddPhoto />
+                                                                onClick={
+                                                                    handleSendMessage
+                                                                }
+                                                            >
+                                                                Send
+                                                            </div>
+                                                        ) : (
+                                                            <div className="messageIn101">
+                                                                <div className="messageIn066 messageIn067">
+                                                                    <div className="messageIn067">
+                                                                        <Voice />
+                                                                    </div>
+                                                                </div>
+                                                                <input
+                                                                    accept="audio/*,.mp4,.mov,.png,.jpg,.jpeg"
+                                                                    style={{
+                                                                        display:
+                                                                            "none",
+                                                                    }}
+                                                                    multiple=""
+                                                                    type="file"
+                                                                />
+                                                                <div className="messageIn066 messageIn067">
+                                                                    <div className="messageIn067">
+                                                                        <AddPhoto />
+                                                                    </div>
+                                                                </div>
+                                                                <div className="messageIn066 messageIn067">
+                                                                    <div className="messageIn067">
+                                                                        <Like
+                                                                            size={
+                                                                                24
+                                                                            }
+                                                                        />
+                                                                    </div>
                                                                 </div>
                                                             </div>
-                                                            <div className="messageIn066 messageIn067">
-                                                                <div className="messageIn067">
-                                                                    <Like />
-                                                                </div>
-                                                            </div>
-                                                        </div>
+                                                        )}
+                                                        {/* if no message then show this div */}
                                                     </div>
                                                 </div>
                                             </div>
