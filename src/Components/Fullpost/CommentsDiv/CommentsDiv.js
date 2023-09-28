@@ -1,9 +1,9 @@
-import React from "react";
+import React, { memo } from "react";
 import { useState } from "react";
 import CircularProgress from "@mui/material/CircularProgress";
 import Comment from "../Comment/Comment";
 
-const CommentsDiv = ({ comment }) => {
+const CommentsDiv = ({ comment, setComment, setReplyMode, setReplyData }) => {
     const [showReply, setShowReply] = useState(false);
     const [mainLoad, setMainLoad] = useState(false);
     const [loadMoreSpinn, setLoadMoreSpin] = useState(false);
@@ -34,7 +34,14 @@ const CommentsDiv = ({ comment }) => {
 
     return (
         <div className="fullPost060">
-            <Comment comment={comment} mainLoad={setMainLoad} type="primary" />
+            <Comment
+                comment={comment}
+                mainLoad={setMainLoad}
+                type="primary"
+                setComment={setComment}
+                setReplyData={setReplyData}
+                setReplyMode={setReplyMode}
+            />
             {mainLoad && (
                 <>
                     {comment?.reply?.length > 0 && (
@@ -81,7 +88,10 @@ const CommentsDiv = ({ comment }) => {
                                             ?.map((reply) => (
                                                 <Comment
                                                     comment={reply}
+                                                    setComment={setComment}
                                                     type="secondary"
+                                                    setReplyMode={setReplyMode}
+                                                    setReplyData={setReplyData}
                                                 />
                                             ))}
 
@@ -120,4 +130,4 @@ const CommentsDiv = ({ comment }) => {
     );
 };
 
-export default CommentsDiv;
+export default memo(CommentsDiv);

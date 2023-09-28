@@ -6,27 +6,12 @@ import { generateRandomUsersAndPosts } from "./function";
 // import Reel from '../Icons/Reel/Reel'
 import Loader from "../Icons/Loader/Loader";
 import ImagePost from "./ImagePost/ImagePost";
+import { Outlet } from "react-router-dom";
 // import ReelPost from "./ReelPost/ReelPost";
-import FullPost from "../Fullpost/FullPost";
+
 const Explore = () => {
     const [posts, setPosts] = useState([]);
-    const [selectedPost, setSelectedpost] = useState();
-    const [userPost, setUserPost] = useState([]);
-    const [open, setOpen] = useState(false);
-    const handleClose = () => {
-        document.body.style.overflow = "auto";
-        setOpen(() => false);
-    };
 
-    const handlePost = (mainIndex, index) => {
-        handleClose();
-        setSelectedpost(() => Number(index));
-        setUserPost(() => posts[mainIndex]);
-        setTimeout(() => {
-            setOpen(() => true);
-            document.body.style.overflow = "hidden";
-        }, 250);
-    };
 
     useEffect(() => {
         const generateRandom = async () => {
@@ -81,9 +66,9 @@ const Explore = () => {
                                 {user?.map((post, idx) => (
                                     <ImagePost
                                         post={post.post}
-                                        handlePost={handlePost}
-                                        mainDiv={index}
-                                        index={idx}
+                                        account={post.account}
+                                        
+                                    
                                     />
                                 ))}
                             </div>
@@ -96,15 +81,8 @@ const Explore = () => {
                     <Loader />
                 </div>
             </div>
-            <FullPost
-                post={selectedPost}
-                open={open}
-                handleClose={handleClose}
-                userPosts={userPost}
-                setSelectedpost={setSelectedpost}
-                userData={userPost[selectedPost]?.account}
-                explore={true}
-            />
+            
+            <Outlet/>
         </div>
     );
 };

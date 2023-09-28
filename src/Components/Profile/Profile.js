@@ -4,29 +4,13 @@ import { useEffect, useState } from "react";
 import "./profile.css";
 import ProfileHeader from "./ProfileHeader/ProfileHeader";
 import Tabs from "./Tabs/Tabs";
-import FullPost from "../Fullpost/FullPost";
 import { apiSite } from "../../Website/website";
 import PostList from "./PostList/PostList";
+import { Outlet } from "react-router-dom";
 
 const Profile = ({ id }) => {
     const [userData, setUserData] = useState({});
     const [userPosts, setUserPosts] = useState([]);
-    const [selectedPost, setSelectedpost] = useState(null);
-    const [open, setOpen] = useState(false);
-
-    const handleClose = () => {
-        document.body.style.overflow = "auto";
-        setOpen(() => false);
-    };
-
-    const handlePost = (id) => {
-        handleClose();
-        setSelectedpost(() => Number(id));
-        setTimeout(() => {
-            setOpen(() => true);
-            document.body.style.overflow = "hidden";
-        }, 250);
-    };
 
     useEffect(() => {
         if (id) {
@@ -35,7 +19,6 @@ const Profile = ({ id }) => {
             });
             axios.get(`${apiSite}/posts/${id}`).then((response) => {
                 setUserPosts(response.data.posts);
-                setSelectedpost(response.data.posts[0]); //for reference
             });
         }
     }, [id]);
@@ -113,16 +96,8 @@ const Profile = ({ id }) => {
                 </div>
             </div>
             <Tabs />
-            <PostList userPosts={userPosts} handlePost={handlePost} />
-            <FullPost
-                post={selectedPost}
-                open={open}
-                handleClose={handleClose}
-                userPosts={userPosts}
-                setSelectedpost={setSelectedpost}
-                userData={userData}
-                
-            />
+            <PostList userPosts={userPosts} userData={userData} modeId={id} />
+            <Outlet />
         </div>
     );
 };

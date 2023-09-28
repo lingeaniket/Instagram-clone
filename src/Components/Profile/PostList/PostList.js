@@ -6,8 +6,26 @@ import { arrayFill } from "../arrayFillFunction";
 import Like from "../../Icons/Like/Like";
 import "./postList.css";
 import Comment from "../../Icons/Comment/Comment";
+import { useNavigate } from "react-router-dom";
+import { changeMode } from "../../../Features/fullPostSlice";
+import { useDispatch } from "react-redux";
 
-const PostList = ({ userPosts, handlePost }) => {
+const PostList = ({ userPosts, userData, modeId }) => {
+    const navigate = useNavigate();
+    const dispatch = useDispatch();
+    dispatch(changeMode("profile"));
+    const handlePost = (id) => {
+        if (modeId) {
+            navigate(
+                `/p/${modeId}/post?postUser=${userData.id}&postId=${userPosts[id].id}`
+            );
+        } else {
+            navigate(
+                `/profile/post?postUser=${userData.id}&postId=${userPosts[id].id}`
+            );
+        }
+        document.body.style.overflow = "hidden";
+    };
     return (
         <div>
             <div className="postList001">
@@ -43,7 +61,8 @@ const PostList = ({ userPosts, handlePost }) => {
                                             <div className="postList003">
                                                 <div className="postList004 postList006">
                                                     <div className="postList005">
-                                                        <Like size={24}
+                                                        <Like
+                                                            size={24}
                                                             liked={true}
                                                             white="white"
                                                         />

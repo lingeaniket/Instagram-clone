@@ -8,18 +8,17 @@ import ImageComponent from "./ImageComponent/ImageComponent";
 import PostDetailComponent from "./PostDetailComponent/PostDetailComponent";
 import { useEffect, useRef, useState } from "react";
 import * as React from "react";
+import { useSearchParams, useNavigate } from "react-router-dom";
+import { useSelector } from "react-redux";
 
-const FullPost = ({
-    post,
-    open,
-    handleClose,
-    userPosts = [],
-    setSelectedpost,
-    userData,
-    explore = false,
-    timeline = false,
-    setReload,
-}) => {
+const FullPost = () => {
+    const [post, setPost] = useState({});
+    const [index, setIndex] = useState("");
+    const fullPostMode = useSelector((state) => state.fullPostData.mode);
+    const [searchParams] = useSearchParams();
+    const postUser = Number(searchParams.get("postUser"));
+    const postId = Number(searchParams.get("postId"));
+    const navigate = useNavigate();
     const imageRef = useRef();
     const userId = JSON.parse(localStorage.getItem("userId"));
     const likeref = useRef(null);
@@ -27,8 +26,13 @@ const FullPost = ({
     const detailRef = useRef();
     const prevBtnRef = useRef();
     const nextBtnRef = useRef();
-    const [selected, setSelected] = useState({});
     const [liked, setLiked] = useState(false);
+    const [reload, setReload] = useState(false);
+
+    const handleClose = () => {
+        document.body.style.overflow = "auto";
+        navigate(-1);
+    };
 
     const handleImageLiked = () => {
         imagelikeref.current.classList.add("clicked");
@@ -45,8 +49,6 @@ const FullPost = ({
         }, 500);
     };
 
-    
-
     const handleLiked = () => {
         animateDiv();
         if (liked) {
@@ -54,34 +56,33 @@ const FullPost = ({
                 .put(`${apiSite}/posts/post-like`, {
                     method: "unlike",
                     user: userId,
-                    postUser: userData.id,
-                    postId: post.id,
+                    postUser,
+                    postId,
                 })
                 .then(() => {
                     setReload((prev) => !prev);
-                });
-        } else {
-            axios
-                .put(`${apiSite}/posts/post-like`, {
+                    console.log("called")
+
+                  });
+                } else {
+                  axios
+                  .put(`${apiSite}/posts/post-like`, {
                     method: "like",
                     user: userId,
-                    postUser: userData.id,
-                    postId: post.id,
-                })
-                .then(() => {
+                    postUser,
+                    postId,
+                  })
+                  .then(() => {
+                  console.log("called")
                     setReload((prev) => !prev);
                 });
         }
         setLiked((liked) => !liked);
     };
 
-    const handleNext = () => {
-        setSelectedpost((prev) => prev + 1);
-    };
+    const handleNext = () => {};
 
-    const handlePrev = () => {
-        setSelectedpost((prev) => prev - 1);
-    };
+    const handlePrev = () => {};
 
     const handleModalClose = (e) => {
         if (
@@ -97,26 +98,24 @@ const FullPost = ({
     };
 
     useEffect(() => {
-        if (explore) {
-            setSelected(() => userPosts[post]?.post);
-            setLiked(() => userPosts[post]?.post?.likedBy?.includes(userId));
-        } else if (timeline) {
-            setSelected(() => post);
-            setLiked(() => post?.likedBy?.includes(userId));
-        } else {
-            setSelected(() => userPosts[post]);
-            setLiked(() => userPosts[post]?.likedBy?.includes(userId));
-        }
-        // eslint-disable-next-line
-    }, [post, userPosts]);
+        const loadData = async () => {
+            await axios
+                .get(
+                    `${apiSite}/posts/post?postUser=${postUser}&postId=${postId}`
+                )
+                .then((response) => {
+                    setPost(() => response.data.post);
+                    setLiked(() =>
+                        response.data.post?.likedBy?.includes(userId)
+                    );
+                    setIndex(() => response.data.index);
+                });
+        };
+        loadData();
+    }, [postUser, postId, reload, userId]);
 
     return (
-        <div
-            className="fullPost001"
-            style={{
-                display: `${open ? "block" : "none"}`,
-            }}
-        >
+        <div className="fullPost001">
             <div className="fullPost002">
                 <div className="fullPost003" onClick={handleModalClose}>
                     <div className="fullPost004"></div>
@@ -142,9 +141,9 @@ const FullPost = ({
                                     >
                                         <div>
                                             <div className="fullPost012 fullPost063">
-                                                {!explore && (
+                                                {fullPostMode === "profile" && (
                                                     <div className="fullPost013 fullPost063">
-                                                        {post > 0 && (
+                                                        {index !== "first" && (
                                                             <div
                                                                 className="fullPost014"
                                                                 style={{
@@ -164,9 +163,7 @@ const FullPost = ({
                                                                 </button>
                                                             </div>
                                                         )}
-                                                        {post <
-                                                            userPosts.length -
-                                                                1 && (
+                                                        {index !== "last" && (
                                                             <div
                                                                 className="fullPost014"
                                                                 style={{
@@ -229,9 +226,6 @@ const FullPost = ({
                                                                     imagelikeref={
                                                                         imagelikeref
                                                                     }
-                                                                    id={
-                                                                        selected?.id
-                                                                    }
                                                                 />
                                                             </div>
 
@@ -240,9 +234,7 @@ const FullPost = ({
                                                                 ref={detailRef}
                                                             >
                                                                 <PostDetailComponent
-                                                                    post={
-                                                                        selected
-                                                                    }
+                                                                    post={post}
                                                                     setReload={
                                                                         setReload
                                                                     }
@@ -251,9 +243,6 @@ const FullPost = ({
                                                                     }
                                                                     likeref={
                                                                         likeref
-                                                                    }
-                                                                    userData={
-                                                                        userData
                                                                     }
                                                                     liked={
                                                                         liked

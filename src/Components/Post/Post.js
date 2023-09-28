@@ -13,29 +13,50 @@ import Options from "../Icons/Options/Options";
 import ImageLike from "../Icons/ImageLike/ImageLike";
 import { apiSite } from "../../Website/website";
 import { useNavigate } from "react-router-dom";
-import FullPost from "../Fullpost/FullPost";
+import { useDispatch } from "react-redux";
+import { changeMode } from "../../Features/fullPostSlice";
 
-const Post = ({ post, id }) => {
+const Post = ({ postId, id }) => {
     const [userData, setUserData] = useState({});
+    const dispatch = useDispatch();
+    const [post, setPost] = useState({});
     const userId = JSON.parse(localStorage.getItem("userId"));
     const [liked, setLiked] = useState(false);
     const [saved, setSaved] = useState(false);
-    const [open, setOpen] = useState(false);
+    const [reload, setReload] = useState(false);
+    const [comment, setComment] = useState("");
+
+    const handleComment = (e) => {
+        setComment(() => e.target.value);
+    };
+
+    const addComment = async (e) => {
+        if (e.key === "Enter") {
+            await axios
+                .put(`${apiSite}/posts/add-comment`, {
+                    user: userId,
+                    postUser: userData.id,
+                    postId,
+                    comment,
+                })
+                .then(() => {
+                    setReload((prev) => !prev);
+                });
+
+            setComment("");
+        }
+    };
 
     const likeref = useRef(null);
     const imagelikeref = useRef(null);
 
     const navigate = useNavigate();
-    const handleClose = () => {
-        document.body.style.overflow = "auto";
-        setOpen(() => false);
-    };
 
-    const handlePost = (id) => {
-        handleClose();
-        // setSelectedpost(() => Number(id));
+
+    const handlePost = () => {
+        dispatch(changeMode("timeline"));
         setTimeout(() => {
-            setOpen(() => true);
+            navigate(`/post?postUser=${userData.id}&postId=${postId}`);
             document.body.style.overflow = "hidden";
         }, 250);
     };
@@ -56,22 +77,31 @@ const Post = ({ post, id }) => {
         }, 500);
     };
 
-    const handleLiked = () => {
+    const handleLiked = async () => {
         animateDiv();
+        console.log(liked);
         if (liked) {
-            axios.put(`${apiSite}/posts/post-like`, {
-                method: "unlike",
-                user: userId,
-                postUser: id,
-                postId: post.id,
-            });
+            axios
+                .put(`${apiSite}/posts/post-like`, {
+                    method: "unlike",
+                    user: userId,
+                    postUser: id,
+                    postId,
+                })
+                .then(() => {
+                    setReload((prev) => !prev);
+                });
         } else {
-            axios.put(`${apiSite}/posts/post-like`, {
-                method: "like",
-                user: userId,
-                postUser: id,
-                postId: post.id,
-            });
+            axios
+                .put(`${apiSite}/posts/post-like`, {
+                    method: "like",
+                    user: userId,
+                    postUser: id,
+                    postId,
+                })
+                .then(() => {
+                    setReload((prev) => !prev);
+                });
         }
         setLiked((liked) => !liked);
     };
@@ -85,12 +115,30 @@ const Post = ({ post, id }) => {
     };
 
     useEffect(() => {
-        axios.get(`${apiSite}/users/${id}`).then((response) => {
-            setUserData(response.data);
-        });
-        setLiked(() => post.likedBy?.includes(userId));
+        const loadData = async () => {
+            await axios
+                .get(`${apiSite}/posts/post?postUser=${id}&postId=${postId}`)
+                .then((response) => {
+                    // console.log(response.data);
+                    setPost(() => response.data.post);
+                    setLiked(() =>
+                        response.data.post.likedBy?.includes(userId)
+                    );
+                });
+        };
+        loadData();
         // eslint-disable-next-line
-    }, [id, post]);
+    }, [reload]);
+
+    useEffect(() => {
+        const loadData = async () => {
+            await axios.get(`${apiSite}/users/${id}`).then((response) => {
+                setUserData(response.data);
+            });
+        };
+        loadData();
+        // eslint-disable-next-line
+    }, [id]);
     return (
         <div className="timelineIn01 post001">
             <div className="post002">
@@ -175,26 +223,35 @@ const Post = ({ post, id }) => {
                     {post.caption}
                 </div>
                 <div className="post014">
-                    {post.comments.slice(0, 2).map((comment) => (
+                    {post?.comments?.slice(0, 2).map((comment) => (
                         <Comment comment={comment} />
                     ))}
                 </div>
-                <div className="post016">
-                    View all {post.comments.length} comments
+                <div className="post016" onClick={handlePost}>
+                    View all {post?.comments?.length} comments
                 </div>
                 <div className="post014">
-                    <input className="post017" placeholder="Add a comment..." />
+                    <input
+                        className="post017"
+                        placeholder="Add a comment..."
+                        value={comment}
+                        onChange={handleComment}
+                        onKeyDown={addComment}
+                    />
                 </div>
             </div>
-            <FullPost
-                post={post}
-                open={open}
-                handleClose={handleClose}
-                // userPosts={userPosts}
-                // setSelectedpost={setSelectedpost}
-                userData={userData}
-                timeline={true}
-            />
+            {/* {open && (
+                <FullPost
+                    setReload={setReload}
+                    post={post}
+                    open={open}
+                    handleClose={handleClose}
+                    // userPosts={userPosts}
+                    // setSelectedpost={setSelectedpost}
+                    userData={userData}
+                    timeline={true}
+                />
+            )} */}
         </div>
     );
 };

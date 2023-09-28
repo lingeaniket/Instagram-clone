@@ -2,15 +2,19 @@ import React from "react";
 import { LazyLoadImage } from "react-lazy-load-image-component";
 import Like from "../../Icons/Like/Like";
 import Comment from "../../Icons/Comment/Comment";
+import { useNavigate } from "react-router-dom";
 
-const ImagePost = ({ post, handlePost, mainDiv, index }) => {
-  const selectPost = ()=>{
-    handlePost(mainDiv, index);
-  }
+const ImagePost = ({ post, account }) => {
+    const navigate = useNavigate();
+
+    const handlePost = () => {
+        navigate(`/explore/post?postUser=${account.id}&postId=${post.id}`);
+        document.body.style.overflow = "hidden";
+    };
 
     return (
         <div className="explore005 explore006">
-            <div className="explore008 explore012" onClick={selectPost}>
+            <div className="explore008 explore012" onClick={handlePost}>
                 <div>
                     <div className="explore008">
                         <div className="explore009">
@@ -20,7 +24,7 @@ const ImagePost = ({ post, handlePost, mainDiv, index }) => {
                                         effect="blur"
                                         style={{
                                             maxWidth: "100%",
-                                            verticalAlign: 'middle',
+                                            verticalAlign: "middle",
                                         }}
                                         src={`https://picsum.photos/id/${post?.id}/500/500`}
                                         alt=""

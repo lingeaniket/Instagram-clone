@@ -4,16 +4,31 @@ import { useEffect, useState } from "react";
 import Like from "../../Icons/Like/Like";
 import { apiSite } from "../../../Website/website";
 
-const Comment = ({ comment, type,mainLoad }) => {
+const Comment = ({
+    comment,
+    type,
+    mainLoad,
+    setComment,
+    setReplyMode,
+    setReplyData,
+}) => {
     const [userData, setUserData] = useState({});
     const [loaded, setLoaded] = useState(false);
+
+    const handleReplyComment = async () => {
+        setReplyData((prev) => {
+            return { ...prev, toReply: userData.username };
+        });
+        setComment(() => userData.username);
+        setReplyMode(true);
+    };
 
     useEffect(() => {
         // if (comment !== undefined && comment.userId !== undefined) {
         axios.get(`${apiSite}/users/${comment.userId}`).then((response) => {
             setUserData(response.data);
             setLoaded(true);
-            if(type === 'primary') {
+            if (type === "primary") {
                 mainLoad(true);
             }
         });
@@ -69,7 +84,10 @@ const Comment = ({ comment, type,mainLoad }) => {
                                         <button className="fullPost065 fullPost071">
                                             {comment?.likes} likes
                                         </button>
-                                        <button className="fullPost065 fullPost071">
+                                        <button
+                                            className="fullPost065 fullPost071"
+                                            onClick={handleReplyComment}
+                                        >
                                             reply
                                         </button>
                                     </span>
