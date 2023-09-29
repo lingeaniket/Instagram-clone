@@ -7,19 +7,21 @@ import Like from "../../Icons/Like/Like";
 import "./postList.css";
 import Comment from "../../Icons/Comment/Comment";
 import { useNavigate } from "react-router-dom";
-import { changeMode } from "../../../Features/fullPostSlice";
+import { changeMode, updatePostArray } from "../../../Features/fullPostSlice";
 import { useDispatch } from "react-redux";
 
 const PostList = ({ userPosts, userData, modeId }) => {
     const navigate = useNavigate();
     const dispatch = useDispatch();
-    dispatch(changeMode("profile"));
+    dispatch(updatePostArray(userPosts.flat()));
     const handlePost = (id) => {
         if (modeId) {
+            dispatch(changeMode("userProfile"));
             navigate(
                 `/p/${modeId}/post?postUser=${userData.id}&postId=${userPosts[id].id}`
             );
         } else {
+            dispatch(changeMode("profile"));
             navigate(
                 `/profile/post?postUser=${userData.id}&postId=${userPosts[id].id}`
             );

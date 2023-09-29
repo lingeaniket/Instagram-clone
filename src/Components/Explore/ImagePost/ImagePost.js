@@ -4,10 +4,11 @@ import Like from "../../Icons/Like/Like";
 import Comment from "../../Icons/Comment/Comment";
 import { useNavigate } from "react-router-dom";
 
-const ImagePost = ({ post, account }) => {
+const ImagePost = ({ post, account, handleFullPost }) => {
     const navigate = useNavigate();
 
     const handlePost = () => {
+        handleFullPost();
         navigate(`/explore/post?postUser=${account.id}&postId=${post.id}`);
         document.body.style.overflow = "hidden";
     };

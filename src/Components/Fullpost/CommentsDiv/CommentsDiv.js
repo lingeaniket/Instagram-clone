@@ -90,6 +90,7 @@ const CommentsDiv = ({ comment, setComment, setReplyMode, setReplyData }) => {
                                                     comment={reply}
                                                     setComment={setComment}
                                                     type="secondary"
+                                                    commentId={comment.id}
                                                     setReplyMode={setReplyMode}
                                                     setReplyData={setReplyData}
                                                 />

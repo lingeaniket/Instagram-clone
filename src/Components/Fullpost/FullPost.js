@@ -1,6 +1,5 @@
 import "./fullPost.css";
 import Close from "../Icons/Close/Close";
-import Back from "../Icons/Back/Back";
 import axios from "axios";
 import { apiSite } from "../../Website/website";
 
@@ -8,79 +7,78 @@ import ImageComponent from "./ImageComponent/ImageComponent";
 import PostDetailComponent from "./PostDetailComponent/PostDetailComponent";
 import { useEffect, useRef, useState } from "react";
 import * as React from "react";
+import { useSearchParams, useNavigate } from "react-router-dom";
+import { useSelector } from "react-redux";
+import { handleImagePostLiked, handlePostLiked } from "./functions";
+import Navigation from "./Navigation/Navigation";
 
-const FullPost = ({
-    post,
-    open,
-    handleClose,
-    userPosts = [],
-    setSelectedpost,
-    userData,
-    explore = false,
-    timeline = false,
-    setReload,
-}) => {
-    const imageRef = useRef();
+const FullPost = () => {
+    const [searchParams, setSearchParams] = useSearchParams();
+    const postId = Number(searchParams.get("postId"));
+    const postUser = Number(searchParams.get("postUser"));
+
     const userId = JSON.parse(localStorage.getItem("userId"));
-    const likeref = useRef(null);
-    const imagelikeref = useRef(null);
+
+    const fullPostMode = useSelector((state) => state.fullPostData.mode);
+    const fullPostData = useSelector((state) => state.fullPostData.postArray);
+
+    const navigate = useNavigate();
+
+    const imageRef = useRef();
     const detailRef = useRef();
     const prevBtnRef = useRef();
     const nextBtnRef = useRef();
-    const [selected, setSelected] = useState({});
+    const likeref = useRef(null);
+    const imagelikeref = useRef(null);
+
+    const [post, setPost] = useState({});
+    const [count, setCount] = useState(1);
     const [liked, setLiked] = useState(false);
+    const [reload, setReload] = useState(false);
+    const [postIndex, setPostIndex] = useState(0);
+
+    const handleClose = () => {
+        document.body.style.overflow = "auto";
+        navigate(0 - count);
+    };
 
     const handleImageLiked = () => {
-        imagelikeref.current.classList.add("clicked");
-        setTimeout(() => {
-            imagelikeref.current.classList.remove("clicked");
-            console.log("is called?");
-        }, 1000);
-        if (!liked) handleLiked();
+        handleImagePostLiked(
+            imagelikeref,
+            liked,
+            userId,
+            postUser,
+            postId,
+            setReload,
+            setLiked,
+            likeref
+        );
     };
-    const animateDiv = () => {
-        likeref.current.classList.add("clicked");
-        setTimeout(() => {
-            likeref.current.classList.remove("clicked");
-        }, 500);
-    };
-
-    
 
     const handleLiked = () => {
-        animateDiv();
-        if (liked) {
-            axios
-                .put(`${apiSite}/posts/post-like`, {
-                    method: "unlike",
-                    user: userId,
-                    postUser: userData.id,
-                    postId: post.id,
-                })
-                .then(() => {
-                    setReload((prev) => !prev);
-                });
-        } else {
-            axios
-                .put(`${apiSite}/posts/post-like`, {
-                    method: "like",
-                    user: userId,
-                    postUser: userData.id,
-                    postId: post.id,
-                })
-                .then(() => {
-                    setReload((prev) => !prev);
-                });
-        }
-        setLiked((liked) => !liked);
+        handlePostLiked(
+            liked,
+            userId,
+            postUser,
+            postId,
+            setReload,
+            setLiked,
+            likeref
+        );
     };
 
     const handleNext = () => {
-        setSelectedpost((prev) => prev + 1);
+        setCount((prev) => prev + 1);
+        searchParams.set("postId", fullPostData[postIndex + 1].id);
+        setPostIndex((prev) => prev + 1);
+        setSearchParams(searchParams);
     };
 
     const handlePrev = () => {
-        setSelectedpost((prev) => prev - 1);
+        setCount((prev) => prev + 1);
+        searchParams.set("postId", fullPostData[postIndex - 1].id);
+        setPostIndex((prev) => prev - 1);
+        setSearchParams(searchParams);
     };
 
     const handleModalClose = (e) => {
@@ -97,26 +95,29 @@ const FullPost = ({
     };
 
     useEffect(() => {
-        if (explore) {
-            setSelected(() => userPosts[post]?.post);
-            setLiked(() => userPosts[post]?.post?.likedBy?.includes(userId));
-        } else if (timeline) {
-            setSelected(() => post);
-            setLiked(() => post?.likedBy?.includes(userId));
-        } else {
-            setSelected(() => userPosts[post]);
-            setLiked(() => userPosts[post]?.likedBy?.includes(userId));
-        }
-        // eslint-disable-next-line
-    }, [post, userPosts]);
+        const loadData = async () => {
+            if (fullPostMode !== "explore") {
+                const index = fullPostData.findIndex(
+                    (data) => data.id === Number(postId)
+                );
+                setPostIndex(index);
+            }
+            await axios
+                .get(
+                    `${apiSite}/posts/post?postUser=${postUser}&postId=${postId}`
+                )
+                .then((response) => {
+                    setPost(() => response.data.post);
+                    setLiked(() =>
+                        response.data.post?.likedBy?.includes(userId)
+                    );
+                });
+        };
+        loadData();
+    }, [postUser, postId, reload, userId, fullPostData, fullPostMode]);
 
     return (
-        <div
-            className="fullPost001"
-            style={{
-                display: `${open ? "block" : "none"}`,
-            }}
-        >
+        <div className="fullPost001">
             <div className="fullPost002">
                 <div className="fullPost003" onClick={handleModalClose}>
                     <div className="fullPost004"></div>
@@ -140,56 +141,13 @@ const FullPost = ({
                                             justifyContent: "center",
                                         }}
                                     >
-                                        <div>
-                                            <div className="fullPost012 fullPost063">
-                                                {!explore && (
-                                                    <div className="fullPost013 fullPost063">
-                                                        {post > 0 && (
-                                                            <div
-                                                                className="fullPost014"
-                                                                style={{
-                                                                    left: 0,
-                                                                }}
-                                                                onClick={
-                                                                    handlePrev
-                                                                }
-                                                                ref={prevBtnRef}
-                                                            >
-                                                                <button className="fullPost015 fullPost016 fullPost006">
-                                                                    <div className="fullPost016">
-                                                                        <span className="fullPost017">
-                                                                            <Back title="Go back" />
-                                                                        </span>
-                                                                    </div>
-                                                                </button>
-                                                            </div>
-                                                        )}
-                                                        {post <
-                                                            userPosts.length -
-                                                                1 && (
-                                                            <div
-                                                                className="fullPost014"
-                                                                style={{
-                                                                    right: 0,
-                                                                }}
-                                                                onClick={
-                                                                    handleNext
-                                                                }
-                                                                ref={nextBtnRef}
-                                                            >
-                                                                <button className="fullPost015 fullPost016 fullPost006">
-                                                                    <div className="fullPost016">
-                                                                        <span className="fullPost018">
-                                                                            <Back title="Next" />
-                                                                        </span>
-                                                                    </div>
-                                                                </button>
-                                                            </div>
-                                                        )}
-                                                    </div>
-                                                )}
-                                            </div>
-                                        </div>
+                                        <Navigation
+                                            postIndex={postIndex}
+                                            handlePrev={handlePrev}
+                                            prevBtnRef={prevBtnRef}
+                                            handleNext={handleNext}
+                                            nextBtnRef={nextBtnRef}
+                                        />
                                         <div
                                             className="fullPost019"
                                             style={{
@@ -229,9 +187,6 @@ const FullPost = ({
                                                                     imagelikeref={
                                                                         imagelikeref
                                                                     }
-                                                                    id={
-                                                                        selected?.id
-                                                                    }
                                                                 />
                                                             </div>
 
@@ -240,9 +195,7 @@ const FullPost = ({
                                                                 ref={detailRef}
                                                             >
                                                                 <PostDetailComponent
-                                                                    post={
-                                                                        selected
-                                                                    }
+                                                                    post={post}
                                                                     setReload={
                                                                         setReload
                                                                     }
@@ -251,9 +204,6 @@ const FullPost = ({
                                                                     }
                                                                     likeref={
                                                                         likeref
-                                                                    }
-                                                                    userData={
-                                                                        userData
                                                                     }
                                                                     liked={
                                                                         liked

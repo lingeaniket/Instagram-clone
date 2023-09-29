@@ -7,18 +7,27 @@ import { generateRandomUsersAndPosts } from "./function";
 import Loader from "../Icons/Loader/Loader";
 import ImagePost from "./ImagePost/ImagePost";
 import { Outlet } from "react-router-dom";
+import { useDispatch } from "react-redux";
+import { changeMode } from "../../Features/fullPostSlice";
 // import ReelPost from "./ReelPost/ReelPost";
 
 const Explore = () => {
     const [posts, setPosts] = useState([]);
+    const dispatch = useDispatch();
 
+    const handleFullPost = () => {
+        // const data = posts.flat().map((post)=> { return post.post});
+        // // console.log(data);
+        // dispatch(updatePostArray(data));
+        dispatch(changeMode("explore"));
+    };
 
     useEffect(() => {
         const generateRandom = async () => {
             const data1 = await generateRandomUsersAndPosts();
+            setPosts((prev) => [...prev, data1]);
             const data2 = await generateRandomUsersAndPosts();
-
-            setPosts((prev) => [...prev, data1, data2]);
+            setPosts((prev) => [...prev, data2]);
         };
 
         generateRandom();
@@ -65,10 +74,9 @@ const Explore = () => {
                             <div className="explore004">
                                 {user?.map((post, idx) => (
                                     <ImagePost
+                                        handleFullPost={handleFullPost}
                                         post={post.post}
                                         account={post.account}
-                                        
-                                    
                                     />
                                 ))}
                             </div>
@@ -81,8 +89,8 @@ const Explore = () => {
                     <Loader />
                 </div>
             </div>
-            
-            <Outlet/>
+
+            <Outlet />
         </div>
     );
 };

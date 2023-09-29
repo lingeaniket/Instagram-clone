@@ -10,7 +10,11 @@ const CommentsComponent = () => {
     const postUser = Number(searchParams.get("postUser"));
     const postId = Number(searchParams.get("postId"));
 
-    const [replyData, setReplyData] = useState({});
+    const [replyData, setReplyData] = useState({
+        username: "",
+        userId: "",
+        commentId: "",
+    });
     const [replyMode, setReplyMode] = useState(false);
 
     const [post, setPost] = useState({});
@@ -25,20 +29,24 @@ const CommentsComponent = () => {
 
     const checkReplyMode = () => {
         if (replyMode) {
-            if (comment.includes(replyData.toReply)) {
+            if (
+                replyData.username.length > 0 &&
+                comment.includes(replyData.username)
+            ) {
                 return true;
-            } else {
-                return false;
             }
-        } else {
-            return false;
         }
+        return false;
     };
     const handleComment = (e) => {
         const check = checkReplyMode();
-        if (check) {
-            setComment(() => e.target.value);
+        if (!check) {
+            setReplyMode(false);
+            setReplyData((prev) => {
+                return { ...prev, username: "", commentId: "", userId: "" };
+            });
         }
+        setComment(() => e.target.value);
     };
 
     const loadComments = async () => {
@@ -50,6 +58,21 @@ const CommentsComponent = () => {
     };
     const addComment = async () => {
         if (replyMode) {
+            await axios
+                .put(`${apiSite}/posts/add-reply`, {
+                    user: userId,
+                    postUser,
+                    postId,
+                    commentId: replyData.commentId,
+                    replyText: comment,
+                    toUser: replyData.username,
+                    toUserId: replyData.userId,
+                })
+                .then((res) => {
+                    loadComments();
+                    console.log(res.data)
+                });
+                setComment("");
         } else {
             if (comment.trim().length > 0) {
                 await axios
@@ -94,12 +117,7 @@ const CommentsComponent = () => {
         };
         loadData();
     }, [postUser, postId]);
-    // useEffect(() => {
-    //     setLoading(true);
-    //     setTimeout(() => {
-    //         setLoading(false);
-    //     }, 1200);
-    // }, [userData]);
+
     return (
         <>
             <div className="fullPost047 fullPost024 fullPost042">

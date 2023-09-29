@@ -3,36 +3,77 @@ import { useEffect, useState } from "react";
 
 import Like from "../../Icons/Like/Like";
 import { apiSite } from "../../../Website/website";
+import { useSearchParams } from "react-router-dom";
+import timeElapsedFromCurrent from "./function";
 
 const Comment = ({
     comment,
     type,
     mainLoad,
+    commentId,
     setComment,
     setReplyMode,
     setReplyData,
 }) => {
     const [userData, setUserData] = useState({});
+    const [searchParams] = useSearchParams();
+    const postUser = Number(searchParams.get("postUser"));
+    const postId = Number(searchParams.get("postId"));
+    const userId = JSON.parse(localStorage.getItem("userId"));
+    const [likes, setLikes] = useState(0);
+    const [liked, setLiked] = useState(false);
     const [loaded, setLoaded] = useState(false);
 
     const handleReplyComment = async () => {
         setReplyData((prev) => {
-            return { ...prev, toReply: userData.username };
+            return {
+                ...prev,
+                username: userData.username,
+                userId: comment.userId,
+                commentId: type === "primary" ? comment.id : commentId,
+            };
         });
-        setComment(() => userData.username);
+        setComment(() => `@${userData.username} `);
         setReplyMode(true);
     };
 
+    const handleCommentLike = async () => {
+        setLiked((prev) => !prev);
+        if (liked) {
+            setLikes((prev) => prev - 1);
+        } else {
+            setLikes((prev) => prev + 1);
+        }
+        if (type === "primary") {
+            await axios.put(`${apiSite}/posts/comment-like`, {
+                method: liked ? "unlike" : "like",
+                user: userId,
+                postUser,
+                postId,
+                commentId: comment.id,
+            });
+        } else {
+            await axios.put(`${apiSite}/posts/reply-like`, {
+                method: liked ? "unlike" : "like",
+                user: userId,
+                postUser,
+                postId,
+                commentId: commentId,
+                replyId: comment.id,
+            });
+        }
+    };
+
     useEffect(() => {
-        // if (comment !== undefined && comment.userId !== undefined) {
         axios.get(`${apiSite}/users/${comment.userId}`).then((response) => {
             setUserData(response.data);
             setLoaded(true);
+            setLiked(() => comment?.likedBy?.includes(userId));
+            setLikes(() => comment?.likes);
             if (type === "primary") {
                 mainLoad(true);
             }
         });
-        // }
         // eslint-disable-next-line
     }, [comment]);
 
@@ -78,11 +119,16 @@ const Comment = ({
                                                 className="fullPost059"
                                                 dateTime="2023-09-10T08:34:19.000Z"
                                             >
-                                                1 w
+                                                {
+                                                    comment?.time ? 
+                                                    timeElapsedFromCurrent(comment.time) :
+                                                    "no time"
+                                                }
+                                                
                                             </time>
                                         </span>
                                         <button className="fullPost065 fullPost071">
-                                            {comment?.likes} likes
+                                            {likes} likes
                                         </button>
                                         <button
                                             className="fullPost065 fullPost071"
@@ -94,8 +140,14 @@ const Comment = ({
                                 </div>
                             </div>
                         </div>
-                        <div className="fullPost066">
-                            <Like size={12} />
+                        <div
+                            className="fullPost066"
+                            onClick={handleCommentLike}
+                            style={{
+                                cursor: 'pointer'
+                            }}
+                        >
+                            <Like liked={liked} size={12} />
                         </div>
                     </div>
                 </div>

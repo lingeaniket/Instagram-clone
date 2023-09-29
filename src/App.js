@@ -9,7 +9,7 @@ import Explore from "./Components/Explore/Explore";
 import Message from "./Components/Message/Message";
 import ChatComponent from "./Components/Message/ChatComponent/ChatComponent";
 import EmptyChatComponent from "./Components/Message/EmptyChatComponent/EmptyChatComponent";
-import FullPost from "./Components/Fullpost/FullPost2";
+import FullPost from "./Components/Fullpost/FullPost";
 import store from "./Store/store";
 
 const router = createBrowserRouter([

@@ -12,6 +12,10 @@ const ImageComponent = ({ handleImageLiked, imagelikeref }) => {
     const postId = searchParams.get("postId");
     const [post, setPost] = useState({});
 
+    const handleLike = () => {
+        handleImageLiked();
+    };
+
     useEffect(() => {
         const loadData = async () => {
             await axios
@@ -26,10 +30,12 @@ const ImageComponent = ({ handleImageLiked, imagelikeref }) => {
     }, [postUser, postId]);
     return (
         <div
+            onDoubleClick={handleLike}
             className="fullPost023 fullPost062 fullPost024 fullPost042"
             style={{
                 border: 0,
                 fontSize: "100%",
+                cursor: "pointer",
             }}
         >
             <div>
@@ -50,7 +56,6 @@ const ImageComponent = ({ handleImageLiked, imagelikeref }) => {
                         }}
                     >
                         <LazyLoadImage
-                            onDoubleClick={handleImageLiked}
                             style={{
                                 width: "100%",
                                 height: "100%",
@@ -74,10 +79,10 @@ const ImageComponent = ({ handleImageLiked, imagelikeref }) => {
                     ></div>
                 </div>
             </div>
-            <div className="fullPost025 fullPost016">
+            {/* <div className="fullPost025 fullPost016">
                 <div className="fullPost026"></div>
                 <div className="fullPost027"></div>
-            </div>
+            </div> */}
         </div>
     );
 };
