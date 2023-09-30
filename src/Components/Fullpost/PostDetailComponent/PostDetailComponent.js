@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, memo } from "react";
 import Options from "../../Icons/Options/Options";
 import axios from "axios";
 import { apiSite } from "../../../Website/website";
@@ -7,23 +7,17 @@ import Comment from "../../Icons/Comment/Comment";
 import Share from "../../Icons/Share/Share";
 import CommentsComponent from "../CommentsComponent/CommentsComponent";
 import { useSearchParams } from "react-router-dom";
+import { Skeleton } from "@mui/material";
+import Save from "../../Icons/Save/Save";
 
 const PostDetailComponent = ({ likeref, liked, handleLiked, post }) => {
     const [searchParams] = useSearchParams();
     const postUser = searchParams.get("postUser");
-    const postId = searchParams.get("postId");
+    const postId = Number(searchParams.get("postId"));
     const [userData, setUserData] = useState({});
 
     useEffect(() => {
         const loadData = async () => {
-            // await axios
-            //     .get(
-            //         `${apiSite}/posts/post?postUser=${postUser}&postId=${postId}`
-            //     )
-            //     .then((response) => {
-            //         setPost(() => response.data.post);
-            //     });
-
             await axios.get(`${apiSite}/users/${postUser}`).then((response) => {
                 setUserData(() => response.data);
             });
@@ -133,17 +127,47 @@ const PostDetailComponent = ({ likeref, liked, handleLiked, post }) => {
                                 onClick={handleLiked}
                                 className="fullPost045 fullPost016 fullPost006 animeicon"
                             >
-                                <Like liked={liked} size={24} />
+                                {post.id !== postId ? (
+                                    <Skeleton
+                                        variant="rounded"
+                                        sx={{
+                                            width: "24px",
+                                            height: "24px",
+                                        }}
+                                    />
+                                ) : (
+                                    <Like liked={liked} size={24} />
+                                )}
                             </div>
                         </div>
                         <div>
                             <div className="fullPost045 fullPost016 fullPost006">
-                                <Comment />
+                                {post.id !== postId ? (
+                                    <Skeleton
+                                        variant="rounded"
+                                        sx={{
+                                            width: "24px",
+                                            height: "24px",
+                                        }}
+                                    />
+                                ) : (
+                                    <Comment />
+                                )}
                             </div>
                         </div>
                         <div>
                             <div className="fullPost045 fullPost016 fullPost006">
-                                <Share />
+                                {post.id !== postId ? (
+                                    <Skeleton
+                                        variant="rounded"
+                                        sx={{
+                                            width: "24px",
+                                            height: "24px",
+                                        }}
+                                    />
+                                ) : (
+                                    <Share />
+                                )}
                             </div>
                         </div>
                         <div
@@ -153,7 +177,17 @@ const PostDetailComponent = ({ likeref, liked, handleLiked, post }) => {
                             }}
                         >
                             <div className="fullPost045 fullPost016 fullPost006">
-                                <Share />
+                                {post.id !== postId ? (
+                                    <Skeleton
+                                        variant="rounded"
+                                        sx={{
+                                            width: "24px",
+                                            height: "24px",
+                                        }}
+                                    />
+                                ) : (
+                                    <Save />
+                                )}
                             </div>
                         </div>
                     </div>
@@ -168,21 +202,28 @@ const PostDetailComponent = ({ likeref, liked, handleLiked, post }) => {
                                 fontWeight: "600",
                             }}
                         >
-                            {post?.likes} likes
+                            {post.id !== postId ? (
+                                <Skeleton
+                                    variant="text"
+                                    sx={{
+                                        fontSize: "14px",
+                                        width: "50px",
+                                    }}
+                                />
+                            ) : (
+                                <>{post?.likes} likes</>
+                            )}
                         </span>
                     </div>
-                    <CommentsComponent
-                    
-                    />
-                    
+                    <CommentsComponent />
+
                     <div className="fullPost072">
                         <span className="fullPost073">1 day ago</span>
                     </div>
-                    
                 </div>
             </div>
         </div>
     );
 };
 
-export default PostDetailComponent;
+export default memo(PostDetailComponent);

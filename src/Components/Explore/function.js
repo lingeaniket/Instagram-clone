@@ -14,10 +14,10 @@ const generate6users = async () => {
         let id = generateRandom(1, 100);
         let account = await accountData(id);
         // while (users.includes(id) || account.private) {
-        while (account.private) {
-            id = generateRandom(1, 100);
-            account = await accountData(id);
-        }
+        // while (account.private) {
+        //     id = generateRandom(1, 100);
+        //     account = await accountData(id);
+        // }
         users.push(id);
         data.push({
             account,

@@ -10,12 +10,12 @@ import { useNavigate } from "react-router-dom";
 import { changeMode, updatePostArray } from "../../../Features/fullPostSlice";
 import { useDispatch } from "react-redux";
 
-const PostList = ({ userPosts, userData, modeId }) => {
+const PostList = ({ userPosts, userData, module, modeId }) => {
     const navigate = useNavigate();
     const dispatch = useDispatch();
     dispatch(updatePostArray(userPosts.flat()));
     const handlePost = (id) => {
-        if (modeId) {
+        if (module === "userProfile") {
             dispatch(changeMode("userProfile"));
             navigate(
                 `/p/${modeId}/post?postUser=${userData.id}&postId=${userPosts[id].id}`

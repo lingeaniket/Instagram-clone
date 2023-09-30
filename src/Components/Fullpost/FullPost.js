@@ -121,7 +121,7 @@ const FullPost = () => {
             <div className="fullPost002">
                 <div className="fullPost003" onClick={handleModalClose}>
                     <div className="fullPost004"></div>
-                    <div className="fullPost005" onClick={handleClose}>
+                    <div className="fullPost005" >
                         <div className="fullPost006 fullPost016">
                             <Close color="white" size="18" title="close" />
                         </div>

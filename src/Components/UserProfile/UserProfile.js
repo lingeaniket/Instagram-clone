@@ -11,7 +11,7 @@ const UserProfile = () => {
     }, [id]);
     return (
         <>
-            <Profile id={userId} />
+            <Profile id={userId} module="userProfile" />
             <Outlet />
         </>
     );

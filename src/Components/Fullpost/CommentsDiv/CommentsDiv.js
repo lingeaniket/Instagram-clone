@@ -1,7 +1,8 @@
 import React, { memo } from "react";
 import { useState } from "react";
-import CircularProgress from "@mui/material/CircularProgress";
 import Comment from "../Comment/Comment";
+import Loader from "../../Icons/Loader/Loader";
+import { Skeleton } from "@mui/material";
 
 const CommentsDiv = ({ comment, setComment, setReplyMode, setReplyData }) => {
     const [showReply, setShowReply] = useState(false);
@@ -42,7 +43,7 @@ const CommentsDiv = ({ comment, setComment, setReplyMode, setReplyData }) => {
                 setReplyData={setReplyData}
                 setReplyMode={setReplyMode}
             />
-            {mainLoad && (
+            {mainLoad ? (
                 <>
                     {comment?.reply?.length > 0 && (
                         <div>
@@ -73,9 +74,14 @@ const CommentsDiv = ({ comment, setComment, setReplyMode, setReplyData }) => {
                                                         marginLeft: "15px",
                                                     }}
                                                 >
-                                                    <CircularProgress
-                                                        size={16}
-                                                    />
+                                                    <div
+                                                        style={{
+                                                            width: "16px",
+                                                            height: "16px",
+                                                        }}
+                                                    >
+                                                        <Loader />
+                                                    </div>
                                                 </div>
                                             )}
                                         </button>
@@ -103,7 +109,14 @@ const CommentsDiv = ({ comment, setComment, setReplyMode, setReplyData }) => {
                                                     justifyContent: "center",
                                                 }}
                                             >
-                                                <CircularProgress size={16} />
+                                                <div
+                                                    style={{
+                                                        width: "16px",
+                                                        height: "16px",
+                                                    }}
+                                                >
+                                                    <Loader />
+                                                </div>
                                             </div>
                                         )}
                                         {sliceid + 3 <=
@@ -125,6 +138,17 @@ const CommentsDiv = ({ comment, setComment, setReplyMode, setReplyData }) => {
                             </div>
                         </div>
                     )}
+                </>
+            ) : (
+                <>
+                    <Skeleton
+                        variant="text"
+                        style={{
+                            fontSize: "12px",
+                            width: "130px",
+                            margin: '16px 0 0 54px'
+                        }}
+                    />
                 </>
             )}
         </div>

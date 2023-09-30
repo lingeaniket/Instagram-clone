@@ -1,9 +1,10 @@
 import React, { useEffect, useState, memo } from "react";
-import CircularProgress from "@mui/material/CircularProgress";
 import CommentsDiv from "../CommentsDiv/CommentsDiv";
 import axios from "axios";
 import { apiSite } from "../../../Website/website";
 import { useSearchParams } from "react-router-dom";
+import { Skeleton } from "@mui/material";
+import Loader from "../../Icons/Loader/Loader";
 
 const CommentsComponent = () => {
     const [searchParams] = useSearchParams();
@@ -70,9 +71,9 @@ const CommentsComponent = () => {
                 })
                 .then((res) => {
                     loadComments();
-                    console.log(res.data)
+                    console.log(res.data);
                 });
-                setComment("");
+            setComment("");
         } else {
             if (comment.trim().length > 0) {
                 await axios
@@ -135,36 +136,81 @@ const CommentsComponent = () => {
                                                 overflow: "hidden",
                                             }}
                                         >
-                                            <img
-                                                style={{
-                                                    maxWidth: "100%",
-                                                }}
-                                                src={`https://cloudflare-ipfs.com/ipfs/Qmd3W5DuhgHirLHGVixi6V76LhCkZUz6pnFt5AJBiyvHye/avatar/${userData?.avatar}.jpg`}
-                                                alt=""
-                                            />
+                                            {loading && (
+                                                <Skeleton
+                                                    variant="rectangle"
+                                                    sx={{
+                                                        height: "100%",
+                                                        width: "100%",
+                                                    }}
+                                                />
+                                            )}
+
+                                            {!loading && (
+                                                <img
+                                                    style={{
+                                                        maxWidth: "100%",
+                                                    }}
+                                                    src={`https://cloudflare-ipfs.com/ipfs/Qmd3W5DuhgHirLHGVixi6V76LhCkZUz6pnFt5AJBiyvHye/avatar/${userData?.avatar}.jpg`}
+                                                    alt=""
+                                                />
+                                            )}
                                         </div>
                                     </div>
-                                    <div>
-                                        <h2 className="fullPost053">
-                                            <div className="fullPost054">
-                                                {userData?.username}
-                                            </div>
-                                        </h2>
-                                        <div className="fullPost055">
-                                            <h1 className="fullPost056">
-                                                {post?.caption}
-                                            </h1>
-                                        </div>
-                                        <div className="fullPost057">
-                                            <span className="fullPost058">
-                                                <time
-                                                    className="fullPost059"
-                                                    dateTime="2023-09-10T08:34:19.000Z"
-                                                >
-                                                    1 w
-                                                </time>
-                                            </span>
-                                        </div>
+                                    <div
+                                        style={{
+                                            width: "100%",
+                                        }}
+                                    >
+                                        {loading ? (
+                                            <>
+                                                <Skeleton
+                                                    variant="text"
+                                                    sx={{
+                                                        fontSize: "12px",
+                                                        width: "100%",
+                                                    }}
+                                                />
+                                                <Skeleton
+                                                    variant="text"
+                                                    sx={{
+                                                        fontSize: "12px",
+                                                        width: "100%",
+                                                    }}
+                                                />
+                                                <Skeleton
+                                                    variant="text"
+                                                    sx={{
+                                                        fontSize: "12px",
+                                                        width: "25px",
+                                                        marginTop: "10px",
+                                                    }}
+                                                />
+                                            </>
+                                        ) : (
+                                            <>
+                                                <h2 className="fullPost053">
+                                                    <div className="fullPost054">
+                                                        {userData?.username}
+                                                    </div>
+                                                </h2>
+                                                <div className="fullPost055">
+                                                    <h1 className="fullPost056">
+                                                        {post?.caption}
+                                                    </h1>
+                                                </div>
+                                                <div className="fullPost057">
+                                                    <span className="fullPost058">
+                                                        <time
+                                                            className="fullPost059"
+                                                            dateTime="2023-09-10T08:34:19.000Z"
+                                                        >
+                                                            1 w
+                                                        </time>
+                                                    </span>
+                                                </div>
+                                            </>
+                                        )}
                                     </div>
                                 </div>
                             </div>
@@ -178,7 +224,13 @@ const CommentsComponent = () => {
                                 alignItems: "center",
                             }}
                         >
-                            <CircularProgress />
+                            <div style={{
+                                width: '30px',
+                                height: '30px',
+                            }}>
+
+                            <Loader />
+                            </div>
                         </div>
                     ) : (
                         <>

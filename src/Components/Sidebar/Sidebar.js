@@ -4,7 +4,8 @@ import ExploreOutlinedIcon from "@mui/icons-material/ExploreOutlined";
 import FavoriteBorderOutlinedIcon from "@mui/icons-material/FavoriteBorderOutlined";
 import Tab from "./Tab/Tab";
 import "./sidebar.css";
-import { useRef, useState } from "react";
+import { useEffect, useRef, useState } from "react";
+import { socket } from "../../App";
 import SearchComponent from "./SearchComponent/SearchComponent";
 
 const tabStyle = {
@@ -97,6 +98,7 @@ const tabArr = [
 ];
 
 const Sidebar = () => {
+    const [id, setId] = useState(0);
     const navigate = useNavigate();
     const [searchDiv, setSearchDiv] = useState(false);
     const searchRef = useRef(null);
@@ -109,6 +111,12 @@ const Sidebar = () => {
         setSearchDiv((prev)=> !prev)
 
     }
+
+    useEffect(()=> {
+        socket.on("notification", ()=> {
+            setId((prev)=> prev + 1);
+        })
+    }, [])
 
     return (
         <div className="w_15 side01">
@@ -137,7 +145,7 @@ const Sidebar = () => {
                     </div>
                     <div className="side04">
                         {tabArr.map((tab, i) => (
-                            <Tab key={i} tab={tab} searchOpen={handleCollapse} searchRef={searchRef} />
+                            <Tab id={id} key={i} tab={tab} searchOpen={handleCollapse} searchRef={searchRef} />
                         ))}
                     </div>
                     <div>Options</div>

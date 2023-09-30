@@ -1,10 +1,11 @@
 import axios from "axios";
-import { useEffect, useState } from "react";
+import { useEffect, useState, memo } from "react";
 
 import Like from "../../Icons/Like/Like";
 import { apiSite } from "../../../Website/website";
 import { useSearchParams } from "react-router-dom";
 import timeElapsedFromCurrent from "./function";
+import { Skeleton } from "@mui/material";
 
 const Comment = ({
     comment,
@@ -22,7 +23,7 @@ const Comment = ({
     const userId = JSON.parse(localStorage.getItem("userId"));
     const [likes, setLikes] = useState(0);
     const [liked, setLiked] = useState(false);
-    const [loaded, setLoaded] = useState(false);
+    const [loading, setLoading] = useState(true);
 
     const handleReplyComment = async () => {
         setReplyData((prev) => {
@@ -65,43 +66,79 @@ const Comment = ({
     };
 
     useEffect(() => {
+        setLoading(true);
         axios.get(`${apiSite}/users/${comment.userId}`).then((response) => {
             setUserData(response.data);
-            setLoaded(true);
+            setTimeout(() => {
+                setLoading(false);
+                if (type === "primary") {
+                    mainLoad(true);
+                }
+            }, 1000);
             setLiked(() => comment?.likedBy?.includes(userId));
             setLikes(() => comment?.likes);
-            if (type === "primary") {
-                mainLoad(true);
-            }
         });
         // eslint-disable-next-line
     }, [comment]);
 
     return (
-        <>
-            {loaded && (
-                <div className="fullPost061">
-                    <div className="fullPost050">
-                        <div className="fullPost051">
-                            <div className="fullPost052">
-                                <div
-                                    style={{
-                                        height: "32px",
-                                        width: "32px",
-                                        borderRadius: "50%",
-                                        overflow: "hidden",
+        <div className="fullPost061">
+            <div className="fullPost050">
+                <div className="fullPost051">
+                    <div className="fullPost052">
+                        <div
+                            style={{
+                                height: "32px",
+                                width: "32px",
+                                borderRadius: "50%",
+                                overflow: "hidden",
+                            }}
+                        >
+                            {loading ? (
+                                <Skeleton
+                                    variant="rectangle"
+                                    animation="wave"
+                                    sx={{
+                                        height: "100%",
+                                        width: "100%",
                                     }}
-                                >
-                                    <img
-                                        style={{
-                                            maxWidth: "100%",
-                                        }}
-                                        src={`https://cloudflare-ipfs.com/ipfs/Qmd3W5DuhgHirLHGVixi6V76LhCkZUz6pnFt5AJBiyvHye/avatar/${userData?.avatar}.jpg`}
-                                        alt=""
-                                    />
-                                </div>
-                            </div>
-                            <div>
+                                />
+                            ) : (
+                                <img
+                                    style={{
+                                        maxWidth: "100%",
+                                    }}
+                                    src={`https://cloudflare-ipfs.com/ipfs/Qmd3W5DuhgHirLHGVixi6V76LhCkZUz6pnFt5AJBiyvHye/avatar/${userData?.avatar}.jpg`}
+                                    alt=""
+                                />
+                            )}
+                        </div>
+                    </div>
+                    <div
+                        style={{
+                            width: "100%",
+                        }}
+                    >
+                        {loading ? (
+                            <>
+                                <Skeleton
+                                    variant="text"
+                                    sx={{
+                                        fontSize: "14px",
+                                        width: "100%",
+                                    }}
+                                />
+                                
+                                <Skeleton
+                                    variant="text"
+                                    sx={{
+                                        fontSize: "12px",
+                                        width: "50%",
+                                    }}
+                                />
+                            </>
+                        ) : (
+                            <>
                                 <h2 className="fullPost053">
                                     <div className="fullPost054">
                                         {userData?.username}
@@ -119,12 +156,11 @@ const Comment = ({
                                                 className="fullPost059"
                                                 dateTime="2023-09-10T08:34:19.000Z"
                                             >
-                                                {
-                                                    comment?.time ? 
-                                                    timeElapsedFromCurrent(comment.time) :
-                                                    "no time"
-                                                }
-                                                
+                                                {comment?.time
+                                                    ? timeElapsedFromCurrent(
+                                                          comment.time
+                                                      )
+                                                    : "no time"}
                                             </time>
                                         </span>
                                         <button className="fullPost065 fullPost071">
@@ -138,22 +174,22 @@ const Comment = ({
                                         </button>
                                     </span>
                                 </div>
-                            </div>
-                        </div>
-                        <div
-                            className="fullPost066"
-                            onClick={handleCommentLike}
-                            style={{
-                                cursor: 'pointer'
-                            }}
-                        >
-                            <Like liked={liked} size={12} />
-                        </div>
+                            </>
+                        )}
                     </div>
                 </div>
-            )}
-        </>
+                <div
+                    className="fullPost066"
+                    onClick={handleCommentLike}
+                    style={{
+                        cursor: "pointer",
+                    }}
+                >
+                    <Like liked={liked} size={12} />
+                </div>
+            </div>
+        </div>
     );
 };
 
-export default Comment;
+export default memo(Comment);

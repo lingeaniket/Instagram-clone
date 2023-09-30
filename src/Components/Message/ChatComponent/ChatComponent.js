@@ -1,8 +1,6 @@
 import React, { useEffect, useState } from "react";
 import ScrollToBottom from "react-scroll-to-bottom";
 
-import io from "socket.io-client";
-
 import Reaction from "../../Icons/Reaction/Reaction";
 import AddPhoto from "../../Icons/AddPhoto/AddPhoto";
 import Voice from "../../Icons/Voice/Voice";
@@ -13,10 +11,11 @@ import SingleMessage from "./SingleMessage/SingleMessage";
 import axios from "axios";
 import { apiSite } from "../../../Website/website";
 import { formatDate } from "./functions";
+import { socket } from "../../../App";
 
 const ChatComponent = () => {
     // const socket = io("http://localhost:4000");
-    const socket = io("https://instagram-api-aniket.onrender.com/");
+    // const socket = io("https://instagram-api-aniket.onrender.com/");
     const user = JSON.parse(localStorage.getItem("userId"));
 
     const { id } = useParams();
@@ -80,6 +79,7 @@ const ChatComponent = () => {
 
     useEffect(() => {
         socket.on("message", (data) => {
+            // alert(data);
             console.log(data);
             const loadData = async () => {
                 await axios

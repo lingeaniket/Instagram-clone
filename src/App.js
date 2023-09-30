@@ -1,9 +1,10 @@
 import Timeline from "./Components/Timeline/Timeline";
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import { Provider } from "react-redux";
+import io from "socket.io-client";
 import "./app.css";
 import Home from "./Components/Home/Home";
-import Profile from "./Components/Profile/Profile";
+// import Profile from "./Components/Profile/Profile";
 import UserProfile from "./Components/UserProfile/UserProfile";
 import Explore from "./Components/Explore/Explore";
 import Message from "./Components/Message/Message";
@@ -11,6 +12,8 @@ import ChatComponent from "./Components/Message/ChatComponent/ChatComponent";
 import EmptyChatComponent from "./Components/Message/EmptyChatComponent/EmptyChatComponent";
 import FullPost from "./Components/Fullpost/FullPost";
 import store from "./Store/store";
+import { useEffect } from "react";
+import CurrentProfile from "./Components/CurrentProfile/CurrentProfile";
 
 const router = createBrowserRouter([
     {
@@ -29,7 +32,7 @@ const router = createBrowserRouter([
             },
             {
                 path: "/profile",
-                element: <Profile />,
+                element: <CurrentProfile />,
                 children: [
                     {
                         path: "/profile/post",
@@ -99,7 +102,13 @@ const router = createBrowserRouter([
     },
 ]);
 
+// export const socket = io("http://localhost:4000");
+export const socket = io("https://instagram-api-aniket.onrender.com/");
+
 const App = () => {
+    useEffect(() => {
+        socket.emit("join", 12569);
+    }, []);
     return (
         <Provider store={store}>
             <RouterProvider router={router}></RouterProvider>

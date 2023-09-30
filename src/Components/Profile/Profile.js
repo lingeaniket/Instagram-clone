@@ -8,8 +8,9 @@ import { apiSite } from "../../Website/website";
 import PostList from "./PostList/PostList";
 import { Outlet } from "react-router-dom";
 
-const Profile = ({ id }) => {
+const Profile = ({ id, module }) => {
     const [userData, setUserData] = useState({});
+    const [type, setType] = useState("userProfile");
     const [userPosts, setUserPosts] = useState([]);
 
     useEffect(() => {
@@ -20,6 +21,10 @@ const Profile = ({ id }) => {
             axios.get(`${apiSite}/posts/${id}`).then((response) => {
                 setUserPosts(response.data.posts);
             });
+
+            if (id === JSON.parse(localStorage.getItem("userId"))) {
+                setType("currentProfile");
+            }
         }
     }, [id]);
     return (
@@ -31,7 +36,7 @@ const Profile = ({ id }) => {
                 maxWidth: "975px",
             }}
         >
-            <ProfileHeader userData={userData} userPosts={userPosts} />
+            <ProfileHeader userData={userData} userPosts={userPosts} type={type} />
             <div
                 style={{
                     marginBottom: "44px",
@@ -96,7 +101,7 @@ const Profile = ({ id }) => {
                 </div>
             </div>
             <Tabs />
-            <PostList userPosts={userPosts} userData={userData} modeId={id} />
+            <PostList userPosts={userPosts} userData={userData} modeId={id} module={module} />
             <Outlet />
         </div>
     );
