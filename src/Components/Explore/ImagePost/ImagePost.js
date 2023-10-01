@@ -1,4 +1,4 @@
-import React from "react";
+import React, { memo, useEffect } from "react";
 import { LazyLoadImage } from "react-lazy-load-image-component";
 import Like from "../../Icons/Like/Like";
 import Comment from "../../Icons/Comment/Comment";
@@ -6,12 +6,14 @@ import { useNavigate } from "react-router-dom";
 
 const ImagePost = ({ post, account, handleFullPost }) => {
     const navigate = useNavigate();
+    console.log("rendered");
 
     const handlePost = () => {
         handleFullPost();
         navigate(`/explore/post?postUser=${account.id}&postId=${post.id}`);
         document.body.style.overflow = "hidden";
     };
+    useEffect(() => {}, [post]);
 
     return (
         <div className="explore005 explore006">
@@ -41,7 +43,7 @@ const ImagePost = ({ post, account, handleFullPost }) => {
                                                     white="white"
                                                 />
                                             </div>{" "}
-                                            {post.likes}
+                                            {post?.likes}
                                         </div>
                                         <div className="postList004">
                                             <div className="postList005">
@@ -63,4 +65,4 @@ const ImagePost = ({ post, account, handleFullPost }) => {
     );
 };
 
-export default ImagePost;
+export default memo(ImagePost);

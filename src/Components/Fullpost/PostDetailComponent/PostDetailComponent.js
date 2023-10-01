@@ -14,12 +14,17 @@ const PostDetailComponent = ({ likeref, liked, handleLiked, post }) => {
     const [searchParams] = useSearchParams();
     const postUser = searchParams.get("postUser");
     const postId = Number(searchParams.get("postId"));
+    const [loading, setLoading] = useState(true);
     const [userData, setUserData] = useState({});
 
     useEffect(() => {
+        setLoading(true);
         const loadData = async () => {
             await axios.get(`${apiSite}/users/${postUser}`).then((response) => {
                 setUserData(() => response.data);
+                setTimeout(() => {
+                    setLoading(false);
+                }, 1000);
             });
         };
         loadData();
@@ -43,13 +48,26 @@ const PostDetailComponent = ({ likeref, liked, handleLiked, post }) => {
                                                     left: 0,
                                                 }}
                                             >
-                                                <img
-                                                    style={{
-                                                        maxWidth: "100%",
-                                                    }}
-                                                    src={`https://cloudflare-ipfs.com/ipfs/Qmd3W5DuhgHirLHGVixi6V76LhCkZUz6pnFt5AJBiyvHye/avatar/${userData?.avatar}.jpg`}
-                                                    alt=""
-                                                />
+                                                {loading ? (
+                                                    <>
+                                                        <Skeleton
+                                                            variant="rectangle"
+                                                            animation="wave"
+                                                            sx={{
+                                                                height: "100%",
+                                                                width: "100%",
+                                                            }}
+                                                        />
+                                                    </>
+                                                ) : (
+                                                    <img
+                                                        style={{
+                                                            maxWidth: "100%",
+                                                        }}
+                                                        src={`https://cloudflare-ipfs.com/ipfs/Qmd3W5DuhgHirLHGVixi6V76LhCkZUz6pnFt5AJBiyvHye/avatar/${userData?.avatar}.jpg`}
+                                                        alt=""
+                                                    />
+                                                )}
                                             </div>
                                             <div
                                                 className="fullPost035"
@@ -59,13 +77,26 @@ const PostDetailComponent = ({ likeref, liked, handleLiked, post }) => {
                                                     right: 0,
                                                 }}
                                             >
-                                                <img
-                                                    style={{
-                                                        maxWidth: "100%",
-                                                    }}
-                                                    src={`https://cloudflare-ipfs.com/ipfs/Qmd3W5DuhgHirLHGVixi6V76LhCkZUz6pnFt5AJBiyvHye/avatar/${userData?.avatar}.jpg`}
-                                                    alt=""
-                                                />
+                                                {loading ? (
+                                                    <>
+                                                        <Skeleton
+                                                            variant="rectangle"
+                                                            animation="wave"
+                                                            sx={{
+                                                                height: "100%",
+                                                                width: "100%",
+                                                            }}
+                                                        />
+                                                    </>
+                                                ) : (
+                                                    <img
+                                                        style={{
+                                                            maxWidth: "100%",
+                                                        }}
+                                                        src={`https://cloudflare-ipfs.com/ipfs/Qmd3W5DuhgHirLHGVixi6V76LhCkZUz6pnFt5AJBiyvHye/avatar/${userData?.avatar}.jpg`}
+                                                        alt=""
+                                                    />
+                                                )}
                                             </div>
                                         </>
                                     ) : (
@@ -76,13 +107,26 @@ const PostDetailComponent = ({ likeref, liked, handleLiked, post }) => {
                                                 width: "32px",
                                             }}
                                         >
-                                            <img
-                                                style={{
-                                                    maxWidth: "100%",
-                                                }}
-                                                src={`https://cloudflare-ipfs.com/ipfs/Qmd3W5DuhgHirLHGVixi6V76LhCkZUz6pnFt5AJBiyvHye/avatar/${userData?.avatar}.jpg`}
-                                                alt=""
-                                            />
+                                            {loading ? (
+                                                <>
+                                                    <Skeleton
+                                                        variant="rectangle"
+                                                        animation="wave"
+                                                        sx={{
+                                                            height: "100%",
+                                                            width: "100%",
+                                                        }}
+                                                    />
+                                                </>
+                                            ) : (
+                                                <img
+                                                    style={{
+                                                        maxWidth: "100%",
+                                                    }}
+                                                    src={`https://cloudflare-ipfs.com/ipfs/Qmd3W5DuhgHirLHGVixi6V76LhCkZUz6pnFt5AJBiyvHye/avatar/${userData?.avatar}.jpg`}
+                                                    alt=""
+                                                />
+                                            )}
                                         </div>
                                     )}
                                 </div>
@@ -91,7 +135,19 @@ const PostDetailComponent = ({ likeref, liked, handleLiked, post }) => {
                                 <div className="fullPost037">
                                     <div className="fullPost038">
                                         <span className="fullPost039">
-                                            {userData?.username}
+                                            {
+                                                loading ? <>
+                                                <Skeleton variant="text" animation="wave" sx={{
+                                                    fontSize: '16px',
+                                                    width: '100px'
+                                                }}/>
+                                                </>
+                                                :
+                                                <>
+                                                {userData?.username}
+                                                </>
+
+                                            }
                                         </span>
                                         {post?.collab && (
                                             <>

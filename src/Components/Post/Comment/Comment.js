@@ -1,19 +1,17 @@
 import FavoriteBorderRoundedIcon from "@mui/icons-material/FavoriteBorderRounded";
 import axios from "axios";
-import { useEffect, useState } from "react";
+import { useEffect, useState, memo } from "react";
 import { apiSite } from "../../../Website/website";
 
 const Comment = ({ comment }) => {
-    // console.log(comment)
 
     const [userData, setUserData] = useState({});
     useEffect(() => {
         axios.get(`${apiSite}/users/${comment.userId}`).then((response) => {
             setUserData(response.data);
         });
-        console.log("rendered");
         // eslint-disable-next-line
-    }, []);
+    }, [comment]);
     return (
         <div
             style={{
@@ -42,4 +40,4 @@ const Comment = ({ comment }) => {
     );
 };
 
-export default Comment;
+export default memo(Comment);

@@ -22,7 +22,7 @@ const CommentsComponent = () => {
 
     const [userData, setUserData] = useState({});
 
-    const [loading, setLoading] = useState(false);
+    const [loading, setLoading] = useState(true);
     const [comments, setComments] = useState([]);
     const [comment, setComment] = useState("");
     const userId = JSON.parse(localStorage.getItem("userId"));
@@ -71,7 +71,6 @@ const CommentsComponent = () => {
                 })
                 .then((res) => {
                     loadComments();
-                    console.log(res.data);
                 });
             setComment("");
         } else {
@@ -112,9 +111,10 @@ const CommentsComponent = () => {
                 .then((response) => {
                     setPost(() => response.data.post);
                     setComments(() => response.data.post.comments.reverse());
+                    setTimeout(() => {
+                        setLoading(false);
+                    }, 1000);
                 });
-
-            setLoading(false);
         };
         loadData();
     }, [postUser, postId]);
@@ -136,7 +136,7 @@ const CommentsComponent = () => {
                                                 overflow: "hidden",
                                             }}
                                         >
-                                            {loading && (
+                                            {loading ? (
                                                 <Skeleton
                                                     variant="rectangle"
                                                     sx={{
@@ -144,9 +144,7 @@ const CommentsComponent = () => {
                                                         width: "100%",
                                                     }}
                                                 />
-                                            )}
-
-                                            {!loading && (
+                                            ) : (
                                                 <img
                                                     style={{
                                                         maxWidth: "100%",
@@ -224,12 +222,13 @@ const CommentsComponent = () => {
                                 alignItems: "center",
                             }}
                         >
-                            <div style={{
-                                width: '30px',
-                                height: '30px',
-                            }}>
-
-                            <Loader />
+                            <div
+                                style={{
+                                    width: "30px",
+                                    height: "30px",
+                                }}
+                            >
+                                <Loader />
                             </div>
                         </div>
                     ) : (

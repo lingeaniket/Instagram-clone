@@ -4,13 +4,12 @@ import "./listModal.css";
 import Search from "../../../Icons/Search/Search";
 import SingleList from "../SingleList/SingleList";
 
-const ListModal = ({listType, handleClose, userData }) => {
+const ListModal = ({ listType, handleClose, userData }) => {
     const [follow, setFollow] = useState([]);
     const containerRef = useRef(null);
 
     const loadData = () => {
         setFollow(() => userData[listType]);
-        
     };
 
     useEffect(() => {
@@ -19,10 +18,7 @@ const ListModal = ({listType, handleClose, userData }) => {
     }, [listType]);
 
     return (
-        <div
-            className="listModal001"
-            
-        >
+        <div className="listModal001">
             <div className="listModal002">
                 <div className="listModal003">
                     <div className="listModal004">
@@ -74,7 +70,6 @@ const ListModal = ({listType, handleClose, userData }) => {
                                                         followe={followe}
                                                     />
                                                 ))}
-                                                
                                             </div>
                                         </div>
                                     </div>

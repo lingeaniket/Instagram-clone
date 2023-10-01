@@ -22,6 +22,7 @@ const Post = ({ postId, id }) => {
     const [post, setPost] = useState({});
     const userId = JSON.parse(localStorage.getItem("userId"));
     const [liked, setLiked] = useState(false);
+    const [likes, setLikes] = useState(0);
     const [saved, setSaved] = useState(false);
     const [reload, setReload] = useState(false);
     const [comment, setComment] = useState("");
@@ -52,7 +53,6 @@ const Post = ({ postId, id }) => {
 
     const navigate = useNavigate();
 
-
     const handlePost = () => {
         dispatch(changeMode("timeline"));
         setTimeout(() => {
@@ -79,31 +79,27 @@ const Post = ({ postId, id }) => {
 
     const handleLiked = async () => {
         animateDiv();
-        console.log(liked);
+        setLiked((prev) => !prev);
         if (liked) {
-            axios
-                .put(`${apiSite}/posts/post-like`, {
-                    method: "unlike",
-                    user: userId,
-                    postUser: id,
-                    postId,
-                })
-                .then(() => {
-                    setReload((prev) => !prev);
-                });
+            setLikes((prev) => prev - 1);
         } else {
-            axios
-                .put(`${apiSite}/posts/post-like`, {
-                    method: "like",
-                    user: userId,
-                    postUser: id,
-                    postId,
-                })
-                .then(() => {
-                    setReload((prev) => !prev);
-                });
+            setLikes((prev) => prev + 1);
         }
-        setLiked((liked) => !liked);
+        if (liked) {
+            await axios.put(`${apiSite}/posts/post-like`, {
+                method: "unlike",
+                user: userId,
+                postUser: id,
+                postId,
+            });
+        } else {
+            await axios.put(`${apiSite}/posts/post-like`, {
+                method: "like",
+                user: userId,
+                postUser: id,
+                postId,
+            });
+        }
     };
 
     const handleSaved = () => {
@@ -115,12 +111,13 @@ const Post = ({ postId, id }) => {
     };
 
     useEffect(() => {
+        console.log("is this called")
         const loadData = async () => {
             await axios
                 .get(`${apiSite}/posts/post?postUser=${id}&postId=${postId}`)
                 .then((response) => {
-                    // console.log(response.data);
                     setPost(() => response.data.post);
+                    setLikes(() => response.data.post.likes);
                     setLiked(() =>
                         response.data.post.likedBy?.includes(userId)
                     );
@@ -217,7 +214,7 @@ const Post = ({ postId, id }) => {
                         </div>
                     </div>
                 </div>
-                <div className="post013">{post.likes} likes</div>
+                <div className="post013">{likes} likes</div>
                 <div className="post014">
                     <span className="post015">{userData?.username}</span>{" "}
                     {post.caption}
