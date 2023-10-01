@@ -15,7 +15,6 @@ import { Skeleton } from "@mui/material";
 const Explore = () => {
     const [posts, setPosts] = useState([]);
     const dispatch = useDispatch();
-    const [loading, setLoading] = useState(true);
 
     const handleFullPost = useCallback(() => {
         // const data = posts.flat().map((post)=> { return post.post});
@@ -31,7 +30,6 @@ const Explore = () => {
             setPosts((prev) => [...prev, data1]);
             const data2 = await generateRandomUsersAndPosts();
             setPosts((prev) => [...prev, data2]);
-            setLoading(false);
         };
 
         generateRandom();
