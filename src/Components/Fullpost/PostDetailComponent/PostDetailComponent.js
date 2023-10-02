@@ -135,19 +135,20 @@ const PostDetailComponent = ({ likeref, liked, handleLiked, post }) => {
                                 <div className="fullPost037">
                                     <div className="fullPost038">
                                         <span className="fullPost039">
-                                            {
-                                                loading ? <>
-                                                <Skeleton variant="text" animation="wave" sx={{
-                                                    fontSize: '16px',
-                                                    width: '100px'
-                                                }}/>
-                                                </>
-                                                :
+                                            {loading ? (
                                                 <>
-                                                {userData?.username}
+                                                    <Skeleton
+                                                        variant="text"
+                                                        animation="wave"
+                                                        sx={{
+                                                            fontSize: "16px",
+                                                            width: "100px",
+                                                        }}
+                                                    />
                                                 </>
-
-                                            }
+                                            ) : (
+                                                <>{userData?.username}</>
+                                            )}
                                         </span>
                                         {post?.collab && (
                                             <>
@@ -274,7 +275,20 @@ const PostDetailComponent = ({ likeref, liked, handleLiked, post }) => {
                     <CommentsComponent />
 
                     <div className="fullPost072">
-                        <span className="fullPost073">1 day ago</span>
+                        <span className="fullPost073">
+                            {loading ? (
+                                <Skeleton
+                                    animation="wave"
+                                    variant="text"
+                                    sx={{
+                                        fontSize: "12px",
+                                        width: "50px",
+                                    }}
+                                />
+                            ) : (
+                                <>1 day ago</>
+                            )}
+                        </span>
                     </div>
                 </div>
             </div>

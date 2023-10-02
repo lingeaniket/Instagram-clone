@@ -70,7 +70,7 @@ const CommentsComponent = () => {
                     toUserId: replyData.userId,
                 })
                 .then((res) => {
-                    loadComments();
+                    // loadComments();
                 });
             setComment("");
         } else {

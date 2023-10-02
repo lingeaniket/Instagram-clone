@@ -27,6 +27,7 @@ const Comment = ({
 
     const handleReplyComment = async () => {
         setReplyData((prev) => {
+            console.log(comment)
             return {
                 ...prev,
                 username: userData.username,

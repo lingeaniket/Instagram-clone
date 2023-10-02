@@ -76,7 +76,7 @@ const Explore = () => {
                             <div className="explore004" key={index}>
                                 {user?.map((post, idx) => (
                                     <ImagePost
-                                        key={idx+index}
+                                        key={idx + index}
                                         handleFullPost={handleFullPost}
                                         post={post.post}
                                         account={post.account}
