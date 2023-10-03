@@ -1,99 +1,147 @@
-import React, { useEffect, useState, memo } from "react";
+import React, { useEffect, useState, memo, useRef, useCallback } from "react";
 import CommentsDiv from "../CommentsDiv/CommentsDiv";
 import axios from "axios";
 import { apiSite } from "../../../Website/website";
 import { useSearchParams } from "react-router-dom";
 import { Skeleton } from "@mui/material";
 import Loader from "../../Icons/Loader/Loader";
-
+import { v4 as uuidv4 } from "uuid";
+import { useDispatch } from "react-redux";
+import {
+    addPostComment,
+    addPostReply,
+    updateComment,
+    updateData,
+    updateUuidv,
+} from "../../../Features/fullPostCommentSlice";
 const CommentsComponent = () => {
     const [searchParams] = useSearchParams();
-    const postUser = Number(searchParams.get("postUser"));
+    const dispatch = useDispatch();
     const postId = Number(searchParams.get("postId"));
+    const postUser = Number(searchParams.get("postUser"));
 
+    const userId = JSON.parse(localStorage.getItem("userId"));
+    const postReplyRef = useRef(null);
+    const postCommentRef = useRef(null);
+
+    const [post, setPost] = useState({});
+    const [loading, setLoading] = useState(true);
+    const [comment, setComment] = useState("");
+    const [userData, setUserData] = useState({});
+    const [comments, setComments] = useState([]);
+    const [replyMode, setReplyMode] = useState(false);
+    const [uuidv, setUuidv] = useState(uuidv4());
     const [replyData, setReplyData] = useState({
         username: "",
         userId: "",
         commentId: "",
     });
-    const [replyMode, setReplyMode] = useState(false);
 
-    const [post, setPost] = useState({});
+    const addReply = useCallback(() => {
+        dispatch(addPostReply({ postUser, postId }));
+        setComment("")
+        // eslint-disable-next-line
+    }, []);
+    
+    const addReplyComment = () => {
+        const doc = document.getElementById("replycomment");
+        doc.removeEventListener("click", addReply);
+        doc.addEventListener("click", addReply);
+    };
+    
+    const addComment = useCallback(async () => {
+        dispatch(addPostComment({ postUser, postId }));
+        setComment("")
+        // eslint-disable-next-line
+    }, []);
 
-    const [userData, setUserData] = useState({});
-
-    const [loading, setLoading] = useState(true);
-    const [comments, setComments] = useState([]);
-    const [comment, setComment] = useState("");
-    const userId = JSON.parse(localStorage.getItem("userId"));
-    // const [reload, setReload] = useState(false);
-
-    const checkReplyMode = () => {
+    const checkReplyMode = (e) => {
         if (replyMode) {
             if (
                 replyData.username.length > 0 &&
-                comment.includes(replyData.username)
+                e.target.value.includes(replyData.username)
             ) {
                 return true;
             }
         }
         return false;
     };
-    const handleComment = (e) => {
-        const check = checkReplyMode();
+
+    const handleAddReply = () => {
+        const commentObj = {
+            id: uuidv,
+            text: comment,
+            userId,
+            time: new Date().getTime(),
+            toUser: replyData.username,
+            toUserId: replyData.userId,
+            likes: 0,
+            likedBy: [],
+        };
+
+        setComments((prev) => {
+            const commentData = prev.map((comment) => {
+                if (comment.id === replyData.commentId) {
+                    comment.reply.unshift(commentObj);
+                    const data = {
+                        ...comment,
+                        reply: comment.reply,
+                    };
+                    return data;
+                }
+                return comment;
+            });
+
+            return commentData;
+        });
+    };
+
+    const handleAddComment = () => {
+        // const id = uuidv4();
+        const commentObj = {
+            id: uuidv,
+            text: comment,
+            userId,
+            time: new Date().getTime(),
+            likes: 0,
+            likedBy: [],
+            reply: [],
+        };
+        setComments((prev) => {
+            prev.unshift(commentObj);
+            return prev;
+        });
+        setComment("");
+    };
+
+    const handleComment = async (e) => {
+        setComment(() => e.target.value);
+        dispatch(updateComment({ comment: e.target.value }));
+        const check = checkReplyMode(e);
         if (!check) {
             setReplyMode(false);
             setReplyData((prev) => {
                 return { ...prev, username: "", commentId: "", userId: "" };
             });
+            dispatch(updateData({ username: "", commentId: "", userId: "" }));
+            const doc = postCommentRef.current;
+            doc.removeEventListener("click", addComment);
+            doc.addEventListener("click", addComment);
         }
-        setComment(() => e.target.value);
-    };
-
-    const loadComments = async () => {
-        await axios
-            .get(`${apiSite}/posts/post?postUser=${postUser}&postId=${postId}`)
-            .then((response) => {
-                setComments(() => response.data.post.comments.reverse());
-            });
-    };
-    const addComment = async () => {
-        if (replyMode) {
-            await axios
-                .put(`${apiSite}/posts/add-reply`, {
-                    user: userId,
-                    postUser,
-                    postId,
-                    commentId: replyData.commentId,
-                    replyText: comment,
-                    toUser: replyData.username,
-                    toUserId: replyData.userId,
-                })
-                .then((res) => {
-                    // loadComments();
-                });
-            setComment("");
-        } else {
-            if (comment.trim().length > 0) {
-                await axios
-                    .put(`${apiSite}/posts/add-comment`, {
-                        user: userId,
-                        postUser: userData.id,
-                        postId: post.id,
-                        comment,
-                    })
-                    .then(() => {
-                        loadComments();
-                    });
-
-                setComment("");
-            }
-        }
+        const uuid = uuidv4().toString();
+        setUuidv(uuid);
+        dispatch(updateUuidv({ uuid }));
     };
 
     const addEnterComment = async (e) => {
         if (e.key === "Enter") {
-            addComment();
+            if (replyMode) {
+                addReply();
+                handleAddReply();
+            } else {
+                addComment();
+                handleAddComment();
+            }
         }
     };
 
@@ -239,6 +287,7 @@ const CommentsComponent = () => {
                                     key={comment.id}
                                     setComment={setComment}
                                     setReplyMode={setReplyMode}
+                                    addReplyComment={addReplyComment}
                                     setReplyData={setReplyData}
                                 />
                             ))}
@@ -259,15 +308,35 @@ const CommentsComponent = () => {
                             autoFocus={replyMode}
                         />
                     </div>
-                    <div className="fullPost077" onClick={addComment}>
-                        <button
-                            className="fullPost078"
-                            style={{
-                                cursor: "pointer",
-                            }}
+                    <div className="fullPost077">
+                        <span
+                            ref={postReplyRef}
+                            onClick={handleAddReply}
+                            id="replycomment"
                         >
-                            post
-                        </button>
+                            {replyMode && (
+                                <button
+                                    className="fullPost078"
+                                    style={{
+                                        cursor: "pointer",
+                                    }}
+                                >
+                                    reply
+                                </button>
+                            )}
+                        </span>
+                        <span ref={postCommentRef} onClick={handleAddComment}>
+                            {!replyMode && (
+                                <button
+                                    className="fullPost078"
+                                    style={{
+                                        cursor: "pointer",
+                                    }}
+                                >
+                                    comment
+                                </button>
+                            )}
+                        </span>
                     </div>
                 </div>
             </div>

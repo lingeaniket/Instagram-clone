@@ -1,7 +1,6 @@
 export default function timeElapsedFromCurrent(unixTimestamp) {
     const currentTimestamp = Date.now(); // Current Unix timestamp in seconds
     const timeDifference = currentTimestamp - unixTimestamp;
-    console.log(timeDifference);
 
     if (timeDifference >= 60 * 60 * 24 * 7 * 1000) {
         const weeks = Math.floor(timeDifference / (60 * 60 * 24 * 7 * 1000));

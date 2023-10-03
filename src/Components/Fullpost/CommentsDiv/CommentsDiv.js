@@ -1,15 +1,26 @@
-import React, { memo } from "react";
+import React, { memo, useEffect } from "react";
 import { useState } from "react";
 import Comment from "../Comment/Comment";
 import Loader from "../../Icons/Loader/Loader";
 import { Skeleton } from "@mui/material";
 
-const CommentsDiv = ({ comment, setComment, setReplyMode, setReplyData }) => {
-    const [showReply, setShowReply] = useState(false);
+const CommentsDiv = ({
+    addReplyComment,
+    comment,
+    setComment,
+    setReplyMode,
+    setReplyData,
+}) => {
+    const [sliceid, setSliceid] = useState(3);
+    const [replies, setReplies] = useState([]);
     const [mainLoad, setMainLoad] = useState(false);
+    const [showReply, setShowReply] = useState(false);
     const [loadMoreSpinn, setLoadMoreSpin] = useState(false);
     const [loadReplySpin, setLoadReplySpin] = useState(false);
-    const [sliceid, setSliceid] = useState(3);
+
+    const addReply = () => {
+        addReplyComment();
+    };
 
     const handleReply = () => {
         if (!showReply) {
@@ -27,15 +38,19 @@ const CommentsDiv = ({ comment, setComment, setReplyMode, setReplyData }) => {
     const handleLoadMore = () => {
         setLoadMoreSpin(true);
         setTimeout(() => {
-            setLoadMoreSpin(false);
-
             setSliceid((last) => last + 3);
+            setLoadMoreSpin(false);
         }, 1000);
     };
+
+    useEffect(() => {
+        setReplies(() => comment.reply);
+    }, [comment]);
 
     return (
         <div className="fullPost060">
             <Comment
+                addReply={addReply}
                 comment={comment}
                 mainLoad={setMainLoad}
                 type="primary"
@@ -45,7 +60,7 @@ const CommentsDiv = ({ comment, setComment, setReplyMode, setReplyData }) => {
             />
             {mainLoad ? (
                 <>
-                    {comment?.reply?.length > 0 && (
+                    {replies.length > 0 && (
                         <div>
                             <div className="fullPost067">
                                 <span>
@@ -62,7 +77,7 @@ const CommentsDiv = ({ comment, setComment, setReplyMode, setReplyData }) => {
                                             <div className="fullPost070"></div>
                                             <span className="fullPost071">
                                                 {!showReply
-                                                    ? `show replies(${comment?.reply?.length})`
+                                                    ? `show replies(${replies.length})`
                                                     : "hide replies"}
                                             </span>
                                             {loadReplySpin && (
@@ -89,13 +104,15 @@ const CommentsDiv = ({ comment, setComment, setReplyMode, setReplyData }) => {
                                 </span>
                                 {showReply && (
                                     <div>
-                                        {comment?.reply
+                                        {replies
                                             ?.slice(0, sliceid)
                                             ?.map((reply) => (
                                                 <Comment
                                                     comment={reply}
                                                     setComment={setComment}
+                                                    key={reply.id}
                                                     type="secondary"
+                                                    addReply={addReply}
                                                     commentId={comment.id}
                                                     setReplyMode={setReplyMode}
                                                     setReplyData={setReplyData}
@@ -119,8 +136,7 @@ const CommentsDiv = ({ comment, setComment, setReplyMode, setReplyData }) => {
                                                 </div>
                                             </div>
                                         )}
-                                        {sliceid + 3 <=
-                                            comment?.reply?.length && (
+                                        {sliceid + 3 <= replies.length && (
                                             <div
                                                 style={{
                                                     display: "flex",
@@ -146,7 +162,7 @@ const CommentsDiv = ({ comment, setComment, setReplyMode, setReplyData }) => {
                         style={{
                             fontSize: "12px",
                             width: "130px",
-                            margin: '16px 0 0 54px'
+                            margin: "16px 0 0 54px",
                         }}
                     />
                 </>

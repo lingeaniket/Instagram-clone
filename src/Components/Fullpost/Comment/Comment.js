@@ -6,17 +6,24 @@ import { apiSite } from "../../../Website/website";
 import { useSearchParams } from "react-router-dom";
 import timeElapsedFromCurrent from "./function";
 import { Skeleton } from "@mui/material";
+import { useDispatch } from "react-redux";
+import {
+    updateComment,
+    updateData,
+} from "../../../Features/fullPostCommentSlice";
 
 const Comment = ({
+    addReply,
     comment,
-    type,
-    mainLoad,
     commentId,
+    mainLoad,
     setComment,
-    setReplyMode,
     setReplyData,
+    setReplyMode,
+    type,
 }) => {
     const [userData, setUserData] = useState({});
+    const dispatch = useDispatch();
     const [searchParams] = useSearchParams();
     const postUser = Number(searchParams.get("postUser"));
     const postId = Number(searchParams.get("postId"));
@@ -26,8 +33,8 @@ const Comment = ({
     const [loading, setLoading] = useState(true);
 
     const handleReplyComment = async () => {
+        addReply();
         setReplyData((prev) => {
-            console.log(comment)
             return {
                 ...prev,
                 username: userData.username,
@@ -35,7 +42,15 @@ const Comment = ({
                 commentId: type === "primary" ? comment.id : commentId,
             };
         });
+        dispatch(
+            updateData({
+                username: userData.username,
+                userId: comment.userId,
+                commentId: type === "primary" ? comment.id : commentId,
+            })
+        );
         setComment(() => `@${userData.username} `);
+        dispatch(updateComment({ comment: `@${userData.username}` }));
         setReplyMode(true);
     };
 
@@ -80,7 +95,7 @@ const Comment = ({
             setLikes(() => comment?.likes);
         });
         // eslint-disable-next-line
-    }, [comment]);
+    }, [comment.id]);
 
     return (
         <div className="fullPost061">
@@ -129,7 +144,7 @@ const Comment = ({
                                         width: "100%",
                                     }}
                                 />
-                                
+
                                 <Skeleton
                                     variant="text"
                                     sx={{
