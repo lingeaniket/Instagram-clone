@@ -14,18 +14,14 @@ const TimelineIn = () => {
     }, []);
     return (
         <div
-            className="w_80"
-            style={{ display: "flex", justifyContent: "center" }}
+            style={{
+                maxWidth: '100%',
+                width: "470px",
+            }}
         >
-            <div
-                style={{
-                    maxWidth: "470px",
-                }}
-            >
-                {data.map((post) => (
-                    <Post post={post} postId={post.id} id={1} />
-                ))}
-            </div>
+            {data.map((post) => (
+                <Post post={post} postId={post.id} id={1} />
+            ))}
         </div>
     );
 };
