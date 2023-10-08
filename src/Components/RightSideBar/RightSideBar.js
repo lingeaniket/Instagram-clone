@@ -22,19 +22,6 @@ const RightSideBar = () => {
                     user={{ username: "abc", avatar: 1 }}
                     type="timeline"
                 />
-                {/* <div style={{
-                            display: 'flex',
-                            flexDirection: 'column',
-                            padding: '0 16px',
-
-                        }}>
-                            <div style={{
-                                width: '100%',
-                                marginRight: '4px',
-                                display: 'flex',
-                                flexDirection: 'column',
-                            }}></div>
-                        </div> */}
                 <div
                     style={{
                         marginTop: "24px",
