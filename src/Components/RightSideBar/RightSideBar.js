@@ -93,7 +93,7 @@ const RightSideBar = () => {
                                                 flexDirection: "column",
                                             }}
                                         >
-                                            {/* acount list */}
+                                            {/* acount list all products */}
                                             <div
                                                 style={{
                                                     width: "100%",
