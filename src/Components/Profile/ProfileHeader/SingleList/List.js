@@ -1,5 +1,6 @@
 import React from "react";
 import { Skeleton } from "@mui/material";
+import "./list.css";
 
 const List = ({ loading, user, type }) => {
     return (
@@ -58,14 +59,7 @@ const List = ({ loading, user, type }) => {
                             }}
                         >
                             {loading ? (
-                                <div
-                                    style={{
-                                        display: "flex",
-                                        flexDirection: "column",
-                                        justifyContent: "space-between",
-                                        height: "44px",
-                                    }}
-                                >
+                                <div className="sideList001">
                                     <Skeleton
                                         variant="rounded"
                                         animation="wave"
@@ -129,23 +123,12 @@ const List = ({ loading, user, type }) => {
                             ) : (
                                 <>
                                     {type === "timeline" ? (
-                                        <div
-                                            style={{
-                                                maxWidth: "100%",
-                                                display: "flex",
-                                                flexDirection: "column",
-                                            }}
-                                        >
-                                          <div style={{
-                                            display: "flex",
-                                          }}>
-                                            <span style={{
-                                              color: 'rgb(0,149,246)',
-                                              textAlign: "center",
-                                              fontSize: '12px',
-                                              fontWeight: 600
-                                            }}>Follow</span>
-                                          </div>
+                                        <div className="sideList002">
+                                            <div className="sideList003">
+                                                <span className="sideList004">
+                                                    Follow
+                                                </span>
+                                            </div>
                                         </div>
                                     ) : (
                                         <div className="listModal025">
