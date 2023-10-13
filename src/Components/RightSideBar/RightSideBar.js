@@ -1,104 +1,31 @@
 import React from "react";
 import List from "../Profile/ProfileHeader/SingleList/List";
+import "./rightSideBar.css";
 
 const RightSideBar = () => {
     return (
-        <div
-            style={{
-                width: "319px",
-                paddingLeft: "64px",
-                height: "100vh",
-            }}
-        >
-            <div
-                style={{
-                    marginTop: "36px",
-                    display: "flex",
-                    flexDirection: "column",
-                }}
-            >
+        <div className="rsb001">
+            <div className="rsb002">
                 <List
                     loading={false}
                     user={{ username: "abc", avatar: 1 }}
                     type="timeline"
                 />
-                <div
-                    style={{
-                        marginTop: "24px",
-                        marginBottom: "8px",
-                        display: "flex",
-                        flexDirection: "column",
-                    }}
-                >
-                    <div
-                        style={{
-                            margin: "0 16px",
-                            display: "flex",
-                            flexDirection: "column",
-                        }}
-                    >
-                        <div
-                            style={{
-                                width: "calc(100% + 32px)",
-                                display: "flex",
-                                flexDirection: "column",
-                                margin: "0 0 12px -16px",
-                            }}
-                        >
-                            <div
-                                style={{
-                                    padding: "4px 16px",
-                                    display: "flex",
-                                    alignItems: "center",
-                                }}
-                            >
-                                <div
-                                    style={{
-                                        display: "flex",
-                                        flexGrow: "1",
-                                    }}
-                                >
-                                    Suggested for you
-                                </div>
-                                <div style={{}}>
-                                    <span
-                                        style={{
-                                            fontWeight: 600,
-                                            fontSize: "12px",
-                                        }}
-                                    >
-                                        See All
-                                    </span>
+                <div className="rsb003">
+                    <div className="rsb004">
+                        <div className="rsb005">
+                            <div className="rsb006">
+                                <div className="rsb007">Suggested for you</div>
+                                <div>
+                                    <span className="rsb008">See All</span>
                                 </div>
                             </div>
-                            <div
-                                style={{
-                                    marginLeft: "4px",
-                                }}
-                            >
-                                <div
-                                    style={{
-                                        padding: "8px 0",
-                                    }}
-                                >
-                                    <div
-                                        style={{
-                                            height: "auto",
-                                            overflow: "hidden auto",
-                                        }}
-                                    >
-                                        <div
-                                            style={{
-                                                display: "flex",
-                                                flexDirection: "column",
-                                            }}
-                                        >
+                            <div className="rsb009">
+                                <div className="rsb010">
+                                    <div className="rsb011">
+                                        <div className="rsb012">
                                             {/* acount list all products */}
-                                            <div
-                                                style={{
-                                                    width: "100%",
-                                                }}
-                                            >
+                                            <div className="rsb013">
                                                 <List
                                                     user={{
                                                         username: "aniket",
