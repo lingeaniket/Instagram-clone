@@ -10,7 +10,7 @@ import { apiSite } from "../../Website/website";
 import { handleImageLiked } from "./functions";
 
 import "./post.css";
-import "../Timeline/TtimelineIn/timelineIn.css";
+import "../Timeline/TimelineIn/timelineIn.css";
 import "react-lazy-load-image-component/src/effects/blur.css";
 
 const Post = ({ postId, id }) => {

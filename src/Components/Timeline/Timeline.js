@@ -2,45 +2,19 @@ import { memo } from "react";
 import { Outlet } from "react-router-dom";
 
 import Stories from "../Stories/Stories";
-import TimelineIn from "./TtimelineIn/TimelineIn";
+import TimelineIn from "./TimelineIn/TimelineIn";
 import RightSideBar from "../RightSideBar/RightSideBar";
+
+import "./timeline.css";
 
 const Timeline = () => {
     return (
-        <div
-            style={{
-                display: "flex",
-                flexGrow: 1,
-                flexDirection: "column",
-            }}
-        >
-            <div
-                style={{
-                    width: "100%",
-                    display: "flex",
-                    paddingTop: "22px",
-                    justifyContent: "center",
-                }}
-            >
-                <div
-                    style={{
-                        maxWidth: "630px",
-                        width: "100%",
-                    }}
-                >
-                    <div
-                        style={{
-                            marginTop: "16px",
-                        }}
-                    >
+        <div className="timeline001">
+            <div className="timeline002">
+                <div className="timeline003">
+                    <div className="timeline004">
                         <Stories />
-                        <div
-                            style={{
-                                display: "flex",
-                                flexDirection: "column",
-                                alignItems: "center",
-                            }}
-                        >
+                        <div className="timeline005">
                             <TimelineIn />
                         </div>
                     </div>

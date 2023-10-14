@@ -1,0 +1,27 @@
+.timeline001 {
+    display: flex;
+    flex-grow: 1;
+    flex-direction: column;
+}
+
+.timeline002 {
+    width: 100%;
+    display: flex;
+    padding-top: 22px;
+    justify-content: center;
+}
+
+.timeline003 {
+    max-width: 630px;
+    width: 100%;
+}
+
+.timeline004 {
+    margin-top: 16px;
+}
+
+.timeline005 {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}

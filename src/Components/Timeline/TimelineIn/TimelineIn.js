@@ -1,8 +1,11 @@
-import { useEffect, useState, memo } from "react";
 import axios from "axios";
-import "./timelineIn.css";
+import { useEffect, useState, memo } from "react";
+
 import Post from "../../Post/Post";
+
 import { apiSite } from "../../../Website/website";
+
+import "./timelineIn.css";
 
 const TimelineIn = () => {
     const [data, setData] = useState([]);
@@ -12,10 +15,11 @@ const TimelineIn = () => {
             setData(response.data.posts);
         });
     }, []);
+
     return (
         <div
             style={{
-                maxWidth: '100%',
+                maxWidth: "100%",
                 width: "470px",
             }}
         >

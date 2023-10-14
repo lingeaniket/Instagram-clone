@@ -4,7 +4,6 @@ import { Provider } from "react-redux";
 import io from "socket.io-client";
 import "./app.css";
 import Home from "./Components/Home/Home";
-// import Profile from "./Components/Profile/Profile";
 import UserProfile from "./Components/UserProfile/UserProfile";
 import Explore from "./Components/Explore/Explore";
 import Message from "./Components/Message/Message";
@@ -109,6 +108,7 @@ const App = () => {
     useEffect(() => {
         socket.emit("join", 12569);
     }, []);
+
     return (
         <Provider store={store}>
             <RouterProvider router={router}></RouterProvider>
