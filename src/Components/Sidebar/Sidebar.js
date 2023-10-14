@@ -39,15 +39,7 @@ const Sidebar = () => {
                     marginTop: "10px",
                 }}
             >
-                <div
-                    style={{
-                        height: "100vh",
-                        display: "flex",
-                        alignItems: "flex-start",
-                        flexDirection: "column",
-                        position: "relative",
-                    }}
-                >
+                <div>
                     <div
                         className="side03"
                         onClick={() => {
@@ -68,7 +60,6 @@ const Sidebar = () => {
                         ))}
                     </div>
                     <div>Options</div>
-                    {/* serach div */}
                     <SearchComponent
                         searchDiv={searchDiv}
                         searchCloseFunc={handleSearch}

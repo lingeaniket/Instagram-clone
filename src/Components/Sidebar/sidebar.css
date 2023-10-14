@@ -27,3 +27,11 @@
     flex-grow: 1;
     width: 100%;
 }
+
+.side05 {
+    height: 100vh;
+    display: flex;
+    align-items: flex-start;
+    flex-direction: column;
+    position: relative;
+}
