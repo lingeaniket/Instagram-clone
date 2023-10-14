@@ -1,11 +1,17 @@
 import React from "react";
 import { useSelector } from "react-redux";
+
 import Back from "../../Icons/Back/Back";
 
-
-const Navigation = ({postIndex, handlePrev, prevBtnRef, handleNext, nextBtnRef }) => {
-  const fullPostMode = useSelector((state) => state.fullPostData.mode);
-  const fullPostData = useSelector((state) => state.fullPostData.postArray);
+const Navigation = ({
+    postIndex,
+    handlePrev,
+    prevBtnRef,
+    handleNext,
+    nextBtnRef,
+}) => {
+    const fullPostMode = useSelector((state) => state.fullPostData.mode);
+    const fullPostData = useSelector((state) => state.fullPostData.postArray);
 
     return (
         <div>
@@ -14,7 +20,6 @@ const Navigation = ({postIndex, handlePrev, prevBtnRef, handleNext, nextBtnRef }
                     fullPostMode === "userProfile") && (
                     <div className="fullPost013 fullPost063">
                         {postIndex > 0 && (
-                            // {index !== "first" && (
                             <div
                                 className="fullPost014"
                                 style={{

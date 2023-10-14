@@ -1,5 +1,7 @@
 import React from "react";
+
 import List from "../Profile/ProfileHeader/SingleList/List";
+
 import "./rightSideBar.css";
 
 const RightSideBar = () => {

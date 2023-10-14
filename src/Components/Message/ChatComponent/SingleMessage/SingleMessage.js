@@ -4,7 +4,6 @@ import Reply from "../../../Icons/Reply/Reply";
 import MessageMoreOption from "../../../Icons/MessageMoreOption/MessageMoreOption";
 
 const SingleMessage = ({ message }) => {
-    // message = { time,messageType, text,reactions,isReplied,repliedTo,repliedToIndex,seen}
     return (
         <div className="messageIn022">
             <div>
@@ -31,14 +30,11 @@ const SingleMessage = ({ message }) => {
                                     <div
                                         className="messageIn108"
                                         style={{
-                                            // if sender
                                             justifyContent: `${
                                                 message?.messageType === "sent"
                                                     ? "flex-end"
                                                     : "flex-start"
                                             }`,
-                                            // else
-                                            // justifyContent: 'flex-start'
                                         }}
                                     >
                                         <div
@@ -60,7 +56,7 @@ const SingleMessage = ({ message }) => {
                                                         "sent"
                                                             ? "white"
                                                             : "rgb(0,0,0)"
-                                                    }`, // if sent else black
+                                                    }`,
                                                 }}
                                             >
                                                 {message.text}
@@ -68,9 +64,7 @@ const SingleMessage = ({ message }) => {
                                         </div>
                                     </div>
                                     {message?.reactions?.length > 0 && (
-                                        <div
-                                            className="messageIn111 messageIn107"
-                                        >
+                                        <div className="messageIn111 messageIn107">
                                             <div className="messageIn112">
                                                 <div className="messageIn113">
                                                     <div className="messageIn114 messageIn067">

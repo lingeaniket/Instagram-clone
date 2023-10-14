@@ -1,17 +1,21 @@
-import { LazyLoadImage } from "react-lazy-load-image-component";
 import axios from "axios";
-import { apiSite } from "../../../Website/website";
-import "react-lazy-load-image-component/src/effects/blur.css";
-import ImageLike from "../../Icons/ImageLike/ImageLike";
 import React, { useEffect, useState } from "react";
+import { LazyLoadImage } from "react-lazy-load-image-component";
 import { useSearchParams } from "react-router-dom";
+
+import { apiSite } from "../../../Website/website";
+
+import ImageLike from "../../Icons/ImageLike/ImageLike";
+
+import "react-lazy-load-image-component/src/effects/blur.css";
 
 const ImageComponent = ({ handleImageLiked, imagelikeref }) => {
     const [searchParams] = useSearchParams();
-    const postUser = searchParams.get("postUser");
     const postId = searchParams.get("postId");
-    const [loader, setLoader] = useState(false);
+    const postUser = searchParams.get("postUser");
+
     const [post, setPost] = useState({});
+    const [loader, setLoader] = useState(false);
 
     const handleLike = () => {
         handleImageLiked();

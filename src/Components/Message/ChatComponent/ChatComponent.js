@@ -14,13 +14,13 @@ import { formatDate } from "./functions";
 import { socket } from "../../../App";
 
 const ChatComponent = () => {
-    // const socket = io("http://localhost:4000");
-    // const socket = io("https://instagram-api-aniket.onrender.com/");
     const user = JSON.parse(localStorage.getItem("userId"));
 
     const { id } = useParams();
+
     const [message, setMessage] = useState("");
     const [userData, setUserData] = useState({});
+
     const handleMessage = (e) => {
         setMessage(e.target.value);
     };
@@ -52,35 +52,12 @@ const ChatComponent = () => {
             });
             setMessage("");
         }
-        // if (message.length > 0) {
-        //     await axios
-        //         .put(`${apiSite}/messages/update`, {
-        //             sender: user,
-        //             receiver: id,
-        //             date: formatDateToDDMMYY(date),
-        //             message: {
-        //                 time: date.getTime(),
-        //                 messageType: "sent",
-        //                 text: message,
-        //                 reactions: [],
-        //                 isReplied: false,
-        //                 repliedTo: "self",
-        //                 repliedToIndex: -1,
-        //                 seen: false,
-        //             },
-        //         })
-        //         .then((data) => {
-        //             console.log(data.data);
-        //         });
-        // }
     };
 
     const [chats, setChats] = useState([]); //[{ date, messages: [ { time,text,reactions,isReplied,repliedTo,repliedToIndex,seen}]}]
 
     useEffect(() => {
         socket.on("message", (data) => {
-            // alert(data);
-            console.log(data);
             const loadData = async () => {
                 await axios
                     .get(
@@ -253,7 +230,6 @@ const ChatComponent = () => {
                                                 </div>
                                             </div>
                                             <div>
-                                                {/* <button onClick={handleSendMessage}>Send message</button> */}
                                                 <div className="messageIn126 messageIn107">
                                                     <div className="messageIn127">
                                                         <div className="messageIn128">
@@ -281,7 +257,6 @@ const ChatComponent = () => {
                                                                 />
                                                             </div>
                                                         </div>
-                                                        {/* if message is typing... */}
                                                         {message.length > 0 ? (
                                                             <div
                                                                 className="messageIn131"
@@ -326,7 +301,6 @@ const ChatComponent = () => {
                                                                 </div>
                                                             </div>
                                                         )}
-                                                        {/* if no message then show this div */}
                                                     </div>
                                                 </div>
                                             </div>

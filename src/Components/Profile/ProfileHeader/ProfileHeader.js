@@ -1,11 +1,12 @@
 import { useState } from "react";
-import Account from "../../Icons/Account/Account";
+
 import Arrow from "../../Icons/Arrow/Arrow";
+import ListModal from "./ListModal/ListModal";
+import Account from "../../Icons/Account/Account";
 import Options from "../../Icons/Options/Options";
 import Settings from "../../Icons/Settings/Settings";
 
 import "./profileHeader.css";
-import ListModal from "./ListModal/ListModal";
 
 const ProfileHeader = ({ userData, userPosts, type }) => {
     const [open, setOpen] = useState(false);
@@ -16,6 +17,7 @@ const ProfileHeader = ({ userData, userPosts, type }) => {
         document.body.style.overflow = "hidden";
         setListType("followers");
     };
+
     const handleFollowings = () => {
         setOpen(true);
         document.body.style.overflow = "hidden";
@@ -26,7 +28,7 @@ const ProfileHeader = ({ userData, userPosts, type }) => {
         document.body.style.overflow = "auto";
         setOpen(false);
     };
-    // console.log(userData.followers.length)
+
     return (
         <div className="profHead001">
             <div className="profHead002">

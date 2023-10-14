@@ -1,17 +1,17 @@
 import axios from "axios";
 import React, { useEffect, useState } from "react";
+
 import { apiSite } from "../../../../Website/website";
 
-const SingleItem = ({chat, handleChats, id}) => {
+const SingleItem = ({ chat, handleChats, id }) => {
+    const [userData, setUserData] = useState({});
 
-  const [userData, setUserData] = useState({})
+    useEffect(() => {
+        axios.get(`${apiSite}/users/${id}`).then((response) => {
+            setUserData(() => response.data);
+        });
+    }, [id]);
 
-  useEffect(()=>{
-    axios.get(`${apiSite}/users/${id}`).then((response)=>{
-      setUserData(()=> response.data)
-    })
-
-  }, [id])
     return (
         <div
             className="messageIn023"
@@ -25,9 +25,13 @@ const SingleItem = ({chat, handleChats, id}) => {
                         <div className="messageIn027">
                             <div className="messageIn028">
                                 <div className="messageIn029">
-                                  <img style={{
-                                    maxWidth: '100%',
-                                  }} src={`https://cloudflare-ipfs.com/ipfs/Qmd3W5DuhgHirLHGVixi6V76LhCkZUz6pnFt5AJBiyvHye/avatar/${userData.avatar}.jpg`} alt="" />
+                                    <img
+                                        style={{
+                                            maxWidth: "100%",
+                                        }}
+                                        src={`https://cloudflare-ipfs.com/ipfs/Qmd3W5DuhgHirLHGVixi6V76LhCkZUz6pnFt5AJBiyvHye/avatar/${userData.avatar}.jpg`}
+                                        alt=""
+                                    />
                                 </div>
                                 {/* onlinedot */}
                                 <div className="messageIn030"></div>
@@ -37,7 +41,9 @@ const SingleItem = ({chat, handleChats, id}) => {
                     <div className="messageIn031">
                         <div className="messageIn032 messageIn107">
                             <div className="messageIn033">
-                                <span className="messageIn034">{userData.username}</span>
+                                <span className="messageIn034">
+                                    {userData.username}
+                                </span>
                                 {/* if verified */}
                                 <div className="messageIn035">verified</div>
                             </div>

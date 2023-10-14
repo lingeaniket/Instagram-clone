@@ -1,19 +1,23 @@
-import React, { useState, useEffect, memo } from "react";
-import Options from "../../Icons/Options/Options";
 import axios from "axios";
-import { apiSite } from "../../../Website/website";
-import Like from "../../Icons/Like/Like";
-import Comment from "../../Icons/Comment/Comment";
-import Share from "../../Icons/Share/Share";
-import CommentsComponent from "../CommentsComponent/CommentsComponent";
 import { useSearchParams } from "react-router-dom";
-import { Skeleton } from "@mui/material";
+import React, { useState, useEffect, memo } from "react";
+
+import { apiSite } from "../../../Website/website";
+
+import Like from "../../Icons/Like/Like";
 import Save from "../../Icons/Save/Save";
+import Share from "../../Icons/Share/Share";
+import Options from "../../Icons/Options/Options";
+import Comment from "../../Icons/Comment/Comment";
+import CommentsComponent from "../CommentsComponent/CommentsComponent";
+
+import { Skeleton } from "@mui/material";
 
 const PostDetailComponent = ({ likeref, liked, handleLiked, post }) => {
     const [searchParams] = useSearchParams();
     const postUser = searchParams.get("postUser");
     const postId = Number(searchParams.get("postId"));
+
     const [loading, setLoading] = useState(true);
     const [userData, setUserData] = useState({});
 
@@ -273,7 +277,6 @@ const PostDetailComponent = ({ likeref, liked, handleLiked, post }) => {
                         </span>
                     </div>
                     <CommentsComponent />
-
                     <div className="fullPost072">
                         <span className="fullPost073">
                             {loading ? (

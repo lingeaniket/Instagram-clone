@@ -1,12 +1,15 @@
 import React, { useState } from "react";
-import CommentIcon from "../../Icons/Comment/Comment";
-import Share from "../../Icons/Share/Share";
-import Save from "../../Icons/Save/Save";
-import Like from "../../Icons/Like/Like";
-import { addComment, handleLiked, handlePost } from "../functions";
-import Comment from "../Comment/Comment";
 import { useDispatch } from "react-redux";
 import { useNavigate } from "react-router-dom";
+
+import Save from "../../Icons/Save/Save";
+import Like from "../../Icons/Like/Like";
+import Comment from "../Comment/Comment";
+import Share from "../../Icons/Share/Share";
+import CommentIcon from "../../Icons/Comment/Comment";
+
+import { addComment, handleLiked, handlePost } from "../functions";
+
 import { Skeleton } from "@mui/material";
 
 const PostFooter = ({
@@ -21,15 +24,17 @@ const PostFooter = ({
     likeref,
     loading,
 }) => {
-    const [comment, setComment] = useState("");
     const dispatch = useDispatch();
+
     const navigate = useNavigate();
 
     const [saved, setSaved] = useState(false);
+    const [comment, setComment] = useState("");
 
     const handleSaved = () => {
         setSaved((saved) => !saved);
     };
+
     const handleLike = () => {
         handleLiked(likeref, setLiked, liked, setLikes, userData.id, postId);
     };
@@ -45,6 +50,7 @@ const PostFooter = ({
     const handleComment = (e) => {
         setComment(() => e.target.value);
     };
+
     return (
         <div>
             <div className="post009">

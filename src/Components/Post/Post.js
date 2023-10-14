@@ -1,26 +1,30 @@
-import { useEffect, useState, memo, useRef } from "react";
 import axios from "axios";
-import "../Timeline/TtimelineIn/timelineIn.css";
+import { useEffect, useState, memo, useRef } from "react";
 import { LazyLoadImage } from "react-lazy-load-image-component";
-import "react-lazy-load-image-component/src/effects/blur.css";
-import "./post.css";
-import ImageLike from "../Icons/ImageLike/ImageLike";
-import { apiSite } from "../../Website/website";
+
 import PostHeader from "./PostHeader/PostHeader";
 import PostFooter from "./PostFooter/PostFooter";
+import ImageLike from "../Icons/ImageLike/ImageLike";
+
+import { apiSite } from "../../Website/website";
 import { handleImageLiked } from "./functions";
 
-const Post = ({ postId, id }) => {
-    const [userData, setUserData] = useState({});
-    const [loading, setLoading] = useState(true);
-    const [post, setPost] = useState({});
-    const userId = JSON.parse(localStorage.getItem("userId"));
-    const [liked, setLiked] = useState(false);
-    const [likes, setLikes] = useState(0);
-    const [reload, setReload] = useState(false);
+import "./post.css";
+import "../Timeline/TtimelineIn/timelineIn.css";
+import "react-lazy-load-image-component/src/effects/blur.css";
 
-    const imagelikeref = useRef(null);
+const Post = ({ postId, id }) => {
+    const userId = JSON.parse(localStorage.getItem("userId"));
+
+    const [post, setPost] = useState({});
+    const [likes, setLikes] = useState(0);
+    const [liked, setLiked] = useState(false);
+    const [reload, setReload] = useState(false);
+    const [loading, setLoading] = useState(true);
+    const [userData, setUserData] = useState({});
+
     const likeref = useRef(null);
+    const imagelikeref = useRef(null);
 
     const handleImgLike = () => {
         handleImageLiked(
@@ -63,6 +67,7 @@ const Post = ({ postId, id }) => {
         loadData();
         // eslint-disable-next-line
     }, [id]);
+
     return (
         <div className="timelineIn01 post001">
             <PostHeader userData={userData} loading={loading} />

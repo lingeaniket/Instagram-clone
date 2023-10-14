@@ -1,14 +1,19 @@
 import axios from "axios";
 import { useEffect, useState, memo } from "react";
+
 import { apiSite } from "../../../Website/website";
-import { Skeleton } from "@mui/material";
+
 import Like from "../../Icons/Like/Like";
 
+import { Skeleton } from "@mui/material";
+
 const Comment = ({ comment, post, id }) => {
-    const [userData, setUserData] = useState({});
     const userId = JSON.parse(localStorage.getItem("userId"));
+
     const [liked, setLiked] = useState(false);
     const [loading, setLoading] = useState(true);
+    const [userData, setUserData] = useState({});
+
     const handleLiked = async () => {
         setLiked((prev) => !prev);
         await axios.put(`${apiSite}/posts/comment-like`, {
@@ -19,6 +24,7 @@ const Comment = ({ comment, post, id }) => {
             commentId: comment.id,
         });
     };
+
     useEffect(() => {
         setLoading(true);
         axios.get(`${apiSite}/users/${comment.userId}`).then((response) => {
@@ -30,6 +36,7 @@ const Comment = ({ comment, post, id }) => {
         });
         // eslint-disable-next-line
     }, [comment]);
+
     return (
         <div
             style={{

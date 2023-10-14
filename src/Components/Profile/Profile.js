@@ -1,23 +1,26 @@
 import axios from "axios";
+import { Outlet } from "react-router-dom";
 import { useEffect, useState } from "react";
 
-import "./profile.css";
-import ProfileHeader from "./ProfileHeader/ProfileHeader";
 import Tabs from "./Tabs/Tabs";
-import { apiSite } from "../../Website/website";
 import PostList from "./PostList/PostList";
-import { Outlet } from "react-router-dom";
+import ProfileHeader from "./ProfileHeader/ProfileHeader";
+
+import { apiSite } from "../../Website/website";
+
+import "./profile.css";
 
 const Profile = ({ id, module }) => {
     const [userData, setUserData] = useState({});
-    const [type, setType] = useState("userProfile");
     const [userPosts, setUserPosts] = useState([]);
+    const [type, setType] = useState("userProfile");
 
     useEffect(() => {
         if (id) {
             axios.get(`${apiSite}/users/${id}`).then((response) => {
                 setUserData(response.data);
             });
+
             axios.get(`${apiSite}/posts/${id}`).then((response) => {
                 setUserPosts(response.data.posts);
             });
@@ -27,6 +30,7 @@ const Profile = ({ id, module }) => {
             }
         }
     }, [id]);
+
     return (
         <div
             style={{
@@ -36,7 +40,11 @@ const Profile = ({ id, module }) => {
                 maxWidth: "975px",
             }}
         >
-            <ProfileHeader userData={userData} userPosts={userPosts} type={type} />
+            <ProfileHeader
+                userData={userData}
+                userPosts={userPosts}
+                type={type}
+            />
             <div
                 style={{
                     marginBottom: "44px",
@@ -101,7 +109,12 @@ const Profile = ({ id, module }) => {
                 </div>
             </div>
             <Tabs />
-            <PostList userPosts={userPosts} userData={userData} modeId={id} module={module} />
+            <PostList
+                userPosts={userPosts}
+                userData={userData}
+                modeId={id}
+                module={module}
+            />
             <Outlet />
         </div>
     );

@@ -1,7 +1,9 @@
-import React, { memo, useEffect } from "react";
 import { useState } from "react";
+import React, { memo, useEffect } from "react";
+
 import Comment from "../Comment/Comment";
 import Loader from "../../Icons/Loader/Loader";
+
 import { Skeleton } from "@mui/material";
 
 const CommentsDiv = ({

@@ -1,16 +1,20 @@
 import React, { useEffect, useState } from "react";
+
 import ResultComponent from "../ResultComponent/ResultComponent";
+
 import { loadRecents } from "../functions";
 
 import "./recents.css";
 
 const Recents = ({ handleSearchHistory, handleUserClick, recents }) => {
     const [searchHistory, setSearchHistory] = useState([]);
+
     useEffect(() => {
         if (localStorage.getItem("search-history")) {
             loadRecents(setSearchHistory);
         }
     }, [recents]);
+    
     return (
         <div className="recents001">
             <div className="recents002">

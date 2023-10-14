@@ -1,12 +1,13 @@
-import React, { useEffect, useState, memo, useRef, useCallback } from "react";
-import CommentsDiv from "../CommentsDiv/CommentsDiv";
 import axios from "axios";
-import { apiSite } from "../../../Website/website";
-import { useSearchParams } from "react-router-dom";
-import { Skeleton } from "@mui/material";
-import Loader from "../../Icons/Loader/Loader";
-import { v4 as uuidv4 } from "uuid";
 import { useDispatch } from "react-redux";
+import { useSearchParams } from "react-router-dom";
+import React, { useEffect, useState, memo, useRef, useCallback } from "react";
+import { v4 as uuidv4 } from "uuid";
+
+import Loader from "../../Icons/Loader/Loader";
+import CommentsDiv from "../CommentsDiv/CommentsDiv";
+
+import { apiSite } from "../../../Website/website";
 import {
     addPostComment,
     addPostReply,
@@ -14,23 +15,27 @@ import {
     updateData,
     updateUuidv,
 } from "../../../Features/fullPostCommentSlice";
+
+import { Skeleton } from "@mui/material";
+
 const CommentsComponent = () => {
-    const [searchParams] = useSearchParams();
     const dispatch = useDispatch();
+    const [searchParams] = useSearchParams();
     const postId = Number(searchParams.get("postId"));
     const postUser = Number(searchParams.get("postUser"));
 
     const userId = JSON.parse(localStorage.getItem("userId"));
+
     const postReplyRef = useRef(null);
     const postCommentRef = useRef(null);
 
     const [post, setPost] = useState({});
-    const [loading, setLoading] = useState(true);
     const [comment, setComment] = useState("");
+    const [loading, setLoading] = useState(true);
     const [userData, setUserData] = useState({});
     const [comments, setComments] = useState([]);
-    const [replyMode, setReplyMode] = useState(false);
     const [uuidv, setUuidv] = useState(uuidv4());
+    const [replyMode, setReplyMode] = useState(false);
     const [replyData, setReplyData] = useState({
         username: "",
         userId: "",
@@ -39,19 +44,19 @@ const CommentsComponent = () => {
 
     const addReply = useCallback(() => {
         dispatch(addPostReply({ postUser, postId }));
-        setComment("")
+        setComment("");
         // eslint-disable-next-line
     }, []);
-    
+
     const addReplyComment = () => {
         const doc = document.getElementById("replycomment");
         doc.removeEventListener("click", addReply);
         doc.addEventListener("click", addReply);
     };
-    
+
     const addComment = useCallback(async () => {
         dispatch(addPostComment({ postUser, postId }));
-        setComment("")
+        setComment("");
         // eslint-disable-next-line
     }, []);
 
@@ -97,7 +102,6 @@ const CommentsComponent = () => {
     };
 
     const handleAddComment = () => {
-        // const id = uuidv4();
         const commentObj = {
             id: uuidv,
             text: comment,

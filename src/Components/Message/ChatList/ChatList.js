@@ -1,13 +1,17 @@
-import React, { useEffect, useState } from "react";
-import NewMessage from "../../Icons/NewMessage/NewMessage";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
+import React, { useEffect, useState } from "react";
+
 import { apiSite } from "../../../Website/website";
+
 import SingleItem from "./SingleItem/SingleItem";
+import NewMessage from "../../Icons/NewMessage/NewMessage";
 
 const ChatList = ({ id = 1 }) => {
     const [chatList, setChatList] = useState([]);
+
     const navigate = useNavigate();
+
     const handleChats = (id) => {
         navigate(`/direct/t/${id}`);
     };
@@ -22,6 +26,7 @@ const ChatList = ({ id = 1 }) => {
 
         loadChats();
     }, [id]);
+
     return (
         <div className="messageIn007 messageIn107">
             <div className="messageIn008 messageIn107">

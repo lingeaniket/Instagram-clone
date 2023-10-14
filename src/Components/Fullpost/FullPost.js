@@ -1,16 +1,17 @@
-import "./fullPost.css";
-import Close from "../Icons/Close/Close";
 import axios from "axios";
-import { apiSite } from "../../Website/website";
+import { useSelector } from "react-redux";
+import { useEffect, useRef, useState } from "react";
+import { useSearchParams, useNavigate } from "react-router-dom";
 
+import { apiSite } from "../../Website/website";
+import { handleImagePostLiked, handlePostLiked } from "./functions";
+
+import Close from "../Icons/Close/Close";
+import Navigation from "./Navigation/Navigation";
 import ImageComponent from "./ImageComponent/ImageComponent";
 import PostDetailComponent from "./PostDetailComponent/PostDetailComponent";
-import { useEffect, useRef, useState } from "react";
-import * as React from "react";
-import { useSearchParams, useNavigate } from "react-router-dom";
-import { useSelector } from "react-redux";
-import { handleImagePostLiked, handlePostLiked } from "./functions";
-import Navigation from "./Navigation/Navigation";
+
+import "./fullPost.css";
 
 const FullPost = () => {
     const [searchParams, setSearchParams] = useSearchParams();
@@ -121,7 +122,7 @@ const FullPost = () => {
             <div className="fullPost002">
                 <div className="fullPost003" onClick={handleModalClose}>
                     <div className="fullPost004"></div>
-                    <div className="fullPost005" >
+                    <div className="fullPost005">
                         <div className="fullPost006 fullPost016">
                             <Close color="white" size="18" title="close" />
                         </div>

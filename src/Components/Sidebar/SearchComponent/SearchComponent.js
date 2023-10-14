@@ -1,14 +1,18 @@
 import React, { useEffect, useRef, useState } from "react";
-import ResultComponent from "./ResultComponent/ResultComponent";
+
 import Recents from "./Recents/Recents";
+import ResultComponent from "./ResultComponent/ResultComponent";
+
 import { search, searchClick, searchHistory, userClick } from "./functions";
+
 import "./searchComponent.css";
 
 const SearchComponent = ({ searchDiv, searchCloseFunc, searchRef }) => {
     const componentRef = useRef(null);
+
     const [recents, setRecents] = useState(0);
-    const [searchResults, setSearchResults] = useState([]);
     const [searchQuery, setSearchQuery] = useState("");
+    const [searchResults, setSearchResults] = useState([]);
 
     const handleSearch = async (e) => {
         search(e, setSearchResults, setSearchQuery);
@@ -37,6 +41,7 @@ const SearchComponent = ({ searchDiv, searchCloseFunc, searchRef }) => {
         };
         // eslint-disable-next-line
     }, []);
+
     return (
         <div
             ref={componentRef}

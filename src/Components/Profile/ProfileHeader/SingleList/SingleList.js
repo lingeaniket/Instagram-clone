@@ -1,6 +1,8 @@
 import axios from "axios";
 import React, { useEffect, useState } from "react";
+
 import { apiSite } from "../../../../Website/website";
+
 import { List } from "@mui/material";
 
 const SingleList = ({ followe }) => {
@@ -21,6 +23,7 @@ const SingleList = ({ followe }) => {
         };
         loadData();
     }, [followe.id]);
+
     return (
         <div className="listModal023">
             <List loading={loading} user={user} />

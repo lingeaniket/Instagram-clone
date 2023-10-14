@@ -1,9 +1,9 @@
 import { memo } from "react";
-
-import TimelineIn from "./TtimelineIn/TimelineIn";
 import { Outlet } from "react-router-dom";
-import RightSideBar from "../RightSideBar/RightSideBar";
+
 import Stories from "../Stories/Stories";
+import TimelineIn from "./TtimelineIn/TimelineIn";
+import RightSideBar from "../RightSideBar/RightSideBar";
 
 const Timeline = () => {
     return (

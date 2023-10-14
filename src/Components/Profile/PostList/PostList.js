@@ -1,19 +1,23 @@
 import React from "react";
+import { useDispatch } from "react-redux";
+import { useNavigate } from "react-router-dom";
 import { LazyLoadImage } from "react-lazy-load-image-component";
-import "react-lazy-load-image-component/src/effects/blur.css";
+
 import { arrayFill } from "../arrayFillFunction";
+import { changeMode, updatePostArray } from "../../../Features/fullPostSlice";
 
 import Like from "../../Icons/Like/Like";
-import "./postList.css";
 import Comment from "../../Icons/Comment/Comment";
-import { useNavigate } from "react-router-dom";
-import { changeMode, updatePostArray } from "../../../Features/fullPostSlice";
-import { useDispatch } from "react-redux";
+
+import "./postList.css";
+import "react-lazy-load-image-component/src/effects/blur.css";
 
 const PostList = ({ userPosts, userData, module, modeId }) => {
     const navigate = useNavigate();
     const dispatch = useDispatch();
+
     dispatch(updatePostArray(userPosts.flat()));
+
     const handlePost = (id) => {
         if (module === "userProfile") {
             dispatch(changeMode("userProfile"));
@@ -28,6 +32,7 @@ const PostList = ({ userPosts, userData, module, modeId }) => {
         }
         document.body.style.overflow = "hidden";
     };
+
     return (
         <div>
             <div className="postList001">

@@ -1,15 +1,19 @@
 import { useNavigate } from "react-router-dom";
-import Options from "../../Icons/Options/Options";
 import React, { useEffect, memo } from "react";
+
+import Options from "../../Icons/Options/Options";
+
 import { Skeleton } from "@mui/material";
 
 const PostHeader = ({ userData, loading }) => {
     const navigate = useNavigate();
+
     const handleNavigate = () => {
         navigate(`/p/${userData.id}`);
     };
 
     useEffect(() => {}, [userData]);
+
     return (
         <div className="post002">
             <div className="post003">

@@ -1,7 +1,9 @@
 import React from "react";
+
 import Posts from "../../Icons/Posts/Posts";
 import Reels from "../../Icons/Reels/Reels";
 import Tagged from "../../Icons/Tagged/Tagged";
+
 import "./tabs.css";
 
 const Tabs = () => {
@@ -23,31 +25,13 @@ const Tabs = () => {
             <div className="profTabs002">
                 <div className="profTabs004">
                     <Reels />
-                    <span
-                        className="profTabs005"
-                        style={
-                            {
-                                // color: 'black'
-                            }
-                        }
-                    >
-                        reels
-                    </span>
+                    <span className="profTabs005">reels</span>
                 </div>
             </div>
             <div className="profTabs002">
                 <div className="profTabs004">
                     <Tagged />
-                    <span
-                        className="profTabs005"
-                        style={
-                            {
-                                // color: 'black'
-                            }
-                        }
-                    >
-                        tagged
-                    </span>
+                    <span className="profTabs005">tagged</span>
                 </div>
             </div>
         </div>

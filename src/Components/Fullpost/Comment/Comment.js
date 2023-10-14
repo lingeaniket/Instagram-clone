@@ -1,16 +1,18 @@
 import axios from "axios";
-import { useEffect, useState, memo } from "react";
-
-import Like from "../../Icons/Like/Like";
-import { apiSite } from "../../../Website/website";
-import { useSearchParams } from "react-router-dom";
-import timeElapsedFromCurrent from "./function";
-import { Skeleton } from "@mui/material";
 import { useDispatch } from "react-redux";
+import { useEffect, useState, memo } from "react";
+import { useSearchParams } from "react-router-dom";
+
+import timeElapsedFromCurrent from "./function";
+import { apiSite } from "../../../Website/website";
 import {
     updateComment,
     updateData,
 } from "../../../Features/fullPostCommentSlice";
+
+import Like from "../../Icons/Like/Like";
+
+import { Skeleton } from "@mui/material";
 
 const Comment = ({
     addReply,
@@ -22,14 +24,17 @@ const Comment = ({
     setReplyMode,
     type,
 }) => {
-    const [userData, setUserData] = useState({});
     const dispatch = useDispatch();
+
     const [searchParams] = useSearchParams();
-    const postUser = Number(searchParams.get("postUser"));
     const postId = Number(searchParams.get("postId"));
+    const postUser = Number(searchParams.get("postUser"));
+
     const userId = JSON.parse(localStorage.getItem("userId"));
+
     const [likes, setLikes] = useState(0);
     const [liked, setLiked] = useState(false);
+    const [userData, setUserData] = useState({});
     const [loading, setLoading] = useState(true);
 
     const handleReplyComment = async () => {
@@ -168,10 +173,7 @@ const Comment = ({
                                 <div className="fullPost057">
                                     <span className="fullPost058">
                                         <span>
-                                            <time
-                                                className="fullPost059"
-                                                dateTime="2023-09-10T08:34:19.000Z"
-                                            >
+                                            <time className="fullPost059">
                                                 {comment?.time
                                                     ? timeElapsedFromCurrent(
                                                           comment.time

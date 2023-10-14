@@ -1,12 +1,15 @@
 import React, { useEffect, useRef, useState } from "react";
+
 import Close from "../../../Icons/Close/Close";
-import "./listModal.css";
 import Search from "../../../Icons/Search/Search";
 import SingleList from "../SingleList/SingleList";
 
+import "./listModal.css";
+
 const ListModal = ({ listType, handleClose, userData }) => {
-    const [follow, setFollow] = useState([]);
     const containerRef = useRef(null);
+    
+    const [follow, setFollow] = useState([]);
 
     const loadData = () => {
         setFollow(() => userData[listType]);
