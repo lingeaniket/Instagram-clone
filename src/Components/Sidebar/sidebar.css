@@ -5,18 +5,20 @@
 }
 
 .side02 {
-    padding: 8px 12px 20px;
+    padding: 18px 12px 20px;
     display: flex;
     flex-direction: column;
     align-items: flex-start;
     height: 100vh;
-    position: fixed;
+    top: 0;
+    position: sticky;
 }
 
 .side03 {
     height: 50px;
     display: flex;
     align-items: center;
+    cursor: pointer;
     font-size: 35px;
     font-family: "Lobster Two", cursive;
     padding: 0 5px;
@@ -34,4 +36,5 @@
     align-items: flex-start;
     flex-direction: column;
     position: relative;
+    width: 100%;
 }

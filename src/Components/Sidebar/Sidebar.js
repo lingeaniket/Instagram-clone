@@ -35,12 +35,7 @@ const Sidebar = () => {
 
     return (
         <div className="w_15 side01">
-            <div
-                className="side02"
-                style={{
-                    marginTop: "10px",
-                }}
-            >
+            <div className="side02">
                 <div className="side05">
                     <div
                         className="side03"
