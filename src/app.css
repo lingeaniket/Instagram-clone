@@ -1,16 +1,16 @@
 @font-face {
     font-family: "InstaRegularFont"; /* Specify a unique name for your font */
-    src: url("./InstagramSans-Regular.ttf") format("truetype"); /* Provide the path to your TTF file */
+    src: url("./Fonts/InstagramSans-Regular.ttf") format("truetype"); /* Provide the path to your TTF file */
     /* You can also specify additional font properties like font-weight and font-style here */
 }
 @font-face {
     font-family: "InstaMediumFont"; /* Specify a unique name for your font */
-    src: url("./InstagramSans-Medium.ttf") format("truetype"); /* Provide the path to your TTF file */
+    src: url("./Fonts/InstagramSans-Medium.ttf") format("truetype"); /* Provide the path to your TTF file */
     /* You can also specify additional font properties like font-weight and font-style here */
 }
 @font-face {
     font-family: "InstaLightFont"; /* Specify a unique name for your font */
-    src: url("./InstagramSans-Light.ttf") format("truetype"); /* Provide the path to your TTF file */
+    src: url("./Fonts/InstagramSans-Light.ttf") format("truetype"); /* Provide the path to your TTF file */
     /* You can also specify additional font properties like font-weight and font-style here */
 }
 
@@ -45,4 +45,8 @@ body {
 
 .w_80 {
     width: 80%;
+}
+
+.w_100 {
+    width: 100%;
 }

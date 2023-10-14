@@ -5,8 +5,8 @@ const ReelPost = () => {
     return (
         <div className="explore005 explore007">
             <div>
-                <div className="explore008">
-                    <div className="explore009">
+                <div className="explore008 w_100">
+                    <div className="w_100">
                         <div className="explore010">Reel image</div>
                     </div>
                 </div>

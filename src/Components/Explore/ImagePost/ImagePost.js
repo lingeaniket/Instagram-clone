@@ -18,10 +18,10 @@ const ImagePost = ({ post, account, handleFullPost }) => {
 
     return (
         <div className="explore005 explore006">
-            <div className="explore008 explore012" onClick={handlePost}>
+            <div className="explore008 explore012 w_100" onClick={handlePost}>
                 <div>
-                    <div className="explore008">
-                        <div className="explore009">
+                    <div className="explore008 w_100">
+                        <div className="w_100">
                             <div className="explore010">
                                 <div>
                                     <LazyLoadImage
