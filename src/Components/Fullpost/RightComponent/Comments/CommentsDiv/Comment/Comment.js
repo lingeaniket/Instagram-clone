@@ -4,13 +4,13 @@ import { useEffect, useState, memo } from "react";
 import { useSearchParams } from "react-router-dom";
 
 import timeElapsedFromCurrent from "./function";
-import { apiSite } from "../../../Website/website";
+import { apiSite } from "../../../../../../Website/website";
 import {
     updateComment,
     updateData,
-} from "../../../Features/fullPostCommentSlice";
+} from "../../../../../../Features/fullPostCommentSlice";
 
-import Like from "../../Icons/Like/Like";
+import Like from "../../../../../Icons/Like/Like";
 
 import { Skeleton } from "@mui/material";
 

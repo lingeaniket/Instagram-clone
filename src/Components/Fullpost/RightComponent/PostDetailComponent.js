@@ -9,7 +9,7 @@ import Save from "../../Icons/Save/Save";
 import Share from "../../Icons/Share/Share";
 import Options from "../../Icons/Options/Options";
 import Comment from "../../Icons/Comment/Comment";
-import CommentsComponent from "../CommentsComponent/CommentsComponent";
+import CommentsComponent from "./Comments/CommentsComponent";
 
 import { Skeleton } from "@mui/material";
 

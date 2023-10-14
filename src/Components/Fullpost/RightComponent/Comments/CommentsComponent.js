@@ -4,17 +4,17 @@ import { useSearchParams } from "react-router-dom";
 import React, { useEffect, useState, memo, useRef, useCallback } from "react";
 import { v4 as uuidv4 } from "uuid";
 
-import Loader from "../../Icons/Loader/Loader";
-import CommentsDiv from "../CommentsDiv/CommentsDiv";
+import Loader from "../../../Icons/Loader/Loader";
+import CommentsDiv from "../Comments/CommentsDiv/CommentsDiv";
 
-import { apiSite } from "../../../Website/website";
+import { apiSite } from "../../../../Website/website";
 import {
     addPostComment,
     addPostReply,
     updateComment,
     updateData,
     updateUuidv,
-} from "../../../Features/fullPostCommentSlice";
+} from "../../../../Features/fullPostCommentSlice";
 
 import { Skeleton } from "@mui/material";
 

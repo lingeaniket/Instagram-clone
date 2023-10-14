@@ -8,8 +8,8 @@ import { handleImagePostLiked, handlePostLiked } from "./functions";
 
 import Close from "../Icons/Close/Close";
 import Navigation from "./Navigation/Navigation";
-import ImageComponent from "./ImageComponent/ImageComponent";
-import PostDetailComponent from "./PostDetailComponent/PostDetailComponent";
+import ImageComponent from "./LeftComponent/ImageComponent/ImageComponent";
+import PostDetailComponent from "./RightComponent/PostDetailComponent";
 
 import "./fullPost.css";
 
