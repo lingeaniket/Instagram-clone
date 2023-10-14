@@ -32,3 +32,57 @@
     height: 309px;
     width: 309px;
 }
+
+.profile001 {
+    width:calc(100% - 40px);
+    padding:35px 20px 0;
+    margin:0 auto 30px;
+    max-width:975px;
+    }
+
+    .profile002{
+        margin-bottom:44px;
+        height:130px;
+        }
+
+        .profile003{
+            height:100%;
+            display:flex;
+            }
+
+            .profile004{
+                padding:0;
+                display:flex;
+                list-style-type:none;
+                }
+
+                .profile005{
+                    height:100%;
+                    }
+
+                    .profile006{
+                        width:125px;
+                        display:flex;
+                        justify-content:center;
+                        align-items:center;
+                        }
+
+                        .profile007{
+                            cursor:pointer;
+                            padding:10px 15px;
+                            width:115px;
+                            }
+
+                            .profile008{
+                                width:87px;
+                                height:85px;
+                                border:1px solid grey;
+                                border-radius:50%;
+                                }
+
+                                .profile009{
+                                    padding-top:15px;
+                                    text-align:center;
+                                    font-weight:600;
+                                    font-size:12px;
+                                    }

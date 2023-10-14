@@ -32,76 +32,20 @@ const Profile = ({ id, module }) => {
     }, [id]);
 
     return (
-        <div
-            style={{
-                width: "calc(100% - 40px)",
-                padding: "35px 20px 0",
-                margin: "0 auto 30px",
-                maxWidth: "975px",
-            }}
-        >
+        <div className="profile001">
             <ProfileHeader
                 userData={userData}
                 userPosts={userPosts}
                 type={type}
             />
-            <div
-                style={{
-                    marginBottom: "44px",
-                    height: "130px",
-                }}
-            >
-                <div
-                    style={{
-                        height: "100%",
-                        display: "flex",
-                    }}
-                >
-                    <ul
-                        style={{
-                            padding: 0,
-                            display: "flex",
-                            listStyleType: "none",
-                        }}
-                    >
-                        <li
-                            style={{
-                                height: "100%",
-                            }}
-                        >
-                            <div
-                                style={{
-                                    width: "125px",
-                                    display: "flex",
-                                    justifyContent: "center",
-                                    alignItems: "center",
-                                }}
-                            >
-                                <div
-                                    style={{
-                                        cursor: "pointer",
-                                        padding: "10px 15px",
-                                        width: "115px",
-                                    }}
-                                >
-                                    <div
-                                        style={{
-                                            width: "87px",
-                                            height: "85px",
-                                            border: "1px solid grey",
-                                            borderRadius: "50%",
-                                        }}
-                                    ></div>
-                                    <div
-                                        style={{
-                                            paddingTop: "15px",
-                                            textAlign: "center",
-                                            fontWeight: "600",
-                                            fontSize: "12px",
-                                        }}
-                                    >
-                                        heighlight
-                                    </div>
+            <div className="profile002">
+                <div className="profile003">
+                    <ul className="profile004">
+                        <li className="profile005">
+                            <div className="profile006">
+                                <div className="profile007">
+                                    <div className="profile008"></div>
+                                    <div className="profile009">heighlight</div>
                                 </div>
                             </div>
                         </li>
