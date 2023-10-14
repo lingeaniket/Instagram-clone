@@ -12,6 +12,8 @@ import "./sidebar.css";
 const Sidebar = () => {
     const navigate = useNavigate();
 
+    const userId = JSON.parse(localStorage.getItem("userId"));
+
     const [id, setId] = useState(0);
     const [searchDiv, setSearchDiv] = useState(false);
 
@@ -49,15 +51,32 @@ const Sidebar = () => {
                         Instagram
                     </div>
                     <div className="side04">
-                        {tabArr.map((tab, i) => (
-                            <Tab
-                                id={id}
-                                key={i}
-                                tab={tab}
-                                searchOpen={handleCollapse}
-                                searchRef={searchRef}
-                            />
-                        ))}
+                        {tabArr.map((tab, i) => {
+                            if (tab.title === "profile") {
+                                if (userId) {
+                                    return (
+                                        <Tab
+                                            id={id}
+                                            key={i}
+                                            tab={tab}
+                                            searchOpen={handleCollapse}
+                                            searchRef={searchRef}
+                                        />
+                                    );
+                                } else {
+                                    return <></>;
+                                }
+                            }
+                            return (
+                                <Tab
+                                    id={id}
+                                    key={i}
+                                    tab={tab}
+                                    searchOpen={handleCollapse}
+                                    searchRef={searchRef}
+                                />
+                            );
+                        })}
                     </div>
                     <div>Options</div>
                     <SearchComponent
