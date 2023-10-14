@@ -39,7 +39,7 @@ const Sidebar = () => {
                     marginTop: "10px",
                 }}
             >
-                <div>
+                <div className="side05">
                     <div
                         className="side03"
                         onClick={() => {
