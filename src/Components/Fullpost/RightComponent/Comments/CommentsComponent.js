@@ -133,6 +133,7 @@ const CommentsComponent = () => {
             doc.addEventListener("click", addComment);
         }
         const uuid = uuidv4().toString();
+        
         setUuidv(uuid);
         dispatch(updateUuidv({ uuid }));
     };
