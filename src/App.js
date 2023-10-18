@@ -1,18 +1,22 @@
-import Timeline from "./Components/Timeline/Timeline";
-import { createBrowserRouter, RouterProvider } from "react-router-dom";
+import { useEffect } from "react";
 import { Provider } from "react-redux";
+import { createBrowserRouter, RouterProvider } from "react-router-dom";
+
 import io from "socket.io-client";
-import "./app.css";
+
 import Home from "./Components/Home/Home";
-import UserProfile from "./Components/UserProfile/UserProfile";
 import Explore from "./Components/Explore/Explore";
 import Message from "./Components/Message/Message";
-import ChatComponent from "./Components/Message/ChatComponent/ChatComponent";
-import EmptyChatComponent from "./Components/Message/EmptyChatComponent/EmptyChatComponent";
 import FullPost from "./Components/Fullpost/FullPost";
-import store from "./Store/store";
-import { useEffect } from "react";
+import Timeline from "./Components/Timeline/Timeline";
+import UserProfile from "./Components/UserProfile/UserProfile";
+import ChatComponent from "./Components/Message/ChatComponent/ChatComponent";
 import CurrentProfile from "./Components/CurrentProfile/CurrentProfile";
+import EmptyChatComponent from "./Components/Message/EmptyChatComponent/EmptyChatComponent";
+
+import store from "./Store/store";
+
+import "./app.css";
 
 const router = createBrowserRouter([
     {
