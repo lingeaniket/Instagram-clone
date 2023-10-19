@@ -1,6 +1,6 @@
 import React from "react";
 
-const Back = ({title}) => {
+const Back = ({ title }) => {
     return (
         <svg
             style={{

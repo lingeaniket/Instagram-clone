@@ -1,4 +1,4 @@
-const Save = ({saved}) => {
+const Save = ({ saved }) => {
     return (
         <svg
             aria-label="Save"

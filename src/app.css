@@ -17,7 +17,7 @@
 * {
     font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
         Oxygen-Sans, Ubuntu, Cantarell, "Helvetica Neue", sans-serif;
-        font-size: 14px;
+    font-size: 14px;
     /* letter-spacing: 1px; */
 }
 
@@ -26,9 +26,9 @@ body {
     margin: 0;
 }
 
-*, body {
+*,
+body {
     box-sizing: border-box;
-
 }
 
 .grid01 {

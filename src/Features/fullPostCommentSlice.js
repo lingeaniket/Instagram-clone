@@ -22,7 +22,7 @@ export const fullPostCommentSlice = createSlice({
                 postUser: postUser,
                 postId: postId,
                 comment: state.comment,
-            })
+            });
         },
         addPostReply: (state, action) => {
             const { postUser, postId } = action.payload;

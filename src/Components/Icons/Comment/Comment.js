@@ -1,4 +1,4 @@
-const Comment = ({fill = 'none', color= 'black'}) => {
+const Comment = ({ fill = "none", color = "black" }) => {
     return (
         <svg
             aria-label="Comment"

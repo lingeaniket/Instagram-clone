@@ -4,15 +4,15 @@ export const fullPostSlice = createSlice({
     name: "fullPostSlice",
     initialState: {
         mode: "timeline",
-        postArray : [],
+        postArray: [],
     },
     reducers: {
         changeMode: (state, action) => {
             state.mode = action.payload;
         },
-        updatePostArray : (state, action) => {
+        updatePostArray: (state, action) => {
             state.postArray = action.payload;
-        }
+        },
     },
 });
 

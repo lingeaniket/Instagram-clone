@@ -1,10 +1,10 @@
-const Like = ({ liked, white="rgb(255, 48, 64)", size }) => {
+const Like = ({ liked, white = "rgb(255, 48, 64)", size }) => {
     return (
         <>
             {liked ? (
-                <svg className="animeicon"
+                <svg
+                    className="animeicon"
                     aria-label="Unlike"
-                 
                     color={white}
                     fill={white}
                     height={size}

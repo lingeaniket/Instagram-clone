@@ -8,7 +8,7 @@ import "./listModal.css";
 
 const ListModal = ({ listType, handleClose, userData }) => {
     const containerRef = useRef(null);
-    
+
     const [follow, setFollow] = useState([]);
 
     const loadData = () => {

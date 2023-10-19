@@ -60,14 +60,19 @@ export const searchHistory = (id, method) => {
     // }, 500);
 };
 
-export const userClick = (id, searchCloseFunc, setSearchQuery, setSearchResults)=>{
+export const userClick = (
+    id,
+    searchCloseFunc,
+    setSearchQuery,
+    setSearchResults
+) => {
     searchCloseFunc(false);
-        searchHistory(id, "add");
-        setSearchQuery("");
-        setSearchResults([]);
-}
+    searchHistory(id, "add");
+    setSearchQuery("");
+    setSearchResults([]);
+};
 
-export const searchClick = (e, componentRef, searchRef,  searchCloseFunc) =>{
+export const searchClick = (e, componentRef, searchRef, searchCloseFunc) => {
     if (
         !(
             componentRef.current.contains(e.target) ||
@@ -76,4 +81,4 @@ export const searchClick = (e, componentRef, searchRef,  searchCloseFunc) =>{
     ) {
         searchCloseFunc(false);
     }
-}
+};

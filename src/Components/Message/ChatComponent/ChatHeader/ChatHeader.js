@@ -26,7 +26,9 @@ const ChatHeader = ({ userData }) => {
                     <div className="messageIn059 messageIn065 messageIn107">
                         <div className="messageIn060 messageIn107">
                             <div className="messageIn061">
-                                <span className="messageIn062">{userData?.first_name} {userData?.last_name}</span>
+                                <span className="messageIn062">
+                                    {userData?.first_name} {userData?.last_name}
+                                </span>
                             </div>
                             <span className="messageIn063">
                                 <div className="messageIn064">

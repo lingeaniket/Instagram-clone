@@ -14,7 +14,7 @@ const Recents = ({ handleSearchHistory, handleUserClick, recents }) => {
             loadRecents(setSearchHistory);
         }
     }, [recents]);
-    
+
     return (
         <div className="recents001">
             <div className="recents002">
