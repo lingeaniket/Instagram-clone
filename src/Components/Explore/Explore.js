@@ -3,7 +3,6 @@ import { Outlet } from "react-router-dom";
 import { useDispatch } from "react-redux";
 import InfiniteScroll from "react-infinite-scroll-component";
 
-import { generateRandomUsersAndPosts } from "./function";
 import { changeMode } from "../../Features/fullPostSlice";
 
 import Loader from "../Icons/Loader/Loader";
@@ -16,18 +15,21 @@ import "react-lazy-load-image-component/src/effects/blur.css";
 
 const Explore = () => {
     const dispatch = useDispatch();
-    const [posts, setPosts] = useState([]);
+    const [noOfPost, setNoOfPost] = useState([]);
 
     const handleFullPost = useCallback(() => {
         dispatch(changeMode("explore"));
     }, [dispatch]);
 
     useEffect(() => {
-        const generateRandom = async () => {
-            const data1 = await generateRandomUsersAndPosts();
-            setPosts((prev) => [...prev, data1]);
-            const data2 = await generateRandomUsersAndPosts();
-            setPosts((prev) => [...prev, data2]);
+        const generateRandom = () => {
+            const newArray = [];
+            for (let i = 0; i < 6; i++) {
+                const num = Math.floor(Math.random() * 1000);
+                newArray.push(num);
+            }
+
+            setNoOfPost(() => [newArray]);
         };
 
         generateRandom();
@@ -39,21 +41,24 @@ const Explore = () => {
                 <div className="explore003">
                     <InfiniteScroll
                         style={{ overflow: "hidden" }}
-                        dataLength={posts.length}
+                        dataLength={noOfPost.length}
                         next={async () => {
-                            const data = await generateRandomUsersAndPosts();
-                            setPosts((prev) => [...prev, data]);
+                            const newArray = [];
+                            for (let i = 0; i < 6; i++) {
+                                const num = Math.floor(Math.random() * 1000);
+                                newArray.push(num);
+                            }
+                            setNoOfPost((prev) => [...prev, newArray]);
                         }}
                         hasMore={true}
                     >
-                        {posts.map((user, index) => (
+                        {noOfPost.map((user, index) => (
                             <div className="explore004" key={index}>
-                                {user?.map((post, idx) => (
+                                {user?.map((number, idx) => (
                                     <ImagePost
-                                        key={idx + index}
+                                        key={idx + number + "01" + index}
                                         handleFullPost={handleFullPost}
-                                        post={post.post}
-                                        account={post.account}
+                                        number={number}
                                     />
                                 ))}
                             </div>

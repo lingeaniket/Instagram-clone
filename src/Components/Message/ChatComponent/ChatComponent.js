@@ -5,7 +5,7 @@ import Reaction from "../../Icons/Reaction/Reaction";
 import AddPhoto from "../../Icons/AddPhoto/AddPhoto";
 import Voice from "../../Icons/Voice/Voice";
 import Like from "../../Icons/Like/Like";
-import { useParams } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import ChatHeader from "./ChatHeader/ChatHeader";
 import SingleMessage from "./SingleMessage/SingleMessage";
 import axios from "axios";
@@ -21,6 +21,8 @@ const ChatComponent = () => {
     const [message, setMessage] = useState("");
     const [userData, setUserData] = useState({});
 
+    const navigate = useNavigate();
+
     const handleMessage = (e) => {
         setMessage(e.target.value);
     };
@@ -31,6 +33,10 @@ const ChatComponent = () => {
         const year = String(date.getFullYear()).slice(-2); // Get the last two digits of the year
         return `${day}${month}${year}`;
     }
+
+    const handleNavigateProfile = () => {
+        navigate(`/p/${id}`);
+    };
 
     const handleSendMessage = async () => {
         if (message.length > 0) {
@@ -154,14 +160,18 @@ const ChatComponent = () => {
                                                                                         <span className="messageIn088">
                                                                                             {
                                                                                                 userData.username
-                                                                                            }
-
-                                                                                            .
+                                                                                            } {" "}
+                                                                                            |
                                                                                             Instagram
                                                                                         </span>
                                                                                     </div>
                                                                                     <div className="messageIn089">
-                                                                                        <div className="messageIn090 messageIn067">
+                                                                                        <div
+                                                                                            className="messageIn090 messageIn067"
+                                                                                            onClick={
+                                                                                                handleNavigateProfile
+                                                                                            }
+                                                                                        >
                                                                                             View
                                                                                             Profile
                                                                                         </div>

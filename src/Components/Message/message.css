@@ -137,6 +137,14 @@
     width: 100%;
 }
 
+.messageIn020 > .messageIn021::-webkit-scrollbar {
+    display: none;
+}
+
+.messageIn021 > .newScroll::-webkit-scrollbar {
+    display: none;
+}
+
 .messageIn022 {
     position: relative;
 }
@@ -484,6 +492,10 @@
     overflow: hidden;
 }
 
+.messageIn076 > .messageIn021::-webkit-scrollbar {
+    display: none;
+}
+
 .messageIn077 {
     align-items: center;
 }
@@ -556,7 +568,9 @@
     font-weight: 600;
     height: 32px;
     padding: 0 16px;
+    cursor: pointer;
 }
+
 .messageIn091 {
     height: 10px;
     width: 100%;

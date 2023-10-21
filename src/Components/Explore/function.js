@@ -1,30 +1,16 @@
 import axios from "axios";
 import { apiSite } from "../../Website/website";
 
-export const generateRandomUsersAndPosts = async () => {
-    const users = await generate6users();
+export const generateUser = async () => {
+    let id = generateRandom(1, 100);
+    let account = await accountData(id);
 
-    return users.filter((post) => post !== null);
-};
-
-const generate6users = async () => {
-    const data = [];
-    const users = [];
-    for (let i = 0; i < 6; i++) {
-        let id = generateRandom(1, 100);
-        let account = await accountData(id);
-        // while (users.includes(id) || account.private) {
-        // while (account.private) {
-        //     id = generateRandom(1, 100);
-        //     account = await accountData(id);
-        // }
-        users.push(id);
-        data.push({
-            account,
-            post: await loadPosts(id),
-        });
+    while (account.private) {
+        id = generateRandom(1, 100);
+        account = await accountData(id);
     }
-    return data;
+
+    return { account, post: await loadPosts(id) };
 };
 
 const generateRandom = (first, last) => {

@@ -45,14 +45,14 @@ const SingleItem = ({ chat, handleChats, id }) => {
                                     {userData.username}
                                 </span>
                                 {/* if verified */}
-                                <div className="messageIn035">verified</div>
+                                <div className="messageIn035"></div>
                             </div>
                             <div className="messageIn036"></div>
                             <div className="messageIn037">
                                 <div className="messageIn038">
-                                    <span className="messageIn039">Hii</span>
+                                    <span className="messageIn039"></span>
                                     <span className="messageIn040"></span>
-                                    <div className="messageIn041">1m</div>
+                                    <div className="messageIn041"></div>
                                 </div>
                             </div>
                         </div>

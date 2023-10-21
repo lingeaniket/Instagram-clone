@@ -29,9 +29,8 @@ const ChatHeader = ({ userData }) => {
                                 </span>
                             </div>
                             <span className="messageIn063">
-                                <div className="messageIn064">
-                                    Active 3 minute sago
-                                </div>
+                                {/* users activity */}
+                                <div className="messageIn064"></div>
                             </span>
                         </div>
                     </div>
