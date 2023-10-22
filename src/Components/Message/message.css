@@ -742,6 +742,11 @@
     padding: 8px;
 }
 
+.messageIn120:hover {
+    opacity: 1;
+    cursor: pointer;
+}
+
 .messageIn122 {
     align-self: stretch;
     justify-content: flex-end;

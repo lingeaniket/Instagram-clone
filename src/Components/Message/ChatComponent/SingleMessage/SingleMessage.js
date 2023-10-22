@@ -3,7 +3,14 @@ import Reaction from "../../../Icons/Reaction/Reaction";
 import Reply from "../../../Icons/Reply/Reply";
 import MessageMoreOption from "../../../Icons/MessageMoreOption/MessageMoreOption";
 
-const SingleMessage = ({ message }) => {
+const SingleMessage = ({ message, handleReplyMode }) => {
+    const handleReply = () => {
+        handleReplyMode("open", {
+            toSelf: message?.messageType === "sent" ? true : false,
+            toMessageId: "",
+            message: message?.text,
+        });
+    };
     return (
         <div className="messageIn022">
             <div>
@@ -19,9 +26,7 @@ const SingleMessage = ({ message }) => {
                             className="messageIn105"
                             style={{
                                 flexDirection: `${
-                                    message?.messageType === "sent"
-                                        ? "row-reverse"
-                                        : "row"
+                                    message?.messageType === "sent" ? "row-reverse" : "row"
                                 }`,
                             }}
                         >
@@ -41,8 +46,7 @@ const SingleMessage = ({ message }) => {
                                             className="messageIn109"
                                             style={{
                                                 backgroundColor: `${
-                                                    message?.messageType ===
-                                                    "sent"
+                                                    message?.messageType === "sent"
                                                         ? "rgb(55, 151, 240)"
                                                         : "rgb(239,239,239)"
                                                 }`,
@@ -52,8 +56,7 @@ const SingleMessage = ({ message }) => {
                                                 className="messageIn110"
                                                 style={{
                                                     color: `${
-                                                        message?.messageType ===
-                                                        "sent"
+                                                        message?.messageType === "sent"
                                                             ? "white"
                                                             : "rgb(0,0,0)"
                                                     }`,
@@ -74,9 +77,7 @@ const SingleMessage = ({ message }) => {
                                                         <span className="messageIn115 messageIn067">
                                                             <span>em2</span>
                                                         </span>
-                                                        <div className="messageIn116">
-                                                            2
-                                                        </div>
+                                                        <div className="messageIn116">2</div>
                                                     </div>
                                                 </div>
                                             </div>
@@ -93,7 +94,7 @@ const SingleMessage = ({ message }) => {
                                 >
                                     <div className="messageIn119">
                                         {/* reaction single div */}
-                                        {message?.messageType !== "sent" && (
+                                        {message?.messageType === "sent" && (
                                             <div>
                                                 <div className="messageIn120 messageIn067">
                                                     <div className="messageIn067">
@@ -102,7 +103,7 @@ const SingleMessage = ({ message }) => {
                                                 </div>
                                             </div>
                                         )}
-                                        <div>
+                                        <div onClick={handleReply}>
                                             <div className="messageIn120 messageIn067">
                                                 <div className="messageIn067">
                                                     <Reply />

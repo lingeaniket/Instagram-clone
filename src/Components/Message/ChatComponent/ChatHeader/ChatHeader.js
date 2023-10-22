@@ -1,8 +1,13 @@
 import VideoCall from "../../../Icons/VideoCall/VideoCall";
 import AudioCall from "../../../Icons/AudioCall/AudioCall";
+import React from "react";
+import { memo } from "react";
+
 import ConversationInfo from "../../../Icons/ConversationInfo/ConversationInfo";
 
-const ChatHeader = ({ userData }) => {
+
+const ChatHeader = ({userData}) => {
+
     return (
         <div className="messageIn052">
             <div className="messageIn053">
@@ -57,4 +62,4 @@ const ChatHeader = ({ userData }) => {
     );
 };
 
-export default ChatHeader;
+export default memo(ChatHeader);
