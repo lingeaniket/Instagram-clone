@@ -93,13 +93,15 @@ const SingleMessage = ({ message }) => {
                                 >
                                     <div className="messageIn119">
                                         {/* reaction single div */}
-                                        <div>
-                                            <div className="messageIn120 messageIn067">
-                                                <div className="messageIn067">
-                                                    <Reaction />
+                                        {message?.messageType !== "sent" && (
+                                            <div>
+                                                <div className="messageIn120 messageIn067">
+                                                    <div className="messageIn067">
+                                                        <MessageMoreOption />
+                                                    </div>
                                                 </div>
                                             </div>
-                                        </div>
+                                        )}
                                         <div>
                                             <div className="messageIn120 messageIn067">
                                                 <div className="messageIn067">
@@ -110,7 +112,7 @@ const SingleMessage = ({ message }) => {
                                         <div>
                                             <div className="messageIn120 messageIn067">
                                                 <div className="messageIn067">
-                                                    <MessageMoreOption />
+                                                    <Reaction />
                                                 </div>
                                             </div>
                                         </div>

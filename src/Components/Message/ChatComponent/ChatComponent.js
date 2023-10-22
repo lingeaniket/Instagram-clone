@@ -20,6 +20,12 @@ const ChatComponent = () => {
 
     const [message, setMessage] = useState("");
     const [userData, setUserData] = useState({});
+    const [replyMode, setReplyMode] = useState({
+        isOn: false,
+        toSelf: false,
+        toMessageId: "",
+        message: "",
+    });
 
     const navigate = useNavigate();
 
@@ -160,7 +166,7 @@ const ChatComponent = () => {
                                                                                         <span className="messageIn088">
                                                                                             {
                                                                                                 userData.username
-                                                                                            } {" "}
+                                                                                            }{" "}
                                                                                             |
                                                                                             Instagram
                                                                                         </span>
@@ -240,6 +246,9 @@ const ChatComponent = () => {
                                                 </div>
                                             </div>
                                             <div>
+                                                {replyMode.isOn && (
+                                                    <div>Reply component</div>
+                                                )}
                                                 <div className="messageIn126 messageIn107">
                                                     <div className="messageIn127">
                                                         <div className="messageIn128">
