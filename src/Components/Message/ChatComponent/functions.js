@@ -13,9 +13,7 @@ export function formatDate(date) {
     const currentDate = new Date();
 
     const dayInMilliseconds = 1000 * 60 * 60 * 24;
-    const daysDifference = Math.floor(
-        (currentDate - inputDate) / dayInMilliseconds
-    );
+    const daysDifference = Math.floor((currentDate - inputDate) / dayInMilliseconds);
 
     if (daysDifference === 0) {
         return "Today";
@@ -48,11 +46,9 @@ export function formatDate(date) {
             "Dec",
         ];
 
-        const formattedDate = `${
-            daysOfWeek[inputDate.getDay()]
-        }, ${inputDate.getDate()} ${months[inputDate.getMonth()]}, ${
-            inputDate.getFullYear() % 100
-        }`;
+        const formattedDate = `${daysOfWeek[inputDate.getDay()]}, ${inputDate.getDate()} ${
+            months[inputDate.getMonth()]
+        }, ${inputDate.getFullYear() % 100}`;
         return formattedDate;
     }
 }

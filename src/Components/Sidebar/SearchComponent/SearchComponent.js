@@ -78,21 +78,15 @@ const SearchComponent = ({ searchDiv, searchCloseFunc, searchRef }) => {
                                     <div className="searchField">
                                         {searchResults.length === 0 && (
                                             <Recents
-                                                handleSearchHistory={
-                                                    handleSearchHistory
-                                                }
+                                                handleSearchHistory={handleSearchHistory}
                                                 recents={recents}
-                                                handleUserClick={
-                                                    handleUserClick
-                                                }
+                                                handleUserClick={handleUserClick}
                                             />
                                         )}
                                         {searchResults.map((result) => (
                                             <ResultComponent
                                                 result={result}
-                                                handleUserClick={
-                                                    handleUserClick
-                                                }
+                                                handleUserClick={handleUserClick}
                                                 recents={false}
                                             />
                                         ))}

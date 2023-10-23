@@ -12,14 +12,12 @@ const SingleList = ({ followe }) => {
     useEffect(() => {
         setLoading(true);
         const loadData = async () => {
-            await axios
-                .get(`${apiSite}/users/${followe.id}`)
-                .then((response) => {
-                    setUser(() => response.data);
-                    setTimeout(() => {
-                        setLoading(false);
-                    }, 1000);
-                });
+            await axios.get(`${apiSite}/users/${followe.id}`).then((response) => {
+                setUser(() => response.data);
+                setTimeout(() => {
+                    setLoading(false);
+                }, 1000);
+            });
         };
         loadData();
     }, [followe.id]);

@@ -3,16 +3,13 @@ import { useDispatch } from "react-redux";
 import { useEffect, useState, memo } from "react";
 import { useSearchParams } from "react-router-dom";
 
-import timeElapsedFromCurrent from "./function";
+import { replyComment, timeElapsedFromCurrent } from "./function";
 import { apiSite } from "../../../../../../Website/website";
-import {
-    updateComment,
-    updateData,
-} from "../../../../../../Features/fullPostCommentSlice";
 
 import Like from "../../../../../Icons/Like/Like";
 
 import { Skeleton } from "@mui/material";
+import RoundedImage from "../../../../../RoundedImage/RoundedImage";
 
 const Comment = ({
     addReply,
@@ -34,28 +31,12 @@ const Comment = ({
 
     const [likes, setLikes] = useState(0);
     const [liked, setLiked] = useState(false);
-    const [userData, setUserData] = useState({});
     const [loading, setLoading] = useState(true);
+    const [userData, setUserData] = useState({});
 
-    const handleReplyComment = async () => {
+    const handleReplyComment = () => {
         addReply();
-        setReplyData((prev) => {
-            return {
-                ...prev,
-                username: userData.username,
-                userId: comment.userId,
-                commentId: type === "primary" ? comment.id : commentId,
-            };
-        });
-        dispatch(
-            updateData({
-                username: userData.username,
-                userId: comment.userId,
-                commentId: type === "primary" ? comment.id : commentId,
-            })
-        );
-        setComment(() => `@${userData.username} `);
-        dispatch(updateComment({ comment: `@${userData.username}` }));
+        replyComment(setReplyData, userData, comment, type, commentId, dispatch, setComment);
         setReplyMode(true);
     };
 
@@ -88,17 +69,21 @@ const Comment = ({
 
     useEffect(() => {
         setLoading(true);
-        axios.get(`${apiSite}/users/${comment.userId}`).then((response) => {
-            setUserData(response.data);
-            setTimeout(() => {
-                setLoading(false);
-                if (type === "primary") {
-                    mainLoad(true);
-                }
-            }, 1000);
-            setLiked(() => comment?.likedBy?.includes(userId));
-            setLikes(() => comment?.likes);
-        });
+        const loadData = async () => {
+            await axios.get(`${apiSite}/users/${comment.userId}`).then((response) => {
+                setUserData(response.data);
+                setTimeout(() => {
+                    setLoading(false);
+                    if (type === "primary") {
+                        mainLoad(true);
+                    }
+                }, 1000);
+                setLiked(() => comment?.likedBy?.includes(userId));
+                setLikes(() => comment?.likes);
+            });
+        };
+
+        loadData();
         // eslint-disable-next-line
     }, [comment.id]);
 
@@ -108,9 +93,8 @@ const Comment = ({
                 <div className="fullPost051">
                     <div className="fullPost052">
                         <div
+                            className="fullPost034"
                             style={{
-                                height: "32px",
-                                width: "32px",
                                 borderRadius: "50%",
                                 overflow: "hidden",
                             }}
@@ -125,21 +109,11 @@ const Comment = ({
                                     }}
                                 />
                             ) : (
-                                <img
-                                    style={{
-                                        maxWidth: "100%",
-                                    }}
-                                    src={`https://cloudflare-ipfs.com/ipfs/Qmd3W5DuhgHirLHGVixi6V76LhCkZUz6pnFt5AJBiyvHye/avatar/${userData?.avatar}.jpg`}
-                                    alt=""
-                                />
+                                <RoundedImage url={userData?.avatar} />
                             )}
                         </div>
                     </div>
-                    <div
-                        style={{
-                            width: "100%",
-                        }}
-                    >
+                    <div className="w_100">
                         {loading ? (
                             <>
                                 <Skeleton
@@ -149,7 +123,6 @@ const Comment = ({
                                         width: "100%",
                                     }}
                                 />
-
                                 <Skeleton
                                     variant="text"
                                     sx={{
@@ -161,23 +134,17 @@ const Comment = ({
                         ) : (
                             <>
                                 <h2 className="fullPost053">
-                                    <div className="fullPost054">
-                                        {userData?.username}
-                                    </div>
+                                    <div className="fullPost054">{userData?.username}</div>
                                 </h2>
                                 <div className="fullPost055">
-                                    <h1 className="fullPost056">
-                                        {comment?.text}
-                                    </h1>
+                                    <h1 className="fullPost056">{comment?.text}</h1>
                                 </div>
                                 <div className="fullPost057">
                                     <span className="fullPost058">
                                         <span>
                                             <time className="fullPost059">
                                                 {comment?.time
-                                                    ? timeElapsedFromCurrent(
-                                                          comment.time
-                                                      )
+                                                    ? timeElapsedFromCurrent(comment.time)
                                                     : "no time"}
                                             </time>
                                         </span>

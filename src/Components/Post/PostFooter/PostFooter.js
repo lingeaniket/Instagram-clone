@@ -12,6 +12,19 @@ import { addComment, handleLiked, handlePost } from "../functions";
 
 import { Skeleton } from "@mui/material";
 
+const RoundedSkeleton = () => {
+    return (
+        <Skeleton
+            variant="rounded"
+            animation="wave"
+            sx={{
+                height: "24px",
+                width: "24px",
+            }}
+        />
+    );
+};
+
 const PostFooter = ({
     setLiked,
     liked,
@@ -55,51 +68,14 @@ const PostFooter = ({
         <div>
             <div className="post009">
                 <div className="post010">
-                    <div
-                        ref={likeref}
-                        className={`post011 post012 animeicon`}
-                        onClick={handleLike}
-                    >
-                        {loading ? (
-                            <Skeleton
-                                variant="rounded"
-                                animation="wave"
-                                sx={{
-                                    height: "24px",
-                                    width: "24px",
-                                }}
-                            />
-                        ) : (
-                            <Like liked={liked} size={24} />
-                        )}
+                    <div ref={likeref} className={`post011 post012 animeicon`} onClick={handleLike}>
+                        {loading ? <RoundedSkeleton /> : <Like liked={liked} size={24} />}
                     </div>
                     <div className="post011 post019" onClick={postHandle}>
-                        {loading ? (
-                            <Skeleton
-                                variant="rounded"
-                                animation="wave"
-                                sx={{
-                                    height: "24px",
-                                    width: "24px",
-                                }}
-                            />
-                        ) : (
-                            <CommentIcon />
-                        )}
+                        {loading ? <RoundedSkeleton /> : <CommentIcon />}
                     </div>
                     <div className="post011 post019">
-                        {loading ? (
-                            <Skeleton
-                                variant="rounded"
-                                animation="wave"
-                                sx={{
-                                    height: "24px",
-                                    width: "24px",
-                                }}
-                            />
-                        ) : (
-                            <Share />
-                        )}
+                        {loading ? <RoundedSkeleton /> : <Share />}
                     </div>
                 </div>
                 <div>
@@ -107,18 +83,7 @@ const PostFooter = ({
                         className={`post011 post018 ${!saved ? "post019" : ""}`}
                         onClick={handleSaved}
                     >
-                        {loading ? (
-                            <Skeleton
-                                variant="rounded"
-                                animation="wave"
-                                sx={{
-                                    height: "24px",
-                                    width: "24px",
-                                }}
-                            />
-                        ) : (
-                            <Save saved={saved} />
-                        )}
+                        {loading ? <RoundedSkeleton /> : <Save saved={saved} />}
                     </div>
                 </div>
             </div>
@@ -148,8 +113,7 @@ const PostFooter = ({
                     />
                 ) : (
                     <>
-                        <span className="post015">{userData?.username}</span>{" "}
-                        {post.caption}
+                        <span className="post015">{userData?.username}</span> {post.caption}
                     </>
                 )}
             </div>

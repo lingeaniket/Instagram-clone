@@ -19,9 +19,7 @@ const EmptyChatComponent = () => {
                 </div>
 
                 <div className="messageIn138  messageIn077 messageIn107">
-                    <div className="messageIn143 messageIn067">
-                        Send message
-                    </div>
+                    <div className="messageIn143 messageIn067">Send message</div>
                 </div>
             </div>
         </div>

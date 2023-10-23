@@ -1,181 +1,42 @@
-import axios from "axios";
+import React, { useState, memo, useCallback } from "react";
 import { useSearchParams } from "react-router-dom";
-import React, { useState, useEffect, memo } from "react";
-
-import { apiSite } from "../../../Website/website";
 
 import Like from "../../Icons/Like/Like";
 import Save from "../../Icons/Save/Save";
 import Share from "../../Icons/Share/Share";
-import Options from "../../Icons/Options/Options";
 import Comment from "../../Icons/Comment/Comment";
+
 import CommentsComponent from "./Comments/CommentsComponent";
 
 import { Skeleton } from "@mui/material";
+import PostDetailsHeader from "./PostDetailsHeader/PostDetailsHeader";
+
+const RoundedSkeleton = () => {
+    return (
+        <Skeleton
+            variant="rounded"
+            sx={{
+                width: "24px",
+                height: "24px",
+            }}
+        />
+    );
+};
 
 const PostDetailComponent = ({ likeref, liked, handleLiked, post }) => {
     const [searchParams] = useSearchParams();
-    const postUser = searchParams.get("postUser");
     const postId = Number(searchParams.get("postId"));
 
     const [loading, setLoading] = useState(true);
-    const [userData, setUserData] = useState({});
 
-    useEffect(() => {
-        setLoading(true);
-        const loadData = async () => {
-            await axios.get(`${apiSite}/users/${postUser}`).then((response) => {
-                setUserData(() => response.data);
-                setTimeout(() => {
-                    setLoading(false);
-                }, 1000);
-            });
-        };
-        loadData();
-    }, [postUser, postId]);
+    const loadingFunction = useCallback((val) => {
+        setLoading(val);
+    }, []);
 
     return (
         <div className="fullPost029 fullPost024 fullPost042">
             <div className="fullPost030 fullPost024 fullPost042">
-                <div className="fullPost031">
-                    <div className="fullPost032">
-                        <div className="fullPost033">
-                            <div>
-                                <div className="fullPost034">
-                                    {post?.collab ? (
-                                        <>
-                                            <div
-                                                className="fullPost035"
-                                                style={{
-                                                    position: "absolute",
-                                                    top: 0,
-                                                    left: 0,
-                                                }}
-                                            >
-                                                {loading ? (
-                                                    <>
-                                                        <Skeleton
-                                                            variant="rectangle"
-                                                            animation="wave"
-                                                            sx={{
-                                                                height: "100%",
-                                                                width: "100%",
-                                                            }}
-                                                        />
-                                                    </>
-                                                ) : (
-                                                    <img
-                                                        style={{
-                                                            maxWidth: "100%",
-                                                        }}
-                                                        src={`https://cloudflare-ipfs.com/ipfs/Qmd3W5DuhgHirLHGVixi6V76LhCkZUz6pnFt5AJBiyvHye/avatar/${userData?.avatar}.jpg`}
-                                                        alt=""
-                                                    />
-                                                )}
-                                            </div>
-                                            <div
-                                                className="fullPost035"
-                                                style={{
-                                                    position: "absolute",
-                                                    bottom: 0,
-                                                    right: 0,
-                                                }}
-                                            >
-                                                {loading ? (
-                                                    <>
-                                                        <Skeleton
-                                                            variant="rectangle"
-                                                            animation="wave"
-                                                            sx={{
-                                                                height: "100%",
-                                                                width: "100%",
-                                                            }}
-                                                        />
-                                                    </>
-                                                ) : (
-                                                    <img
-                                                        style={{
-                                                            maxWidth: "100%",
-                                                        }}
-                                                        src={`https://cloudflare-ipfs.com/ipfs/Qmd3W5DuhgHirLHGVixi6V76LhCkZUz6pnFt5AJBiyvHye/avatar/${userData?.avatar}.jpg`}
-                                                        alt=""
-                                                    />
-                                                )}
-                                            </div>
-                                        </>
-                                    ) : (
-                                        <div
-                                            className="fullPost035"
-                                            style={{
-                                                height: "32px",
-                                                width: "32px",
-                                            }}
-                                        >
-                                            {loading ? (
-                                                <>
-                                                    <Skeleton
-                                                        variant="rectangle"
-                                                        animation="wave"
-                                                        sx={{
-                                                            height: "100%",
-                                                            width: "100%",
-                                                        }}
-                                                    />
-                                                </>
-                                            ) : (
-                                                <img
-                                                    style={{
-                                                        maxWidth: "100%",
-                                                    }}
-                                                    src={`https://cloudflare-ipfs.com/ipfs/Qmd3W5DuhgHirLHGVixi6V76LhCkZUz6pnFt5AJBiyvHye/avatar/${userData?.avatar}.jpg`}
-                                                    alt=""
-                                                />
-                                            )}
-                                        </div>
-                                    )}
-                                </div>
-                            </div>
-                            <div className="fullPost036 fullPost024 fullPost042">
-                                <div className="fullPost037">
-                                    <div className="fullPost038">
-                                        <span className="fullPost039">
-                                            {loading ? (
-                                                <>
-                                                    <Skeleton
-                                                        variant="text"
-                                                        animation="wave"
-                                                        sx={{
-                                                            fontSize: "16px",
-                                                            width: "100px",
-                                                        }}
-                                                    />
-                                                </>
-                                            ) : (
-                                                <>{userData?.username}</>
-                                            )}
-                                        </span>
-                                        {post?.collab && (
-                                            <>
-                                                <span className="fullPost040">
-                                                    {" "}
-                                                    and{" "}
-                                                </span>
-                                                <span className="fullPost039">
-                                                    Aniket
-                                                </span>
-                                            </>
-                                        )}
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div className="fullPost041">
-                            <div className="fullPost006 fullPost016">
-                                <Options />
-                            </div>
-                        </div>
-                    </div>
-                </div>
+                <PostDetailsHeader post={post} setLoading={loadingFunction} />
                 <div className="fullPost043 fullPost042 fullPost024">
                     <div className="fullPost044">
                         <div
@@ -189,13 +50,7 @@ const PostDetailComponent = ({ likeref, liked, handleLiked, post }) => {
                                 className="fullPost045 fullPost016 fullPost006 animeicon"
                             >
                                 {post.id !== postId ? (
-                                    <Skeleton
-                                        variant="rounded"
-                                        sx={{
-                                            width: "24px",
-                                            height: "24px",
-                                        }}
-                                    />
+                                    <RoundedSkeleton />
                                 ) : (
                                     <Like liked={liked} size={24} />
                                 )}
@@ -203,32 +58,12 @@ const PostDetailComponent = ({ likeref, liked, handleLiked, post }) => {
                         </div>
                         <div>
                             <div className="fullPost045 fullPost016 fullPost006">
-                                {post.id !== postId ? (
-                                    <Skeleton
-                                        variant="rounded"
-                                        sx={{
-                                            width: "24px",
-                                            height: "24px",
-                                        }}
-                                    />
-                                ) : (
-                                    <Comment />
-                                )}
+                                {post.id !== postId ? <RoundedSkeleton /> : <Comment />}
                             </div>
                         </div>
                         <div>
                             <div className="fullPost045 fullPost016 fullPost006">
-                                {post.id !== postId ? (
-                                    <Skeleton
-                                        variant="rounded"
-                                        sx={{
-                                            width: "24px",
-                                            height: "24px",
-                                        }}
-                                    />
-                                ) : (
-                                    <Share />
-                                )}
+                                {post.id !== postId ? <RoundedSkeleton /> : <Share />}
                             </div>
                         </div>
                         <div
@@ -238,17 +73,7 @@ const PostDetailComponent = ({ likeref, liked, handleLiked, post }) => {
                             }}
                         >
                             <div className="fullPost045 fullPost016 fullPost006">
-                                {post.id !== postId ? (
-                                    <Skeleton
-                                        variant="rounded"
-                                        sx={{
-                                            width: "24px",
-                                            height: "24px",
-                                        }}
-                                    />
-                                ) : (
-                                    <Save />
-                                )}
+                                {post.id !== postId ? <RoundedSkeleton /> : <Save />}
                             </div>
                         </div>
                     </div>

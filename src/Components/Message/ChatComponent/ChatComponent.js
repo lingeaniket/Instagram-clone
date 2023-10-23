@@ -1,17 +1,18 @@
 import axios from "axios";
-import React, { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
+import React, { useEffect, useState } from "react";
+
+import ChatMain from "./ChatMain/ChatMain";
 import ChatHeader from "./ChatHeader/ChatHeader";
 
 import { apiSite } from "../../../Website/website";
-import ChatMain from "./ChatMain/ChatMain";
 
 const ChatComponent = () => {
+    const { id } = useParams();
+
     const [userData, setUserData] = useState({});
 
     const user = JSON.parse(localStorage.getItem("userId"));
-
-    const { id } = useParams();
 
     useEffect(() => {
         const loadData = async () => {

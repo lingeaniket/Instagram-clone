@@ -1,12 +1,12 @@
-import React, { useEffect, useState, useCallback } from "react";
 import { Outlet } from "react-router-dom";
 import { useDispatch } from "react-redux";
 import InfiniteScroll from "react-infinite-scroll-component";
-
-import { changeMode } from "../../Features/fullPostSlice";
+import React, { useEffect, useState, useCallback } from "react";
 
 import Loader from "../Icons/Loader/Loader";
 import ImagePost from "./ImagePost/ImagePost";
+
+import { changeMode } from "../../Features/fullPostSlice";
 
 import { Skeleton } from "@mui/material";
 
@@ -21,18 +21,18 @@ const Explore = () => {
         dispatch(changeMode("explore"));
     }, [dispatch]);
 
+    const loadData = () => {
+        const newArray = [];
+        for (let i = 0; i < 6; i++) {
+            const num = Math.floor(Math.random() * 1000);
+            newArray.push(num);
+        }
+
+        setNoOfPost((prev) => [...prev, newArray]);
+    };
+
     useEffect(() => {
-        const generateRandom = () => {
-            const newArray = [];
-            for (let i = 0; i < 6; i++) {
-                const num = Math.floor(Math.random() * 1000);
-                newArray.push(num);
-            }
-
-            setNoOfPost(() => [newArray]);
-        };
-
-        generateRandom();
+        loadData();
     }, []);
 
     return (
@@ -42,14 +42,7 @@ const Explore = () => {
                     <InfiniteScroll
                         style={{ overflow: "hidden" }}
                         dataLength={noOfPost.length}
-                        next={async () => {
-                            const newArray = [];
-                            for (let i = 0; i < 6; i++) {
-                                const num = Math.floor(Math.random() * 1000);
-                                newArray.push(num);
-                            }
-                            setNoOfPost((prev) => [...prev, newArray]);
-                        }}
+                        next={loadData}
                         hasMore={true}
                     >
                         {noOfPost.map((user, index) => (

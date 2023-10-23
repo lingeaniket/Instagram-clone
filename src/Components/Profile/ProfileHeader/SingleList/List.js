@@ -3,6 +3,7 @@ import React from "react";
 import { Skeleton } from "@mui/material";
 
 import "./list.css";
+import RoundedImage from "../../../RoundedImage/RoundedImage";
 
 const List = ({ loading, user, type }) => {
     return (
@@ -41,13 +42,7 @@ const List = ({ loading, user, type }) => {
                                             />
                                         </>
                                     ) : (
-                                        <img
-                                            style={{
-                                                maxWidth: "100%",
-                                            }}
-                                            src={`https://cloudflare-ipfs.com/ipfs/Qmd3W5DuhgHirLHGVixi6V76LhCkZUz6pnFt5AJBiyvHye/avatar/${user?.avatar}.jpg`}
-                                            alt=""
-                                        />
+                                        <RoundedImage url={user?.avatar} />
                                     )}
                                 </div>
                             </div>
@@ -87,9 +82,7 @@ const List = ({ loading, user, type }) => {
                                             width: "auto",
                                         }}
                                     >
-                                        <span className="messageIn034">
-                                            {user.username}
-                                        </span>
+                                        <span className="messageIn034">{user.username}</span>
                                         {/* if verified */}
                                         <div className="messageIn035">O</div>
                                     </div>
@@ -101,8 +94,7 @@ const List = ({ loading, user, type }) => {
                                                     fontSize: "14px",
                                                 }}
                                             >
-                                                {user?.first_name}{" "}
-                                                {user?.last_name}
+                                                {user?.first_name} {user?.last_name}
                                             </div>
                                         </div>
                                     </div>
@@ -127,15 +119,11 @@ const List = ({ loading, user, type }) => {
                                     {type === "timeline" ? (
                                         <div className="sideList002">
                                             <div className="sideList003">
-                                                <span className="sideList004">
-                                                    Follow
-                                                </span>
+                                                <span className="sideList004">Follow</span>
                                             </div>
                                         </div>
                                     ) : (
-                                        <div className="listModal025">
-                                            Following
-                                        </div>
+                                        <div className="listModal025">Following</div>
                                     )}
                                 </>
                             )}

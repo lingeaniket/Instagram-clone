@@ -1,6 +1,7 @@
 import React from "react";
 
 import "./stories.css";
+import RoundedImage from "../RoundedImage/RoundedImage";
 
 const Stories = () => {
     return (
@@ -18,17 +19,11 @@ const Stories = () => {
                                                 <div className="story010">
                                                     <div className="story011">
                                                         <div className="story012">
-                                                            <img
-                                                                src=""
-                                                                alt=""
-                                                                className="story013"
-                                                            />
+                                                            <RoundedImage/>
                                                         </div>
                                                     </div>
                                                     <div className="story014">
-                                                        <div className="story015">
-                                                            username
-                                                        </div>
+                                                        <div className="story015">username</div>
                                                     </div>
                                                 </div>
                                             </div>

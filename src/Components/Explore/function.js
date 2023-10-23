@@ -27,9 +27,7 @@ const loadPosts = async (id) => {
         const promise = await axios.get(`${apiSite}/posts/${id}`);
         const randomPost = generateRandom(
             0,
-            promise?.data?.posts?.length === 0
-                ? 0
-                : promise.data?.posts?.length - 1
+            promise?.data?.posts?.length === 0 ? 0 : promise.data?.posts?.length - 1
         );
         return promise?.data?.posts[randomPost];
     } catch (err) {

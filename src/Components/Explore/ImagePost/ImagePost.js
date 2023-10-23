@@ -1,9 +1,10 @@
-import React, { memo, useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
+import React, { memo, useEffect, useState } from "react";
 import { LazyLoadImage } from "react-lazy-load-image-component";
 
 import Like from "../../Icons/Like/Like";
 import Comment from "../../Icons/Comment/Comment";
+
 import { generateUser } from "../function";
 
 import { Skeleton } from "@mui/material";
@@ -12,8 +13,8 @@ const ImagePost = ({ number, handleFullPost }) => {
     const navigate = useNavigate();
 
     const [post, setPost] = useState({});
-    const [loading, setLoading] = useState(true);
     const [account, setAccount] = useState({});
+    const [loading, setLoading] = useState(true);
 
     const handlePost = () => {
         handleFullPost();
@@ -52,10 +53,7 @@ const ImagePost = ({ number, handleFullPost }) => {
                     }}
                 />
             ) : (
-                <div
-                    className="explore008 explore012 w_100"
-                    onClick={handlePost}
-                >
+                <div className="explore008 explore012 w_100" onClick={handlePost}>
                     <div>
                         <div className="explore008 w_100">
                             <div className="w_100">
@@ -75,20 +73,13 @@ const ImagePost = ({ number, handleFullPost }) => {
                                         <div className="postList003">
                                             <div className="postList004 postList006">
                                                 <div className="postList005">
-                                                    <Like
-                                                        size={24}
-                                                        liked={true}
-                                                        white="white"
-                                                    />
+                                                    <Like size={24} liked={true} white="white" />
                                                 </div>{" "}
                                                 {post?.likes}
                                             </div>
                                             <div className="postList004">
                                                 <div className="postList005">
-                                                    <Comment
-                                                        fill="white"
-                                                        color="white"
-                                                    />
+                                                    <Comment fill="white" color="white" />
                                                 </div>{" "}
                                                 {post?.comments?.length}
                                             </div>

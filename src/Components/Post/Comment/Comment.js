@@ -69,10 +69,7 @@ const Comment = ({ comment, post, id }) => {
                         {"  "}
                         {comment.text}
                     </div>
-                    <div
-                        style={{ display: "flex", cursor: "pointer" }}
-                        onClick={handleLiked}
-                    >
+                    <div style={{ display: "flex", cursor: "pointer" }} onClick={handleLiked}>
                         <Like liked={liked} size="12px" />
                     </div>
                 </>

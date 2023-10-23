@@ -27,15 +27,7 @@ const Post = ({ postId, id }) => {
     const imagelikeref = useRef(null);
 
     const handleImgLike = () => {
-        handleImageLiked(
-            imagelikeref,
-            likeref,
-            setLiked,
-            liked,
-            setLikes,
-            userData.id,
-            postId
-        );
+        handleImageLiked(imagelikeref, likeref, setLiked, liked, setLikes, userData.id, postId);
     };
 
     useEffect(() => {
@@ -45,9 +37,7 @@ const Post = ({ postId, id }) => {
                 .then((response) => {
                     setPost(() => response.data.post);
                     setLikes(() => response.data.post.likes);
-                    setLiked(() =>
-                        response.data.post.likedBy?.includes(userId)
-                    );
+                    setLiked(() => response.data.post.likedBy?.includes(userId));
                     setTimeout(() => {
                         setLoading(false);
                     }, 1000);

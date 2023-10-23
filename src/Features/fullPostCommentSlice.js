@@ -56,12 +56,7 @@ export const fullPostCommentSlice = createSlice({
     },
 });
 
-export const {
-    addPostComment,
-    addPostReply,
-    updateData,
-    updateComment,
-    updateUuidv,
-} = fullPostCommentSlice.actions;
+export const { addPostComment, addPostReply, updateData, updateComment, updateUuidv } =
+    fullPostCommentSlice.actions;
 
 export default fullPostCommentSlice.reducer;

@@ -8,11 +8,7 @@ const RightSideBar = () => {
     return (
         <div className="rsb001">
             <div className="rsb002">
-                <List
-                    loading={false}
-                    user={{ username: "abc", avatar: 1 }}
-                    type="timeline"
-                />
+                <List loading={false} user={{ username: "abc", avatar: 1 }} type="timeline" />
                 <div className="rsb003">
                     <div className="rsb004">
                         <div className="rsb005">

@@ -1,7 +1,9 @@
 import React from "react";
+
 import Reaction from "../../../Icons/Reaction/Reaction";
-import Reply from "../../../Icons/Reply/Reply";
 import MessageMoreOption from "../../../Icons/MessageMoreOption/MessageMoreOption";
+
+import Reply from "../../../Icons/Reply/Reply";
 
 const SingleMessage = ({ message, handleReplyMode }) => {
     const handleReply = () => {
@@ -11,6 +13,7 @@ const SingleMessage = ({ message, handleReplyMode }) => {
             message: message?.text,
         });
     };
+
     return (
         <div className="messageIn022">
             <div>

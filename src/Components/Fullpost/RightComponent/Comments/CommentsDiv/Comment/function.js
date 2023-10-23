@@ -1,4 +1,6 @@
-export default function timeElapsedFromCurrent(unixTimestamp) {
+import { updateComment, updateData } from "../../../../../../Features/fullPostCommentSlice";
+
+export function timeElapsedFromCurrent(unixTimestamp) {
     const currentTimestamp = Date.now(); // Current Unix timestamp in seconds
     const timeDifference = currentTimestamp - unixTimestamp;
 
@@ -18,4 +20,32 @@ export default function timeElapsedFromCurrent(unixTimestamp) {
         const seconds = Math.floor(timeDifference / 1000);
         return `${seconds} s`;
     }
+}
+
+export function replyComment(
+    setReplyData,
+    userData,
+    comment,
+    type,
+    commentId,
+    dispatch,
+    setComment,
+) {
+    setReplyData((prev) => {
+        return {
+            ...prev,
+            username: userData.username,
+            userId: comment.userId,
+            commentId: type === "primary" ? comment.id : commentId,
+        };
+    });
+    dispatch(
+        updateData({
+            username: userData.username,
+            userId: comment.userId,
+            commentId: type === "primary" ? comment.id : commentId,
+        })
+    );
+    setComment(() => `@${userData.username} `);
+    dispatch(updateComment({ comment: `@${userData.username}` }));
 }

@@ -21,14 +21,10 @@ const PostList = ({ userPosts, userData, module, modeId }) => {
     const handlePost = (id) => {
         if (module === "userProfile") {
             dispatch(changeMode("userProfile"));
-            navigate(
-                `/p/${modeId}/post?postUser=${userData.id}&postId=${userPosts[id].id}`
-            );
+            navigate(`/p/${modeId}/post?postUser=${userData.id}&postId=${userPosts[id].id}`);
         } else {
             dispatch(changeMode("profile"));
-            navigate(
-                `/profile/post?postUser=${userData.id}&postId=${userPosts[id].id}`
-            );
+            navigate(`/profile/post?postUser=${userData.id}&postId=${userPosts[id].id}`);
         }
         document.body.style.overflow = "hidden";
     };
@@ -41,55 +37,41 @@ const PostList = ({ userPosts, userData, module, modeId }) => {
                 }).map((val, i) => {
                     return (
                         <div className="profPostsContainer postList002">
-                            {arrayFill(userPosts.slice(i * 3, i * 3 + 3)).map(
-                                (post, index) => (
-                                    <div
-                                        style={{
-                                            pointerEvents: `${
-                                                i * 3 + index >=
-                                                userPosts.length
-                                                    ? "none"
-                                                    : ""
-                                            }`,
-                                        }}
-                                        className="image-container"
-                                        onClick={() =>
-                                            handlePost(i * 3 + index)
-                                        }
-                                    >
-                                        <div>
-                                            <LazyLoadImage
-                                                effect="blur"
-                                                src={`https://picsum.photos/id/${post?.id}/500/500`}
-                                                alt=""
-                                            />
-                                        </div>
-                                        <div className="hoverIcons">
-                                            <div className="postList003">
-                                                <div className="postList004 postList006">
-                                                    <div className="postList005">
-                                                        <Like
-                                                            size={24}
-                                                            liked={true}
-                                                            white="white"
-                                                        />
-                                                    </div>{" "}
-                                                    {post.likes}
-                                                </div>
-                                                <div className="postList004">
-                                                    <div className="postList005">
-                                                        <Comment
-                                                            fill="white"
-                                                            color="white"
-                                                        />
-                                                    </div>{" "}
-                                                    {post?.comments?.length}
-                                                </div>
+                            {arrayFill(userPosts.slice(i * 3, i * 3 + 3)).map((post, index) => (
+                                <div
+                                    style={{
+                                        pointerEvents: `${
+                                            i * 3 + index >= userPosts.length ? "none" : ""
+                                        }`,
+                                    }}
+                                    className="image-container"
+                                    onClick={() => handlePost(i * 3 + index)}
+                                >
+                                    <div>
+                                        <LazyLoadImage
+                                            effect="blur"
+                                            src={`https://picsum.photos/id/${post?.id}/500/500`}
+                                            alt=""
+                                        />
+                                    </div>
+                                    <div className="hoverIcons">
+                                        <div className="postList003">
+                                            <div className="postList004 postList006">
+                                                <div className="postList005">
+                                                    <Like size={24} liked={true} white="white" />
+                                                </div>{" "}
+                                                {post.likes}
+                                            </div>
+                                            <div className="postList004">
+                                                <div className="postList005">
+                                                    <Comment fill="white" color="white" />
+                                                </div>{" "}
+                                                {post?.comments?.length}
                                             </div>
                                         </div>
                                     </div>
-                                )
-                            )}
+                                </div>
+                            ))}
                         </div>
                     );
                 })}

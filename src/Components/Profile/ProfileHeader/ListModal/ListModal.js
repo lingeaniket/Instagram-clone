@@ -51,17 +51,12 @@ const ListModal = ({ listType, handleClose, userData }) => {
                                     </div>
                                     <div className="listModal015">
                                         <div className="listModal016">
-                                            <input
-                                                type="text"
-                                                className="listModal017"
-                                            />
+                                            <input type="text" className="listModal017" />
                                             <div className="listModal018">
                                                 <div className="listModal019">
                                                     <Search />
                                                 </div>
-                                                <div className="listModal020">
-                                                    Search
-                                                </div>
+                                                <div className="listModal020">Search</div>
                                             </div>
                                         </div>
                                     </div>
@@ -69,9 +64,7 @@ const ListModal = ({ listType, handleClose, userData }) => {
                                         <div className="listModal022">
                                             <div ref={containerRef}>
                                                 {follow?.map((followe) => (
-                                                    <SingleList
-                                                        followe={followe}
-                                                    />
+                                                    <SingleList followe={followe} />
                                                 ))}
                                             </div>
                                         </div>

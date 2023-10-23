@@ -7,6 +7,7 @@ import Options from "../../Icons/Options/Options";
 import Settings from "../../Icons/Settings/Settings";
 
 import "./profileHeader.css";
+import RoundedImage from "../../RoundedImage/RoundedImage";
 
 const ProfileHeader = ({ userData, userPosts, type }) => {
     const [open, setOpen] = useState(false);
@@ -33,11 +34,7 @@ const ProfileHeader = ({ userData, userPosts, type }) => {
         <div className="profHead001">
             <div className="profHead002">
                 <div className="profHead003">
-                    <img
-                        className="post005"
-                        src={`https://cloudflare-ipfs.com/ipfs/Qmd3W5DuhgHirLHGVixi6V76LhCkZUz6pnFt5AJBiyvHye/avatar/${userData.avatar}.jpg`}
-                        alt="title1"
-                    />
+                    <RoundedImage url={userData.avatar} />
                 </div>
             </div>
             <div className="profHead004">
@@ -52,9 +49,7 @@ const ProfileHeader = ({ userData, userPosts, type }) => {
                                     <div className="profHead010">
                                         <button className="profHead011">
                                             <div>
-                                                <div className="profHead012">
-                                                    Edit Profile
-                                                </div>
+                                                <div className="profHead012">Edit Profile</div>
                                             </div>
                                         </button>
                                     </div>
@@ -81,9 +76,7 @@ const ProfileHeader = ({ userData, userPosts, type }) => {
                                     <div className="profHead010">
                                         <button className="profHead011">
                                             <div>
-                                                <div className="profHead012">
-                                                    Message
-                                                </div>
+                                                <div className="profHead012">Message</div>
                                             </div>
                                         </button>
                                     </div>
@@ -107,8 +100,7 @@ const ProfileHeader = ({ userData, userPosts, type }) => {
                 <div className="profHead016"></div>
                 <ul className="profHead017">
                     <li className="profHead018">
-                        <span className="profHead019">{userPosts.length}</span>{" "}
-                        posts
+                        <span className="profHead019">{userPosts.length}</span> posts
                     </li>
                     <li
                         className="profHead018"
@@ -117,10 +109,7 @@ const ProfileHeader = ({ userData, userPosts, type }) => {
                         }}
                         onClick={handleFollowers}
                     >
-                        <span className="profHead019">
-                            {userData?.followers?.length}
-                        </span>{" "}
-                        followers
+                        <span className="profHead019">{userData?.followers?.length}</span> followers
                     </li>
                     <li
                         className="profHead018"
@@ -129,9 +118,7 @@ const ProfileHeader = ({ userData, userPosts, type }) => {
                         }}
                         onClick={handleFollowings}
                     >
-                        <span className="profHead019">
-                            {userData?.followings?.length}
-                        </span>{" "}
+                        <span className="profHead019">{userData?.followings?.length}</span>{" "}
                         following
                     </li>
                 </ul>
@@ -147,17 +134,9 @@ const ProfileHeader = ({ userData, userPosts, type }) => {
                         <div>
                             <div className="profHead022">
                                 <span className="profHead023">
-                                    Followed by{" "}
-                                    <span className="profHead024">
-                                        nameofuser01,
-                                    </span>{" "}
-                                    <span className="profHead024">
-                                        nameofuser02,
-                                    </span>{" "}
-                                    <span className="profHead024">
-                                        nameofuser03
-                                    </span>{" "}
-                                    + 7 more
+                                    Followed by <span className="profHead024">nameofuser01,</span>{" "}
+                                    <span className="profHead024">nameofuser02,</span>{" "}
+                                    <span className="profHead024">nameofuser03</span> + 7 more
                                 </span>
                             </div>
                         </div>
@@ -165,11 +144,7 @@ const ProfileHeader = ({ userData, userPosts, type }) => {
                 </div>
             </div>
             {open && (
-                <ListModal
-                    listType={listType}
-                    handleClose={handleClose}
-                    userData={userData}
-                />
+                <ListModal listType={listType} handleClose={handleClose} userData={userData} />
             )}
         </div>
     );

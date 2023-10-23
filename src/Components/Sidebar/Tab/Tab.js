@@ -3,6 +3,7 @@ import { apiSite } from "../../../Website/website";
 import { useNavigate } from "react-router-dom";
 import "./tab.css";
 import { useEffect, useState } from "react";
+import RoundedImage from "../../RoundedImage/RoundedImage";
 
 const Tab = ({ tab, searchOpen, searchRef, id }) => {
     const navigate = useNavigate();
@@ -40,14 +41,7 @@ const Tab = ({ tab, searchOpen, searchRef, id }) => {
                             borderRadius: "50%",
                         }}
                     >
-                        <img
-                            src={`https://cloudflare-ipfs.com/ipfs/Qmd3W5DuhgHirLHGVixi6V76LhCkZUz6pnFt5AJBiyvHye/avatar/${userData.avatar}.jpg`}
-                            alt=""
-                            style={{
-                                maxWidth: "100%",
-                                verticalAlign: "middle",
-                            }}
-                        />
+                        <RoundedImage url={userData.avatar} />
                     </div>
                 ) : (
                     <>{tab.icon}</>

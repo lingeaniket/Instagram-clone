@@ -1,13 +1,11 @@
+import React, { memo } from "react";
+
 import VideoCall from "../../../Icons/VideoCall/VideoCall";
 import AudioCall from "../../../Icons/AudioCall/AudioCall";
-import React from "react";
-import { memo } from "react";
-
 import ConversationInfo from "../../../Icons/ConversationInfo/ConversationInfo";
+import RoundedImage from "../../../RoundedImage/RoundedImage";
 
-
-const ChatHeader = ({userData}) => {
-
+const ChatHeader = ({ userData }) => {
     return (
         <div className="messageIn052">
             <div className="messageIn053">
@@ -15,13 +13,7 @@ const ChatHeader = ({userData}) => {
                     <div className="messageIn055 messageIn107">
                         <div className="messageIn056">
                             <div className="messageIn057">
-                                <img
-                                    style={{
-                                        maxWidth: "100%",
-                                    }}
-                                    src={`https://cloudflare-ipfs.com/ipfs/Qmd3W5DuhgHirLHGVixi6V76LhCkZUz6pnFt5AJBiyvHye/avatar/${userData.avatar}.jpg`}
-                                    alt=""
-                                />
+                                <RoundedImage url={userData?.avatar} />
                             </div>
                             <div className="messageIn058"></div>
                         </div>

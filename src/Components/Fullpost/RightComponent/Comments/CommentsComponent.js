@@ -17,6 +17,7 @@ import {
 } from "../../../../Features/fullPostCommentSlice";
 
 import { Skeleton } from "@mui/material";
+import RoundedImage from "../../../RoundedImage/RoundedImage";
 
 const CommentsComponent = () => {
     const dispatch = useDispatch();
@@ -62,10 +63,7 @@ const CommentsComponent = () => {
 
     const checkReplyMode = (e) => {
         if (replyMode) {
-            if (
-                replyData.username.length > 0 &&
-                e.target.value.includes(replyData.username)
-            ) {
+            if (replyData.username.length > 0 && e.target.value.includes(replyData.username)) {
                 return true;
             }
         }
@@ -158,9 +156,7 @@ const CommentsComponent = () => {
             });
 
             await axios
-                .get(
-                    `${apiSite}/posts/post?postUser=${postUser}&postId=${postId}`
-                )
+                .get(`${apiSite}/posts/post?postUser=${postUser}&postId=${postId}`)
                 .then((response) => {
                     setPost(() => response.data.post);
                     setComments(() => response.data.post.comments.reverse());
@@ -198,13 +194,7 @@ const CommentsComponent = () => {
                                                     }}
                                                 />
                                             ) : (
-                                                <img
-                                                    style={{
-                                                        maxWidth: "100%",
-                                                    }}
-                                                    src={`https://cloudflare-ipfs.com/ipfs/Qmd3W5DuhgHirLHGVixi6V76LhCkZUz6pnFt5AJBiyvHye/avatar/${userData?.avatar}.jpg`}
-                                                    alt=""
-                                                />
+                                                <RoundedImage url={userData?.avatar} />
                                             )}
                                         </div>
                                     </div>
@@ -246,9 +236,7 @@ const CommentsComponent = () => {
                                                     </div>
                                                 </h2>
                                                 <div className="fullPost055">
-                                                    <h1 className="fullPost056">
-                                                        {post?.caption}
-                                                    </h1>
+                                                    <h1 className="fullPost056">{post?.caption}</h1>
                                                 </div>
                                                 <div className="fullPost057">
                                                     <span className="fullPost058">
@@ -314,11 +302,7 @@ const CommentsComponent = () => {
                         />
                     </div>
                     <div className="fullPost077">
-                        <span
-                            ref={postReplyRef}
-                            onClick={handleAddReply}
-                            id="replycomment"
-                        >
+                        <span ref={postReplyRef} onClick={handleAddReply} id="replycomment">
                             {replyMode && (
                                 <button
                                     className="fullPost078"

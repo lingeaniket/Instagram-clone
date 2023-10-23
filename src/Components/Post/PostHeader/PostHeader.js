@@ -4,6 +4,7 @@ import React, { useEffect, memo } from "react";
 import Options from "../../Icons/Options/Options";
 
 import { Skeleton } from "@mui/material";
+import RoundedImage from "../../RoundedImage/RoundedImage";
 
 const PostHeader = ({ userData, loading }) => {
     const navigate = useNavigate();
@@ -28,11 +29,7 @@ const PostHeader = ({ userData, loading }) => {
                             }}
                         />
                     ) : (
-                        <img
-                            className="post005"
-                            src={`https://cloudflare-ipfs.com/ipfs/Qmd3W5DuhgHirLHGVixi6V76LhCkZUz6pnFt5AJBiyvHye/avatar/${userData.avatar}.jpg`}
-                            alt="title1"
-                        />
+                        <RoundedImage url={userData?.avatar} />
                     )}
                 </div>
                 <div className="post006">

@@ -1,11 +1,11 @@
 import axios from "axios";
 import React, { useEffect, useState } from "react";
-import { LazyLoadImage } from "react-lazy-load-image-component";
 import { useSearchParams } from "react-router-dom";
-
-import { apiSite } from "../../../../Website/website";
+import { LazyLoadImage } from "react-lazy-load-image-component";
 
 import ImageLike from "../../../Icons/ImageLike/ImageLike";
+
+import { apiSite } from "../../../../Website/website";
 
 import "react-lazy-load-image-component/src/effects/blur.css";
 
@@ -25,9 +25,7 @@ const ImageComponent = ({ handleImageLiked, imagelikeref }) => {
         setLoader(true);
         const loadData = async () => {
             await axios
-                .get(
-                    `${apiSite}/posts/post?postUser=${postUser}&postId=${postId}`
-                )
+                .get(`${apiSite}/posts/post?postUser=${postUser}&postId=${postId}`)
                 .then((response) => {
                     setPost(() => response.data.post);
                     setLoader(false);
@@ -35,6 +33,7 @@ const ImageComponent = ({ handleImageLiked, imagelikeref }) => {
         };
         loadData();
     }, [postUser, postId]);
+
     return (
         <div
             onDoubleClick={handleLike}

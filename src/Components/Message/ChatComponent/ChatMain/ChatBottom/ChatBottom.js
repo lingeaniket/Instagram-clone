@@ -1,13 +1,14 @@
 import React, { useState, memo } from "react";
-import { socket } from "../../../../../App";
+import { useParams } from "react-router-dom";
 
 import Like from "../../../../Icons/Like/Like";
-import AddPhoto from "../../../../Icons/AddPhoto/AddPhoto";
 import Voice from "../../../../Icons/Voice/Voice";
+import AddPhoto from "../../../../Icons/AddPhoto/AddPhoto";
 import Reaction from "../../../../Icons/Reaction/Reaction";
 
 import ReplyDiv from "../../ReplyDiv/ReplyDiv";
-import { useParams } from "react-router-dom";
+
+import { socket } from "../../../../../App";
 
 const ChatBottom = ({ userData, replyMode, handleReplyMode }) => {
     const user = JSON.parse(localStorage.getItem("userId"));

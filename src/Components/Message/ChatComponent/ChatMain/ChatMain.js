@@ -1,17 +1,19 @@
-import React, { useState, useEffect, memo, Fragment } from "react";
 import axios from "axios";
-import { socket } from "../../../../App";
-
-import SingleMessage from "../SingleMessage/SingleMessage";
 import ScrollToBottom from "react-scroll-to-bottom";
-
-import { apiSite } from "../../../../Website/website";
 import { useNavigate, useParams } from "react-router-dom";
+import React, { useState, useEffect, memo, Fragment } from "react";
 
-import { formatDate } from "../functions";
 import ChatBottom from "./ChatBottom/ChatBottom";
+import SingleMessage from "../SingleMessage/SingleMessage";
+
+import { socket } from "../../../../App";
+import { formatDate } from "../functions";
+import { apiSite } from "../../../../Website/website";
+import RoundedImage from "../../../RoundedImage/RoundedImage";
 
 const ChatMain = ({ userData }) => {
+    const navigate = useNavigate();
+
     const user = JSON.parse(localStorage.getItem("userId"));
 
     const { id } = useParams();
@@ -20,8 +22,6 @@ const ChatMain = ({ userData }) => {
     const handleNavigateProfile = () => {
         navigate(`/p/${id}`);
     };
-
-    const navigate = useNavigate();
 
     const [replyMode, setReplyMode] = useState({
         isOn: false,
@@ -69,6 +69,7 @@ const ChatMain = ({ userData }) => {
 
         loadData();
     }, [id, user]);
+
     return (
         <div className="messageIn069">
             <div className="messageIn070">
@@ -92,13 +93,7 @@ const ChatMain = ({ userData }) => {
                                                             <div className="messageIn081">
                                                                 <div className="messageIn082">
                                                                     <div className="messageIn083">
-                                                                        <img
-                                                                            style={{
-                                                                                maxWidth: "100%",
-                                                                            }}
-                                                                            src={`https://cloudflare-ipfs.com/ipfs/Qmd3W5DuhgHirLHGVixi6V76LhCkZUz6pnFt5AJBiyvHye/avatar/${userData.avatar}.jpg`}
-                                                                            alt=""
-                                                                        />
+                                                                        <RoundedImage url={userData?.avatar}/>
                                                                     </div>
                                                                 </div>
                                                             </div>

@@ -4,13 +4,9 @@ import { useNavigate } from "react-router-dom";
 import Close from "../../../Icons/Close/Close";
 
 import "./resultComponent.css";
+import RoundedImage from "../../../RoundedImage/RoundedImage";
 
-const ResultComponent = ({
-    result,
-    handleUserClick,
-    recents = true,
-    handleSearchHistory,
-}) => {
+const ResultComponent = ({ result, handleUserClick, recents = true, handleSearchHistory }) => {
     const navigate = useNavigate();
 
     const handleClick = () => {
@@ -25,20 +21,14 @@ const ResultComponent = ({
                     <div className="resComp003">
                         <div className="resComp004" onClick={handleClick}>
                             <span className="resComp005">
-                                <img
-                                    src={`https://cloudflare-ipfs.com/ipfs/Qmd3W5DuhgHirLHGVixi6V76LhCkZUz6pnFt5AJBiyvHye/avatar/${result.avatar}.jpg`}
-                                    alt=""
-                                />
+                                <RoundedImage url={result.avatar} />
                             </span>
                         </div>
                         <div className="resComp006" onClick={handleClick}>
                             <div className="resComp007">
                                 <div className="resComp008">
                                     <div className="resComp009">
-                                        <span className="resComp010">
-                                            {" "}
-                                            {result.username}
-                                        </span>
+                                        <span className="resComp010"> {result.username}</span>
                                     </div>
                                     <div className="resComp011">
                                         {result.first_name} {result.last_name}
