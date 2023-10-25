@@ -6,6 +6,7 @@ import ConversationInfo from "../../../Icons/ConversationInfo/ConversationInfo";
 import RoundedImage from "../../../RoundedImage/RoundedImage";
 
 const ChatHeader = ({ userData }) => {
+    console.log("Updated");
     return (
         <div className="messageIn052">
             <div className="messageIn053">
