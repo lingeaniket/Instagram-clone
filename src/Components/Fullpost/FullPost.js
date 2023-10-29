@@ -14,6 +14,7 @@ import PostDetailComponent from "./RightComponent/PostDetailComponent";
 import "./fullPost.css";
 
 const FullPost = () => {
+    console.log("Reloaded");
     const [searchParams, setSearchParams] = useSearchParams();
     const postId = Number(searchParams.get("postId"));
     const postUser = Number(searchParams.get("postUser"));
