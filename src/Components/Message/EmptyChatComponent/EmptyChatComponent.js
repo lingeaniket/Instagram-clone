@@ -3,7 +3,6 @@ import React from "react";
 import Messenger from "../../Icons/Messenger/Messenger";
 
 const EmptyChatComponent = () => {
-    console.log("Reloaded");
     return (
         <div className="messageIn135 messageIn065 messageIn107">
             <div className="messageIn136 messageIn065 messageIn107">
