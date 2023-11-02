@@ -14,7 +14,6 @@ import PostDetailComponent from "./RightComponent/PostDetailComponent";
 import "./fullPost.css";
 
 const FullPost = () => {
-   
     const [searchParams, setSearchParams] = useSearchParams();
     const postId = Number(searchParams.get("postId"));
     const postUser = Number(searchParams.get("postUser"));
@@ -45,28 +44,11 @@ const FullPost = () => {
     };
 
     const handleImageLiked = () => {
-        handleImagePostLiked(
-            imagelikeref,
-            liked,
-            userId,
-            postUser,
-            postId,
-            setReload,
-            setLiked,
-            likeref
-        );
+        handleImagePostLiked(imagelikeref, liked, userId, postUser, postId, setReload, setLiked, likeref);
     };
 
     const handleLiked = () => {
-        handlePostLiked(
-            liked,
-            userId,
-            postUser,
-            postId,
-            setReload,
-            setLiked,
-            likeref
-        );
+        handlePostLiked(liked, userId, postUser, postId, setReload, setLiked, likeref);
     };
 
     const handleNext = () => {
@@ -99,21 +81,13 @@ const FullPost = () => {
     useEffect(() => {
         const loadData = async () => {
             if (fullPostMode !== "explore") {
-                const index = fullPostData.findIndex(
-                    (data) => data.id === Number(postId)
-                );
+                const index = fullPostData.findIndex((data) => data.id === Number(postId));
                 setPostIndex(index);
             }
-            await axios
-                .get(
-                    `${apiSite}/posts/post?postUser=${postUser}&postId=${postId}`
-                )
-                .then((response) => {
-                    setPost(() => response.data.post);
-                    setLiked(() =>
-                        response.data.post?.likedBy?.includes(userId)
-                    );
-                });
+            await axios.get(`${apiSite}/posts/post?postUser=${postUser}&postId=${postId}`).then((response) => {
+                setPost(() => response.data.post);
+                setLiked(() => response.data.post?.likedBy?.includes(userId));
+            });
         };
         loadData();
     }, [postUser, postId, reload, userId, fullPostData, fullPostMode]);
@@ -157,38 +131,13 @@ const FullPost = () => {
                                             }}
                                         >
                                             <div className="fullPost020 fullPost042">
-                                                <div
-                                                    style={{
-                                                        width: "100%",
-                                                        maxHeight: "inherit",
-                                                        padding: "0",
-                                                    }}
-                                                >
-                                                    <div
-                                                        style={{
-                                                            maxHeight:
-                                                                "inherit",
-                                                            maxWidth: "inherit",
-                                                            overflow: "visible",
-                                                            alignContent:
-                                                                "stretch",
-                                                            flexShrink: 0,
-                                                            alignSelf: "auto",
-                                                            flexGrow: 0,
-                                                        }}
-                                                    >
+                                                <div className="fullPost082">
+                                                    <div className="fullPost083">
                                                         <div className="fullPost021">
-                                                            <div
-                                                                className="fullPost022 fullPost024 fullPost042"
-                                                                ref={imageRef}
-                                                            >
+                                                            <div className="fullPost022 fullPost024 fullPost042" ref={imageRef}>
                                                                 <ImageComponent
-                                                                    handleImageLiked={
-                                                                        handleImageLiked
-                                                                    }
-                                                                    imagelikeref={
-                                                                        imagelikeref
-                                                                    }
+                                                                    handleImageLiked={handleImageLiked}
+                                                                    imagelikeref={imagelikeref}
                                                                 />
                                                             </div>
 
@@ -198,18 +147,10 @@ const FullPost = () => {
                                                             >
                                                                 <PostDetailComponent
                                                                     post={post}
-                                                                    setReload={
-                                                                        setReload
-                                                                    }
-                                                                    handleLiked={
-                                                                        handleLiked
-                                                                    }
-                                                                    likeref={
-                                                                        likeref
-                                                                    }
-                                                                    liked={
-                                                                        liked
-                                                                    }
+                                                                    setReload={setReload}
+                                                                    handleLiked={handleLiked}
+                                                                    likeref={likeref}
+                                                                    liked={liked}
                                                                 />
                                                             </div>
                                                         </div>

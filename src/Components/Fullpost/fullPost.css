@@ -554,3 +554,28 @@
     align-items: center;
     position: relative;
 }
+
+.fullPost082 {
+    width: 100%;
+    max-height: inherit;
+    padding: 0;
+}
+
+.fullPost083 {
+    max-height: inherit;
+    max-width: inherit;
+    overflow: visible;
+    align-content: stretch;
+    flex-shrink: 0;
+    align-self: auto;
+    flex-grow: 0;
+}
+
+.fullPost084 {
+    margin-left: -8px;
+}
+
+.fullPost085 {
+    margin-left: auto;
+    margin-right: -10px;
+}

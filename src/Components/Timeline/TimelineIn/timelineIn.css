@@ -3,5 +3,10 @@
 }
 
 .timelineIn01 img {
-  border-radius: 4px;
+    border-radius: 4px;
+}
+
+.timelineIn02 {
+    max-width: 100%;
+    width: 470px;
 }

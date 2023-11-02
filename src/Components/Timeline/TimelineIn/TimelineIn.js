@@ -17,12 +17,7 @@ const TimelineIn = () => {
     }, []);
 
     return (
-        <div
-            style={{
-                maxWidth: "100%",
-                width: "470px",
-            }}
-        >
+        <div className="timelineIn02">
             {data.map((post) => (
                 <Post post={post} postId={post.id} id={1} />
             ))}
