@@ -5,7 +5,7 @@ import { Skeleton } from "@mui/material";
 import "./list.css";
 import RoundedImage from "../../../RoundedImage/RoundedImage";
 
-const List = ({ loading, user, type }) => {
+const List = ({ loading, user, type, userAcc = false }) => {
     return (
         <div className="listModal024">
             <div
@@ -119,7 +119,7 @@ const List = ({ loading, user, type }) => {
                                     {type === "timeline" ? (
                                         <div className="sideList002">
                                             <div className="sideList003">
-                                                <span className="sideList004">Follow</span>
+                                                <span className="sideList004">{userAcc ? "Switch" : "Follow"}</span>
                                             </div>
                                         </div>
                                     ) : (

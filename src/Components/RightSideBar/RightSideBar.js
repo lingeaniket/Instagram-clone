@@ -3,12 +3,13 @@ import React from "react";
 import List from "../Profile/ProfileHeader/SingleList/List";
 
 import "./rightSideBar.css";
+import Copyright from "./Copyright";
 
 const RightSideBar = () => {
     return (
         <div className="rsb001">
             <div className="rsb002">
-                <List loading={false} user={{ username: "abc", avatar: 1 }} type="timeline" />
+                <List loading={false} user={{ username: "abc", avatar: 1 }} type="timeline" userAcc={true} />
                 <div className="rsb003">
                     <div className="rsb004">
                         <div className="rsb005">
@@ -39,7 +40,7 @@ const RightSideBar = () => {
                         </div>
                     </div>
                 </div>
-                <div>logo and copyright</div>
+                <Copyright />
             </div>
         </div>
     );

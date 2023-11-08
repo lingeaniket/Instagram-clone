@@ -66,3 +66,58 @@
 .rsb013 {
     width: 100%;
 }
+
+.rsb014 {
+    margin-bottom: 8px;
+    display: flex;
+    flex-direction: column;
+    padding: 0 16px;
+    justify-content: flex-start;
+    align-items: flex-start;
+}
+
+.rsb015 {
+    padding: 0 0 38px 0;
+}
+
+.rsb016 {
+    display: flex;
+    margin-bottom: 16px;
+}
+
+.rsb017 {
+    margin: 0;
+    padding: 0;
+    list-style: none;
+    margin-bottom: 3px;
+}
+
+.rsb018 {
+    color: rgb(199, 199, 199);
+    font-size: 12px;
+    font-weight: 400;
+    display: inline-flex;
+    flex-direction: row;
+    margin: 0;
+}
+
+.rsb019 {
+    color: rgb(199, 199, 199);
+    font-size: 12px;
+    font-weight: 400;
+}
+
+.dotPoint::after {
+    content: '\00B7';
+    margin: 0 0.25rem 0 0.25rem;
+}
+
+.rsb020{
+    cursor: pointer;
+    line-height: 16px;
+    font-size: 12px;
+}
+
+.rsb021 {
+    text-transform: uppercase;
+}
