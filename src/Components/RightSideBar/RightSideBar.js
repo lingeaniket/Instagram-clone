@@ -3,7 +3,7 @@ import React from "react";
 import List from "../Profile/ProfileHeader/SingleList/List";
 
 import "./rightSideBar.css";
-import Copyright from "./Copyright";
+import Copyright from "./Copyright/Copyright";
 
 const RightSideBar = () => {
     return (
