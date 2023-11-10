@@ -46,4 +46,4 @@ const RightSideBar = () => {
     );
 };
 
-export default RightSideBar;
+export default React.memo(RightSideBar);
