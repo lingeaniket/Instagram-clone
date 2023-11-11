@@ -26,22 +26,25 @@ const Post = ({ postId, id }) => {
     const likeref = useRef(null);
     const imagelikeref = useRef(null);
 
+    const [windowWidth, setWindowWidth] = useState(window.innerWidth);
+
+    const handleResize = () => {
+        setWindowWidth(window.innerWidth);
+    };
     const handleImgLike = () => {
         handleImageLiked(imagelikeref, likeref, setLiked, liked, setLikes, userData.id, postId);
     };
 
     useEffect(() => {
         const loadData = async () => {
-            await axios
-                .get(`${apiSite}/posts/post?postUser=${id}&postId=${postId}`)
-                .then((response) => {
-                    setPost(() => response.data.post);
-                    setLikes(() => response.data.post.likes);
-                    setLiked(() => response.data.post.likedBy?.includes(userId));
-                    setTimeout(() => {
-                        setLoading(false);
-                    }, 1000);
-                });
+            await axios.get(`${apiSite}/posts/post?postUser=${id}&postId=${postId}`).then((response) => {
+                setPost(() => response.data.post);
+                setLikes(() => response.data.post.likes);
+                setLiked(() => response.data.post.likedBy?.includes(userId));
+                setTimeout(() => {
+                    setLoading(false);
+                }, 1000);
+            });
         };
         loadData();
         // eslint-disable-next-line
@@ -58,8 +61,23 @@ const Post = ({ postId, id }) => {
         // eslint-disable-next-line
     }, [id]);
 
+    useEffect(() => {
+        setWindowWidth(window.innerWidth);
+
+        window.addEventListener("resize", handleResize);
+
+        return () => {
+            window.removeEventListener("resize", handleResize);
+        };
+    }, []);
+
     return (
-        <div className="timelineIn01 post001">
+        <div
+            className="timelineIn01 post001"
+            style={{
+                width: windowWidth < 500 ? "100%" : "470px",
+            }}
+        >
             <PostHeader userData={userData} loading={loading} />
             <div
                 className="post008"
@@ -72,12 +90,14 @@ const Post = ({ postId, id }) => {
                     onDoubleClick={handleImgLike}
                     style={{
                         objectFit: "cover",
+                        aspectRatio: "1/1",
+                        verticalAlign: "middle",
                     }}
                     alt=""
-                    height={470}
+                    // height={'auto'}
                     effect="blur"
                     src={`https://picsum.photos/id/${post.id}/500/500`}
-                    width={470}
+                    width={"100%"}
                 />
                 <div className="heartIconDiv">
                     <div ref={imagelikeref} className="heart_icon">

@@ -79,6 +79,8 @@
     .mobileNavView .side03 {
         display: block;
         width: auto;
+        min-width: 0;
+        padding: 0;
     }
     .mobileNavView .side03 .side06 {
         font-size: 30px;
