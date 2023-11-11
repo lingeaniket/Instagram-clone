@@ -7,7 +7,7 @@ const InputContainer = ({ searchQuery, handleSearch, clearFunc }) => {
     return (
         <div className="search009">
             <div className="search010">
-                <input type="text" className="search011" value={searchQuery} onChange={handleSearch} />
+                <input type="text" className="search011" value={searchQuery} onChange={handleSearch} placeholder="Search" />
                 <div className="search012">
                     <div onClick={handleClear}>x</div>
                 </div>

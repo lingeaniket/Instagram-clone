@@ -1,0 +1,19 @@
+.mobilev01 {
+    width: 268px;
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-right: 16px;
+}
+
+.mobilev02 {
+    position: absolute;
+    top: 50px;
+    width: 375px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+    border-radius: 6px;
+    overflow: scroll;
+    max-height: 70vh;
+    background-color: white;
+}

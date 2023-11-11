@@ -2,6 +2,8 @@ import React, { useEffect, useRef, useState } from "react";
 import InputContainer from "../SearchComponent/InputContainer";
 import Result from "../SearchComponent/Result/Result";
 
+import "./styles.css";
+
 import { search, searchHistory, userClick } from "../SearchComponent/functions";
 
 const MobileSearchComponent = () => {
@@ -58,31 +60,13 @@ const MobileSearchComponent = () => {
     }, []);
 
     return (
-        <div
-            // onClick={handleSearchClose}
-            // ref={searchRef}
-            style={{
-                width: "268px",
-                position: "relative",
-                display: "flex",
-                flexDirection: "column",
-                alignItems: "center",
-                marginRight: "16px",
-            }}
-        >
-            <div ref={searchRef}>
+        <div className="mobilev01">
+            <div ref={searchRef} className="w_100">
                 <InputContainer searchQuery={searchQuery} handleSearch={handleSearch} clearFunc={handleClearInput} />
             </div>
             <div
+                className="mobilev02"
                 style={{
-                    position: "absolute",
-                    top: "50px",
-                    width: "375px",
-                    boxShadow: "0 4px 12px rgba(0,0,0,.15)",
-                    borderRadius: "6px",
-                    overflow: "scroll",
-                    maxHeight: "70vh",
-                    backgroundColor: "white",
                     display: searchDiv ? "block" : "none",
                 }}
                 ref={containerRef}
