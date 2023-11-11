@@ -25,3 +25,36 @@
     flex-direction: column;
     align-items: center;
 }
+
+.mobileNavView {
+    display: none;
+}
+
+.timeline006 {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+@media screen and (max-width: 768px) {
+    .timeline002 {
+        padding: 0;
+    }
+
+    .timeline004 {
+        margin: 0;
+    }
+    .mobileNavView {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        position: sticky;
+        top: 0;
+        width: 100%;
+        height: 60px;
+        padding: 0 16px;
+        background-color: white;
+        z-index: 1000;
+        border-bottom: 2px solid rgb(240,240,240);
+    }
+}

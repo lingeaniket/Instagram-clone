@@ -50,3 +50,12 @@ body {
 .w_100 {
     width: 100%;
 }
+
+
+@media screen and (max-width: 768px) {
+    .grid01 {
+        display: block;
+        position: relative;
+    }
+    
+}

@@ -1,11 +1,10 @@
 import React, { useEffect, useRef, useState } from "react";
 
-import Recents from "./Recents/Recents";
-import ResultComponent from "./ResultComponent/ResultComponent";
-
-import { search, searchClick, searchHistory, userClick } from "./functions";
+import { search, searchHistory, userClick } from "./functions";
 
 import "./searchComponent.css";
+import InputContainer from "./InputContainer";
+import Result from "./Result/Result";
 
 const SearchComponent = ({ searchDiv, searchCloseFunc, searchRef }) => {
     const componentRef = useRef(null);
@@ -30,7 +29,14 @@ const SearchComponent = ({ searchDiv, searchCloseFunc, searchRef }) => {
     };
 
     const handleSearchClose = (e) => {
-        searchClick(e, componentRef, searchRef, searchCloseFunc);
+        if (!(componentRef.current.contains(e.target) || searchRef.current.contains(e.target))) {
+            searchCloseFunc(false);
+        }
+    };
+
+    const handleClearInput = (e) => {
+        setSearchQuery("");
+        setSearchResults(() => []);
     };
 
     useEffect(() => {
@@ -60,38 +66,14 @@ const SearchComponent = ({ searchDiv, searchCloseFunc, searchRef }) => {
                     <div className="search006">
                         <div className="search007">
                             <div className="search008">
-                                <div className="search009">
-                                    <div className="search010">
-                                        <input
-                                            type="text"
-                                            className="search011"
-                                            value={searchQuery}
-                                            onChange={handleSearch}
-                                        />
-                                        <div className="search012">
-                                            <div>x</div>
-                                        </div>
-                                    </div>
-                                </div>
+                                <InputContainer searchQuery={searchQuery} handleSearch={handleSearch} clearFunc={handleClearInput} />
                                 <hr className="search013" />
-                                <div className="search014">
-                                    <div className="searchField">
-                                        {searchResults.length === 0 && (
-                                            <Recents
-                                                handleSearchHistory={handleSearchHistory}
-                                                recents={recents}
-                                                handleUserClick={handleUserClick}
-                                            />
-                                        )}
-                                        {searchResults.map((result) => (
-                                            <ResultComponent
-                                                result={result}
-                                                handleUserClick={handleUserClick}
-                                                recents={false}
-                                            />
-                                        ))}
-                                    </div>
-                                </div>
+                                <Result
+                                    searchResults={searchResults}
+                                    handleSearchHistory={handleSearchHistory}
+                                    recents={recents}
+                                    handleUserClick={handleUserClick}
+                                />
                             </div>
                         </div>
                     </div>

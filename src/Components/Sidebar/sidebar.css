@@ -19,8 +19,7 @@
     display: flex;
     align-items: center;
     cursor: pointer;
-    font-size: 35px;
-    font-family: "Lobster Two", cursive;
+
     padding: 0 5px;
     width: 100%;
 }
@@ -37,4 +36,90 @@
     flex-direction: column;
     position: relative;
     width: 100%;
+}
+
+.side07 {
+    display: none;
+}
+
+.side06 {
+    font-size: 35px;
+    font-family: "Lobster Two", cursive;
+}
+
+@media screen and (max-width: 1024px) {
+    .side06 {
+        display: none;
+    }
+
+    .side07 {
+        display: block;
+    }
+}
+
+@media screen and (max-width: 768px) {
+    .side01 {
+        position: fixed;
+        bottom: 0;
+        border: none;
+        width: 100%;
+    }
+
+    .side02{
+        justify-content: flex-end;
+        position: static;
+        height: auto;
+        padding: 0;
+    }
+
+    .side05 .side03{
+        display: none;
+    }
+
+    .mobileNavView .side03 {
+        display: block;
+        width: auto;
+    }
+    .mobileNavView .side03 .side06 {
+        font-size: 30px;
+    }
+
+    .mobileNavView .search009 {
+        margin: 0 16px 0 0;
+        width: 100%;
+
+    }
+    .mobileNavView .search010 {
+        margin: 0;
+
+    }
+
+    .side04{
+        display: flex;
+        background-color: white;
+        border-top: 2px solid rgb(240, 240, 240);
+    }
+
+    .side04 > .tab01:nth-of-type(2),
+    .side04 > .tab01:nth-of-type(5){
+        display: none;
+    }
+
+    .side05 {
+        flex-direction: row;
+        align-items: flex-end;
+        height: auto;
+    }
+
+    .side05> div:nth-of-type(3) {
+        display: none;
+    }
+
+    .side06 {
+        display: block;
+    }
+
+    .side07 {
+        display: none;
+    }
 }

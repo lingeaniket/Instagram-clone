@@ -8,6 +8,7 @@ import { socket } from "../../App";
 import { tabArr } from "../ExtraData/extraData";
 
 import "./sidebar.css";
+import Instagram from "../Icons/Instagram/Instagram";
 
 const Sidebar = () => {
     const navigate = useNavigate();
@@ -34,7 +35,7 @@ const Sidebar = () => {
     }, []);
 
     return (
-        <div className="w_15 side01">
+        <div className="side01">
             <div className="side02">
                 <div className="side05">
                     <div
@@ -43,42 +44,25 @@ const Sidebar = () => {
                             navigate("/");
                         }}
                     >
-                        Instagram
+                        <span className="side06">Instagram</span>
+                        <span className="side07">
+                            <Instagram />
+                        </span>
                     </div>
                     <div className="side04">
                         {tabArr.map((tab, i) => {
                             if (tab.title === "profile") {
                                 if (userId) {
-                                    return (
-                                        <Tab
-                                            id={id}
-                                            key={i}
-                                            tab={tab}
-                                            searchOpen={handleCollapse}
-                                            searchRef={searchRef}
-                                        />
-                                    );
+                                    return <Tab id={id} key={i} tab={tab} searchOpen={handleCollapse} searchRef={searchRef} />;
                                 } else {
                                     return <></>;
                                 }
                             }
-                            return (
-                                <Tab
-                                    id={id}
-                                    key={i}
-                                    tab={tab}
-                                    searchOpen={handleCollapse}
-                                    searchRef={searchRef}
-                                />
-                            );
+                            return <Tab id={id} key={i} tab={tab} searchOpen={handleCollapse} searchRef={searchRef} />;
                         })}
                     </div>
                     <div>Options</div>
-                    <SearchComponent
-                        searchDiv={searchDiv}
-                        searchCloseFunc={handleSearch}
-                        searchRef={searchRef}
-                    />
+                    <SearchComponent searchDiv={searchDiv} searchCloseFunc={handleSearch} searchRef={searchRef} />
                 </div>
             </div>
         </div>

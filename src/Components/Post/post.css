@@ -213,3 +213,16 @@
     transform: scale(0);
     vertical-align: baseline;
 }
+
+
+@media screen and (max-width: 768px) {
+    .post001 > div:last-of-type {
+        margin-left: 16px;
+        margin-right: 16px;
+    }
+
+    .post002{
+        margin: 0 16px;
+    }
+    
+}
