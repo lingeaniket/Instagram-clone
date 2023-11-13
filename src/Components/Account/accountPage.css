@@ -1,0 +1,101 @@
+.acc_001 {
+    min-height: 100vh;
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    flex-grow: 1;
+}
+
+.acc_002 {
+    display: flex;
+    flex-direction: column;
+    flex-grow: 1;
+    margin: 0;
+    padding: 0;
+}
+
+.acc_003 {
+    width: 100%;
+    margin-top: 32px;
+    padding-bottom: 32px;
+    display: flex;
+    justify-content: center;
+    flex-grow: 1;
+}
+
+.acc_004 {
+    height: 581.15px;
+    background-image: url("https://static.cdninstagram.com/images/instagram/xig/homepage/phones/home-phones-2x.png?__makehaste_cache_breaker=73SVAexZgBW");
+    margin-bottom: 12px;
+    background-size: 468.32px 634.15px;
+    align-self: center;
+    flex-basis: 380.32px;
+    margin-right: 32px;
+    background-position: -46px 0;
+}
+
+.acc_005 {
+    margin-top: 27px;
+    margin-left: 112px;
+    display: flex;
+    flex-direction: column;
+    align-items: stretch;
+    vertical-align: baseline;
+    position: relative;
+}
+
+.acc_006 {
+    left: 0;
+    width: 250px;
+    height: 538.84px;
+    top: 0;
+    visibility: hidden;
+    position: absolute;
+    transition-duration: 1.5s;
+    transition-timing-function: ease-in;
+    transition-property: opacity;
+}
+
+.acc_007 {
+    display: flex;
+    flex-direction: column;
+    flex-grow: 1;
+    justify-content: center;
+    margin-top: 12px;
+    max-width: 350px;
+}
+
+.acc_008 {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    border: 1px solid rgb(219, 219, 219);
+    border-radius: 1px;
+    margin: 0 0 10px;
+    padding: 10px 0;
+    position: relative;
+    vertical-align: baseline;
+}
+
+.acc_009 {
+    margin-top: 36px;
+    margin-bottom: 12px;
+    display: flex;
+    flex-direction: column;
+}
+
+.acc_010 {
+    height: 50px;
+    width: 174px;
+    background-size: 176px 186px;
+    background-position: 0 0;
+    background-image: url("https://static.cdninstagram.com/rsrc.php/v3/yx/r/WtxJZZ3-9ZP.png");
+    background-repeat: no-repeat;
+    display: inline-block;
+}
+
+.acc_011 {
+    margin-bottom: 10px;
+    max-height: 350px;
+    width: 100%;
+}

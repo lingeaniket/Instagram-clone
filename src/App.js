@@ -4,11 +4,11 @@ import { createBrowserRouter, RouterProvider } from "react-router-dom";
 
 import io from "socket.io-client";
 
-import Home from "./Components/Home/Home";
 import Explore from "./Components/Explore/Explore";
 import Message from "./Components/Message/Message";
 import FullPost from "./Components/Fullpost/FullPost";
 import Timeline from "./Components/Timeline/Timeline";
+import LandingPage from "./Components/LandingPage/LandingPage";
 import UserProfile from "./Components/UserProfile/UserProfile";
 import ChatComponent from "./Components/Message/ChatComponent/ChatComponent";
 import CurrentProfile from "./Components/CurrentProfile/CurrentProfile";
@@ -21,8 +21,12 @@ import "./app.css";
 const router = createBrowserRouter([
     {
         path: "/",
-        element: <Home />,
+        element: <LandingPage />,
         children: [
+            // {
+            //     path: "/",
+            //     element: <LoadingPage/>
+            // },
             {
                 path: "/",
                 element: <Timeline />,
@@ -103,10 +107,13 @@ const router = createBrowserRouter([
             },
         ],
     },
+    {
+        path: "/login",
+    },
 ]);
 
-// export const socket = io("http://localhost:4000");
-export const socket = io("https://instagram-api-aniket.onrender.com/");
+export const socket = io("http://localhost:4000");
+// export const socket = io("https://instagram-api-aniket.onrender.com/");
 
 const App = () => {
     useEffect(() => {

@@ -11,9 +11,11 @@ const Tab = ({ tab, searchOpen, searchRef, id }) => {
     const [userData, setUserData] = useState({});
 
     useEffect(() => {
-        axios.get(`${apiSite}/users/${userId}`).then((response) => {
-            setUserData(response.data);
-        });
+        if (userId) {
+            axios.get(`${apiSite}/users/${userId}`).then((response) => {
+                setUserData(response.data);
+            });
+        }
     }, [userId]);
     return (
         <div
