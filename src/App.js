@@ -23,10 +23,6 @@ const router = createBrowserRouter([
         path: "/",
         element: <LandingPage />,
         children: [
-            // {
-            //     path: "/",
-            //     element: <LoadingPage/>
-            // },
             {
                 path: "/",
                 element: <Timeline />,
@@ -112,8 +108,8 @@ const router = createBrowserRouter([
     },
 ]);
 
-export const socket = io("http://localhost:4000");
-// export const socket = io("https://instagram-api-aniket.onrender.com/");
+// export const socket = io("http://localhost:4000");
+export const socket = io("https://instagram-api-aniket.onrender.com/");
 
 const App = () => {
     useEffect(() => {
