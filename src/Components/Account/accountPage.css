@@ -1,64 +1,135 @@
-.acc_001 {
-    min-height: 100vh;
-    overflow: hidden;
+.acc_01 {
     display: flex;
     flex-direction: column;
+}
+
+.acc_02 {
+    color: rgb(115, 115, 115);
+    font-size: 12px;
+    font-weight: 400;
+    line-height: 16px;
+    max-width: 100%;
+    position: relative;
+}
+
+.acc_06 > .acc_02::before {
+    margin-top: -3px;
+}
+.acc_06 > .acc_02::after {
+    margin-top: -4px;
+}
+
+.acc_02::before {
+    margin-top: -2px;
+    height: 0;
+    display: block;
+    content: "";
+}
+.acc_02::after {
+    margin-bottom: -3px;
+    height: 0;
+    display: block;
+    content: "";
+}
+
+.acc_03 {
+    display: flex;
+    justify-content: center;
+}
+
+.acc_04 {
+    display: flex;
+    align-items: center;
+}
+
+.acc_05 {
+    border: none;
+    border-radius: 8px;
+    display: block;
+    font-weight: 600;
+    width: 100%;
+}
+
+.acc_06 {
+    color: black;
+    font-size: 14px;
+    text-align: center;
+}
+
+.acc_07 {
+    top: 0;
+    left: 0;
+    position: absolute;
+}
+
+.acc_001 {
     flex-grow: 1;
+    min-height: 100vh;
+    overflow: hidden;
 }
 
 .acc_002 {
-    display: flex;
-    flex-direction: column;
     flex-grow: 1;
     margin: 0;
     padding: 0;
 }
 
 .acc_003 {
-    width: 100%;
+    flex-grow: 1;
     margin-top: 32px;
     padding-bottom: 32px;
-    display: flex;
-    justify-content: center;
-    flex-grow: 1;
+    width: 100%;
 }
 
 .acc_004 {
-    height: 581.15px;
-    background-image: url("https://static.cdninstagram.com/images/instagram/xig/homepage/phones/home-phones-2x.png?__makehaste_cache_breaker=73SVAexZgBW");
-    margin-bottom: 12px;
-    background-size: 468.32px 634.15px;
     align-self: center;
-    flex-basis: 380.32px;
-    margin-right: 32px;
+    background-image: url("https://static.cdninstagram.com/images/instagram/xig/homepage/phones/home-phones-2x.png?__makehaste_cache_breaker=73SVAexZgBW");
     background-position: -46px 0;
+    background-size: 468.32px 634.15px;
+    flex-basis: 380.32px;
+    height: 581.15px;
+    margin-bottom: 12px;
+    margin-right: 32px;
 }
 
 .acc_005 {
-    margin-top: 27px;
-    margin-left: 112px;
-    display: flex;
-    flex-direction: column;
     align-items: stretch;
-    vertical-align: baseline;
+    margin-left: 112px;
+    margin-top: 27px;
     position: relative;
+    vertical-align: baseline;
 }
 
 .acc_006 {
-    left: 0;
-    width: 250px;
     height: 538.84px;
-    top: 0;
-    visibility: hidden;
-    position: absolute;
+    width: 250px;
+}
+
+.opacity1 {
+    opacity: 1;
+}
+
+.opacity0 {
+    opacity: 0;
+}
+.acc_anim_in {
     transition-duration: 1.5s;
-    transition-timing-function: ease-in;
     transition-property: opacity;
+    transition-timing-function: ease-in;
+}
+
+.acc_anim_out {
+    transition-duration: 1.5s;
+    transition-property: opacity;
+    transition-timing-function: ease-out;
+}
+
+.acc_vis {
+    visibility: hidden;
+    opacity: 0;
 }
 
 .acc_007 {
-    display: flex;
-    flex-direction: column;
     flex-grow: 1;
     justify-content: center;
     margin-top: 12px;
@@ -66,9 +137,6 @@
 }
 
 .acc_008 {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
     border: 1px solid rgb(219, 219, 219);
     border-radius: 1px;
     margin: 0 0 10px;
@@ -78,24 +146,267 @@
 }
 
 .acc_009 {
-    margin-top: 36px;
     margin-bottom: 12px;
-    display: flex;
-    flex-direction: column;
+    margin-top: 36px;
 }
 
 .acc_010 {
-    height: 50px;
-    width: 174px;
-    background-size: 176px 186px;
-    background-position: 0 0;
     background-image: url("https://static.cdninstagram.com/rsrc.php/v3/yx/r/WtxJZZ3-9ZP.png");
     background-repeat: no-repeat;
+    background-size: 176px 186px;
+    background-position: 0 0;
     display: inline-block;
+    height: 50px;
+    width: 174px;
 }
 
 .acc_011 {
     margin-bottom: 10px;
     max-height: 350px;
     width: 100%;
+}
+
+.acc_013 {
+    margin-top: 24px;
+}
+
+.acc_014 {
+    margin: 0 40px 6px;
+}
+
+.acc_015 {
+    background-color: rgb(250, 250, 250);
+    border: 1px solid rgb(219, 219, 219);
+    border-radius: 3px;
+    font-size: 14px;
+}
+
+.acc_016 {
+    border: 0;
+    flex: 1 0 0px;
+    font-size: 100%;
+    height: 36px;
+    margin: 0;
+    min-width: 0;
+    padding: 0;
+    position: relative;
+    vertical-align: baseline;
+}
+
+.acc_017 {
+    border: 0;
+    color: rgb(115, 115, 115);
+    font-size: 12px;
+    height: 36px;
+    left: 8px;
+    line-height: 36px;
+    margin: 0;
+    overflow: hidden;
+    padding: 0;
+    pointer-events: none;
+    position: absolute;
+    right: 0px;
+    text-overflow: ellipsis;
+    transform-origin: left;
+    transition: transform ease-out 0.1s;
+}
+
+.acc_018 {
+    background-color: rgb(250, 250, 250);
+    border: 0;
+    flex: 1 0 0px;
+    font-size: 16px;
+    padding: 9px 0 7px 8px;
+    outline: none;
+    overflow: hidden;
+}
+
+.acc_019 {
+    font-size: 100%;
+    height: 100%;
+    padding-left: 8px;
+    vertical-align: middle;
+}
+
+.acc_020 {
+    margin: 8px 40px;
+}
+
+.acc_021 {
+    background-color: rgb(0, 149, 246);
+    color: white;
+    padding: 7px 16px;
+}
+
+.acc_022 {
+    align-items: stretch;
+    justify-content: flex-start;
+    line-height: 18px;
+}
+
+.acc_023 {
+    margin: 10px 40px 18px;
+}
+
+.acc_024 {
+    display: flex;
+}
+
+.acc_025 {
+    background-color: rgb(219, 219, 219);
+    flex-grow: 1;
+    flex-shrink: 1;
+    height: 1px;
+    position: relative;
+    top: 0.45em;
+}
+
+.acc_026 {
+    color: rgb(115, 115, 115);
+    font-weight: 600;
+    margin: 0 18px;
+    font-size: 13px;
+    line-height: 1.1538;
+}
+
+.acc_027 {
+    margin: 8px 40px;
+}
+
+.acc_028 {
+    background-color: white;
+    color: rgb(0, 149, 246);
+    padding: 0;
+}
+
+.acc_029 {
+    background-image: url("https://static.cdninstagram.com/rsrc.php/v3/yV/r/6JqvJ6H_bFT.png");
+    background-position: -347px -329px;
+    background-repeat: no-repeat;
+    background-size: 440px 411px;
+    display: inline-block;
+    height: 16px;
+    margin-right: 8px;
+    padding: 0;
+    position: relative;
+    top: 3px;
+    vertical-align: baseline;
+    width: 16px;
+}
+
+.acc_030 {
+    color: #385185;
+}
+
+.acc_031 {
+    display: inline;
+    font-size: 12px;
+    margin-top: 12px;
+    text-align: center;
+}
+
+.acc_032 {
+    color: rgb(0, 55, 107);
+    font-size: 12px;
+    font-weight: 400;
+    line-height: 16px;
+    max-width: 100%;
+}
+
+.acc_033 {
+    border: 1px solid rgb(219, 219, 219);
+    border-radius: 1px;
+    margin: 0 0 10px;
+    padding: 10px 0;
+    position: relative;
+    vertical-align: baseline;
+}
+
+.acc_035 {
+    margin: 15px;
+}
+
+.acc_036 {
+    color: rgb(0, 149, 246);
+    font-weight: 600;
+}
+
+.acc_038 {
+    line-height: 18px;
+    margin: 10px 20px;
+    vertical-align: baseline;
+}
+
+.acc_040 {
+    margin: 10px 0;
+}
+
+.acc_041 {
+    margin-right: 8px;
+}
+
+.acc_042 {
+    padding: 0 16px;
+}
+
+.acc_043 {
+    align-items: stretch;
+    margin-bottom: 52px;
+}
+
+.acc_045 {
+    flex-wrap: wrap;
+}
+
+.acc_046 {
+    margin: 0 8px 12px;
+}
+
+.acc_048 {
+    margin: 12px 0;
+}
+
+.acc_049 {
+    cursor: pointer;
+    display: inline-block;
+    position: relative;
+    vertical-align: top;
+}
+
+.acc_052 {
+    margin-left: 4px;
+}
+
+.acc_053 {
+    display: inline-block;
+    transform: rotate(180deg);
+    line-height: 12px;
+}
+
+.acc_054 {
+    cursor: pointer;
+    height: 100%;
+    opacity: 0;
+    padding: 2px;
+    width: 100%;
+    line-height: 10px;
+    border: none;
+}
+
+.acc_055 {
+    align-items: stretch;
+    justify-content: flex-start;
+    margin-left: 16px;
+}
+
+.acc_056 {
+    overflow: visible;
+}
+
+
+@media screen and (max-width: 768px) {
+    .acc_004 {
+        display: none;
+    }
+    
 }
