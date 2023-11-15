@@ -2,28 +2,30 @@ import React, { useEffect, useState } from "react";
 import Home from "../Home/Home";
 import AccountPage from "../Account/AccountPage";
 import LoadingPage from "../LoadingPage/LoadingPage";
+import { useSelector } from "react-redux";
 
 const LandingPage = () => {
-    const user = JSON.parse(localStorage.getItem("userId"));
+    const isLoggedIn = useSelector((state) => state.authLogin.isLoggedIn);
 
-    const [userId, setUserId] = useState("");
+    const [user, setUser] = useState(false);
     const [loading, setLoading] = useState(true);
 
     useEffect(() => {
-        if (user) {
-            setUserId(user);
+        if (isLoggedIn) {
+            setUser(isLoggedIn);
         }
-    }, [user]);
+    }, [isLoggedIn]);
 
     useEffect(() => {
         setTimeout(() => {
             setLoading(false);
         }, 3000);
     }, []);
+
     if (loading) {
         return <LoadingPage />;
     } else {
-        if (userId) {
+        if (isLoggedIn) {
             return <Home />;
         } else {
             return <AccountPage />;
