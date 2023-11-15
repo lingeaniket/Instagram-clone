@@ -1,18 +1,18 @@
-import React, { memo, useState } from "react";
-import { validate } from "./authFunctions";
 import axios from "axios";
-import { apiSite } from "../../../Website/website";
 import { useDispatch } from "react-redux";
+import React, { memo, useState } from "react";
+
+import { validate } from "./authFunctions";
+import { apiSite } from "../../../Website/website";
 import { handleUserLogin } from "../../../Features/authLogin";
 
 const Login = () => {
+    const dispatch = useDispatch();
+
+    const [error, setError] = useState(false);
     const [username, setUsername] = useState("");
     const [password, setPassword] = useState("");
-    const [error, setError] = useState(false);
-
     const [passReveal, setPassReveal] = useState(false);
-
-    const dispatch = useDispatch();
 
     const handleUsername = (e) => {
         setUsername(e.target.value);
@@ -28,7 +28,6 @@ const Login = () => {
     const handleLogin = async () => {
         setError(false);
         const user = await axios.get(`${apiSite}/users/findUser/${username}`);
-        console.log(user);
         if (user.data) {
             const { id, email } = user.data;
             localStorage.setItem("userId", JSON.stringify(id));
