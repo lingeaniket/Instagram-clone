@@ -1,9 +1,15 @@
 import React, { memo, useState } from "react";
+import { validate } from "./authFunctions";
+import axios from "axios";
+import { apiSite } from "../../../Website/website";
+import { useNavigate } from "react-router-dom";
 
 const Login = () => {
     const [username, setUsername] = useState("");
     const [password, setPassword] = useState("");
     const [passReveal, setPassReveal] = useState(false);
+
+    const navigate = useNavigate();
 
     const handleUsername = (e) => {
         setUsername(e.target.value);
@@ -14,6 +20,17 @@ const Login = () => {
     };
     const handlePassword = (e) => {
         setPassword(e.target.value);
+    };
+
+    const handleLogin = async () => {
+        const user = await axios.get(`${apiSite}/users/findUser/${username}`);
+        const { id } = user.data;
+        localStorage.setItem("userId", JSON.stringify(id));
+        console.log(user);
+        setTimeout(() => {
+            navigate("/");
+        }, 3000);
+        // const valid = await validate(user, password);
     };
 
     return (
@@ -70,7 +87,7 @@ const Login = () => {
                                 </div>
                             </div>
                             <div className="acc_020">
-                                <button className="acc_021 acc_05 acc_06">
+                                <button className="acc_021 acc_05 acc_06" onClick={handleLogin}>
                                     <div className="acc_022 acc_01">Log in</div>
                                 </button>
                             </div>

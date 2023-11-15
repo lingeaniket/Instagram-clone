@@ -4,7 +4,7 @@ import AccountPage from "../Account/AccountPage";
 import LoadingPage from "../LoadingPage/LoadingPage";
 
 const LandingPage = () => {
-    const user = localStorage.getItem("userId");
+    const user = JSON.parse(localStorage.getItem("userId"));
 
     const [userId, setUserId] = useState("");
     const [loading, setLoading] = useState(true);
