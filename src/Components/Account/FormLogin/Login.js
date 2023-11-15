@@ -8,6 +8,8 @@ import { handleUserLogin } from "../../../Features/authLogin";
 const Login = () => {
     const [username, setUsername] = useState("");
     const [password, setPassword] = useState("");
+    const [error, setError] = useState(false);
+
     const [passReveal, setPassReveal] = useState(false);
 
     const dispatch = useDispatch();
@@ -24,17 +26,23 @@ const Login = () => {
     };
 
     const handleLogin = async () => {
+        setError(false);
         const user = await axios.get(`${apiSite}/users/findUser/${username}`);
-        console.log(user.data);
-        const { id, email } = user.data;
-        localStorage.setItem("userId", JSON.stringify(id));
-        dispatch(handleUserLogin());
-        // console.log(user);
-        // setTimeout(() => {
-        //     navigate("/");
-        // }, 3000);
-        const valid = await validate(email, password);
-        console.log(valid);
+        console.log(user);
+        if (user.data) {
+            const { id, email } = user.data;
+            localStorage.setItem("userId", JSON.stringify(id));
+            const valid = await validate(email, password);
+            if (valid) {
+                setTimeout(() => {
+                    dispatch(handleUserLogin());
+                }, 2000);
+            } else {
+                setError(true);
+            }
+        } else {
+            setError(true);
+        }
     };
 
     return (
@@ -91,7 +99,11 @@ const Login = () => {
                                 </div>
                             </div>
                             <div className="acc_020">
-                                <button className="acc_021 acc_05 acc_06" onClick={handleLogin}>
+                                <button
+                                    className={`acc_021 acc_05 acc_06 ${password.length < 6 || username.length < 1 ? "acc_044" : ""}`}
+                                    onClick={handleLogin}
+                                    disabled={password.length < 6 || username.length < 1}
+                                >
                                     <div className="acc_022 acc_01">Log in</div>
                                 </button>
                             </div>
@@ -109,6 +121,13 @@ const Login = () => {
                                 </button>
                             </div>
                         </div>
+                        {error && (
+                            <span>
+                                <div className="acc_error">
+                                    Sorry, your username/password was incorrect. Please double-check your username/password.
+                                </div>
+                            </span>
+                        )}
                         <div className="acc_031">
                             <span className="acc_032">Forgotten your password?</span>
                         </div>

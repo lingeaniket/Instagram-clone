@@ -25,7 +25,7 @@ const LandingPage = () => {
     if (loading) {
         return <LoadingPage />;
     } else {
-        if (isLoggedIn) {
+        if (user) {
             return <Home />;
         } else {
             return <AccountPage />;

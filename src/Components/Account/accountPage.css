@@ -224,7 +224,7 @@
     background-color: rgb(250, 250, 250);
     border: 0;
     flex: 1 0 0px;
-    
+
     outline: none;
     font-weight: 600;
     overflow: hidden;
@@ -392,6 +392,11 @@
     margin-bottom: 52px;
 }
 
+.acc_044 {
+    opacity: 0.7;
+    cursor: default;
+}
+
 .acc_045 {
     flex-wrap: wrap;
 }
@@ -443,6 +448,15 @@
 
 .acc_trf {
     transform: scale(calc(10 / 12)) translateY(-10px);
+}
+
+.acc_error {
+    margin: 10px 40px;
+    color: rgb(237, 73, 86);
+    font-size: 14px;
+    line-height: 18px;
+    text-align: center;
+    font-weight: 400;
 }
 
 @media screen and (max-width: 768px) {
