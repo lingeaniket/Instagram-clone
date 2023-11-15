@@ -1,6 +1,21 @@
-import React, { memo } from "react";
+import React, { memo, useState } from "react";
 
 const Login = () => {
+    const [username, setUsername] = useState("");
+    const [password, setPassword] = useState("");
+    const [passReveal, setPassReveal] = useState(false);
+
+    const handleUsername = (e) => {
+        setUsername(e.target.value);
+    };
+
+    const handlePassReveal = () => {
+        setPassReveal((prev) => !prev);
+    };
+    const handlePassword = (e) => {
+        setPassword(e.target.value);
+    };
+
     return (
         <div className="acc_007 acc_01">
             <div className="acc_008 acc_01 acc_04">
@@ -15,8 +30,17 @@ const Login = () => {
                             <div className="acc_014">
                                 <div className="acc_015 acc_04">
                                     <label htmlFor="" className="acc_016 acc_024">
-                                        <span className="acc_017">Phone number, username or email address</span>
-                                        <input type="text" className="acc_018" required maxLength={75} />
+                                        <span className={`acc_017 ${username ? "acc_trf" : ""}`}>
+                                            Phone number, username or email address
+                                        </span>
+                                        <input
+                                            type="text"
+                                            className={`acc_018 ${username ? "acc_012" : "acc_039"}`}
+                                            value={username}
+                                            required
+                                            maxLength={75}
+                                            onChange={handleUsername}
+                                        />
                                     </label>
                                     <div className="acc_019 acc_04"></div>
                                 </div>
@@ -24,10 +48,25 @@ const Login = () => {
                             <div className="acc_014">
                                 <div className="acc_015 acc_04">
                                     <label htmlFor="" className="acc_016 acc_024">
-                                        <span className="acc_017">Password</span>
-                                        <input type="password" required className="acc_018" maxLength={75} />
+                                        <span className={`acc_017 ${password ? "acc_trf" : ""}`}>Password</span>
+                                        <input
+                                            type={passReveal ? "text" : "password"}
+                                            required
+                                            className={`acc_018 ${password ? "acc_012" : "acc_039"}`}
+                                            value={password}
+                                            maxLength={75}
+                                            onChange={handlePassword}
+                                        />
                                     </label>
-                                    <div className="acc_019"></div>
+                                    <div className="acc_019">
+                                        {password && (
+                                            <div className="acc_034">
+                                                <button onClick={handlePassReveal} className="acc_037">
+                                                    {passReveal ? "Hide" : "Show"}
+                                                </button>
+                                            </div>
+                                        )}
+                                    </div>
                                 </div>
                             </div>
                             <div className="acc_020">
@@ -64,9 +103,15 @@ const Login = () => {
             </div>
             <div className="acc_01">
                 <div className="acc_038 acc_06">
-                    <span className="acc_02" style={{
-                        fontSize: '14px', color: 'black'
-                    }}>Get the app.</span>
+                    <span
+                        className="acc_02"
+                        style={{
+                            fontSize: "14px",
+                            color: "black",
+                        }}
+                    >
+                        Get the app.
+                    </span>
                 </div>
                 <div className="acc_040 acc_03">
                     <div className="acc_041">
