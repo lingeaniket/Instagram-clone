@@ -25,18 +25,7 @@ const RoundedSkeleton = () => {
     );
 };
 
-const PostFooter = ({
-    setLiked,
-    liked,
-    setLikes,
-    postId,
-    userData,
-    likes,
-    post,
-    setReload,
-    likeref,
-    loading,
-}) => {
+const PostFooter = ({ setLiked, liked, setLikes, postId, userData, likes, post, setReload, likeref, loading }) => {
     const dispatch = useDispatch();
 
     const navigate = useNavigate();
@@ -74,15 +63,10 @@ const PostFooter = ({
                     <div className="post011 post019" onClick={postHandle}>
                         {loading ? <RoundedSkeleton /> : <CommentIcon />}
                     </div>
-                    <div className="post011 post019">
-                        {loading ? <RoundedSkeleton /> : <Share />}
-                    </div>
+                    <div className="post011 post019">{loading ? <RoundedSkeleton /> : <Share />}</div>
                 </div>
                 <div>
-                    <div
-                        className={`post011 post018 ${!saved ? "post019" : ""}`}
-                        onClick={handleSaved}
-                    >
+                    <div className={`post011 post018 ${!saved ? "post019" : ""}`} onClick={handleSaved}>
                         {loading ? <RoundedSkeleton /> : <Save saved={saved} />}
                     </div>
                 </div>
@@ -124,7 +108,7 @@ const PostFooter = ({
                 }}
             >
                 {post?.comments?.slice(-2).map((comment) => (
-                    <Comment comment={comment} post={post} id={userData.id} />
+                    <Comment key={comment.id} comment={comment} post={post} id={userData.id} />
                 ))}
             </div>
             <div className="post016" onClick={handlePost}>
@@ -142,13 +126,7 @@ const PostFooter = ({
                 )}
             </div>
             <div className="post014">
-                <input
-                    className="post017"
-                    placeholder="Add a comment..."
-                    value={comment}
-                    onChange={handleComment}
-                    onKeyDown={commentAdd}
-                />
+                <input className="post017" placeholder="Add a comment..." value={comment} onChange={handleComment} onKeyDown={commentAdd} />
             </div>
         </div>
     );

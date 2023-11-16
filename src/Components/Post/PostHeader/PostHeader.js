@@ -1,19 +1,26 @@
 import { useNavigate } from "react-router-dom";
-import React, { useEffect, memo } from "react";
+import React, { useEffect, memo, useState } from "react";
 
 import Options from "../../Icons/Options/Options";
 
 import { Skeleton } from "@mui/material";
 import RoundedImage from "../../RoundedImage/RoundedImage";
 
-const PostHeader = ({ userData, loading }) => {
+const PostHeader = ({ userData }) => {
     const navigate = useNavigate();
+    const [loading, setLoading] = useState(true);
 
     const handleNavigate = () => {
         navigate(`/p/${userData.id}`);
     };
 
-    useEffect(() => {}, [userData]);
+    useEffect(() => {
+        if (userData.id) {
+            setTimeout(() => {
+                setLoading(false);
+            }, 1000);
+        }
+    }, [userData]);
 
     return (
         <div className="post002">

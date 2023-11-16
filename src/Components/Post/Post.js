@@ -86,19 +86,28 @@ const Post = ({ postId, id }) => {
                     cursor: "pointer",
                 }}
             >
-                <LazyLoadImage
-                    onDoubleClick={handleImgLike}
-                    style={{
-                        objectFit: "cover",
-                        aspectRatio: "1/1",
-                        verticalAlign: "middle",
-                    }}
-                    alt=""
-                    // height={'auto'}
-                    effect="blur"
-                    src={`https://picsum.photos/id/${post.id}/500/500`}
-                    width={"100%"}
-                />
+                {loading ? (
+                    <div
+                        style={{
+                            width: "100%",
+                            aspectRatio: "1/1",
+                        }}
+                    ></div>
+                ) : (
+                    <LazyLoadImage
+                        onDoubleClick={handleImgLike}
+                        style={{
+                            objectFit: "cover",
+                            aspectRatio: "1/1",
+                            verticalAlign: "middle",
+                        }}
+                        alt=""
+                        // height={'auto'}
+                        effect="blur"
+                        src={`https://picsum.photos/id/${post.id}/500/500`}
+                        width={"100%"}
+                    />
+                )}
                 <div className="heartIconDiv">
                     <div ref={imagelikeref} className="heart_icon">
                         <ImageLike />

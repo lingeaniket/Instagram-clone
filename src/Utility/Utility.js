@@ -20,7 +20,6 @@ export const validateUser = async (username, password) => {
             valid = true;
         })
         .catch((error) => {
-            // Navigate('/cart')
             valid = false;
         });
     return valid;

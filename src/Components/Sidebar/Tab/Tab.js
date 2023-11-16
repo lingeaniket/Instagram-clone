@@ -1,12 +1,15 @@
 import axios from "axios";
-import { apiSite } from "../../../Website/website";
+import { useEffect, useState, memo } from "react";
 import { useNavigate } from "react-router-dom";
-import "./tab.css";
-import { useEffect, useState } from "react";
+
+import { apiSite } from "../../../Website/website";
 import RoundedImage from "../../RoundedImage/RoundedImage";
+
+import "./tab.css";
 
 const Tab = ({ tab, searchOpen, searchRef, id }) => {
     const navigate = useNavigate();
+
     const userId = JSON.parse(localStorage.getItem("userId"));
     const [userData, setUserData] = useState({});
 
@@ -17,6 +20,7 @@ const Tab = ({ tab, searchOpen, searchRef, id }) => {
             });
         }
     }, [userId]);
+
     return (
         <div
             ref={tab.title === "search" ? searchRef : null}
@@ -32,17 +36,7 @@ const Tab = ({ tab, searchOpen, searchRef, id }) => {
             {/* {tab.title === "messages" && <div>{id}</div>} */}
             <div className="tab02">
                 {tab.title === "profile" ? (
-                    <div
-                        style={{
-                            height: "28px",
-                            width: "28px",
-                            display: "flex",
-                            justifyContent: "center",
-                            alignItems: "center",
-                            overflow: "hidden",
-                            borderRadius: "50%",
-                        }}
-                    >
+                    <div className="tab04">
                         <RoundedImage url={userData.avatar} />
                     </div>
                 ) : (
@@ -54,4 +48,4 @@ const Tab = ({ tab, searchOpen, searchRef, id }) => {
     );
 };
 
-export default Tab;
+export default memo(Tab);

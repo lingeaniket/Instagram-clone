@@ -19,7 +19,7 @@ const TimelineIn = () => {
     return (
         <div className="timelineIn02">
             {data.map((post) => (
-                <Post post={post} postId={post.id} id={1} />
+                <Post key={post.id} post={post} postId={post.id} id={1} />
             ))}
         </div>
     );

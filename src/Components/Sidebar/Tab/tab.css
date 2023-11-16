@@ -29,8 +29,18 @@
     align-items: center;
 }
 
+.tab04 {
+    height: 28px;
+    width: 28px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    overflow: hidden;
+    border-radius: 50%;
+}
+
 @media screen and (max-width: 1024px) {
-    .tab03{
+    .tab03 {
         display: none;
     }
 }
@@ -40,7 +50,7 @@
         justify-content: center;
     }
 
-    .tab02{
+    .tab02 {
         justify-content: center;
     }
 }

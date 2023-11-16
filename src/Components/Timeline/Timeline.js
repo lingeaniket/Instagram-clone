@@ -1,4 +1,4 @@
-import { memo } from "react";
+import { Fragment, memo } from "react";
 import { Outlet, useNavigate } from "react-router-dom";
 
 import Stories from "../Stories/Stories";
@@ -35,8 +35,8 @@ const Timeline = () => {
                     <MobileSearchComponent />
                     {tabArr
                         .filter((tab) => tab.title === "notifications")
-                        .map((item) => (
-                            <>{item.icon}</>
+                        .map((item, index) => (
+                            <Fragment key={index}>{item.icon}</Fragment>
                         ))}
                 </div>
                 {/* <Instagram/> */}

@@ -2,6 +2,8 @@ import { createUser, validateUser } from "../../../Utility/Utility";
 
 export const validate = async (email, pass) => {
     const valid = await validateUser(email, pass);
+    // console.log(email, pass)
+    // console.log(valid)
     if (valid) {
         return true;
     } else {
