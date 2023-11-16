@@ -30,11 +30,7 @@ const Recents = ({ handleSearchHistory, handleUserClick, recents }) => {
             </div>
             <ul className="recents005">
                 {searchHistory.map((result) => (
-                    <ResultComponent
-                        result={result}
-                        handleSearchHistory={handleSearchHistory}
-                        handleUserClick={handleUserClick}
-                    />
+                    <ResultComponent result={result} handleSearchHistory={handleSearchHistory} handleUserClick={handleUserClick} />
                 ))}
             </ul>
         </div>
