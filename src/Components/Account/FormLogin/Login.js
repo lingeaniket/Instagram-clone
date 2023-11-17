@@ -5,9 +5,12 @@ import React, { memo, useState } from "react";
 import { validate } from "./authFunctions";
 import { apiSite } from "../../../Website/website";
 import { handleUserLogin } from "../../../Features/authLogin";
+import Loader from "../../Icons/Loader/Loader";
 
 const Login = () => {
     const dispatch = useDispatch();
+
+    const [loading, setLoading] = useState(false);
 
     const [error, setError] = useState(false);
     const [username, setUsername] = useState("");
@@ -27,6 +30,7 @@ const Login = () => {
 
     const handleLogin = async () => {
         setError(false);
+        setLoading(true);
         const user = await axios.get(`${apiSite}/users/findUser/${username}`);
         if (user.data) {
             const { id, email } = user.data;
@@ -35,11 +39,14 @@ const Login = () => {
             if (valid) {
                 setTimeout(() => {
                     dispatch(handleUserLogin());
+                    setLoading(false);
                 }, 2000);
             } else {
+                setLoading(false);
                 setError(true);
             }
         } else {
+            setLoading(false);
             setError(true);
         }
     };
@@ -103,7 +110,29 @@ const Login = () => {
                                     onClick={handleLogin}
                                     disabled={password.length < 6 || username.length < 1}
                                 >
-                                    <div className="acc_022 acc_01">Log in</div>
+                                    <div className="acc_022 acc_01">
+                                        <div
+                                            style={{
+                                                display: "flex",
+                                                justifyContent: "center",
+                                                alignItems: "center",
+                                            }}
+                                        >
+                                            {loading ? (
+                                                <div
+                                                    style={{
+                                                        height: "18px",
+                                                        width: "18px",
+                                                        margin: "0 10px",
+                                                    }}
+                                                >
+                                                    <Loader fill="white" />
+                                                </div>
+                                            ) : (
+                                                <div>Log in</div>
+                                            )}
+                                        </div>
+                                    </div>
                                 </button>
                             </div>
                             <div className="acc_023">

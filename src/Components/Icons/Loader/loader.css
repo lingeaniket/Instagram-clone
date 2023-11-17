@@ -5,9 +5,6 @@
   animation-name: loader;
 }
 
-.loaderFill {
-fill: rgb(85,85,85);
-}
 
 @keyframes loader {
   0% {
