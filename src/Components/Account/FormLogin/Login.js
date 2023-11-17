@@ -10,9 +10,8 @@ import Loader from "../../Icons/Loader/Loader";
 const Login = () => {
     const dispatch = useDispatch();
 
-    const [loading, setLoading] = useState(false);
-
     const [error, setError] = useState(false);
+    const [loading, setLoading] = useState(false);
     const [username, setUsername] = useState("");
     const [password, setPassword] = useState("");
     const [passReveal, setPassReveal] = useState(false);
