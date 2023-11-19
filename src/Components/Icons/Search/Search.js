@@ -4,13 +4,12 @@ const Search = () => {
     return (
         <svg
             aria-label="Search"
-            class="x1lliihq x1n2onr6"
-            color="rgb(142, 142, 142)"
-            fill="rgb(142, 142, 142)"
-            height="16"
+            class="x1lliihq x1n2onr6 x5n08af"
+            fill="currentColor"
+            height="24"
             role="img"
             viewBox="0 0 24 24"
-            width="16"
+            width="24"
         >
             <title>Search</title>
             <path
