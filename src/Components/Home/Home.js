@@ -5,7 +5,14 @@ const Home = () => {
     return (
         <div className="grid01">
             <Sidebar />
-            <Outlet />
+            <div
+                style={{
+                    marginLeft: "244px",
+                    width: '100%'
+                }}
+            >
+                <Outlet />
+            </div>
         </div>
     );
 };
