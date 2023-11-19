@@ -2,22 +2,14 @@ import React from "react";
 
 const MoreSettings = () => {
     return (
-        <svg
-            aria-label="Settings"
-            class="x1lliihq x1n2onr6 x5n08af"
-            fill="currentColor"
-            height="24"
-            role="img"
-            viewBox="0 0 24 24"
-            width="24"
-        >
+        <svg aria-label="Settings" fill="currentColor" height="24" role="img" viewBox="0 0 24 24" width="24">
             <title>Settings</title>
             <line
                 fill="none"
                 stroke="currentColor"
-                stroke-linecap="round"
-                stroke-linejoin="round"
-                stroke-width="2"
+                strokeLinecap="round"
+                strokeLinejoin="round"
+                strokeWidth="2"
                 x1="3"
                 x2="21"
                 y1="4"
@@ -26,9 +18,9 @@ const MoreSettings = () => {
             <line
                 fill="none"
                 stroke="currentColor"
-                stroke-linecap="round"
-                stroke-linejoin="round"
-                stroke-width="2"
+                strokeLinecap="round"
+                strokeLinejoin="round"
+                strokeWidth="2"
                 x1="3"
                 x2="21"
                 y1="12"
@@ -37,9 +29,9 @@ const MoreSettings = () => {
             <line
                 fill="none"
                 stroke="currentColor"
-                stroke-linecap="round"
-                stroke-linejoin="round"
-                stroke-width="2"
+                strokeLinecap="round"
+                strokeLinejoin="round"
+                strokeWidth="2"
                 x1="3"
                 x2="21"
                 y1="20"
