@@ -4,7 +4,6 @@ const Notifications = () => {
     return (
         <svg
             aria-label="Notifications"
-            class="x1lliihq x1n2onr6 x5n08af"
             fill="currentColor"
             height="24"
             role="img"
