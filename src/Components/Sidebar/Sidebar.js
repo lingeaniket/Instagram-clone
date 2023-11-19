@@ -9,6 +9,8 @@ import { tabArr } from "../ExtraData/extraData";
 
 import "./sidebar.css";
 import Instagram from "../Icons/Instagram/Instagram";
+import InstagramTitle from "../Icons/InstagramTitle/InstagramTitle";
+import MoreSettings from "../Icons/MoreSettings/MoreSettings";
 
 const Sidebar = () => {
     const navigate = useNavigate();
@@ -44,10 +46,16 @@ const Sidebar = () => {
                             navigate("/");
                         }}
                     >
-                        <span className="side06">Instagram</span>
-                        <span className="side07">
-                            <Instagram />
-                        </span>
+                        <div className="side08">
+                            <div className="side09">
+                                <span className="side06">
+                                    <InstagramTitle />
+                                </span>
+                                <span className="side07">
+                                    <Instagram />
+                                </span>
+                            </div>
+                        </div>
                     </div>
                     <div className="side04">
                         {tabArr.map((tab, i) => {
@@ -61,7 +69,15 @@ const Sidebar = () => {
                             return <Tab id={id} key={i} tab={tab} searchOpen={handleCollapse} searchRef={searchRef} />;
                         })}
                     </div>
-                    <div>Options</div>
+                    <div>
+                        <Tab
+                            tab={{
+                                title: "More",
+                                icon: <MoreSettings/>,
+                            }}
+                            searchRef={searchRef}
+                        />
+                    </div>
                     <SearchComponent searchDiv={searchDiv} searchCloseFunc={handleSearch} searchRef={searchRef} />
                 </div>
             </div>
