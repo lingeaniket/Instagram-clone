@@ -1,9 +1,10 @@
 .tab01 {
-    height: 50px;
     cursor: pointer;
     display: flex;
-    margin: 5px 0;
-    padding: 0 5px;
+    align-items: center;
+    height: 56px;
+    /* margin: 5px 0; */
+    padding: 12px;
     width: 100%;
 }
 
@@ -18,13 +19,17 @@
 }
 
 .tab02 {
-    width: 35px;
     display: flex;
     align-items: center;
+    justify-content: center;
 }
 
 .tab03 {
     text-transform: capitalize;
+    padding-left: 16px;
+    height: 24px;
+    font-size: 16px;
+    font-weight: 400;
     display: flex;
     align-items: center;
 }
@@ -39,16 +44,17 @@
     border-radius: 50%;
 }
 
+
 @media screen and (max-width: 1024px) {
     .tab03 {
         display: none;
     }
-}
-
-@media screen and (max-width: 768px) {
     .tab01 {
         justify-content: center;
     }
+}
+
+@media screen and (max-width: 768px) {
 
     .tab02 {
         justify-content: center;

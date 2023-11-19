@@ -1,11 +1,11 @@
 .rsb001 {
-    width: 319px;
     padding-left: 64px;
     height: 100vh;
 }
 
 .rsb002 {
-    margin-top: 36px;
+    width: 319px;
+    margin-top: 28px;
     display: flex;
     flex-direction: column;
 }
