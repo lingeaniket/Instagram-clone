@@ -1,15 +1,8 @@
-import HomeIcon from "@mui/icons-material/Home";
 import Home from "../Icons/Home/Home";
-import ExploreOutlinedIcon from "@mui/icons-material/ExploreOutlined";
-import FavoriteBorderOutlinedIcon from "@mui/icons-material/FavoriteBorderOutlined";
 import Create from "../Icons/Create/Create";
 import Search from "../Icons/Search/Search";
 import Notifications from "../Icons/Notifications/Notifications";
 import Explore from "../Icons/Explore/Explore";
-
-const tabStyle = {
-    fontSize: 28,
-};
 
 export const tabArr = [
     {
