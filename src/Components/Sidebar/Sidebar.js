@@ -11,7 +11,7 @@ import "./sidebar.css";
 import Instagram from "../Icons/Instagram/Instagram";
 import InstagramTitle from "../Icons/InstagramTitle/InstagramTitle";
 import MoreSettings from "../Icons/MoreSettings/MoreSettings";
-import NewPost from "../NewPost/NewPost";
+// import NewPost from "../NewPost/NewPost";
 
 const Sidebar = () => {
     const navigate = useNavigate();
