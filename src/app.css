@@ -35,6 +35,11 @@ body {
     display: flex;
 }
 
+.span01 {
+    margin-left: 244px;
+    width: 100%;
+}
+
 .w_15 {
     width: 15%;
 }
@@ -51,8 +56,18 @@ body {
     width: 100%;
 }
 
+@media screen and (max-width: 1024px) {
+
+    .span01 {
+        margin-left: 72px;
+    }
+    
+}
 
 @media screen and (max-width: 768px) {
+    .span01 {
+        margin-left: 0;
+    }
     .grid01 {
         display: block;
         position: relative;

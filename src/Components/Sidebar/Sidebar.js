@@ -81,7 +81,7 @@ const Sidebar = () => {
                     </div>
                     <SearchComponent searchDiv={searchDiv} searchCloseFunc={handleSearch} searchRef={searchRef} />
                     <div>
-                        <NewPost />
+                        {/* <NewPost /> */}
                     </div>
                 </div>
             </div>

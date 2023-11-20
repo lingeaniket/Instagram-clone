@@ -5,12 +5,7 @@ const Home = () => {
     return (
         <div className="grid01">
             <Sidebar />
-            <div
-                style={{
-                    marginLeft: "244px",
-                    width: '100%'
-                }}
-            >
+            <div className="span01">
                 <Outlet />
             </div>
         </div>

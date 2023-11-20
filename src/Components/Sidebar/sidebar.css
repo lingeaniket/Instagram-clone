@@ -65,7 +65,9 @@
         display: none;
     }
 
-    
+    .side02{
+        width: 72px;
+    }
 
     .side07 {
         display: block;
@@ -85,6 +87,7 @@
         position: static;
         height: auto;
         padding: 0;
+        width: 100%;
     }
 
     .side05 .side03 {
@@ -95,6 +98,7 @@
         display: block;
         width: auto;
         min-width: 0;
+        height: auto;
         padding: 0;
     }
     .mobileNavView .side03 .side06 {
