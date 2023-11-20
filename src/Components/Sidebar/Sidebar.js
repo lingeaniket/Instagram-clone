@@ -11,6 +11,7 @@ import "./sidebar.css";
 import Instagram from "../Icons/Instagram/Instagram";
 import InstagramTitle from "../Icons/InstagramTitle/InstagramTitle";
 import MoreSettings from "../Icons/MoreSettings/MoreSettings";
+import NewPost from "../NewPost/NewPost";
 
 const Sidebar = () => {
     const navigate = useNavigate();
@@ -69,16 +70,19 @@ const Sidebar = () => {
                             return <Tab id={id} key={i} tab={tab} searchOpen={handleCollapse} searchRef={searchRef} />;
                         })}
                     </div>
-                    <div>
+                    <div className="w_100">
                         <Tab
                             tab={{
                                 title: "More",
-                                icon: <MoreSettings/>,
+                                icon: <MoreSettings />,
                             }}
                             searchRef={searchRef}
                         />
                     </div>
                     <SearchComponent searchDiv={searchDiv} searchCloseFunc={handleSearch} searchRef={searchRef} />
+                    <div>
+                        <NewPost />
+                    </div>
                 </div>
             </div>
         </div>
