@@ -35,7 +35,7 @@ const Create = () => {
                 stroke="currentColor"
                 strokeLinecap="round"
                 strokeLinejoin="round"
-                strokeLidth="2"
+                strokeWidth="2"
                 x1="12.003"
                 x2="12.003"
                 y1="6.545"

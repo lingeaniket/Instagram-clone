@@ -6,12 +6,12 @@ import { useSearchParams, useNavigate } from "react-router-dom";
 import { apiSite } from "../../Website/website";
 import { handleImagePostLiked, handlePostLiked } from "./functions";
 
-import Close from "../Icons/Close/Close";
 import Navigation from "./Navigation/Navigation";
 import ImageComponent from "./LeftComponent/ImageComponent/ImageComponent";
 import PostDetailComponent from "./RightComponent/PostDetailComponent";
 
 import "./fullPost.css";
+import Modal from "../Modal/Modal";
 
 const FullPost = () => {
     const [searchParams, setSearchParams] = useSearchParams();
@@ -25,11 +25,11 @@ const FullPost = () => {
 
     const navigate = useNavigate();
 
+    const likeref = useRef(null);
     const imageRef = useRef();
     const detailRef = useRef();
     const prevBtnRef = useRef();
     const nextBtnRef = useRef();
-    const likeref = useRef(null);
     const imagelikeref = useRef(null);
 
     const [post, setPost] = useState({});
@@ -93,68 +93,50 @@ const FullPost = () => {
     }, [postUser, postId, reload, userId, fullPostData, fullPostMode]);
 
     return (
-        <div className="fullPost001">
-            <div className="fullPost002">
-                <div className="fullPost003" onClick={handleModalClose}>
-                    <div className="fullPost004"></div>
-                    <div className="fullPost005">
-                        <div className="fullPost006 fullPost016">
-                            <Close color="white" size="18" title="close" />
-                        </div>
-                    </div>
-                    <div className="fullPost007">
+        <Modal handleModalClose={handleModalClose}>
+            <div
+                className="fullPost008 fullPost042"
+                style={{
+                    width: "100%",
+                }}
+            >
+                <div className="fullPost009">
+                    <div className="fullPost010 fullPost063 fullPost016">
                         <div
-                            className="fullPost008 fullPost042"
+                            className="fullPost011"
                             style={{
-                                width: "100%",
+                                justifyContent: "center",
                             }}
                         >
-                            <div className="fullPost009">
-                                <div className="fullPost010 fullPost063 fullPost016">
-                                    <div
-                                        className="fullPost011"
-                                        style={{
-                                            justifyContent: "center",
-                                        }}
-                                    >
-                                        <Navigation
-                                            postIndex={postIndex}
-                                            handlePrev={handlePrev}
-                                            prevBtnRef={prevBtnRef}
-                                            handleNext={handleNext}
-                                            nextBtnRef={nextBtnRef}
-                                        />
-                                        <div
-                                            className="fullPost019"
-                                            style={{
-                                                alignItems: "stretch",
-                                            }}
-                                        >
-                                            <div className="fullPost020 fullPost042">
-                                                <div className="fullPost082">
-                                                    <div className="fullPost083">
-                                                        <div className="fullPost021">
-                                                            <div className="fullPost022 fullPost024 fullPost042" ref={imageRef}>
-                                                                <ImageComponent
-                                                                    handleImageLiked={handleImageLiked}
-                                                                    imagelikeref={imagelikeref}
-                                                                />
-                                                            </div>
+                            <Navigation
+                                postIndex={postIndex}
+                                handlePrev={handlePrev}
+                                prevBtnRef={prevBtnRef}
+                                handleNext={handleNext}
+                                nextBtnRef={nextBtnRef}
+                            />
+                            <div
+                                className="fullPost019"
+                                style={{
+                                    alignItems: "stretch",
+                                }}
+                            >
+                                <div className="fullPost020 fullPost042">
+                                    <div className="fullPost082">
+                                        <div className="fullPost083">
+                                            <div className="fullPost021">
+                                                <div className="fullPost022 fullPost024 fullPost042" ref={imageRef}>
+                                                    <ImageComponent handleImageLiked={handleImageLiked} imagelikeref={imagelikeref} />
+                                                </div>
 
-                                                            <div
-                                                                className="fullPost028 fullPost062 fullPost024 fullPost042"
-                                                                ref={detailRef}
-                                                            >
-                                                                <PostDetailComponent
-                                                                    post={post}
-                                                                    setReload={setReload}
-                                                                    handleLiked={handleLiked}
-                                                                    likeref={likeref}
-                                                                    liked={liked}
-                                                                />
-                                                            </div>
-                                                        </div>
-                                                    </div>
+                                                <div className="fullPost028 fullPost062 fullPost024 fullPost042" ref={detailRef}>
+                                                    <PostDetailComponent
+                                                        post={post}
+                                                        setReload={setReload}
+                                                        handleLiked={handleLiked}
+                                                        likeref={likeref}
+                                                        liked={liked}
+                                                    />
                                                 </div>
                                             </div>
                                         </div>
@@ -165,7 +147,7 @@ const FullPost = () => {
                     </div>
                 </div>
             </div>
-        </div>
+        </Modal>
     );
 };
 

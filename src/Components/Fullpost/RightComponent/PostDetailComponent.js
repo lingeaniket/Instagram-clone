@@ -1,15 +1,14 @@
-import React, { useState, memo, useCallback } from "react";
 import { useSearchParams } from "react-router-dom";
+import React, { useState, memo, useCallback } from "react";
 
+import ActionDiv from "./ActionDiv/ActionDiv";
 import CommentsComponent from "./Comments/CommentsComponent";
+import PostDetailsHeader from "./PostDetailsHeader/PostDetailsHeader";
 
 import { Skeleton } from "@mui/material";
-import PostDetailsHeader from "./PostDetailsHeader/PostDetailsHeader";
-import ActionDiv from "./ActionDiv/ActionDiv";
 
 const PostDetailComponent = ({ likeref, liked, handleLiked, post }) => {
     const [searchParams] = useSearchParams();
-    console.log(post)
     const postId = Number(searchParams.get("postId"));
 
     const [loading, setLoading] = useState(true);
