@@ -1,5 +1,5 @@
 import { useNavigate } from "react-router-dom";
-import { useEffect, useRef, useState } from "react";
+import { Fragment, useEffect, useRef, useState } from "react";
 
 import Tab from "./Tab/Tab";
 import SearchComponent from "./SearchComponent/SearchComponent";
@@ -11,7 +11,7 @@ import "./sidebar.css";
 import Instagram from "../Icons/Instagram/Instagram";
 import InstagramTitle from "../Icons/InstagramTitle/InstagramTitle";
 import MoreSettings from "../Icons/MoreSettings/MoreSettings";
-// import NewPost from "../NewPost/NewPost";
+import NewPost from "../NewPost/NewPost";
 
 const Sidebar = () => {
     const navigate = useNavigate();
@@ -20,6 +20,7 @@ const Sidebar = () => {
 
     const [id, setId] = useState(0);
     const [searchDiv, setSearchDiv] = useState(false);
+    const [createOpen, setCreateOpen] = useState(false);
 
     const searchRef = useRef(null);
 
@@ -29,6 +30,15 @@ const Sidebar = () => {
 
     const handleCollapse = () => {
         setSearchDiv((prev) => !prev);
+    };
+
+    const handleCreate = () => {
+        if (createOpen) {
+            document.body.style.overflow = "auto";
+        } else {
+            document.body.style.overflow = "hidden";
+        }
+        setCreateOpen((prev) => !prev);
     };
 
     useEffect(() => {
@@ -66,6 +76,12 @@ const Sidebar = () => {
                                 } else {
                                     return <></>;
                                 }
+                            } else if (tab.title === "create") {
+                                return (
+                                    <span onClick={handleCreate}>
+                                        <Tab tab={tab} searchOpen={handleCollapse} searchRef={searchRef} />
+                                    </span>
+                                );
                             }
                             return <Tab id={id} key={i} tab={tab} searchOpen={handleCollapse} searchRef={searchRef} />;
                         })}
@@ -80,9 +96,7 @@ const Sidebar = () => {
                         />
                     </div>
                     <SearchComponent searchDiv={searchDiv} searchCloseFunc={handleSearch} searchRef={searchRef} />
-                    <div>
-                        {/* <NewPost /> */}
-                    </div>
+                    {createOpen && <NewPost />}
                 </div>
             </div>
         </div>
