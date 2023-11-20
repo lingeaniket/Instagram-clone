@@ -1,0 +1,142 @@
+.new_post001 {
+    display: flex;
+    justify-content: center;
+    align-items: stretch;
+    flex-grow: 1;
+    flex-direction: column;
+}
+
+.new_post002 {
+    min-width: 0;
+    min-height: 0;
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+}
+
+.new_post003 {
+    overflow: hidden;
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    align-items: center;
+}
+
+.new_post004 {
+    margin: 20px;
+    max-height: calc(100% - 40px);
+}
+
+.new_post005 {
+    border-radius: 12px;
+    background-color: white;
+}
+
+.new_post006 {
+    max-height: 898px;
+    min-height: 391px;
+    max-width: 855px;
+    min-width: 348px;
+    width: 535px;
+}
+
+.new_post007 {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: stretch;
+    overflow: hidden;
+    min-height: 0;
+    min-width: 0;
+}
+
+.new_post008 {
+    height: 44px;
+    display: flex;
+    justify-content: space-between;
+    padding: 0 16px;
+    align-items: center;
+    border-bottom: 1px solid rgb(219, 219, 219);
+}
+
+.new_post009 {
+    font-size: 16px;
+    font-weight: 600;
+    line-height: 24px;
+    text-align: center;
+    margin: 0;
+    padding: 0;
+}
+
+.new_post010 {
+    width: 535px;
+    min-height: calc(391px - 44px);
+    height: calc(100vmin - 229px);
+    min-width: calc(391px - 44px);
+    max-width: min(calc(100vw - 308px), 854px);
+}
+
+.new_post011 {
+    height: 100%;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.new_post012 {
+    height: 100%;
+    width: 100%;
+    padding: 24px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+}
+
+.new_post013 {
+    display: flex;
+    justify-content: center;
+    margin-top: 16px;
+    font-size: 20px;
+    font-weight: 400;
+    line-height: 25px;
+}
+
+.new_post013::before {
+    margin-top: -4px;
+    height: 0;
+    display: block;
+    content: "";
+}
+.new_post013::after {
+    margin-bottom: -6px;
+    height: 0;
+    display: block;
+    content: "";
+}
+
+.new_post014 {
+    margin-top: 24px;
+}
+
+.new_post015 {
+    padding: 4px;
+}
+
+.new_post016 {
+    outline: none;
+    border: none;
+    background-color: rgb(0, 149, 246);
+    border-radius: 8px;
+    color: rgb(255, 255, 255);
+    text-align: center;
+    cursor: pointer;
+    font-size: 14px;
+    font-weight: 600;
+    padding: 7px 16px;
+}
+
+.new_post016:hover {
+    background-color: rgb(24, 119, 242);
+}
