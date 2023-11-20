@@ -5,7 +5,6 @@ import "./newPost.css";
 import MediaIcon from "../Icons/MediaIcon/MediaIcon";
 import ImageComponent from "./ImageComponent/ImageComponent";
 import ViewComponent from "./ViewImageComponent/ViewComponent";
-import Back from "../Icons/Back/Back";
 import BackArrow from "../Icons/BackArrow/BackArrow";
 import Posting from "./Posting/Posting";
 
@@ -74,31 +73,34 @@ const NewPost = () => {
                                                 )}
                                             </div>
                                         </div>
-                                        {step === 4 && <Posting />}
-                                        {/* <div className="new_post010">
-                                            {step === 1 && (
-                                                <div className="new_post011">
-                                                    <div className="new_post012">
-                                                        <MediaIcon />
-                                                        <div className="new_post013">Drag photos and videos here</div>
-                                                        <div className="new_post014">
-                                                            <div className="new_post015">
-                                                                <button
-                                                                    className="new_post016"
-                                                                    onClick={() => {
-                                                                        handleStep(2);
-                                                                    }}
-                                                                >
-                                                                    Select from data
-                                                                </button>
+                                        {step === 4 ? (
+                                            <Posting />
+                                        ) : (
+                                            <div className="new_post010">
+                                                {step === 1 && (
+                                                    <div className="new_post011">
+                                                        <div className="new_post012">
+                                                            <MediaIcon />
+                                                            <div className="new_post013">Drag photos and videos here</div>
+                                                            <div className="new_post014">
+                                                                <div className="new_post015">
+                                                                    <button
+                                                                        className="new_post016"
+                                                                        onClick={() => {
+                                                                            handleStep(2);
+                                                                        }}
+                                                                    >
+                                                                        Select from data
+                                                                    </button>
+                                                                </div>
                                                             </div>
                                                         </div>
                                                     </div>
-                                                </div>
-                                            )}
-                                            {step === 2 && <ImageComponent handleStep={handleStep} />}
-                                            {step === 3 && <ViewComponent />}
-                                        </div> */}
+                                                )}
+                                                {step === 2 && <ImageComponent handleStep={handleStep} />}
+                                                {step === 3 && <ViewComponent />}
+                                            </div>
+                                        )}
                                     </div>
                                 </div>
                             </div>
