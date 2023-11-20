@@ -6,7 +6,8 @@ const Image = ({ id }) => {
         const getImage = () => {
             axios.get(`https://picsum.photos/id/${id}/500/500`).then((res) => {});
         };
-    }, []);
+        getImage();
+    }, [id]);
     return (
         <div
             style={{
