@@ -4,7 +4,6 @@ const MediaIcon = () => {
     return (
         <svg
             aria-label="Icon to represent media such as images or videos"
-            class="x1lliihq x1n2onr6 x5n08af"
             fill="currentColor"
             height="77"
             role="img"

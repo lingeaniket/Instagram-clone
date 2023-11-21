@@ -1,4 +1,4 @@
-import React, { useCallback, useState } from "react";
+import React, { useCallback, useRef, useState } from "react";
 import Modal from "../Modal/Modal";
 
 import "./newPost.css";
@@ -12,12 +12,25 @@ import PostSuccess from "./PostSuccess/PostSuccess";
 import PostSuccess2 from "./PostSuccess/PostSuccess2";
 import LandPage from "./LandPage/LandPage";
 
-const NewPost = () => {
-    const handleModalClose = () => {};
+const NewPost = ({ setOpen }) => {
+    const handleModalClose = (e) => {
+        if (step !== 5) {
+            if (!modalref.current.contains(e.target)) {
+                handleClose();
+            }
+        }
+    };
+
+    const handleClose = (e) => {
+        document.body.style.overflow = "auto";
+        setOpen(false);
+    };
 
     const steps = ["Create new post", "Select a photo", "Review", "Create a new post", "Post sharing", "Post shared"];
 
     const [step, setStep] = useState(1);
+
+    const modalref = useRef();
 
     const dispatch = useDispatch();
 
@@ -34,7 +47,7 @@ const NewPost = () => {
 
     return (
         <Modal handleModalClose={handleModalClose}>
-            <div className="new_post001">
+            <div ref={modalref} className="new_post001">
                 <div className="new_post002">
                     <div className="new_post003">
                         <div className="new_post004">
