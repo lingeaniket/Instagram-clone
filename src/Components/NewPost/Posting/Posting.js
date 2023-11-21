@@ -142,6 +142,7 @@ const Posting = () => {
                                 <div
                                     style={{
                                         width: "100%",
+                                        position: 'relative',
                                     }}
                                 >
                                     <div
@@ -154,7 +155,19 @@ const Posting = () => {
                                             userSelect: "text",
                                         }}
                                         contentEditable="true"
+                                        //:focus-visible { outline: 'none'}
                                     ></div>
+                                    <div style={{
+                                        position: 'absolute',
+                                        width: '100%',
+                                        maxHeight: '168px',
+                                        minHeight: '168px',
+                                        pointerEvents: 'none',
+                                        margin: '0 16px',
+                                        fontSize: '16px',
+                                        color: 'rgb(199,199,199)',
+                                        lineHeight: '24px'
+                                    }}>Write a caption...</div>
                                 </div>
                                 <div
                                     style={{
