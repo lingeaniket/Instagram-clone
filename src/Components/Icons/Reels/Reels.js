@@ -1,6 +1,6 @@
 import React from "react";
 
-const Reels = ({height="12", width="12"}) => {
+const Reels = ({ height = "12", width = "12" }) => {
     return (
         <svg
             aria-label=""
