@@ -1,16 +1,18 @@
 import React, { useState } from "react";
 import { useDispatch } from "react-redux";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useSearchParams } from "react-router-dom";
 
 import Save from "../../Icons/Save/Save";
 import Like from "../../Icons/Like/Like";
 import Comment from "../Comment/Comment";
 import Share from "../../Icons/Share/Share";
 import CommentIcon from "../../Icons/Comment/Comment";
+import BackArrow from "../../Icons/BackArrow/BackArrow";
 
 import { addComment, handleLiked, handlePost } from "../functions";
 
 import { Skeleton } from "@mui/material";
+import CommentsComponent from "../../Fullpost/RightComponent/Comments/CommentsComponent";
 
 const RoundedSkeleton = () => {
     return (
@@ -32,9 +34,20 @@ const PostFooter = ({ setLiked, liked, setLikes, postId, userData, likes, post, 
 
     const [saved, setSaved] = useState(false);
     const [comment, setComment] = useState("");
+    const [openComments, setOpenComments] = useState(false);
+
+    const [searchParams, setSearchParams] = useSearchParams();
 
     const handleSaved = () => {
         setSaved((saved) => !saved);
+    };
+
+    const handleBack = () => {
+        document.body.style.overflow = "auto";
+        searchParams.delete("postId");
+        searchParams.delete("postUser");
+        setSearchParams(searchParams);
+        setOpenComments(false);
     };
 
     const handleLike = () => {
@@ -46,7 +59,17 @@ const PostFooter = ({ setLiked, liked, setLikes, postId, userData, likes, post, 
     };
 
     const postHandle = () => {
-        handlePost(dispatch, navigate, userData, postId);
+        setOpenComments(false);
+        document.body.style.overflow = "auto";
+        if (window.innerWidth <= 768) {
+            document.body.style.overflow = "hidden";
+            searchParams.set("postId", postId);
+            searchParams.set("postUser", userData.id);
+            setSearchParams(searchParams);
+            setOpenComments(true);
+        } else {
+            handlePost(dispatch, navigate, userData, postId);
+        }
     };
 
     const handleComment = (e) => {
@@ -128,6 +151,18 @@ const PostFooter = ({ setLiked, liked, setLikes, postId, userData, likes, post, 
             <div className="post014">
                 <input className="post017" placeholder="Add a comment..." value={comment} onChange={handleComment} onKeyDown={commentAdd} />
             </div>
+            {openComments && (
+                <div className="post020">
+                    <div className="post021">
+                        <div className="post022" onClick={handleBack}>
+                            <BackArrow />
+                        </div>
+                        <h1 className="post023">Comments</h1>
+                        <div className="post022"></div>
+                    </div>
+                    <CommentsComponent />
+                </div>
+            )}
         </div>
     );
 };
