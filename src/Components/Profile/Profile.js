@@ -34,20 +34,6 @@ const Profile = ({ id, module }) => {
     return (
         <div className="profile001">
             <ProfileHeader userData={userData} userPosts={userPosts} type={type} />
-            <div className="profile002">
-                <div className="profile003">
-                    <ul className="profile004">
-                        <li className="profile005">
-                            <div className="profile006">
-                                <div className="profile007">
-                                    <div className="profile008"></div>
-                                    <div className="profile009">heighlight</div>
-                                </div>
-                            </div>
-                        </li>
-                    </ul>
-                </div>
-            </div>
             <Tabs />
             <PostList userPosts={userPosts} userData={userData} modeId={id} module={module} />
             <Outlet />

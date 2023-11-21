@@ -1,16 +1,8 @@
 import React from "react";
 
-const Posts = () => {
+const Posts = ({ height = "12", width = "12" }) => {
     return (
-        <svg
-            aria-label=""
-            color="rgb(0, 0, 0)"
-            fill="rgb(0, 0, 0)"
-            height="12"
-            role="img"
-            viewBox="0 0 24 24"
-            width="12"
-        >
+        <svg aria-label="" color="rgb(0, 0, 0)" fill="rgb(0, 0, 0)" height={height} role="img" viewBox="0 0 24 24" width={width}>
             <rect
                 fill="none"
                 height="18"

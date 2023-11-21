@@ -11,7 +11,12 @@ const Tabs = () => {
         <div className="profTabs001">
             <div className="profTabs002 profTabs003">
                 <div className="profTabs004">
-                    <Posts />
+                    <span className="mobileTab01">
+                        <Posts />
+                    </span>
+                    <span className="mobileTab02">
+                        <Posts height="24" width="24" />
+                    </span>
                     <span
                         className="profTabs005"
                         style={{
@@ -24,13 +29,23 @@ const Tabs = () => {
             </div>
             <div className="profTabs002">
                 <div className="profTabs004">
-                    <Reels />
+                    <span className="mobileTab01">
+                        <Reels />
+                    </span>
+                    <span className="mobileTab02">
+                        <Reels height="24" width="24" />
+                    </span>
                     <span className="profTabs005">reels</span>
                 </div>
             </div>
             <div className="profTabs002">
                 <div className="profTabs004">
-                    <Tagged />
+                    <span className="mobileTab01">
+                        <Tagged />
+                    </span>
+                    <span className="mobileTab02">
+                        <Tagged height="24" width="24" />
+                    </span>
                     <span className="profTabs005">tagged</span>
                 </div>
             </div>

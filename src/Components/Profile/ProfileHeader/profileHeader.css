@@ -95,6 +95,7 @@
 }
 
 .profHead017 {
+    margin: 0;
     margin-bottom: 20px;
     display: flex;
     list-style-type: none;
@@ -130,6 +131,40 @@
     color: rgb(115, 115, 115);
 }
 
-.profHead024{
-  color:black;
-  }
+.profHead024 {
+    color: black;
+}
+
+@media screen and (max-width: 768px) {
+    .profHead003 {
+        height: 75px;
+        width: 75px;
+    }
+
+    .profHead002 {
+        margin-right: 15px;
+    }
+
+    .profHead009 > .profHead010:first-of-type {
+        display: none;
+    }
+
+    .profHead004 .profHead017 {
+        display: none;
+    }
+
+    .profHead017{
+        justify-content: space-between;
+        margin-bottom: 12px;
+        padding-top: 12px;
+        border-top: 1px solid rgb(219,219,219);
+    }
+    .profHead018{
+        width: 100%;
+        display: flex;
+        justify-content: center;
+        margin-right: 0;
+        align-items: center;
+        flex-direction: column;
+    }
+}

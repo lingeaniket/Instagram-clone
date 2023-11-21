@@ -1,6 +1,6 @@
 import React from "react";
 
-const Tagged = () => {
+const Tagged = ({ height = "12", width = "12" }) => {
     return (
         <svg
             aria-label=""
@@ -8,10 +8,10 @@ const Tagged = () => {
             // color="rgb(0, 0, 0)"
             fill="rgb(115, 115, 115)"
             // fill="rgb(0, 0, 0)"
-            height="12"
+            height={height}
             role="img"
             viewBox="0 0 24 24"
-            width="12"
+            width={height}
         >
             <path
                 d="M10.201 3.797 12 1.997l1.799 1.8a1.59 1.59 0 0 0 1.124.465h5.259A1.818 1.818 0 0 1 22 6.08v14.104a1.818 1.818 0 0 1-1.818 1.818H3.818A1.818 1.818 0 0 1 2 20.184V6.08a1.818 1.818 0 0 1 1.818-1.818h5.26a1.59 1.59 0 0 0 1.123-.465Z"

@@ -1,15 +1,15 @@
 import React from "react";
 
-const Reels = () => {
+const Reels = ({height="12", width="12"}) => {
     return (
         <svg
             aria-label=""
             color="rgb(115, 115, 115)"
             fill="rgb(115, 115, 115)"
-            height="12"
+            height={height}
             role="img"
             viewBox="0 0 24 24"
-            width="12"
+            width={width}
         >
             <line
                 fill="none"

@@ -1,37 +1,62 @@
-.profTabs001{
-  display:flex;
-  justify-content:center;
-  align-items:center;
-  font-weight:600;
-  text-align:center;
-  color:rgb(142,142,142);
-  border-top:1px solid rgb(219,219,219);
-  }
+.profTabs001 {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-weight: 600;
+    text-align: center;
+    color: rgb(142, 142, 142);
+    border-top: 1px solid rgb(219, 219, 219);
+}
 
-  .profTabs002{
-    margin-right:60px;
-    display:flex;
-    justify-content:center;
-    text-transform:uppercase;
-    align-items:center;
-    height:52px;
+.profTabs002 {
+    margin-right: 60px;
+    display: flex;
+    justify-content: center;
+    text-transform: uppercase;
+    align-items: center;
+    height: 52px;
     cursor: pointer;
-    
+}
+
+.profTabs003 {
+    margin-top: -1px;
+    border-top: 1px solid black;
+}
+
+.profTabs004 {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.profTabs005 {
+    margin-left: 6px;
+    font-size: 12px;
+    letter-spacing: 1px;
+}
+
+.mobileTab02 {
+    display: none;
+}
+
+@media screen and (max-width: 768px) {
+    .profTabs005 {
+        display: none;
+    }
+    .mobileTab01 {
+        display: none;
     }
 
-    .profTabs003{
-      margin-top:-1px;
-    border-top:1px solid black;
+    .profTabs001 {
+        justify-content: space-evenly;
     }
 
-    .profTabs004{
-      display:flex;
-      justify-content:center;
-      align-items:center;
-      }
+    .profTabs002{
+        margin-right: 0;
+        width: 33%;
+    }
 
-      .profTabs005{
-        margin-left:6px;
-        font-size:12px;
-        letter-spacing:1px;
-        }
+    .mobileTab02 {
+        display: inline;
+    }
+}

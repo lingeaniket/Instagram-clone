@@ -40,6 +40,10 @@
     max-width: 975px;
 }
 
+.profile001 > .profHead017 {
+    display: none;
+}
+
 .profile002 {
     margin-bottom: 44px;
     height: 130px;
@@ -85,4 +89,20 @@
     text-align: center;
     font-weight: 600;
     font-size: 12px;
+}
+
+
+@media screen and (max-width: 900px) {
+    .image-container img {
+        width: 100%;
+        height: auto;
+    }
+    
+}
+
+@media screen and (max-width: 768px) {
+    .profile001 {
+        width: 100%;
+        padding: 0;
+    }
 }
