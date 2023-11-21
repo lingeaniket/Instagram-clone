@@ -16,6 +16,7 @@ const RoundedImage = ({ url, alt }) => {
                 <img
                     style={{
                         maxWidth: "100%",
+                        width: "100%",
                         verticalAlign: "middle",
                     }}
                     src={`https://cloudflare-ipfs.com/ipfs/Qmd3W5DuhgHirLHGVixi6V76LhCkZUz6pnFt5AJBiyvHye/avatar/${url}.jpg`}
