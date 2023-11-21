@@ -103,4 +103,26 @@
         width: 100%;
         padding: 0;
     }
+
+    .profile002 {
+        margin-bottom: 22px;
+    }
+
+    .profile008 {
+        height: 56px;
+        width: 56px;
+    }
+
+    .profile007 {
+        width: 72.5px;
+        padding: 0;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+    }
+
+    .profile006{
+        width: 80px;
+    }
 }

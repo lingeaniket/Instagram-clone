@@ -156,6 +156,22 @@ const ProfileHeader = ({ userData, userPosts, type }) => {
                                 </div>
                             </div>
                         </li>
+                        <li className="profile005">
+                            <div className="profile006">
+                                <div className="profile007">
+                                    <div className="profile008"></div>
+                                    <div className="profile009">heighlight</div>
+                                </div>
+                            </div>
+                        </li>
+                        <li className="profile005">
+                            <div className="profile006">
+                                <div className="profile007">
+                                    <div className="profile008"></div>
+                                    <div className="profile009">heighlight</div>
+                                </div>
+                            </div>
+                        </li>
                     </ul>
                 </div>
             </div>
