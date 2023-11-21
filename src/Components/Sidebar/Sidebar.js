@@ -96,7 +96,7 @@ const Sidebar = () => {
                         />
                     </div>
                     <SearchComponent searchDiv={searchDiv} searchCloseFunc={handleSearch} searchRef={searchRef} />
-                    {createOpen && <NewPost />}
+                    {createOpen && <NewPost setOpen={setCreateOpen} />}
                 </div>
             </div>
         </div>
