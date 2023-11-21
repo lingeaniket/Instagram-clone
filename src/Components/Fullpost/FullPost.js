@@ -12,6 +12,7 @@ import PostDetailComponent from "./RightComponent/PostDetailComponent";
 
 import "./fullPost.css";
 import Modal from "../Modal/Modal";
+import Post from "../Post/Post";
 
 const FullPost = () => {
     const [searchParams, setSearchParams] = useSearchParams();
@@ -94,6 +95,7 @@ const FullPost = () => {
 
     return (
         <Modal handleModalClose={handleModalClose}>
+            <div></div>
             <div
                 className="fullPost008 fullPost042"
                 style={{
@@ -141,6 +143,9 @@ const FullPost = () => {
                                             </div>
                                         </div>
                                     </div>
+                                </div>
+                                <div className="fullPost086" ref={detailRef}>
+                                    <Post postId={postId} id={userId} />
                                 </div>
                             </div>
                         </div>
