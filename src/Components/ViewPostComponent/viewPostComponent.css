@@ -1,0 +1,17 @@
+.appSwitch01 {
+    display: block;
+}
+
+.appSwitch02 {
+    display: none;
+}
+
+@media screen and (max-width: 768px) {
+    .appSwitch01 {
+        display: none;
+    }
+
+    .appSwitch02 {
+        display: block;
+    }
+}
