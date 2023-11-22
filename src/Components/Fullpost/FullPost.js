@@ -147,7 +147,7 @@ const FullPost = () => {
                                     </div>
                                 </div>
                                 <div className="fullPost086" ref={mobileViewRef}>
-                                    <Post postId={postId} id={userId} />
+                                    <Post postId={postId} id={postUser} />
                                 </div>
                             </div>
                         </div>

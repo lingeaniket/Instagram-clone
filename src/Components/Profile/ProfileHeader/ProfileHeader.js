@@ -122,7 +122,7 @@ const ProfileHeader = ({ userData, userPosts, type }) => {
                             <span className="profHead019">{userData?.followings?.length}</span> following
                         </li>
                     </ul>
-                    <div>
+                    <div className="userDetailDiv1">
                         <div className="profHead020">
                             {userData.first_name} {userData.last_name}
                         </div>
@@ -142,8 +142,87 @@ const ProfileHeader = ({ userData, userPosts, type }) => {
                             </div>
                         )}
                     </div>
+                    <div className="mobileTabsHead">
+                        {type === "currentProfile" ? (
+                            <>
+                                <div className="profHead010">
+                                    <button className="profHead011">
+                                        <div>
+                                            <div className="profHead012">Edit Profile</div>
+                                        </div>
+                                    </button>
+                                </div>
+                                <div className="profHead010">
+                                    <div className="profHead010">
+                                        <Settings />
+                                    </div>
+                                </div>
+                            </>
+                        ) : (
+                            <>
+                                <div className="profHead010">
+                                    <button className="profHead011">
+                                        <div style={{
+                                            display: 'flex',
+                                            justifyContent: 'center',
+                                            alignItems: 'center',
+                                            padding: '0 4px'
+                                        }}>
+                                            <div className="profHead012">
+                                                Following
+                                                <div className="profHead013">
+                                                    <Arrow />
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </button>
+                                </div>
+                                <div className="profHead010">
+                                    <button className="profHead011">
+                                        <div style={{
+                                            minWidth: 0,
+                                        }}>
+                                            <div className="profHead012">Message</div>
+                                        </div>
+                                    </button>
+                                </div>
+                                <div className="profHead010">
+                                    <button className="profHead014">
+                                        <div>
+                                            <Account />
+                                        </div>
+                                    </button>
+                                </div>
+                                <div className="profHead015">
+                                    <div className="profHead010">
+                                        <Options />
+                                    </div>
+                                </div>
+                            </>
+                        )}
+                    </div>
                 </div>
                 {open && <ListModal listType={listType} handleClose={handleClose} userData={userData} />}
+            </div>
+            <div className="userDetailDiv2">
+                <div className="profHead020">
+                    {userData.first_name} {userData.last_name}
+                </div>
+                <div className="profHead021"></div>
+                <div>
+                    <h1>{userData.bio}</h1>
+                </div>
+                {type === "userProfile" && (
+                    <div>
+                        <div className="profHead022">
+                            <span className="profHead023">
+                                Followed by <span className="profHead024">nameofuser01,</span>{" "}
+                                <span className="profHead024">nameofuser02,</span> <span className="profHead024">nameofuser03</span> + 7
+                                more
+                            </span>
+                        </div>
+                    </div>
+                )}
             </div>
             <div className="profile002">
                 <div className="profile003">
