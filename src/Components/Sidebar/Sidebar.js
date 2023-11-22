@@ -78,9 +78,10 @@ const Sidebar = () => {
                                 }
                             } else if (tab.title === "create") {
                                 return (
-                                    <span key={i} onClick={handleCreate}>
-                                        <Tab tab={tab} searchOpen={handleCollapse} searchRef={searchRef} />
-                                    </span>
+                                    <div className="tab01" onClick={handleCreate}>
+                                        <div className="tab02">{tab.icon}</div>
+                                        <div className="tab03">{tab.title}</div>
+                                    </div>
                                 );
                             }
                             return <Tab id={id} key={i} tab={tab} searchOpen={handleCollapse} searchRef={searchRef} />;
