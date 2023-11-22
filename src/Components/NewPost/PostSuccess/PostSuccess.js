@@ -8,7 +8,7 @@ const PostSuccess = () => {
                     draggable="false"
                     height="100%"
                     width="100%"
-                    class="xl1xv1r"
+                    alt=""
                     referrerpolicy="origin-when-cross-origin"
                     src="https://static.cdninstagram.com/rsrc.php/v3/yA/r/34QF6MIeoYt.gif"
                 ></img>
