@@ -8,13 +8,7 @@ import Loader from "../../../Icons/Loader/Loader";
 import CommentsDiv from "../Comments/CommentsDiv/CommentsDiv";
 
 import { apiSite } from "../../../../Website/website";
-import {
-    addPostComment,
-    addPostReply,
-    updateComment,
-    updateData,
-    updateUuidv,
-} from "../../../../Features/fullPostCommentSlice";
+import { addPostComment, addPostReply, updateComment, updateData, updateUuidv } from "../../../../Features/fullPostCommentSlice";
 
 import { Skeleton } from "@mui/material";
 import RoundedImage from "../../../RoundedImage/RoundedImage";
@@ -155,15 +149,13 @@ const CommentsComponent = () => {
                 setUserData(() => response.data);
             });
 
-            await axios
-                .get(`${apiSite}/posts/post?postUser=${postUser}&postId=${postId}`)
-                .then((response) => {
-                    setPost(() => response.data.post);
-                    setComments(() => response.data.post.comments.reverse());
-                    setTimeout(() => {
-                        setLoading(false);
-                    }, 1000);
-                });
+            await axios.get(`${apiSite}/posts/post?postUser=${postUser}&postId=${postId}`).then((response) => {
+                setPost(() => response.data.post);
+                setComments(() => response.data.post.comments.reverse());
+                setTimeout(() => {
+                    setLoading(false);
+                }, 1000);
+            });
         };
         loadData();
     }, [postUser, postId]);
@@ -231,19 +223,14 @@ const CommentsComponent = () => {
                                         ) : (
                                             <>
                                                 <h2 className="fullPost053">
-                                                    <div className="fullPost054">
-                                                        {userData?.username}
-                                                    </div>
+                                                    <div className="fullPost054">{userData?.username}</div>
                                                 </h2>
                                                 <div className="fullPost055">
                                                     <h1 className="fullPost056">{post?.caption}</h1>
                                                 </div>
                                                 <div className="fullPost057">
                                                     <span className="fullPost058">
-                                                        <time
-                                                            className="fullPost059"
-                                                            dateTime="2023-09-10T08:34:19.000Z"
-                                                        >
+                                                        <time className="fullPost059" dateTime="2023-09-10T08:34:19.000Z">
                                                             1 w
                                                         </time>
                                                     </span>
