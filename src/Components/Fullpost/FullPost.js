@@ -32,6 +32,7 @@ const FullPost = () => {
     const prevBtnRef = useRef();
     const nextBtnRef = useRef();
     const imagelikeref = useRef(null);
+    const mobileViewRef = useRef(null);
 
     const [post, setPost] = useState({});
     const [count, setCount] = useState(1);
@@ -70,7 +71,8 @@ const FullPost = () => {
         if (
             !(
                 imageRef.current.contains(e.target) ||
-                detailRef.current.contains(e.target) ||
+                (detailRef.current && detailRef.current.contains(e.target)) ||
+                (mobileViewRef.current && mobileViewRef.current.contains(e.target)) ||
                 (prevBtnRef.current && prevBtnRef.current.contains(e.target)) ||
                 (nextBtnRef.current && nextBtnRef.current.contains(e.target))
             )
@@ -144,7 +146,7 @@ const FullPost = () => {
                                         </div>
                                     </div>
                                 </div>
-                                <div className="fullPost086" ref={detailRef}>
+                                <div className="fullPost086" ref={mobileViewRef}>
                                     <Post postId={postId} id={userId} />
                                 </div>
                             </div>
