@@ -11,12 +11,12 @@ import LandingPage from "./Components/LandingPage/LandingPage";
 import UserProfile from "./Components/UserProfile/UserProfile";
 import ChatComponent from "./Components/Message/ChatComponent/ChatComponent";
 import CurrentProfile from "./Components/CurrentProfile/CurrentProfile";
+import ViewPostComponent from "./Components/ViewPostComponent/ViewPostComponent";
 import EmptyChatComponent from "./Components/Message/EmptyChatComponent/EmptyChatComponent";
 
 import store from "./Store/store";
 
 import "./app.css";
-import ViewPostComponent from "./Components/ViewPostComponent/ViewPostComponent";
 
 const router = createBrowserRouter([
     {
