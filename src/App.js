@@ -6,7 +6,6 @@ import io from "socket.io-client";
 
 import Explore from "./Components/Explore/Explore";
 import Message from "./Components/Message/Message";
-import FullPost from "./Components/Fullpost/FullPost";
 import Timeline from "./Components/Timeline/Timeline";
 import LandingPage from "./Components/LandingPage/LandingPage";
 import UserProfile from "./Components/UserProfile/UserProfile";
@@ -17,6 +16,7 @@ import EmptyChatComponent from "./Components/Message/EmptyChatComponent/EmptyCha
 import store from "./Store/store";
 
 import "./app.css";
+import ViewPostComponent from "./Components/ViewPostComponent/ViewPostComponent";
 
 const router = createBrowserRouter([
     {
@@ -29,7 +29,7 @@ const router = createBrowserRouter([
                 children: [
                     {
                         path: "/post",
-                        element: <FullPost />,
+                        element: <ViewPostComponent />,
                     },
                 ],
             },
@@ -39,7 +39,7 @@ const router = createBrowserRouter([
                 children: [
                     {
                         path: "/profile/post",
-                        element: <FullPost />,
+                        element: <ViewPostComponent />,
                     },
                 ],
             },
@@ -49,7 +49,7 @@ const router = createBrowserRouter([
                 children: [
                     {
                         path: "/p/:id/post",
-                        element: <FullPost />,
+                        element: <ViewPostComponent />,
                     },
                 ],
             },
@@ -59,7 +59,7 @@ const router = createBrowserRouter([
                 children: [
                     {
                         path: "/explore/post",
-                        element: <FullPost />,
+                        element: <ViewPostComponent />,
                     },
                 ],
             },
@@ -99,7 +99,7 @@ const router = createBrowserRouter([
             },
             {
                 path: "/post",
-                element: <FullPost />,
+                element: <ViewPostComponent />,
             },
         ],
     },
