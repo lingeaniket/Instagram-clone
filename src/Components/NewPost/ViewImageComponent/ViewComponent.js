@@ -4,23 +4,8 @@ import { useSelector } from "react-redux";
 const ViewComponent = () => {
     const data = useSelector((state) => state.newPost);
     return (
-        <div
-            style={{
-                height: "100%",
-                width: "100%",
-                display: 'flex',
-                justifyContent: 'center',
-                alignItems: 'center',
-            }}
-        >
-            <img
-                src={`https://picsum.photos/id/${data.imageid}/500/500`}
-                style={{
-                    maxWidth: "100%",
-                    maxHeight: '100%',
-                }}
-                alt=""
-            />
+        <div className="new_post017">
+            <img src={`https://picsum.photos/id/${data.imageid}/500/500`} className="new_post018" alt="" />
         </div>
     );
 };

@@ -8,8 +8,10 @@ import Emoji from "../../Icons/Emoji/Emoji";
 import "./posting.css";
 
 const Posting = () => {
-    const data = useSelector((state) => state.newPost);
     const userId = JSON.parse(localStorage.getItem("userId"));
+
+    const data = useSelector((state) => state.newPost);
+    
     const [userData, setUserData] = useState({});
 
     useEffect(() => {
