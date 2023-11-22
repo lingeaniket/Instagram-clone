@@ -27,7 +27,7 @@ const RoundedSkeleton = () => {
     );
 };
 
-const PostFooter = ({ setLiked, liked, setLikes, postId, userData, likes, post, setReload, likeref, loading }) => {
+const PostFooter = ({ setLiked, liked, setLikes, postId, userData, likes, post, setReload, likeref, loading, type, setStep }) => {
     const dispatch = useDispatch();
 
     const navigate = useNavigate();
@@ -43,11 +43,15 @@ const PostFooter = ({ setLiked, liked, setLikes, postId, userData, likes, post, 
     };
 
     const handleBack = () => {
-        document.body.style.overflow = "auto";
-        searchParams.delete("postId");
-        searchParams.delete("postUser");
-        setSearchParams(searchParams);
-        setOpenComments(false);
+        if (type !== "timeline") {
+            setStep((prev) => prev - 1);
+        } else {
+            document.body.style.overflow = "auto";
+            searchParams.delete("postId");
+            searchParams.delete("postUser");
+            setSearchParams(searchParams);
+            setOpenComments(false);
+        }
     };
 
     const handleLike = () => {
@@ -59,16 +63,20 @@ const PostFooter = ({ setLiked, liked, setLikes, postId, userData, likes, post, 
     };
 
     const postHandle = () => {
-        setOpenComments(false);
-        document.body.style.overflow = "auto";
-        if (window.innerWidth <= 768) {
-            document.body.style.overflow = "hidden";
-            searchParams.set("postId", postId);
-            searchParams.set("postUser", userData.id);
-            setSearchParams(searchParams);
-            setOpenComments(true);
+        if (type !== "timeline") {
+            setStep((prev) => prev + 1);
         } else {
-            handlePost(dispatch, navigate, userData, postId);
+            setOpenComments(false);
+            document.body.style.overflow = "auto";
+            if (window.innerWidth <= 768) {
+                document.body.style.overflow = "hidden";
+                searchParams.set("postId", postId);
+                searchParams.set("postUser", userData.id);
+                setSearchParams(searchParams);
+                setOpenComments(true);
+            } else {
+                handlePost(dispatch, navigate, userData, postId);
+            }
         }
     };
 

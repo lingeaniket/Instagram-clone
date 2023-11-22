@@ -158,6 +158,16 @@
 .post020 .fullPost067 {
     margin-top: 8px;
 }
+
+.post024 {
+    display: flex;
+    justify-content: center;
+    overflow: scroll;
+}
+
+.post024::-webkit-scrollbar {
+    display: none;
+}
 /* .animeicon {
     transform: scale(1);
 } */

@@ -13,7 +13,7 @@ import "./post.css";
 import "../Timeline/TimelineIn/timelineIn.css";
 import "react-lazy-load-image-component/src/effects/blur.css";
 
-const Post = ({ postId, id }) => {
+const Post = ({ postId, id, type = "timeline", setStep }) => {
     const userId = JSON.parse(localStorage.getItem("userId"));
 
     const [post, setPost] = useState({});
@@ -115,6 +115,8 @@ const Post = ({ postId, id }) => {
                 </div>
             </div>
             <PostFooter
+                type={type}
+                setStep={setStep}
                 setLiked={setLiked}
                 liked={liked}
                 likeref={likeref}
