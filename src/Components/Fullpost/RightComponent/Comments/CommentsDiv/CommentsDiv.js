@@ -6,13 +6,7 @@ import Loader from "../../../../Icons/Loader/Loader";
 
 import { Skeleton } from "@mui/material";
 
-const CommentsDiv = ({
-    addReplyComment,
-    comment,
-    setComment,
-    setReplyMode,
-    setReplyData,
-}) => {
+const CommentsDiv = ({ addReplyComment, comment, setComment, setReplyMode, setReplyData }) => {
     const [sliceid, setSliceid] = useState(3);
     const [replies, setReplies] = useState([]);
     const [mainLoad, setMainLoad] = useState(false);
@@ -66,10 +60,7 @@ const CommentsDiv = ({
                         <div>
                             <div className="fullPost067">
                                 <span>
-                                    <div
-                                        className="fullPost068"
-                                        onClick={handleReply}
-                                    >
+                                    <div className="fullPost068" onClick={handleReply}>
                                         <button
                                             className="fullPost069"
                                             style={{
@@ -78,16 +69,13 @@ const CommentsDiv = ({
                                         >
                                             <div className="fullPost070"></div>
                                             <span className="fullPost071">
-                                                {!showReply
-                                                    ? `show replies(${replies.length})`
-                                                    : "hide replies"}
+                                                {!showReply ? `show replies(${replies.length})` : "hide replies"}
                                             </span>
                                             {loadReplySpin && (
                                                 <div
                                                     style={{
                                                         display: "flex",
-                                                        justifyContent:
-                                                            "center",
+                                                        justifyContent: "center",
                                                         marginLeft: "15px",
                                                     }}
                                                 >
@@ -106,20 +94,18 @@ const CommentsDiv = ({
                                 </span>
                                 {showReply && (
                                     <div>
-                                        {replies
-                                            ?.slice(0, sliceid)
-                                            ?.map((reply) => (
-                                                <Comment
-                                                    comment={reply}
-                                                    setComment={setComment}
-                                                    key={reply.id}
-                                                    type="secondary"
-                                                    addReply={addReply}
-                                                    commentId={comment.id}
-                                                    setReplyMode={setReplyMode}
-                                                    setReplyData={setReplyData}
-                                                />
-                                            ))}
+                                        {replies?.slice(0, sliceid)?.map((reply) => (
+                                            <Comment
+                                                comment={reply}
+                                                setComment={setComment}
+                                                key={reply.id}
+                                                type="secondary"
+                                                addReply={addReply}
+                                                commentId={comment.id}
+                                                setReplyMode={setReplyMode}
+                                                setReplyData={setReplyData}
+                                            />
+                                        ))}
 
                                         {loadMoreSpinn && (
                                             <div

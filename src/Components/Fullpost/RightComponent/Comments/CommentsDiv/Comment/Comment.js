@@ -11,16 +11,7 @@ import Like from "../../../../../Icons/Like/Like";
 import { Skeleton } from "@mui/material";
 import RoundedImage from "../../../../../RoundedImage/RoundedImage";
 
-const Comment = ({
-    addReply,
-    comment,
-    commentId,
-    mainLoad,
-    setComment,
-    setReplyData,
-    setReplyMode,
-    type,
-}) => {
+const Comment = ({ addReply, comment, commentId, mainLoad, setComment, setReplyData, setReplyMode, type }) => {
     const dispatch = useDispatch();
 
     const [searchParams] = useSearchParams();
@@ -143,18 +134,11 @@ const Comment = ({
                                     <span className="fullPost058">
                                         <span>
                                             <time className="fullPost059">
-                                                {comment?.time
-                                                    ? timeElapsedFromCurrent(comment.time)
-                                                    : "no time"}
+                                                {comment?.time ? timeElapsedFromCurrent(comment.time) : "no time"}
                                             </time>
                                         </span>
-                                        <button className="fullPost065 fullPost071">
-                                            {likes} likes
-                                        </button>
-                                        <button
-                                            className="fullPost065 fullPost071"
-                                            onClick={handleReplyComment}
-                                        >
+                                        <button className="fullPost065 fullPost071">{likes} likes</button>
+                                        <button className="fullPost065 fullPost071" onClick={handleReplyComment}>
                                             reply
                                         </button>
                                     </span>
