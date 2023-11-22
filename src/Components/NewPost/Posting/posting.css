@@ -170,3 +170,42 @@
 .posting_026 {
     font-size: 12px;
 }
+
+.posting_027 {
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    width: 100%;
+    align-items: center;
+    height: 100%;
+}
+
+.posting_028 {
+    width: 96px;
+    height: 96px;
+}
+
+.posting_029 {
+    margin-bottom: 16px;
+    margin-top: 16px;
+}
+
+.posting_030 {
+    line-height: 25px;
+    font-size: 20px;
+    text-align: center;
+    font-weight: 400;
+}
+
+.posting_030::before {
+    height: 0;
+    content: "";
+    display: block;
+    margin-top: -4px;
+}
+.posting_030::after {
+    height: 0;
+    content: "";
+    display: block;
+    margin-top: -4px;
+}
