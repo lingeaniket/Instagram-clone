@@ -36,25 +36,34 @@
     right: 0;
 }
 
+.img_post004 {
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    height: 100%;
+    width: 100%;
+    background-color: rgb(255 255 255 / 56%);
+}
+
 .nav_buttons {
-  background-color: rgb(0,149,246);
-  color: white;
-  font-size: 12px;
-  font-weight: 600;
-  padding: 7px 16px;
-  outline: none;
-  border: none;
-  border-radius: 5px;
+    background-color: rgb(0, 149, 246);
+    color: white;
+    font-size: 12px;
+    font-weight: 600;
+    padding: 7px 16px;
+    outline: none;
+    border: none;
+    border-radius: 5px;
 }
 
 .nav_buttons_act {
-  cursor: pointer;
+    cursor: pointer;
 }
 
 .nav_buttons_act:hover {
-  background-color: rgb(24, 119, 242);
+    background-color: rgb(24, 119, 242);
 }
 
 .nav_buttons_dis {
-  opacity: 0.5;
+    opacity: 0.5;
 }

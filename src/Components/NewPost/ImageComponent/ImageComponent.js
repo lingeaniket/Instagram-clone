@@ -4,7 +4,7 @@ import "./imageComponent.css";
 import { useDispatch } from "react-redux";
 import { changeImageid } from "../../../Features/newPostDetailsSlice";
 
-const ImageComponent = ({handleStep}) => {
+const ImageComponent = ({ handleStep }) => {
     const [photos, setPhotos] = useState([]);
     const [selectedPhoto, setSelectedPhoto] = useState();
     const [page, setPage] = useState(0);
@@ -17,7 +17,6 @@ const ImageComponent = ({handleStep}) => {
     const handleSelectedPhoto = () => {
         dispatch(changeImageid(selectedPhoto));
         handleStep(3);
-
     };
 
     const handlePrev = () => {
@@ -55,18 +54,7 @@ const ImageComponent = ({handleStep}) => {
                         key={val}
                     >
                         <Image id={val} />
-                        {selectedPhoto === val && (
-                            <div
-                                style={{
-                                    position: "absolute",
-                                    top: 0,
-                                    bottom: 0,
-                                    height: "100%",
-                                    width: "100%",
-                                    backgroundColor: "rgb(255 255 255 / 56%)",
-                                }}
-                            ></div>
-                        )}
+                        {selectedPhoto === val && <div className="img_post004"></div>}
                     </div>
                 ))}
             </div>
