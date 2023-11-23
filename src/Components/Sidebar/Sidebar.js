@@ -1,5 +1,5 @@
 import { useNavigate } from "react-router-dom";
-import { Fragment, useEffect, useRef, useState } from "react";
+import { Fragment, Suspense, lazy, useEffect, useRef, useState } from "react";
 
 import Tab from "./Tab/Tab";
 import SearchComponent from "./SearchComponent/SearchComponent";
@@ -11,7 +11,7 @@ import "./sidebar.css";
 import Instagram from "../Icons/Instagram/Instagram";
 import InstagramTitle from "../Icons/InstagramTitle/InstagramTitle";
 import MoreSettings from "../Icons/MoreSettings/MoreSettings";
-import NewPost from "../NewPost/NewPost";
+const NewPost = lazy(() => import("../NewPost/NewPost"));
 
 const Sidebar = () => {
     const navigate = useNavigate();
@@ -78,7 +78,7 @@ const Sidebar = () => {
                                 }
                             } else if (tab.title === "create") {
                                 return (
-                                    <div className="tab01" onClick={handleCreate}>
+                                    <div key={i} className="tab01" onClick={handleCreate}>
                                         <div className="tab02">{tab.icon}</div>
                                         <div className="tab03">{tab.title}</div>
                                     </div>
@@ -96,8 +96,12 @@ const Sidebar = () => {
                             searchRef={searchRef}
                         />
                     </div>
-                    <SearchComponent searchDiv={searchDiv} searchCloseFunc={handleSearch} searchRef={searchRef} />
-                    {createOpen && <NewPost setOpen={setCreateOpen} />}
+                    {searchDiv && <SearchComponent searchDiv={searchDiv} searchCloseFunc={handleSearch} searchRef={searchRef} />}
+                    {createOpen && (
+                        <Suspense fallback={<></>}>
+                            <NewPost setOpen={setCreateOpen} />
+                        </Suspense>
+                    )}
                 </div>
             </div>
         </div>
