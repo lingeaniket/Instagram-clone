@@ -2,7 +2,7 @@ import React from "react";
 
 const BackArrow = () => {
     return (
-        <svg aria-label="Back" class="x1lliihq x1n2onr6 x5n08af" fill="currentColor" height="24" role="img" viewBox="0 0 24 24" width="24">
+        <svg aria-label="Back" fill="currentColor" height="24" role="img" viewBox="0 0 24 24" width="24">
             <title>Back</title>
             <line
                 fill="none"
