@@ -1,3 +1,4 @@
+import { Suspense } from "react";
 import Sidebar from "../Sidebar/Sidebar";
 import { Outlet } from "react-router-dom";
 
@@ -6,7 +7,9 @@ const Home = () => {
         <div className="grid01">
             <Sidebar />
             <div className="span01">
-                <Outlet />
+                <Suspense fallback={<></>}>
+                    <Outlet />
+                </Suspense>
             </div>
         </div>
     );
