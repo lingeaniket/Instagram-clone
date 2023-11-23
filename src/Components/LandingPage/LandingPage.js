@@ -1,9 +1,10 @@
 import { useSelector } from "react-redux";
-import React, { useEffect, useState } from "react";
+import React, { Suspense, lazy, useEffect, useState } from "react";
 
 import Home from "../Home/Home";
-import AccountPage from "../Account/AccountPage";
 import LoadingPage from "../LoadingPage/LoadingPage";
+
+const AccountPage = lazy(() => import("../Account/AccountPage"));
 
 const LandingPage = () => {
     const isLoggedIn = useSelector((state) => state.authLogin.isLoggedIn);
@@ -29,7 +30,11 @@ const LandingPage = () => {
         if (user) {
             return <Home />;
         } else {
-            return <AccountPage />;
+            return (
+                <Suspense fallback={<></>}>
+                    <AccountPage />
+                </Suspense>
+            );
         }
     }
 };
