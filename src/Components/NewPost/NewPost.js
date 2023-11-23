@@ -2,6 +2,7 @@ import React, { useCallback, useRef, useState } from "react";
 import Modal from "../Modal/Modal";
 
 import "./newPost.css";
+import "../Fullpost/fullPost.css"
 import ImageComponent from "./ImageComponent/ImageComponent";
 import ViewComponent from "./ViewImageComponent/ViewComponent";
 import BackArrow from "../Icons/BackArrow/BackArrow";

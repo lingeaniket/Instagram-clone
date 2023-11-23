@@ -1,7 +1,7 @@
 import { Outlet } from "react-router-dom";
 import { useDispatch } from "react-redux";
 import InfiniteScroll from "react-infinite-scroll-component";
-import React, { useEffect, useState, useCallback } from "react";
+import React, { useEffect, useState, useCallback, Suspense } from "react";
 
 import Loader from "../Icons/Loader/Loader";
 import ImagePost from "./ImagePost/ImagePost";
@@ -39,20 +39,11 @@ const Explore = () => {
         <div className="explore001">
             <div className="explore002">
                 <div className="explore003">
-                    <InfiniteScroll
-                        style={{ overflow: "hidden" }}
-                        dataLength={noOfPost.length}
-                        next={loadData}
-                        hasMore={true}
-                    >
+                    <InfiniteScroll style={{ overflow: "hidden" }} dataLength={noOfPost.length} next={loadData} hasMore={true}>
                         {noOfPost.map((user, index) => (
                             <div className="explore004" key={index}>
                                 {user?.map((number, idx) => (
-                                    <ImagePost
-                                        key={idx + number + "01" + index}
-                                        handleFullPost={handleFullPost}
-                                        number={number}
-                                    />
+                                    <ImagePost key={idx + number + "01" + index} handleFullPost={handleFullPost} number={number} />
                                 ))}
                             </div>
                         ))}
@@ -86,7 +77,9 @@ const Explore = () => {
                     <Loader />
                 </div>
             </div>
-            <Outlet />
+            <Suspense fallback={<></>}>
+                <Outlet />
+            </Suspense>
         </div>
     );
 };
