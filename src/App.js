@@ -1,22 +1,22 @@
-import { useEffect } from "react";
+import { lazy, useEffect } from "react";
 import { Provider } from "react-redux";
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
 
 import io from "socket.io-client";
 
-import Explore from "./Components/Explore/Explore";
-import Message from "./Components/Message/Message";
-import Timeline from "./Components/Timeline/Timeline";
-import LandingPage from "./Components/LandingPage/LandingPage";
-import UserProfile from "./Components/UserProfile/UserProfile";
-import ChatComponent from "./Components/Message/ChatComponent/ChatComponent";
-import CurrentProfile from "./Components/CurrentProfile/CurrentProfile";
-import ViewPostComponent from "./Components/ViewPostComponent/ViewPostComponent";
-import EmptyChatComponent from "./Components/Message/EmptyChatComponent/EmptyChatComponent";
-
 import store from "./Store/store";
 
 import "./app.css";
+
+const Message = lazy(() => import("./Components/Message/Message"));
+const Explore = lazy(() => import("./Components/Explore/Explore"));
+const Timeline = lazy(() => import("./Components/Timeline/Timeline"));
+const UserProfile = lazy(() => import("./Components/UserProfile/UserProfile"));
+const LandingPage = lazy(() => import("./Components/LandingPage/LandingPage"));
+const ChatComponent = lazy(() => import("./Components/Message/ChatComponent/ChatComponent"));
+const CurrentProfile = lazy(() => import("./Components/CurrentProfile/CurrentProfile"));
+const ViewPostComponent = lazy(() => import("./Components/ViewPostComponent/ViewPostComponent"));
+const EmptyChatComponent = lazy(() => import("./Components/Message/EmptyChatComponent/EmptyChatComponent"));
 
 const router = createBrowserRouter([
     {
@@ -108,8 +108,8 @@ const router = createBrowserRouter([
     },
 ]);
 
-// export const socket = io("http://localhost:4000");
-export const socket = io("https://instagram-api-aniket.onrender.com/");
+export const socket = io("http://localhost:4000");
+// export const socket = io("https://instagram-api-aniket.onrender.com/");
 
 const App = () => {
     useEffect(() => {
