@@ -8,6 +8,7 @@ import Comment from "../../Icons/Comment/Comment";
 import { generateUser } from "../function";
 
 import { Skeleton } from "@mui/material";
+import "../../Profile/profile.css";
 
 const ImagePost = ({ number, handleFullPost }) => {
     const navigate = useNavigate();

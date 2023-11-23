@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { Suspense, lazy, useState } from "react";
 import { useDispatch } from "react-redux";
 import { useNavigate, useSearchParams } from "react-router-dom";
 
@@ -12,7 +12,7 @@ import BackArrow from "../../Icons/BackArrow/BackArrow";
 import { addComment, handleLiked, handlePost } from "../functions";
 
 import { Skeleton } from "@mui/material";
-import CommentsComponent from "../../Fullpost/RightComponent/Comments/CommentsComponent";
+const CommentsComponent = lazy(() => import("../../Fullpost/RightComponent/Comments/CommentsComponent"));
 
 const RoundedSkeleton = () => {
     return (
@@ -168,7 +168,9 @@ const PostFooter = ({ setLiked, liked, setLikes, postId, userData, likes, post, 
                         <h1 className="post023">Comments</h1>
                         <div className="post022"></div>
                     </div>
-                    <CommentsComponent />
+                    <Suspense fallback={<></>}>
+                        <CommentsComponent />
+                    </Suspense>
                 </div>
             )}
         </div>

@@ -22,6 +22,8 @@ const Post = ({ postId, id, type = "timeline", setStep }) => {
     const [reload, setReload] = useState(false);
     const [loading, setLoading] = useState(true);
     const [userData, setUserData] = useState({});
+    const [lcpImageUrl, setLcpImageUrl] = useState("");
+    const [isImageLoaded, setIsImageLoaded] = useState(false);
 
     const likeref = useRef(null);
     const imagelikeref = useRef(null);
@@ -39,6 +41,17 @@ const Post = ({ postId, id, type = "timeline", setStep }) => {
         const loadData = async () => {
             await axios.get(`${apiSite}/posts/post?postUser=${id}&postId=${postId}`).then((response) => {
                 setPost(() => response.data.post);
+                const apiImageURL = `https://picsum.photos/id/${response.data.post.id}/500/500`;
+                setLcpImageUrl(apiImageURL);
+
+                const img = new Image();
+
+                img.src = apiImageURL;
+
+                img.onload = () => {
+                    console.log("LCP Image preloaded:", apiImageURL);
+                    setIsImageLoaded(true);
+                };
                 setLikes(() => response.data.post.likes);
                 setLiked(() => response.data.post.likedBy?.includes(userId));
                 setTimeout(() => {
@@ -86,7 +99,7 @@ const Post = ({ postId, id, type = "timeline", setStep }) => {
                     cursor: "pointer",
                 }}
             >
-                {loading ? (
+                {!isImageLoaded ? (
                     <div
                         style={{
                             width: "100%",
@@ -104,7 +117,7 @@ const Post = ({ postId, id, type = "timeline", setStep }) => {
                         alt=""
                         // height={'auto'}
                         effect="blur"
-                        src={`https://picsum.photos/id/${post.id}/500/500`}
+                        src={lcpImageUrl}
                         width={"100%"}
                     />
                 )}
