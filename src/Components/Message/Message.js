@@ -1,4 +1,4 @@
-import React from "react";
+import React, { Suspense } from "react";
 import { Outlet } from "react-router-dom";
 
 import ChatList from "./ChatList/ChatList";
@@ -14,7 +14,9 @@ const Message = () => {
                         <div className="messageIn005">
                             <div className="messageIn006 messageIn002">
                                 <ChatList />
-                                <Outlet />
+                                <Suspense fallback={<></>}>
+                                    <Outlet />
+                                </Suspense>
                             </div>
                         </div>
                         <div></div>
