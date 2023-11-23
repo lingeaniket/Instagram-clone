@@ -1,14 +1,15 @@
-import { Fragment, memo } from "react";
+import { Fragment, Suspense, lazy, memo } from "react";
 import { Outlet, useNavigate } from "react-router-dom";
 
 import Stories from "../Stories/Stories";
 import TimelineIn from "./TimelineIn/TimelineIn";
-import RightSideBar from "../RightSideBar/RightSideBar";
 
 import "./timeline.css";
 import Instagram from "../Icons/Instagram/Instagram";
 import { tabArr } from "../ExtraData/extraData";
-import MobileSearchComponent from "../Sidebar/MobileSearchComponent/MobileSearchComponent";
+import InstagramTitle from "../Icons/InstagramTitle/InstagramTitle";
+const RightSideBar = lazy(() => import("../RightSideBar/RightSideBar"));
+const MobileSearchComponent = lazy(() => import("../Sidebar/MobileSearchComponent/MobileSearchComponent"));
 
 const Timeline = () => {
     const navigate = useNavigate();
@@ -21,7 +22,7 @@ const Timeline = () => {
                         navigate("/");
                     }}
                 >
-                    <span className="side06">Instagram</span>
+                    <span className="side06"><InstagramTitle/></span>
                     <span className="side07">
                         <Instagram />
                     </span>
@@ -32,7 +33,9 @@ const Timeline = () => {
                         display: "flex",
                     }}
                 >
-                    <MobileSearchComponent />
+                    <Suspense fallback={<></>}>
+                        <MobileSearchComponent />
+                    </Suspense>
                     {tabArr
                         .filter((tab) => tab.title === "notifications")
                         .map((item, index) => (
@@ -50,8 +53,14 @@ const Timeline = () => {
                         </div>
                     </div>
                 </div>
-                <RightSideBar />
-                <Outlet />
+                {window.innerWidth > 900 && (
+                    <Suspense fallback={<></>}>
+                        <RightSideBar />
+                    </Suspense>
+                )}
+                <Suspense fallback={<></>}>
+                    <Outlet />
+                </Suspense>
             </div>
         </div>
     );

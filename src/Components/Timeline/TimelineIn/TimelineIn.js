@@ -1,11 +1,10 @@
 import axios from "axios";
-import { useEffect, useState, memo } from "react";
-
-import Post from "../../Post/Post";
+import { useEffect, useState, memo, lazy, Suspense } from "react";
 
 import { apiSite } from "../../../Website/website";
 
 import "./timelineIn.css";
+const Post = lazy(() => import("../../Post/Post"));
 
 const TimelineIn = () => {
     const [data, setData] = useState([]);
@@ -19,7 +18,9 @@ const TimelineIn = () => {
     return (
         <div className="timelineIn02">
             {data.map((post) => (
-                <Post key={post.id} post={post} postId={post.id} id={1} />
+                <Suspense key={post.id} fallback={<></>}>
+                    <Post key={post.id} post={post} postId={post.id} id={1} />
+                </Suspense>
             ))}
         </div>
     );
