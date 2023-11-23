@@ -35,7 +35,7 @@ const MobileSearchComponent = () => {
     };
 
     const handleSearchClose1 = (e) => {
-        if (!(containerRef.current.contains(e.target) || searchRef.current.contains(e.target))) {
+        if (!((containerRef.current && containerRef.current.contains(e.target)) || (searchRef.current && searchRef.current.contains(e.target)))) {
             searchCloseFunc(false);
         } else {
             searchCloseFunc(true);
