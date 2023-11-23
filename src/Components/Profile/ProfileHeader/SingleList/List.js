@@ -3,6 +3,7 @@ import React from "react";
 import { Skeleton } from "@mui/material";
 
 import "./list.css";
+import "../../../Message/message.css";
 import RoundedImage from "../../../RoundedImage/RoundedImage";
 
 const List = ({ loading, user, type, userAcc = false }) => {
