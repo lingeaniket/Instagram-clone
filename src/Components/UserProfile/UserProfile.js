@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { Suspense, useEffect, useState } from "react";
 import { Outlet, useParams } from "react-router-dom";
 
 import Profile from "../Profile/Profile";
@@ -15,7 +15,9 @@ const UserProfile = () => {
     return (
         <>
             <Profile id={userId} module="userProfile" />
-            <Outlet />
+            <Suspense fallback={<></>}>
+                <Outlet />
+            </Suspense>
         </>
     );
 };

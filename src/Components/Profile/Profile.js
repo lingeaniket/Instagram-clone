@@ -1,6 +1,6 @@
 import axios from "axios";
 import { Outlet } from "react-router-dom";
-import { useEffect, useState } from "react";
+import { Suspense, useEffect, useState } from "react";
 
 import Tabs from "./Tabs/Tabs";
 import PostList from "./PostList/PostList";
@@ -36,7 +36,9 @@ const Profile = ({ id, module }) => {
             <ProfileHeader userData={userData} userPosts={userPosts} type={type} />
             <Tabs />
             <PostList userPosts={userPosts} userData={userData} modeId={id} module={module} />
-            <Outlet />
+            <Suspense fallback={<></>}>
+                <Outlet />
+            </Suspense>
         </div>
     );
 };
