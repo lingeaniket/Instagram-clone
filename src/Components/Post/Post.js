@@ -43,13 +43,9 @@ const Post = ({ postId, id, type = "timeline", setStep }) => {
                 setPost(() => response.data.post);
                 const apiImageURL = `https://picsum.photos/id/${response.data.post.id}/500/500`;
                 setLcpImageUrl(apiImageURL);
-
                 const img = new Image();
-
                 img.src = apiImageURL;
-
                 img.onload = () => {
-                    console.log("LCP Image preloaded:", apiImageURL);
                     setIsImageLoaded(true);
                 };
                 setLikes(() => response.data.post.likes);

@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { useDispatch } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import { LazyLoadImage } from "react-lazy-load-image-component";
@@ -16,8 +16,6 @@ const PostList = ({ userPosts, userData, module, modeId }) => {
     const navigate = useNavigate();
     const dispatch = useDispatch();
 
-    dispatch(updatePostArray(userPosts.flat()));
-
     const handlePost = (id) => {
         if (module === "userProfile") {
             dispatch(changeMode("userProfile"));
@@ -29,6 +27,11 @@ const PostList = ({ userPosts, userData, module, modeId }) => {
         document.body.style.overflow = "hidden";
     };
 
+    useEffect(() => {
+        dispatch(updatePostArray(userPosts.flat()));
+        // eslint-disable-next-line
+    }, []);
+
     return (
         <div>
             <div className="postList001">
@@ -36,23 +39,18 @@ const PostList = ({ userPosts, userData, module, modeId }) => {
                     length: Math.ceil(userPosts.length / 3),
                 }).map((val, i) => {
                     return (
-                        <div className="profPostsContainer postList002">
+                        <div className="profPostsContainer postList002" key={i}>
                             {arrayFill(userPosts.slice(i * 3, i * 3 + 3)).map((post, index) => (
                                 <div
+                                    key={`${post.id}__${index}__${i}`}
                                     style={{
-                                        pointerEvents: `${
-                                            i * 3 + index >= userPosts.length ? "none" : ""
-                                        }`,
+                                        pointerEvents: `${i * 3 + index >= userPosts.length ? "none" : ""}`,
                                     }}
                                     className="image-container"
                                     onClick={() => handlePost(i * 3 + index)}
                                 >
                                     <div>
-                                        <LazyLoadImage
-                                            effect="blur"
-                                            src={`https://picsum.photos/id/${post?.id}/500/500`}
-                                            alt=""
-                                        />
+                                        <LazyLoadImage effect="blur" src={`https://picsum.photos/id/${post?.id}/500/500`} alt="" />
                                     </div>
                                     <div className="hoverIcons">
                                         <div className="postList003">
