@@ -12,8 +12,8 @@ import Instagram from "../Icons/Instagram/Instagram";
 import InstagramTitle from "../Icons/InstagramTitle/InstagramTitle";
 import MoreSettings from "../Icons/MoreSettings/MoreSettings";
 
-const NewPostMobile = lazy(() => import("../NewPost/NewPostMobile"));
-const NewPost = lazy(() => import("../NewPost/NewPost"));
+const NewPostMobile = lazy(() => import("../Post/NewPost/NewPostMobile"));
+const NewPost = lazy(() => import("../Post/NewPost/NewPost"));
 
 const Sidebar = () => {
     const navigate = useNavigate();

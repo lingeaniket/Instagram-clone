@@ -12,7 +12,7 @@ import BackArrow from "../../Icons/BackArrow/BackArrow";
 import { addComment, handleLiked, handlePost } from "../functions";
 
 import { Skeleton } from "@mui/material";
-const CommentsComponent = lazy(() => import("../../Fullpost/RightComponent/Comments/CommentsComponent"));
+const CommentsComponent = lazy(() => import("../Fullpost/RightComponent/Comments/CommentsComponent"));
 
 const RoundedSkeleton = () => {
     return (
