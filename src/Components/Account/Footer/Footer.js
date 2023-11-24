@@ -4,7 +4,6 @@ import { tabs, languages } from "../data";
 
 import Arrow from "../../Icons/Arrow/Arrow";
 
-
 const Footer = () => {
     const [data, setData] = useState([]);
     const [lang, setLang] = useState([]);

@@ -5,7 +5,7 @@ import { LazyLoadImage } from "react-lazy-load-image-component";
 import Like from "../../Icons/Like/Like";
 import Comment from "../../Icons/Comment/Comment";
 
-import { generateUser } from "../function";
+import { generateUser } from "../functions";
 
 import { Skeleton } from "@mui/material";
 import "../../Profile/profile.css";

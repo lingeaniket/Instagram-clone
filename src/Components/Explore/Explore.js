@@ -4,17 +4,17 @@ import InfiniteScroll from "react-infinite-scroll-component";
 import React, { useEffect, useState, useCallback, Suspense } from "react";
 
 import Loader from "../Icons/Loader/Loader";
-import ImagePost from "./ImagePost/ImagePost";
+import ImagePost from "../Post/ImagePost/ImagePost";
+import { Skeleton } from "@mui/material";
 
 import { changeMode } from "../../Features/fullPostSlice";
-
-import { Skeleton } from "@mui/material";
 
 import "./explore.css";
 import "react-lazy-load-image-component/src/effects/blur.css";
 
 const Explore = () => {
     const dispatch = useDispatch();
+
     const [noOfPost, setNoOfPost] = useState([]);
 
     const handleFullPost = useCallback(() => {
