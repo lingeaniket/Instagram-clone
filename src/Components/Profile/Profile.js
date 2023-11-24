@@ -9,10 +9,12 @@ import ProfileHeader from "./ProfileHeader/ProfileHeader";
 import { apiSite } from "../../Website/website";
 
 import "./profile.css";
+import { useSelector } from "react-redux";
 
 const Profile = ({ id, module }) => {
     const [userData, setUserData] = useState({});
     const [userPosts, setUserPosts] = useState([]);
+    const update = useSelector((state) => state.newPost.updates);
     const [type, setType] = useState("userProfile");
 
     useEffect(() => {
@@ -29,7 +31,8 @@ const Profile = ({ id, module }) => {
                 setType("currentProfile");
             }
         }
-    }, [id]);
+        console.log("Profile updated")
+    }, [id, update]);
 
     return (
         <div className="profile001">
