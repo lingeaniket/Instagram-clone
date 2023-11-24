@@ -7,6 +7,7 @@ const newPostDetailsSlice = createSlice({
     initialState: {
         imageid: "",
         caption: "",
+        updates: 0,
     },
     reducers: {
         changeImageid: (state, action) => {
@@ -15,19 +16,26 @@ const newPostDetailsSlice = createSlice({
         addCaptiion: (state, action) => {
             state.caption = action.payload;
         },
-        sharePost: async (state, action) => {
-            console.log("post added")
-            await axios.post(`${apiSite}/posts/add-new-post`, {
-                userId: JSON.parse(localStorage.getItem("userId")),
-                postId: Number(state.imageid),
-                caption: state.caption,
-            }).then((res)=>{
-                console.log(res.data)
-            });
+        postUpdates: (state, action) => {
+            const data = state.updates;
+            state.updates = data + 1;
+            // console.log("updated");
+        },
+        sharePost: (state, action) => {
+            // console.log("post added");
+            axios
+                .post(`${apiSite}/posts/add-new-post`, {
+                    userId: JSON.parse(localStorage.getItem("userId")),
+                    postId: Number(state.imageid),
+                    caption: state.caption,
+                })
+                .then((res) => {
+                    console.log(res.data);
+                });
         },
     },
 });
 
-export const { changeImageid, addCaptiion, sharePost } = newPostDetailsSlice.actions;
+export const { changeImageid, addCaptiion, sharePost, postUpdates } = newPostDetailsSlice.actions;
 
 export default newPostDetailsSlice.reducer;
