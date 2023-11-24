@@ -134,7 +134,7 @@ const Comment = ({ addReply, comment, commentId, mainLoad, setComment, setReplyD
                                     <span className="fullPost058">
                                         <span>
                                             <time className="fullPost059">
-                                                {comment?.time ? timeElapsedFromCurrent(comment.time) : "no time"}
+                                                {comment?.time ? timeElapsedFromCurrent(comment.time) : ""}
                                             </time>
                                         </span>
                                         <button className="fullPost065 fullPost071">{likes} likes</button>
