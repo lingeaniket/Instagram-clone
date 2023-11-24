@@ -9,7 +9,6 @@ const PostSuccess2 = () => {
                     height="100%"
                     width="100%"
                     alt="Animated tick"
-                    referrerpolicy="origin-when-cross-origin"
                     src="https://static.cdninstagram.com/rsrc.php/v3/yQ/r/alF2W5MavPX.gif"
                 />
             </div>
