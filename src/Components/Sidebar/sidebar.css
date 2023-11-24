@@ -60,12 +60,20 @@
     padding: 12px;
 }
 
+.switchView01 {
+    display: block;
+}
+
+.switchView02 {
+    display: none;
+}
+
 @media screen and (max-width: 1024px) {
     .side06 {
         display: none;
     }
 
-    .side02{
+    .side02 {
         width: 72px;
     }
 
@@ -75,6 +83,17 @@
 }
 
 @media screen and (max-width: 768px) {
+    .switchView01 {
+        display: none;
+    }
+
+    .switchView02 {
+        display: block;
+        position: fixed;
+        inset: 0;
+        height: 100vh;
+        background-color: white;
+    }
     .side01 {
         position: fixed;
         bottom: 0;

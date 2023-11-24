@@ -1,5 +1,5 @@
 import { useNavigate } from "react-router-dom";
-import { Fragment, Suspense, lazy, useEffect, useRef, useState } from "react";
+import { Suspense, lazy, useEffect, useRef, useState } from "react";
 
 import Tab from "./Tab/Tab";
 import SearchComponent from "./SearchComponent/SearchComponent";
@@ -11,6 +11,8 @@ import "./sidebar.css";
 import Instagram from "../Icons/Instagram/Instagram";
 import InstagramTitle from "../Icons/InstagramTitle/InstagramTitle";
 import MoreSettings from "../Icons/MoreSettings/MoreSettings";
+
+const NewPostMobile = lazy(() => import("../NewPost/NewPostMobile"));
 const NewPost = lazy(() => import("../NewPost/NewPost"));
 
 const Sidebar = () => {
@@ -98,9 +100,18 @@ const Sidebar = () => {
                     </div>
                     {searchDiv && <SearchComponent searchDiv={searchDiv} searchCloseFunc={handleSearch} searchRef={searchRef} />}
                     {createOpen && (
-                        <Suspense fallback={<></>}>
-                            <NewPost setOpen={setCreateOpen} />
-                        </Suspense>
+                        <div>
+                            <span className="switchView01">
+                                <Suspense fallback={<></>}>
+                                    <NewPost setOpen={setCreateOpen} />
+                                </Suspense>
+                            </span>
+                            <span className="switchView02">
+                                <Suspense fallback={<></>}>
+                                    <NewPostMobile />
+                                </Suspense>
+                            </span>
+                        </div>
                     )}
                 </div>
             </div>
