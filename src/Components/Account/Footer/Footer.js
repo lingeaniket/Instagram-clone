@@ -1,15 +1,19 @@
 import React, { memo, useEffect, useState } from "react";
-import Arrow from "../../Icons/Arrow/Arrow";
 
 import { tabs, languages } from "../data";
+
+import Arrow from "../../Icons/Arrow/Arrow";
+
 
 const Footer = () => {
     const [data, setData] = useState([]);
     const [lang, setLang] = useState([]);
+
     useEffect(() => {
         setData(() => tabs);
         setLang(() => languages);
     }, []);
+
     return (
         <footer className="acc_042 acc_01">
             <div className="acc_043 acc_01">

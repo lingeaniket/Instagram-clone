@@ -2,6 +2,7 @@ import image01 from "./Images/screenshot1-2x.png";
 import image02 from "./Images/screenshot2-2x.png";
 import image03 from "./Images/screenshot3-2x.png";
 import image04 from "./Images/screenshot4-2x.png";
+
 export const tabs = [
     "Meta",
     "About",

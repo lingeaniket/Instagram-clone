@@ -1,4 +1,4 @@
-import React from "react";
+import React, { memo } from "react";
 import "./accountPage.css";
 import Login from "./FormLogin/Login";
 import Footer from "./Footer/Footer";
@@ -18,4 +18,4 @@ const AccountPage = () => {
     );
 };
 
-export default AccountPage;
+export default memo(AccountPage);
