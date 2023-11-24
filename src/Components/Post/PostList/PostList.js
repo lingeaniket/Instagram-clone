@@ -3,7 +3,7 @@ import { useDispatch } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import { LazyLoadImage } from "react-lazy-load-image-component";
 
-import { arrayFill } from "../arrayFillFunction";
+import { arrayFill } from "../functions";
 import { changeMode, updatePostArray } from "../../../Features/fullPostSlice";
 
 import Like from "../../Icons/Like/Like";

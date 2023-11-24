@@ -9,7 +9,7 @@ import { generateUser } from "../functions";
 
 import { Skeleton } from "@mui/material";
 import "../../Profile/profile.css";
-import "../../Profile/PostList/postList.css";
+import "../PostList/postList.css";
 
 const ImagePost = ({ number, handleFullPost }) => {
     const navigate = useNavigate();

@@ -3,7 +3,7 @@ import { Outlet } from "react-router-dom";
 import { Suspense, useEffect, useState } from "react";
 
 import Tabs from "./Tabs/Tabs";
-import PostList from "./PostList/PostList";
+import PostList from "../Post/PostList/PostList";
 import ProfileHeader from "./ProfileHeader/ProfileHeader";
 
 import { apiSite } from "../../Website/website";
