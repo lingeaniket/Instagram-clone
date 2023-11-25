@@ -1,0 +1,23 @@
+.user-photo {
+  width: 100%;
+  position: relative;
+}
+
+.user-photo-modal {
+  display: none;
+  position: absolute;
+  top: 0px;
+  left: 0;
+  z-index: 1002;
+  width: 50px;
+  padding: 40px 0 0;
+  /* background-color: white; */
+}
+
+.user-photo:hover > .user-photo-modal {
+  display: block;
+}
+
+.user-photo-modal:hover {
+  display: block;
+}
