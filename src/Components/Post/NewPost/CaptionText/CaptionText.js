@@ -1,12 +1,16 @@
 import React, { useState } from "react";
-import Emoji from "../../../Icons/Emoji/Emoji";
 import { useDispatch } from "react-redux";
+
 import { addCaptiion } from "../../../../Features/newPostDetailsSlice";
 
+import Emoji from "../../../Icons/Emoji/Emoji";
+
 const CaptionText = () => {
-    const [caption, setCaption] = useState("");
-    const [timer, setTimer] = useState("");
     const dispatch = useDispatch();
+
+    const [timer, setTimer] = useState("");
+    const [caption, setCaption] = useState("");
+
     const handleInput = (e) => {
         if (e.target.innerText.length < 2200) {
             setCaption(e.target.innerText);
@@ -23,6 +27,7 @@ const CaptionText = () => {
             e.target.innerText = caption;
         }
     };
+
     return (
         <div className="posting_015">
             <div className="posting_016">
