@@ -3,12 +3,19 @@ import React from "react";
 import { Skeleton } from "@mui/material";
 
 import "./list.css";
+import "../ListModal/listModal.css";
 import "../../../Message/message.css";
 import RoundedImage from "../../../RoundedImage/RoundedImage";
 
-const List = ({ loading, user, type, userAcc = false }) => {
+const List = ({ loading, user, type, userAcc = false, modalRequired, index = 0 }) => {
     return (
-        <div className="listModal024">
+        <div
+            className="listModal024"
+            style={{
+                position: "relative",
+                zIndex: 10000 - index - index,
+            }}
+        >
             <div
                 className="messageIn024 messageIn065 messageIn107"
                 style={{
@@ -30,6 +37,7 @@ const List = ({ loading, user, type, userAcc = false }) => {
                                     style={{
                                         height: "44px",
                                         width: "44px",
+                                        overflow: "visible",
                                     }}
                                 >
                                     {loading ? (
@@ -43,7 +51,7 @@ const List = ({ loading, user, type, userAcc = false }) => {
                                             />
                                         </>
                                     ) : (
-                                        <RoundedImage url={user?.avatar} />
+                                        <RoundedImage url={user?.avatar} user={user} modalRequired={modalRequired} />
                                     )}
                                 </div>
                             </div>
@@ -83,7 +91,7 @@ const List = ({ loading, user, type, userAcc = false }) => {
                                             width: "auto",
                                         }}
                                     >
-                                        <span className="messageIn034">{user.username}</span>
+                                        <span className="messageIn034">{user?.username}</span>
                                         {/* if verified */}
                                         <div className="messageIn035">O</div>
                                     </div>
@@ -124,7 +132,7 @@ const List = ({ loading, user, type, userAcc = false }) => {
                                             </div>
                                         </div>
                                     ) : (
-                                        <div className="listModal025">Following</div>
+                                        <>{modalRequired ? <div className="listModal025">Following</div> : <></>}</>
                                     )}
                                 </>
                             )}
