@@ -30,6 +30,23 @@ const RightSideBar = () => {
                                                         username: "aniket",
                                                         avatar: 12,
                                                     }}
+                                                    index={1}
+                                                    type="timeline"
+                                                    />
+                                                <List
+                                                        index={2}
+                                                        user={{
+                                                            username: "aniket",
+                                                            avatar: 13,
+                                                        }}
+                                                        type="timeline"
+                                                        />
+                                                <List
+                                                        index={3}
+                                                    user={{
+                                                        username: "aniket",
+                                                        avatar: 14,
+                                                    }}
                                                     type="timeline"
                                                 />
                                             </div>

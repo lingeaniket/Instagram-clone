@@ -55,7 +55,7 @@
 
 .rsb011 {
     height: auto;
-    overflow: hidden auto;
+    /* overflow: hidden auto; */
 }
 
 .rsb012 {
