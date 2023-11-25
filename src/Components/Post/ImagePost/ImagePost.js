@@ -8,6 +8,7 @@ import Comment from "../../Icons/Comment/Comment";
 import { generateUser } from "../functions";
 
 import { Skeleton } from "@mui/material";
+
 import "../../Profile/profile.css";
 import "../PostList/postList.css";
 
