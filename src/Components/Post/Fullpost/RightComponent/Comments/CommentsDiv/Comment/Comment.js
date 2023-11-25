@@ -7,9 +7,9 @@ import { replyComment, timeElapsedFromCurrent } from "./function";
 import { apiSite } from "../../../../../../../Website/website";
 
 import Like from "../../../../../../Icons/Like/Like";
+import RoundedImage from "../../../../../../RoundedImage/RoundedImage";
 
 import { Skeleton } from "@mui/material";
-import RoundedImage from "../../../../../../RoundedImage/RoundedImage";
 
 const Comment = ({ addReply, comment, commentId, mainLoad, setComment, setReplyData, setReplyMode, type }) => {
     const dispatch = useDispatch();
@@ -100,7 +100,7 @@ const Comment = ({ addReply, comment, commentId, mainLoad, setComment, setReplyD
                                     }}
                                 />
                             ) : (
-                                <RoundedImage url={userData?.avatar} />
+                                <RoundedImage url={userData?.avatar} user={userData} modalRequired={false} />
                             )}
                         </div>
                     </div>

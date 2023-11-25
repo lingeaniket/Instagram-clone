@@ -1,18 +1,18 @@
 import axios from "axios";
+import { v4 as uuidv4 } from "uuid";
 import { useDispatch } from "react-redux";
 import { useSearchParams } from "react-router-dom";
 import React, { useEffect, useState, memo, useRef, useCallback } from "react";
-import { v4 as uuidv4 } from "uuid";
 
 import Loader from "../../../../Icons/Loader/Loader";
 import CommentsDiv from "../Comments/CommentsDiv/CommentsDiv";
+import RoundedImage from "../../../../RoundedImage/RoundedImage";
 
 import { apiSite } from "../../../../../Website/website";
+import { timeElapsedFromCurrent } from "./CommentsDiv/Comment/function";
 import { addPostComment, addPostReply, updateComment, updateData, updateUuidv } from "../../../../../Features/fullPostCommentSlice";
 
 import { Skeleton } from "@mui/material";
-import RoundedImage from "../../../../RoundedImage/RoundedImage";
-import { timeElapsedFromCurrent } from "./CommentsDiv/Comment/function";
 
 const CommentsComponent = () => {
     const dispatch = useDispatch();
