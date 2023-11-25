@@ -36,7 +36,7 @@ const PostHeader = ({ userData }) => {
                             }}
                         />
                     ) : (
-                        <RoundedImage url={userData?.avatar} />
+                        <RoundedImage url={userData?.avatar} user={userData} />
                     )}
                 </div>
                 <div className="post006">
