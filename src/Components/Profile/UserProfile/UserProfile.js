@@ -1,7 +1,7 @@
 import React, { Suspense, useEffect, useState } from "react";
 import { Outlet, useParams } from "react-router-dom";
 
-import Profile from "../Profile/Profile";
+import Profile from "../Profile";
 
 const UserProfile = () => {
     const { id } = useParams();
