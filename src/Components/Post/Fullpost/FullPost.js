@@ -6,13 +6,13 @@ import { useSearchParams, useNavigate } from "react-router-dom";
 import { apiSite } from "../../../Website/website";
 import { handleImagePostLiked, handlePostLiked } from "./functions";
 
+import Post from "../Post";
+import Modal from "../../Modal/Modal";
 import Navigation from "./Navigation/Navigation";
 import ImageComponent from "./LeftComponent/ImageComponent/ImageComponent";
 import PostDetailComponent from "./RightComponent/PostDetailComponent";
 
 import "./fullPost.css";
-import Modal from "../../Modal/Modal";
-import Post from "../Post";
 
 const FullPost = () => {
     const [searchParams, setSearchParams] = useSearchParams();
