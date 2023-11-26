@@ -156,7 +156,7 @@
 }
 
 .messageIn023:hover {
-    background-color: rgb(239,239,239);
+    background-color: rgb(239, 239, 239);
 }
 
 .messageIn024 {
@@ -187,16 +187,11 @@
 }
 
 .messageIn028 {
-    /* height: 56px; */
     position: relative;
-    /* width: 56px; */
 }
 
 .messageIn029 {
     border-radius: 50%;
-    /* height: 56px; */
-    /* overflow: hidden; */
-    /* width: 56px; */
 }
 
 .messageIn030 {
@@ -607,10 +602,10 @@
     position: relative;
 }
 
-.messageIn099 .messageIn117.messageIn107{
+.messageIn099 .messageIn117.messageIn107 {
     visibility: hidden;
 }
-.messageIn099:hover .messageIn117.messageIn107{
+.messageIn099:hover .messageIn117.messageIn107 {
     visibility: visible;
 }
 
@@ -851,7 +846,6 @@
     line-height: 18px;
     padding: 0 16px;
 }
-
 
 .newScroll {
     height: 100%;
