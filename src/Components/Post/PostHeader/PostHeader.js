@@ -5,6 +5,7 @@ import Options from "../../Icons/Options/Options";
 
 import { Skeleton } from "@mui/material";
 import RoundedImage from "../../RoundedImage/RoundedImage";
+import AccModal from "../../RoundedImage/AccModal/AccModal";
 
 const PostHeader = ({ userData }) => {
     const navigate = useNavigate();
@@ -40,10 +41,12 @@ const PostHeader = ({ userData }) => {
                     )}
                 </div>
                 <div className="post006">
-                    <div className="post007">
-                        {loading ? (
+                    <div className="post007 user-name">
+                        {loading ? ( 
+                             
                             <Skeleton
                                 variant="text"
+                                
                                 animation="wave"
                                 sx={{
                                     fontSize: "14px",
@@ -51,7 +54,10 @@ const PostHeader = ({ userData }) => {
                                 }}
                             />
                         ) : (
-                            <>{userData.username}</>
+                            <>
+                                <span>{userData.username}</span>
+                                <AccModal user={userData} />
+                            </>
                         )}
                     </div>
                 </div>
