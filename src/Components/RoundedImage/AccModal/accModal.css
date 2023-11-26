@@ -3,7 +3,7 @@
     row-gap: 16px;
     width: max-content;
     align-items: center;
-    grid-template-columns: 64px 40px min-content;
+    grid-template-rows: 64px 40px min-content;
     background-color: white;
     box-shadow: 0 5px 23px rgba(0, 0, 0, 0.2);
     border-radius: 8px;
