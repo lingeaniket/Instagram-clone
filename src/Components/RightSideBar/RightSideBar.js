@@ -9,7 +9,7 @@ const RightSideBar = () => {
     return (
         <div className="rsb001">
             <div className="rsb002">
-                <List loading={false} user={{ username: "abc", avatar: 1 }} type="timeline" userAcc={true} />
+                <List loading={false} user={{ username: "abc", avatar: 1 }} type="timeline" userAcc={true} modalRequired={true} />
                 <div className="rsb003">
                     <div className="rsb004">
                         <div className="rsb005">
@@ -32,17 +32,20 @@ const RightSideBar = () => {
                                                     }}
                                                     index={1}
                                                     type="timeline"
-                                                    />
+                                                    modalRequired={true}
+                                                />
                                                 <List
-                                                        index={2}
-                                                        user={{
-                                                            username: "aniket",
-                                                            avatar: 13,
-                                                        }}
-                                                        type="timeline"
-                                                        />
+                                                    index={2}
+                                                    user={{
+                                                        username: "aniket",
+                                                        avatar: 13,
+                                                    }}
+                                                    modalRequired={true}
+                                                    type="timeline"
+                                                />
                                                 <List
-                                                        index={3}
+                                                    index={3}
+                                                    modalRequired={true}
                                                     user={{
                                                         username: "aniket",
                                                         avatar: 14,
