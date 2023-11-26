@@ -28,6 +28,30 @@ const AccModal = ({ user }) => {
                                 </div>
                             </div>
                         </div>
+                        <div className="accModal004">
+                            <div>
+                                <div className="accModal005">
+                                    <span className="accModal006">{user?.followers?.length}</span>
+                                </div>
+                            </div>
+                            <div className="accModal007">
+                                <div className="accModal008">
+                                    <span className="accModal006">followers</span>
+                                </div>
+                            </div>
+                        </div>
+                        <div className="accModal004">
+                            <div>
+                                <div className="accModal005">
+                                    <span className="accModal006">{user?.followings?.length}</span>
+                                </div>
+                            </div>
+                            <div className="accModal007">
+                                <div className="accModal008">
+                                    <span className="accModal006">followings</span>
+                                </div>
+                            </div>
+                        </div>
                     </div>
                 </div>
                 <div>
