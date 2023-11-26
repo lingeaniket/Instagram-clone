@@ -5,7 +5,9 @@ import { Skeleton } from "@mui/material";
 import "./list.css";
 import "../ListModal/listModal.css";
 import "../../../Message/message.css";
+import "../../../RoundedImage/styles.css";
 import RoundedImage from "../../../RoundedImage/RoundedImage";
+import AccModal from "../../../RoundedImage/AccModal/AccModal";
 
 const List = ({ loading, user, type, userAcc = false, modalRequired, index = 0 }) => {
     return (
@@ -27,19 +29,12 @@ const List = ({ loading, user, type, userAcc = false, modalRequired, index = 0 }
                         <div className="messageIn027">
                             <div
                                 className="messageIn028"
-                                style={{
-                                    height: "44px",
-                                    width: "44px",
-                                }}
+                                // style={{
+                                //     height: "44px",
+                                //     width: "44px",
+                                // }}
                             >
-                                <div
-                                    className="messageIn029"
-                                    style={{
-                                        height: "44px",
-                                        width: "44px",
-                                        overflow: "visible",
-                                    }}
-                                >
+                                <div className="sideList005 messageIn029">
                                     {loading ? (
                                         <>
                                             <Skeleton
@@ -91,9 +86,12 @@ const List = ({ loading, user, type, userAcc = false, modalRequired, index = 0 }
                                             width: "auto",
                                         }}
                                     >
-                                        <span className="messageIn034">{user?.username}</span>
+                                        <span className="messageIn034 user-name">
+                                            <span>{user?.username}</span>
+                                            {modalRequired && <AccModal user={user} />}
+                                        </span>
                                         {/* if verified */}
-                                        <div className="messageIn035">O</div>
+                                        {/* <div className="messageIn035">O</div> */}
                                     </div>
                                     <div className="messageIn037">
                                         <div className="messageIn038">
