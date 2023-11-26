@@ -2,88 +2,29 @@ import React from "react";
 import List from "../../Profile/ProfileHeader/SingleList/List";
 import Arrow from "../../Icons/Arrow/Arrow";
 
+import "./accModal.css";
+
 const AccModal = ({ user }) => {
     return (
         <div className="user-photo-modal user-photo-modal-transition">
-            <div
-                style={{
-                    display: "grid",
-                    rowGap: "16px",
-                    width: "max-content",
-                    alignItems: "center",
-                    gridTemplateRows: "64px 40px min-content",
-                    backgroundColor: "white",
-                    boxShadow: "0 5px 23px rgba(0,0,0,.2)",
-                    borderRadius: "8px",
-                    padding: "16px 0",
-                }}
-            >
+            <div className="accModal001">
                 <div>
-                    <div
-                        style={{
-                            padding: "0 16px",
-                            width: "100%",
-                        }}
-                    >
+                    <div className="w_100 accModal002">
                         <List loading={false} user={user} modalRequired={false} type="profile" />
                     </div>
                 </div>
                 <div>
-                    <div
-                        style={{
-                            display: "grid",
-                            gridTemplateColumns: "1fr 1fr 1fr",
-                            columnGap: "3px",
-                            alignItems: "center",
-                        }}
-                    >
+                    <div className="accModal003">
                         {/* list */}
-                        <div
-                            style={{
-                                padding: "0 8px",
-                                textAlign: "center",
-                            }}
-                        >
+                        <div className="accModal004">
                             <div>
-                                <div
-                                    style={{
-                                        lineHeight: "18px",
-                                        fontSize: "14px",
-                                        fontWeight: 700,
-                                    }}
-                                >
-                                    <span
-                                        style={
-                                            {
-                                                //bf -3px, af -4
-                                            }
-                                        }
-                                    >
-                                        77
-                                    </span>
+                                <div className="accModal005">
+                                    <span className="accModal006">77</span>
                                 </div>
                             </div>
-                            <div
-                                style={{
-                                    marginTop: "4px",
-                                }}
-                            >
-                                <div
-                                    style={{
-                                        lineHeight: "18px",
-                                        fontSize: "14px",
-                                        fontWeight: 400,
-                                    }}
-                                >
-                                    <span
-                                        style={
-                                            {
-                                                //bf -3px, af -4
-                                            }
-                                        }
-                                    >
-                                        posts
-                                    </span>
+                            <div className="accModal007">
+                                <div className="accModal008">
+                                    <span className="accModal006">posts</span>
                                 </div>
                             </div>
                         </div>
