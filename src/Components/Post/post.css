@@ -9,6 +9,7 @@
     width: 100%;
     justify-content: space-between;
     margin-bottom: 15px;
+    align-items: center;
 }
 
 .post003 {
@@ -46,6 +47,9 @@
 
 .post007 {
     cursor: pointer;
+    height: 100%;
+    display: flex;
+    align-items: center;
 }
 
 .post008 {
