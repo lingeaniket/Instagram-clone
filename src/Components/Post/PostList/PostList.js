@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React, { useEffect, memo } from "react";
 import { useDispatch } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import { LazyLoadImage } from "react-lazy-load-image-component";
@@ -14,6 +14,7 @@ import "react-lazy-load-image-component/src/effects/blur.css";
 
 const PostList = ({ userPosts, userData, module, modeId }) => {
     const navigate = useNavigate();
+
     const dispatch = useDispatch();
 
     const handlePost = (id) => {
@@ -78,4 +79,4 @@ const PostList = ({ userPosts, userData, module, modeId }) => {
     );
 };
 
-export default PostList;
+export default memo(PostList);

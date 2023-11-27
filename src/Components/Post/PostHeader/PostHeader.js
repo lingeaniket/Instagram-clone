@@ -36,11 +36,9 @@ const PostHeader = ({ userData }) => {
                 </div>
                 <div className="post006">
                     <div className="post007 user-name">
-                        {loading ? ( 
-                             
+                        {loading ? (
                             <Skeleton
                                 variant="text"
-                                
                                 animation="wave"
                                 sx={{
                                     fontSize: "14px",

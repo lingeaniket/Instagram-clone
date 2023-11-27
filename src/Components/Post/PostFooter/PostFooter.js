@@ -1,17 +1,18 @@
-import React, { Suspense, lazy, useState } from "react";
 import { useDispatch } from "react-redux";
+import React, { Suspense, lazy, useState ,memo } from "react";
 import { useNavigate, useSearchParams } from "react-router-dom";
-
-import Save from "../../Icons/Save/Save";
-import Like from "../../Icons/Like/Like";
-import Comment from "../Comment/Comment";
-import Share from "../../Icons/Share/Share";
-import CommentIcon from "../../Icons/Comment/Comment";
-import BackArrow from "../../Icons/BackArrow/BackArrow";
 
 import { addComment, handleLiked, handlePost } from "../functions";
 
+import Save from "../../Icons/Save/Save";
+import Like from "../../Icons/Like/Like";
+import Share from "../../Icons/Share/Share";
+import Comment from "../Comment/Comment";
+import BackArrow from "../../Icons/BackArrow/BackArrow";
+import CommentIcon from "../../Icons/Comment/Comment";
+
 import { Skeleton } from "@mui/material";
+
 const CommentsComponent = lazy(() => import("../Fullpost/RightComponent/Comments/CommentsComponent"));
 
 const RoundedSkeleton = () => {
@@ -177,4 +178,4 @@ const PostFooter = ({ setLiked, liked, setLikes, postId, userData, likes, post, 
     );
 };
 
-export default PostFooter;
+export default memo(PostFooter);

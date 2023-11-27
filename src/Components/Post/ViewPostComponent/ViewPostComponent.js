@@ -1,7 +1,9 @@
-import React from "react";
+import React, {memo} from "react";
+
 import FullPost from "../Fullpost/FullPost";
-import "./viewPostComponent.css";
 import ProfileScroll from "../../Profile/ProfileScroll/ProfileScroll";
+
+import "./viewPostComponent.css";
 
 const ViewPostComponent = () => {
     return (
@@ -16,4 +18,4 @@ const ViewPostComponent = () => {
     );
 };
 
-export default ViewPostComponent;
+export default memo(ViewPostComponent);

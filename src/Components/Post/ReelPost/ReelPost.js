@@ -1,4 +1,5 @@
-import React from "react";
+import React, {memo} from "react";
+
 import Reel from "../../Icons/Reel/Reel";
 
 const ReelPost = () => {
@@ -18,4 +19,4 @@ const ReelPost = () => {
     );
 };
 
-export default ReelPost;
+export default memo(ReelPost);
