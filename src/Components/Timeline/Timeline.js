@@ -1,13 +1,15 @@
 import { Fragment, Suspense, lazy, memo } from "react";
 import { Outlet, useNavigate } from "react-router-dom";
 
+import { tabArr } from "../ExtraData/extraData";
+
 import Stories from "../Stories/Stories";
+import Instagram from "../Icons/Instagram/Instagram";
 import TimelineIn from "./TimelineIn/TimelineIn";
+import InstagramTitle from "../Icons/InstagramTitle/InstagramTitle";
 
 import "./timeline.css";
-import Instagram from "../Icons/Instagram/Instagram";
-import { tabArr } from "../ExtraData/extraData";
-import InstagramTitle from "../Icons/InstagramTitle/InstagramTitle";
+
 const RightSideBar = lazy(() => import("../RightSideBar/RightSideBar"));
 const MobileSearchComponent = lazy(() => import("../Sidebar/MobileSearchComponent/MobileSearchComponent"));
 

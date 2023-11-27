@@ -1,7 +1,8 @@
-import React from "react";
+import React, { memo } from "react";
+
+import RoundedImage from "../RoundedImage/RoundedImage";
 
 import "./stories.css";
-import RoundedImage from "../RoundedImage/RoundedImage";
 
 const Stories = () => {
     return (
@@ -14,20 +15,22 @@ const Stories = () => {
                                 <div className="story006">
                                     <ul className="story007">
                                         {/* list map stories */}
-                                        <li className="story008">
-                                            <div className="story009">
-                                                <div className="story010">
-                                                    <div className="story011">
-                                                        <div className="story012">
-                                                            <RoundedImage/>
+                                        {[1, 2, 5, 9, 6, 3, 8, 7, 4].map((val) => (
+                                            <li key={val} className="story008">
+                                                <div className="story009">
+                                                    <div className="story010">
+                                                        <div className="story011">
+                                                            <div className="story012">
+                                                                <RoundedImage />
+                                                            </div>
+                                                        </div>
+                                                        <div className="story014">
+                                                            <div className="story015">username</div>
                                                         </div>
                                                     </div>
-                                                    <div className="story014">
-                                                        <div className="story015">username</div>
-                                                    </div>
                                                 </div>
-                                            </div>
-                                        </li>
+                                            </li>
+                                        ))}
                                     </ul>
                                 </div>
                             </div>
@@ -39,4 +42,4 @@ const Stories = () => {
     );
 };
 
-export default Stories;
+export default memo(Stories);
