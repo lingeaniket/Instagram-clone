@@ -1,9 +1,15 @@
 import React, { memo, useEffect, useState } from "react";
 import "./styles.css";
 import AccModal from "./AccModal/AccModal";
+import { useNavigate } from "react-router-dom";
 
 const RoundedImage = ({ url, alt, modalRequired = true, user }) => {
     const [loading, setLoading] = useState(true);
+    const navigate = useNavigate();
+
+    const handleNavigate = () => {
+        navigate(`/p/${user.id}`);
+    };
 
     useEffect(() => {
         if (url) {
@@ -17,10 +23,10 @@ const RoundedImage = ({ url, alt, modalRequired = true, user }) => {
             ) : (
                 <div className="user-photo">
                     <div
+                        onClick={handleNavigate}
                         style={{
                             borderRadius: "50%",
                             border: "0.5px solid rgba(0, 0, 0, 0.4)",
-
                             width: "100%",
                             height: "100%",
                             cursor: "pointer",
