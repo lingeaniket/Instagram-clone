@@ -3,9 +3,9 @@ import React, { useEffect, useState } from "react";
 import { useSearchParams } from "react-router-dom";
 import { LazyLoadImage } from "react-lazy-load-image-component";
 
-import ImageLike from "../../../../Icons/ImageLike/ImageLike";
+import ImageLike from "../../../Icons/ImageLike/ImageLike";
 
-import { apiSite } from "../../../../../Website/website";
+import { apiSite } from "../../../../Website/website";
 
 import "react-lazy-load-image-component/src/effects/blur.css";
 

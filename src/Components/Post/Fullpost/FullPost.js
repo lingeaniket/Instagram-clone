@@ -9,7 +9,7 @@ import { handleImagePostLiked, handlePostLiked } from "./functions";
 import Post from "../Post";
 import Modal from "../../Modal/Modal";
 import Navigation from "./Navigation/Navigation";
-import ImageComponent from "./LeftComponent/ImageComponent/ImageComponent";
+import ImageComponent from "./LeftComponent/ImageComponent";
 import PostDetailComponent from "./RightComponent/PostDetailComponent";
 
 import "./fullPost.css";
