@@ -2,10 +2,10 @@ import { useNavigate } from "react-router-dom";
 import React, { memo, useEffect, useState } from "react";
 import { LazyLoadImage } from "react-lazy-load-image-component";
 
+import { generateUser } from "../functions";
+
 import Like from "../../Icons/Like/Like";
 import Comment from "../../Icons/Comment/Comment";
-
-import { generateUser } from "../functions";
 
 import { Skeleton } from "@mui/material";
 
