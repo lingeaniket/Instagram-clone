@@ -1,6 +1,7 @@
 import { Suspense } from "react";
-import Sidebar from "../Sidebar/Sidebar";
 import { Outlet } from "react-router-dom";
+
+import Sidebar from "../Sidebar/Sidebar";
 
 const Home = () => {
     return (
