@@ -1,38 +1,18 @@
 import React from "react";
 
+import "./loading.css";
+
 const LoadingPage = () => {
     return (
-        <div
-            style={{
-                position: "fixed",
-                zIndex: 100,
-                backgroundColor: "white",
-                height: "100%",
-                width: "100%",
-                top: 0,
-                left: 0,
-            }}
-        >
+        <div className="loading_01">
             <img
                 width={"80px"}
                 height={"80px"}
-                style={{
-                    position: "absolute",
-                    top: "50%",
-                    left: "50%",
-                    margin: "-40px 0 0 -40px",
-                }}
+                className="loading_02"
                 src="https://www.edigitalagency.com.au/wp-content/uploads/new-Instagram-logo-png-full-colour-glyph-1200x1199.png"
                 alt=""
             />
-            <span
-                style={{
-                    position: "absolute",
-                    bottom: "32px",
-                    left: "50%",
-                    margin: "-36px 0 0 -36px",
-                }}
-            >
+            <span className="loading_03">
                 <img
                     height="37px"
                     width="72px"

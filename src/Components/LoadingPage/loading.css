@@ -1,0 +1,23 @@
+.loading_01 {
+    position: fixed;
+    z-index: 100;
+    background-color: white;
+    height: 100%;
+    width: 100%;
+    top: 0;
+    left: 0;
+}
+
+.loading_02 {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    margin: -40px 0 0 -40px;
+}
+
+.loading_03 {
+    position: absolute;
+    bottom: 32px;
+    left: 50%;
+    margin: -36px 0 0 -36px;
+}
