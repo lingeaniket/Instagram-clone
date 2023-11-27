@@ -26,17 +26,26 @@
 .story005 {
     display: flex;
     height: 100%;
-    overflow-x: auto;
+    /* overflow-x: scroll; */
     overflow-y: hidden;
+}
+
+.story007::-webkit-scrollbar {
+    display: none;
 }
 
 .story006 {
     display: flex;
+    width: 100%;
 }
 
 .story007 {
+    display: flex;
     padding: 0;
     margin: 0;
+    width: 100%;
+    overflow-y: hidden;
+    overflow-x: scroll;
 }
 
 .story008 {
@@ -92,10 +101,10 @@
     line-height: 12px;
 }
 
-.story015{
-  white-space:nowrap;
-  max-width:74px;
-  padding:0 2px;
-  overflow:hidden;
-  text-align:center;
-  }
+.story015 {
+    white-space: nowrap;
+    max-width: 74px;
+    padding: 0 2px;
+    overflow: hidden;
+    text-align: center;
+}

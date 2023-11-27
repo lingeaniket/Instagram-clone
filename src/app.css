@@ -38,6 +38,7 @@ body {
 .span01 {
     margin-left: 244px;
     width: 100%;
+    display: flex;
 }
 
 .w_15 {

@@ -15,7 +15,7 @@ const Stories = () => {
                                 <div className="story006">
                                     <ul className="story007">
                                         {/* list map stories */}
-                                        {[1, 2, 5, 9, 6, 3, 8, 7, 4].map((val) => (
+                                        {[1, 2, 5, 9, 6, 3, 8, 7, 4, 11].map((val) => (
                                             <li key={val} className="story008">
                                                 <div className="story009">
                                                     <div className="story010">
