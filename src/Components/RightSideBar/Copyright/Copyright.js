@@ -1,4 +1,4 @@
-import React from "react";
+import React, { memo } from "react";
 
 const Copyright = () => {
     const buttons = ["About", "Help", "Press", "API", "Jobs", "Privacy", "Terms", "Locations", "Language", "Meta Verified"];
@@ -25,4 +25,4 @@ const Copyright = () => {
     );
 };
 
-export default React.memo(Copyright);
+export default memo(Copyright);

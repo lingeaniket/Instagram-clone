@@ -1,9 +1,9 @@
-import React from "react";
+import React, { memo } from "react";
 
 import List from "../Profile/ProfileHeader/SingleList/List";
+import Copyright from "./Copyright/Copyright";
 
 import "./rightSideBar.css";
-import Copyright from "./Copyright/Copyright";
 
 const RightSideBar = () => {
     return (
@@ -66,4 +66,4 @@ const RightSideBar = () => {
     );
 };
 
-export default React.memo(RightSideBar);
+export default memo(RightSideBar);
