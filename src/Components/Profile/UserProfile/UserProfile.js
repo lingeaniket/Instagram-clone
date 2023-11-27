@@ -1,5 +1,5 @@
-import React, { Suspense, useEffect, useState } from "react";
 import { Outlet, useParams } from "react-router-dom";
+import React, { Suspense, useEffect, useState, memo } from "react";
 
 import Profile from "../Profile";
 
@@ -22,4 +22,4 @@ const UserProfile = () => {
     );
 };
 
-export default UserProfile;
+export default memo(UserProfile);

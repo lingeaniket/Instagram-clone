@@ -1,13 +1,13 @@
-import { useState } from "react";
+import { useState, memo } from "react";
 
 import Arrow from "../../Icons/Arrow/Arrow";
-import ListModal from "./ListModal/ListModal";
 import Account from "../../Icons/Account/Account";
 import Options from "../../Icons/Options/Options";
 import Settings from "../../Icons/Settings/Settings";
+import ListModal from "./ListModal/ListModal";
+import RoundedImage from "../../RoundedImage/RoundedImage";
 
 import "./profileHeader.css";
-import RoundedImage from "../../RoundedImage/RoundedImage";
 
 const ProfileHeader = ({ userData, userPosts, type }) => {
     const [open, setOpen] = useState(false);
@@ -281,4 +281,4 @@ const ProfileHeader = ({ userData, userPosts, type }) => {
     );
 };
 
-export default ProfileHeader;
+export default memo(ProfileHeader);

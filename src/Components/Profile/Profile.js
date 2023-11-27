@@ -1,20 +1,21 @@
 import axios from "axios";
 import { Outlet } from "react-router-dom";
-import { Suspense, useEffect, useState } from "react";
+import { useSelector } from "react-redux";
+import { Suspense, useEffect, useState, memo } from "react";
+
+import { apiSite } from "../../Website/website";
 
 import Tabs from "./Tabs/Tabs";
 import PostList from "../Post/PostList/PostList";
 import ProfileHeader from "./ProfileHeader/ProfileHeader";
 
-import { apiSite } from "../../Website/website";
-
 import "./profile.css";
-import { useSelector } from "react-redux";
 
 const Profile = ({ id, module }) => {
+    const update = useSelector((state) => state.newPost.updates);
+
     const [userData, setUserData] = useState({});
     const [userPosts, setUserPosts] = useState([]);
-    const update = useSelector((state) => state.newPost.updates);
     const [type, setType] = useState("userProfile");
 
     useEffect(() => {
@@ -31,7 +32,6 @@ const Profile = ({ id, module }) => {
                 setType("currentProfile");
             }
         }
-        console.log("Profile updated")
     }, [id, update]);
 
     return (
@@ -46,4 +46,4 @@ const Profile = ({ id, module }) => {
     );
 };
 
-export default Profile;
+export default memo(Profile);

@@ -1,4 +1,7 @@
-import React from "react";
+import React, { memo } from "react";
+
+import AccModal from "../../../RoundedImage/AccModal/AccModal";
+import RoundedImage from "../../../RoundedImage/RoundedImage";
 
 import { Skeleton } from "@mui/material";
 
@@ -6,8 +9,6 @@ import "./list.css";
 import "../ListModal/listModal.css";
 import "../../../Message/message.css";
 import "../../../RoundedImage/styles.css";
-import RoundedImage from "../../../RoundedImage/RoundedImage";
-import AccModal from "../../../RoundedImage/AccModal/AccModal";
 
 const List = ({ loading, user, type, userAcc = false, modalRequired, index = 0 }) => {
     return (
@@ -136,4 +137,4 @@ const List = ({ loading, user, type, userAcc = false, modalRequired, index = 0 }
     );
 };
 
-export default List;
+export default memo(List);

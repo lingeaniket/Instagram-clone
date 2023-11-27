@@ -1,19 +1,20 @@
-import React, { useState } from "react";
-import CommentsComponent from "../../Post/Fullpost/RightComponent/Comments/CommentsComponent";
-import BackArrow from "../../Icons/BackArrow/BackArrow";
+import React, { useState, memo } from "react";
 import { useNavigate, useSearchParams } from "react-router-dom";
+
 import Post from "../../Post/Post";
+import BackArrow from "../../Icons/BackArrow/BackArrow";
+import CommentsComponent from "../../Post/Fullpost/RightComponent/Comments/CommentsComponent";
 
 const ProfileScroll = () => {
     const title = ["Post", "Comments"];
 
-    const [step, setStep] = useState(0);
+    const navigate = useNavigate();
 
     const [searchParams] = useSearchParams();
     const postId = searchParams.get("postId");
     const postUser = searchParams.get("postUser");
 
-    const navigate = useNavigate();
+    const [step, setStep] = useState(0);
 
     const handleBack = () => {
         if (step === 0) {
@@ -44,4 +45,4 @@ const ProfileScroll = () => {
     );
 };
 
-export default ProfileScroll;
+export default memo(ProfileScroll);

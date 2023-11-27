@@ -1,4 +1,4 @@
-import React from "react";
+import React, { memo } from "react";
 
 import Profile from "../Profile";
 
@@ -8,4 +8,4 @@ const CurrentProfile = () => {
     return <Profile id={userId} module="currentProfile" />;
 };
 
-export default CurrentProfile;
+export default memo(CurrentProfile);

@@ -1,4 +1,4 @@
-import React, { useEffect, useRef, useState } from "react";
+import React, { useEffect, useRef, useState, memo } from "react";
 
 import Close from "../../../Icons/Close/Close";
 import Search from "../../../Icons/Search/Search";
@@ -37,10 +37,7 @@ const ListModal = ({ listType, handleClose, userData }) => {
                                             </div>
                                             <div className="listModal012">
                                                 <div className="listModal013">
-                                                    <div
-                                                        className="listModal014"
-                                                        onClick={handleClose}
-                                                    >
+                                                    <div className="listModal014" onClick={handleClose}>
                                                         <div>
                                                             <Close size={14} />
                                                         </div>
@@ -79,4 +76,4 @@ const ListModal = ({ listType, handleClose, userData }) => {
     );
 };
 
-export default ListModal;
+export default memo(ListModal);

@@ -1,5 +1,5 @@
 import axios from "axios";
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, memo } from "react";
 
 import { apiSite } from "../../../../Website/website";
 
@@ -29,4 +29,4 @@ const SingleList = ({ followe }) => {
     );
 };
 
-export default SingleList;
+export default memo(SingleList);

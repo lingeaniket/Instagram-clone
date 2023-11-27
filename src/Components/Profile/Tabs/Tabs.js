@@ -1,4 +1,4 @@
-import React from "react";
+import React, { memo } from "react";
 
 import Posts from "../../Icons/Posts/Posts";
 import Reels from "../../Icons/Reels/Reels";
@@ -53,4 +53,4 @@ const Tabs = () => {
     );
 };
 
-export default Tabs;
+export default memo(Tabs);
