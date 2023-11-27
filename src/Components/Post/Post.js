@@ -28,11 +28,6 @@ const Post = ({ postId, id, type = "timeline", setStep }) => {
     const likeref = useRef(null);
     const imagelikeref = useRef(null);
 
-    const [windowWidth, setWindowWidth] = useState(window.innerWidth);
-
-    const handleResize = () => {
-        setWindowWidth(window.innerWidth);
-    };
     const handleImgLike = () => {
         handleImageLiked(imagelikeref, likeref, setLiked, liked, setLikes, userData.id, postId);
     };
@@ -70,23 +65,8 @@ const Post = ({ postId, id, type = "timeline", setStep }) => {
         // eslint-disable-next-line
     }, [id]);
 
-    useEffect(() => {
-        setWindowWidth(window.innerWidth);
-
-        window.addEventListener("resize", handleResize);
-
-        return () => {
-            window.removeEventListener("resize", handleResize);
-        };
-    }, []);
-
     return (
-        <div
-            className="timelineIn01 post001"
-            style={{
-                width: windowWidth < 500 ? "100%" : "470px",
-            }}
-        >
+        <div className="timelineIn01 post001">
             <PostHeader userData={userData} loading={loading} />
             <div
                 className="post008"
