@@ -111,21 +111,9 @@ const Login = () => {
                                     disabled={password.length < 6 || username.length < 1}
                                 >
                                     <div className="acc_022 acc_01">
-                                        <div
-                                            style={{
-                                                display: "flex",
-                                                justifyContent: "center",
-                                                alignItems: "center",
-                                            }}
-                                        >
+                                        <div className="acc_057">
                                             {loading ? (
-                                                <div
-                                                    style={{
-                                                        height: "18px",
-                                                        width: "18px",
-                                                        margin: "0 10px",
-                                                    }}
-                                                >
+                                                <div className="acc_058">
                                                     <Loader fill="white" />
                                                 </div>
                                             ) : (
@@ -171,15 +159,7 @@ const Login = () => {
             </div>
             <div className="acc_01">
                 <div className="acc_038 acc_06">
-                    <span
-                        className="acc_02"
-                        style={{
-                            fontSize: "14px",
-                            color: "black",
-                        }}
-                    >
-                        Get the app.
-                    </span>
+                    <span className="acc_02 acc_059">Get the app.</span>
                 </div>
                 <div className="acc_040 acc_03">
                     <div className="acc_041">

@@ -19,9 +19,7 @@ const Footer = () => {
                 <div className="acc_013 acc_01">
                     <div className="acc_045 acc_024 acc_03">
                         {data.map((btn) => (
-                            <div className="acc_046" style={{
-                                lineHeight: '11px'
-                            }} key={btn}>
+                            <div className="acc_046 acc_08" key={btn}>
                                 <span className="acc_02">{btn}</span>
                             </div>
                         ))}
@@ -46,9 +44,7 @@ const Footer = () => {
                         </select>
                     </span>
                     <div className="acc_055 acc_01">
-                        <span className="acc_056 acc_02 acc_04" style={{
-                            lineHeight: '12px'
-                        }}>© 2023 Instagram from Meta</span>
+                        <span className="acc_056 acc_02 acc_04 acc_09">© 2023 Instagram from Meta</span>
                     </div>
                 </div>
             </div>

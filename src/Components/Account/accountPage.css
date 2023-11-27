@@ -64,6 +64,14 @@
     position: absolute;
 }
 
+.acc_08 {
+    line-height: 11px;
+}
+
+.acc_09 {
+    line-height: 12px;
+}
+
 .acc_001 {
     flex-grow: 1;
     min-height: 100vh;
@@ -444,6 +452,23 @@
 
 .acc_056 {
     overflow: visible;
+}
+
+.acc_057 {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.acc_058 {
+    height: 18px;
+    width: 18px;
+    margin: 0 10px;
+}
+
+.acc_059 {
+    font-size: 14px;
+    color: black;
 }
 
 .acc_trf {
