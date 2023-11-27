@@ -1,10 +1,10 @@
-import React, { useCallback, useRef, useState } from "react";
+import React, { useCallback, useRef, useState, memo } from "react";
+
 import Modal from "../../Modal/Modal";
+import PostFolder from "./PostFolder/PostFolder";
 
 import "./newPost.css";
 import "../Fullpost/fullPost.css";
-
-import PostFolder from "./PostFolder/PostFolder";
 
 const NewPost = ({ setOpen }) => {
     const handleModalClose = (e) => {
@@ -57,4 +57,4 @@ const NewPost = ({ setOpen }) => {
     );
 };
 
-export default NewPost;
+export default memo(NewPost);

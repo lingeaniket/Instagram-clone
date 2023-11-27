@@ -1,4 +1,4 @@
-import React from "react";
+import React, { memo } from "react";
 
 const PostSuccess2 = () => {
     return (
@@ -19,4 +19,4 @@ const PostSuccess2 = () => {
     );
 };
 
-export default PostSuccess2;
+export default memo(PostSuccess2);

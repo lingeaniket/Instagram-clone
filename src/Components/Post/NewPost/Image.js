@@ -1,6 +1,8 @@
 import axios from "axios";
 import React, { useEffect, memo } from "react";
 
+import "./newPost.css";
+
 const Image = ({ id }) => {
     useEffect(() => {
         const getImage = () => {
@@ -8,23 +10,10 @@ const Image = ({ id }) => {
         };
         getImage();
     }, [id]);
+
     return (
-        <div
-            style={{
-                aspectRatio: "1/1",
-                cursor: 'pointer'
-            }}
-        >
-            <img
-                loading="lazy"
-                src={`https://picsum.photos/id/${id}/500/500`}
-                style={{
-                    maxWidth: "100%",
-                    verticalAlign: "middle",
-                }}
-                alt=""
-                id={id}
-            />
+        <div className="new_post019">
+            <img loading="lazy" className="new_post020" src={`https://picsum.photos/id/${id}/500/500`} alt="" id={id} />
         </div>
     );
 };

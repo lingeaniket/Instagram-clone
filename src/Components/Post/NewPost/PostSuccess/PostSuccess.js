@@ -1,5 +1,6 @@
-import React, { useEffect } from "react";
 import { useDispatch } from "react-redux";
+import React, { useEffect, memo } from "react";
+
 import { postUpdates } from "../../../../Features/newPostDetailsSlice";
 
 const PostSuccess = () => {
@@ -8,10 +9,12 @@ const PostSuccess = () => {
     const update = () => {
         dispath(postUpdates());
     };
+
     useEffect(() => {
         update();
         // eslint-disable-next-line
     }, []);
+
     return (
         <div className="posting_027">
             <div className="posting_028">
@@ -27,4 +30,4 @@ const PostSuccess = () => {
     );
 };
 
-export default PostSuccess;
+export default memo(PostSuccess);

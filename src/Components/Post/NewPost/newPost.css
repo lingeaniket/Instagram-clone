@@ -154,13 +154,22 @@
     max-height: 100%;
 }
 
+.new_post019 {
+    aspect-ratio: 1/1;
+    cursor: pointer;
+}
+
+.new_post020 {
+    max-width: 100%;
+    vertical-align: middle;
+}
 
 @media screen and (max-width: 768px) {
-    .new_post007{
+    .new_post007 {
         height: 100%;
     }
 
-    .new_post010{
+    .new_post010 {
         width: 100%;
         height: 100%;
         max-width: 100%;

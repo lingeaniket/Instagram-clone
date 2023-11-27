@@ -1,4 +1,5 @@
-import React, { useCallback, useState } from "react";
+import React, { useCallback, useState, memo } from "react";
+
 import PostFolder from "./PostFolder/PostFolder";
 
 const NewPostMobile = () => {
@@ -9,7 +10,8 @@ const NewPostMobile = () => {
     const handleStep = useCallback((step) => {
         setStep(step);
     }, []);
+
     return <PostFolder step={step} handleStep={handleStep} steps={steps} />;
 };
 
-export default NewPostMobile;
+export default memo(NewPostMobile);

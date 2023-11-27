@@ -1,9 +1,12 @@
-import React, { useEffect, useState } from "react";
-import { apiSite } from "../../../../Website/website";
-import { useSelector } from "react-redux";
-import RoundedImage from "../../../RoundedImage/RoundedImage";
-import CaptionText from "../CaptionText/CaptionText";
 import axios from "axios";
+import { useSelector } from "react-redux";
+import React, { useEffect, useState, memo } from "react";
+
+import { apiSite } from "../../../../Website/website";
+
+import RoundedImage from "../../../RoundedImage/RoundedImage";
+
+import CaptionText from "../CaptionText/CaptionText";
 
 import "./posting.css";
 
@@ -26,7 +29,7 @@ const Posting = () => {
         <div className="posting_001">
             <div className="posting_002">
                 <div className="posting_003">
-                    <img src={`https://picsum.photos/id/${data.imageid}/500/500`} width={'100%'} alt="" />
+                    <img src={`https://picsum.photos/id/${data.imageid}/500/500`} width={"100%"} alt="" />
                 </div>
             </div>
             <div className="posting_004">
@@ -51,7 +54,7 @@ const Posting = () => {
                             </div>
                         </div>
                         <div>
-                            <CaptionText/>
+                            <CaptionText />
                         </div>
                     </div>
                 </div>
@@ -60,4 +63,4 @@ const Posting = () => {
     );
 };
 
-export default Posting;
+export default memo(Posting);

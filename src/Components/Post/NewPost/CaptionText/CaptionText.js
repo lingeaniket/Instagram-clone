@@ -1,5 +1,5 @@
-import React, { useState } from "react";
 import { useDispatch } from "react-redux";
+import React, { useState, memo } from "react";
 
 import { addCaptiion } from "../../../../Features/newPostDetailsSlice";
 
@@ -20,7 +20,6 @@ const CaptionText = () => {
             setTimer(
                 setTimeout(() => {
                     dispatch(addCaptiion(e.target.innerText));
-                    console.log("added caption");
                 }, 500)
             );
         } else {
@@ -31,7 +30,6 @@ const CaptionText = () => {
     return (
         <div className="posting_015">
             <div className="posting_016">
-                {/* <input type="text" a /> */}
                 <div className="posting_017" contentEditable="true" onInput={handleInput}></div>
                 {caption.length === 0 && <div className="posting_018">Write a caption...</div>}
             </div>
@@ -55,4 +53,4 @@ const CaptionText = () => {
     );
 };
 
-export default CaptionText;
+export default memo(CaptionText);

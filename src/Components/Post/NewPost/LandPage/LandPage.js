@@ -1,4 +1,5 @@
-import React from "react";
+import React, { memo } from "react";
+
 import MediaIcon from "../../../Icons/MediaIcon/MediaIcon";
 
 const LandPage = ({ handleStep }) => {
@@ -24,4 +25,4 @@ const LandPage = ({ handleStep }) => {
     );
 };
 
-export default LandPage;
+export default memo(LandPage);

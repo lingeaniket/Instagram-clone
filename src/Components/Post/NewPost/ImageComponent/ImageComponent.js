@@ -1,14 +1,18 @@
-import React, { useEffect, useState } from "react";
-import Image from "../Image";
-import "./imageComponent.css";
 import { useDispatch } from "react-redux";
+import React, { useEffect, useState, memo } from "react";
+
 import { changeImageid } from "../../../../Features/newPostDetailsSlice";
 
+import Image from "../Image";
+
+import "./imageComponent.css";
+
 const ImageComponent = ({ handleStep }) => {
+    const dispatch = useDispatch();
+
+    const [page, setPage] = useState(0);
     const [photos, setPhotos] = useState([]);
     const [selectedPhoto, setSelectedPhoto] = useState();
-    const [page, setPage] = useState(0);
-    const dispatch = useDispatch();
 
     const handlePhoto = (e) => {
         setSelectedPhoto(Number(e.target.id));
@@ -23,10 +27,12 @@ const ImageComponent = ({ handleStep }) => {
         setSelectedPhoto(null);
         setPage((prev) => prev - 1);
     };
+
     const handleNext = () => {
         setSelectedPhoto("");
         setPage((prev) => prev + 1);
     };
+
     useEffect(() => {
         // alert("runned")
         const getPhotoId = async () => {
@@ -39,6 +45,7 @@ const ImageComponent = ({ handleStep }) => {
         };
         getPhotoId();
     }, [page]);
+
     return (
         <div className="img_post001">
             <div className="img_post002">
@@ -92,4 +99,4 @@ const ImageComponent = ({ handleStep }) => {
     );
 };
 
-export default ImageComponent;
+export default memo(ImageComponent);

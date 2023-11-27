@@ -1,13 +1,15 @@
-import React from "react";
-import BackArrow from "../../../Icons/BackArrow/BackArrow";
+import React, { memo } from "react";
+import { useDispatch } from "react-redux";
+
+import { sharePost } from "../../../../Features/newPostDetailsSlice";
+
 import Posting from "../Posting/Posting";
 import LandPage from "../LandPage/LandPage";
-import ImageComponent from "../ImageComponent/ImageComponent";
-import ViewComponent from "../ViewImageComponent/ViewComponent";
+import BackArrow from "../../../Icons/BackArrow/BackArrow";
 import PostSuccess from "../PostSuccess/PostSuccess";
 import PostSuccess2 from "../PostSuccess/PostSuccess2";
-import { useDispatch } from "react-redux";
-import { sharePost } from "../../../../Features/newPostDetailsSlice";
+import ViewComponent from "../ViewImageComponent/ViewComponent";
+import ImageComponent from "../ImageComponent/ImageComponent";
 
 const PostFolder = ({ step, handleStep, steps }) => {
     const dispatch = useDispatch();
@@ -18,6 +20,7 @@ const PostFolder = ({ step, handleStep, steps }) => {
             handleStep(6);
         }, 3000);
     };
+
     return (
         <div className="new_post007">
             <div className="w_100">
@@ -83,4 +86,4 @@ const PostFolder = ({ step, handleStep, steps }) => {
     );
 };
 
-export default PostFolder;
+export default memo(PostFolder);
