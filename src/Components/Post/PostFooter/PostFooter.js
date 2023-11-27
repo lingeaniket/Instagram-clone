@@ -1,5 +1,5 @@
 import { useDispatch } from "react-redux";
-import React, { Suspense, lazy, useState ,memo } from "react";
+import React, { Suspense, lazy, useState, memo } from "react";
 import { useNavigate, useSearchParams } from "react-router-dom";
 
 import { addComment, handleLiked, handlePost } from "../functions";

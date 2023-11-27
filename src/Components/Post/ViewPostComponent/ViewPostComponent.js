@@ -1,4 +1,4 @@
-import React, {memo} from "react";
+import React, { memo } from "react";
 
 import FullPost from "../Fullpost/FullPost";
 import ProfileScroll from "../../Profile/ProfileScroll/ProfileScroll";
