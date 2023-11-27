@@ -1,10 +1,11 @@
-import React, { useEffect, useRef, useState } from "react";
+import React, { useEffect, useRef, useState, memo } from "react";
 
 import { search, searchHistory, userClick } from "./functions";
 
-import "./searchComponent.css";
-import InputContainer from "./InputContainer";
 import Result from "./Result/Result";
+import InputContainer from "./InputContainer";
+
+import "./searchComponent.css";
 
 const SearchComponent = ({ searchDiv, searchCloseFunc, searchRef }) => {
     const componentRef = useRef(null);
@@ -83,4 +84,4 @@ const SearchComponent = ({ searchDiv, searchCloseFunc, searchRef }) => {
     );
 };
 
-export default SearchComponent;
+export default memo(SearchComponent);

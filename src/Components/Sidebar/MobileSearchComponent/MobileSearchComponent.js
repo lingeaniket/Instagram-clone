@@ -1,17 +1,19 @@
-import React, { useEffect, useRef, useState } from "react";
-import InputContainer from "../SearchComponent/InputContainer";
-import Result from "../SearchComponent/Result/Result";
-
-import "./styles.css";
+import React, { useEffect, useRef, useState, memo } from "react";
 
 import { search, searchHistory, userClick } from "../SearchComponent/functions";
 
+import Result from "../SearchComponent/Result/Result";
+import InputContainer from "../SearchComponent/InputContainer";
+
+import "./styles.css";
+
 const MobileSearchComponent = () => {
+    const searchRef = useRef(null);
+    const containerRef = useRef(null);
+
     const [recents, setRecents] = useState(0);
-    const [searchQuery, setSearchQuery] = useState("");
-
     const [searchDiv, setSearchDiv] = useState(false);
-
+    const [searchQuery, setSearchQuery] = useState("");
     const [searchResults, setSearchResults] = useState([]);
 
     const handleSearch = async (e) => {
@@ -42,8 +44,6 @@ const MobileSearchComponent = () => {
         }
     };
 
-    const searchRef = useRef(null);
-    const containerRef = useRef(null);
 
     const handleClearInput = (e) => {
         setSearchQuery("");
@@ -82,4 +82,4 @@ const MobileSearchComponent = () => {
     );
 };
 
-export default MobileSearchComponent;
+export default memo(MobileSearchComponent);

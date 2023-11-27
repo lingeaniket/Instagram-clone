@@ -1,19 +1,20 @@
 import { useNavigate } from "react-router-dom";
-import { Suspense, lazy, useEffect, useRef, useState } from "react";
+import { Suspense, lazy, useEffect, useRef, useState, memo } from "react";
 
-import Tab from "./Tab/Tab";
-import SearchComponent from "./SearchComponent/SearchComponent";
 
 import { socket } from "../../App";
 import { tabArr } from "../ExtraData/extraData";
 
-import "./sidebar.css";
+import Tab from "./Tab/Tab";
 import Instagram from "../Icons/Instagram/Instagram";
-import InstagramTitle from "../Icons/InstagramTitle/InstagramTitle";
 import MoreSettings from "../Icons/MoreSettings/MoreSettings";
+import InstagramTitle from "../Icons/InstagramTitle/InstagramTitle";
+import SearchComponent from "./SearchComponent/SearchComponent";
 
-const NewPostMobile = lazy(() => import("../Post/NewPost/NewPostMobile"));
+import "./sidebar.css";
+
 const NewPost = lazy(() => import("../Post/NewPost/NewPost"));
+const NewPostMobile = lazy(() => import("../Post/NewPost/NewPostMobile"));
 
 const Sidebar = () => {
     const navigate = useNavigate();
@@ -119,4 +120,4 @@ const Sidebar = () => {
     );
 };
 
-export default Sidebar;
+export default memo(Sidebar);

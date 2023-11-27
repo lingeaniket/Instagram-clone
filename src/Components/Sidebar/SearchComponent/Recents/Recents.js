@@ -1,8 +1,8 @@
-import React, { useEffect, useState } from "react";
-
-import ResultComponent from "../ResultComponent/ResultComponent";
+import React, { useEffect, useState, memo } from "react";
 
 import { loadRecents } from "../functions";
+
+import ResultComponent from "../ResultComponent/ResultComponent";
 
 import "./recents.css";
 
@@ -37,4 +37,4 @@ const Recents = ({ handleSearchHistory, handleUserClick, recents }) => {
     );
 };
 
-export default Recents;
+export default memo(Recents);

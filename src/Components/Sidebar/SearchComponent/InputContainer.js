@@ -1,4 +1,4 @@
-import React from "react";
+import React, { memo } from "react";
 
 const InputContainer = ({ searchQuery, handleSearch, clearFunc }) => {
     const handleClear = () => {
@@ -16,4 +16,4 @@ const InputContainer = ({ searchQuery, handleSearch, clearFunc }) => {
     );
 };
 
-export default InputContainer;
+export default memo(InputContainer);

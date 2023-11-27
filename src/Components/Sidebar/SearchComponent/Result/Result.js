@@ -1,4 +1,5 @@
-import React from "react";
+import React, { memo } from "react";
+
 import Recents from "../Recents/Recents";
 import ResultComponent from "../ResultComponent/ResultComponent";
 
@@ -17,4 +18,4 @@ const Result = ({ searchResults, handleSearchHistory, recents, handleUserClick }
     );
 };
 
-export default Result;
+export default memo(Result);

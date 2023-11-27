@@ -1,10 +1,10 @@
-import React from "react";
+import React, { memo } from "react";
 import { useNavigate } from "react-router-dom";
 
 import Close from "../../../Icons/Close/Close";
+import RoundedImage from "../../../RoundedImage/RoundedImage";
 
 import "./resultComponent.css";
-import RoundedImage from "../../../RoundedImage/RoundedImage";
 
 const ResultComponent = ({ result, handleUserClick, recents = true, handleSearchHistory }) => {
     const navigate = useNavigate();
@@ -45,11 +45,7 @@ const ResultComponent = ({ result, handleUserClick, recents = true, handleSearch
                             >
                                 <div className="resComp013">
                                     <div className="resComp014" style={{}}>
-                                        <Close
-                                            color="rgb(115, 115, 115)"
-                                            size="16"
-                                            title="remove"
-                                        />
+                                        <Close color="rgb(115, 115, 115)" size="16" title="remove" />
                                     </div>
                                 </div>
                             </div>
@@ -61,4 +57,4 @@ const ResultComponent = ({ result, handleUserClick, recents = true, handleSearch
     );
 };
 
-export default ResultComponent;
+export default memo(ResultComponent);
