@@ -27,13 +27,7 @@ const List = ({ loading, user, type, userAcc = false, modalRequired, index = 0 }
                 <div className="messageIn025 messageIn002">
                     <div className="messageIn026 messageIn107">
                         <div className="messageIn027">
-                            <div
-                                className="messageIn028"
-                                // style={{
-                                //     height: "44px",
-                                //     width: "44px",
-                                // }}
-                            >
+                            <div className="messageIn028">
                                 <div className="sideList005 messageIn029">
                                     {loading ? (
                                         <>
