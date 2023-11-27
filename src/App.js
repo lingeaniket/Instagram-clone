@@ -11,11 +11,11 @@ import "./app.css";
 const Message = lazy(() => import("./Components/Message/Message"));
 const Explore = lazy(() => import("./Components/Explore/Explore"));
 const Timeline = lazy(() => import("./Components/Timeline/Timeline"));
-const UserProfile = lazy(() => import("./Components/UserProfile/UserProfile"));
+const UserProfile = lazy(() => import("./Components/Profile/UserProfile/UserProfile"));
 const LandingPage = lazy(() => import("./Components/LandingPage/LandingPage"));
 const ChatComponent = lazy(() => import("./Components/Message/ChatComponent/ChatComponent"));
-const CurrentProfile = lazy(() => import("./Components/CurrentProfile/CurrentProfile"));
-const ViewPostComponent = lazy(() => import("./Components/ViewPostComponent/ViewPostComponent"));
+const CurrentProfile = lazy(() => import("./Components/Profile/CurrentProfile/CurrentProfile"));
+const ViewPostComponent = lazy(() => import("./Components/Post/ViewPostComponent/ViewPostComponent"));
 const EmptyChatComponent = lazy(() => import("./Components/Message/EmptyChatComponent/EmptyChatComponent"));
 
 const router = createBrowserRouter([
