@@ -1,4 +1,3 @@
-import { useNavigate } from "react-router-dom";
 import React, { useEffect, memo, useState } from "react";
 
 import Options from "../../Icons/Options/Options";
@@ -8,12 +7,7 @@ import RoundedImage from "../../RoundedImage/RoundedImage";
 import AccModal from "../../RoundedImage/AccModal/AccModal";
 
 const PostHeader = ({ userData }) => {
-    const navigate = useNavigate();
     const [loading, setLoading] = useState(true);
-
-    const handleNavigate = () => {
-        navigate(`/p/${userData.id}`);
-    };
 
     useEffect(() => {
         if (userData.id) {
@@ -26,7 +20,7 @@ const PostHeader = ({ userData }) => {
     return (
         <div className="post002">
             <div className="post003">
-                <div className="post004" onClick={handleNavigate}>
+                <div className="post004">
                     {loading ? (
                         <Skeleton
                             variant="rectangle"
