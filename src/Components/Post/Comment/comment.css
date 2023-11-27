@@ -1,0 +1,20 @@
+.comment_001 {
+    display: flex;
+    width: 100%;
+    margin: 6px 0;
+    justify-content: space-between;
+}
+
+.comment_002 {
+    font-size: 14px;
+}
+
+.comment_003 {
+    font-weight: 600;
+    cursor: pointer;
+}
+
+.comment_004 {
+    display: flex;
+    cursor: pointer;
+}

@@ -7,6 +7,8 @@ import Like from "../../Icons/Like/Like";
 
 import { Skeleton } from "@mui/material";
 
+import "./comment.css";
+
 const Comment = ({ comment, post, id }) => {
     const userId = JSON.parse(localStorage.getItem("userId"));
 
@@ -38,14 +40,7 @@ const Comment = ({ comment, post, id }) => {
     }, [comment]);
 
     return (
-        <div
-            style={{
-                display: "flex",
-                width: "100%",
-                margin: "6px 0",
-                justifyContent: "space-between",
-            }}
-        >
+        <div className="comment_001">
             {loading ? (
                 <Skeleton
                     variant="text"
@@ -57,19 +52,12 @@ const Comment = ({ comment, post, id }) => {
                 />
             ) : (
                 <>
-                    <div style={{ fontSize: "14px" }}>
-                        <span
-                            style={{
-                                fontWeight: "600",
-                                cursor: "pointer",
-                            }}
-                        >
-                            {userData.username}
-                        </span>
+                    <div className="comment_002">
+                        <span className="comment_003">{userData.username}</span>
                         {"  "}
                         {comment.text}
                     </div>
-                    <div style={{ display: "flex", cursor: "pointer" }} onClick={handleLiked}>
+                    <div className="comment_004" onClick={handleLiked}>
                         <Like liked={liked} size="12px" />
                     </div>
                 </>
