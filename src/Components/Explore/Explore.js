@@ -5,12 +5,13 @@ import React, { useEffect, useState, useCallback, Suspense } from "react";
 
 import Loader from "../Icons/Loader/Loader";
 import ImagePost from "../Post/ImagePost/ImagePost";
-import { Skeleton } from "@mui/material";
 
 import { changeMode } from "../../Features/fullPostSlice";
 
 import "./explore.css";
 import "react-lazy-load-image-component/src/effects/blur.css";
+
+import { Skeleton } from "@mui/material";
 
 const Explore = () => {
     const dispatch = useDispatch();
