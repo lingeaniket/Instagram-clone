@@ -54,3 +54,62 @@
     font-size: 14px;
     font-weight: 400;
 }
+
+.accModal009 {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    column-gap: 3px;
+    align-items: center;
+}
+
+.accModal010 {
+    height: 120px;
+}
+
+.accModal011 {
+    object-fit: cover;
+    height: 120px;
+    width: 120px;
+    aspect-ratio: auto 120/120;
+}
+
+.accModal012 {
+    padding: 0 16px;
+}
+
+.accModal013 {
+    width: 100%;
+    border: none;
+    background-color: rgb(239, 239, 239);
+    border-radius: 8px;
+    text-align: center;
+    cursor: pointer;
+    font-size: 14px;
+    line-height: 18px;
+    padding: 7px 16px;
+}
+
+.accModal014 {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 0 4px;
+}
+
+.accModal015 {
+    font-size: 14px;
+    font-weight: 600;
+    line-height: 18px;
+}
+
+.accModal016 {
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    margin-left: 4px;
+}
+
+.accModal017 {
+    display: inline-block;
+    transform: rotate(180deg);
+}

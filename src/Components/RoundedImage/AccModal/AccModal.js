@@ -1,8 +1,10 @@
-import React from "react";
+import React, { memo } from "react";
+
 import List from "../../Profile/ProfileHeader/SingleList/List";
 import Arrow from "../../Icons/Arrow/Arrow";
 
 import "./accModal.css";
+import PostComponent from "./PostComponent";
 
 const AccModal = ({ user }) => {
     return (
@@ -55,82 +57,15 @@ const AccModal = ({ user }) => {
                     </div>
                 </div>
                 <div>
-                    <div
-                        style={{
-                            display: "grid",
-                            gridTemplateColumns: "1fr 1fr 1fr",
-                            columnGap: "3px",
-                            alignItems: "center",
-                        }}
-                    >
-                        <div
-                            style={{
-                                height: "120px",
-                            }}
-                        >
-                            <img
-                                src=""
-                                style={{
-                                    objectFit: "cover",
-                                    height: "120px",
-                                    width: "120px",
-                                    aspectRatio: "auto 120/120",
-                                }}
-                                alt=""
-                            />
-                        </div>
-                    </div>
+                    <PostComponent />
                 </div>
                 <div>
-                    <div
-                        style={{
-                            padding: "0 16px",
-                        }}
-                    >
-                        <button
-                            style={{
-                                width: "100%",
-                                border: "none",
-                                backgroundColor: "rgb(239,239,239)",
-                                borderRadius: "8px",
-                                textAlign: "center",
-                                cursor: "pointer",
-                                fontSize: "14px",
-                                lineHeight: "18px",
-                                padding: "7px 16px",
-                            }}
-                        >
-                            <div
-                                style={{
-                                    display: "flex",
-                                    justifyContent: "center",
-                                    alignItems: "center",
-                                    padding: "0 4px",
-                                }}
-                            >
-                                <div
-                                    style={{
-                                        fontSize: "14px",
-                                        fontWeight: 600,
-                                        lineHeight: "18px",
-                                    }}
-                                >
-                                    Following
-                                </div>
-                                <div
-                                    style={{
-                                        display: "flex",
-                                        justifyContent: "center",
-                                        flexDirection: "column",
-                                        marginLeft: "4px",
-                                    }}
-                                >
-                                    <span
-                                        style={{
-                                            display: "inline-block",
-                                            transform: "rotate(180deg)",
-                                        }}
-                                    >
+                    <div className="accModal012">
+                        <button className="accModal013">
+                            <div className="accModal014">
+                                <div className="accModal015">Following</div>
+                                <div className="accModal016">
+                                    <span className="accModal017">
                                         <Arrow />
                                     </span>
                                 </div>
@@ -143,4 +78,4 @@ const AccModal = ({ user }) => {
     );
 };
 
-export default AccModal;
+export default memo(AccModal);

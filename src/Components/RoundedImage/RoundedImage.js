@@ -22,23 +22,9 @@ const RoundedImage = ({ url, alt, modalRequired = true, user }) => {
                 <span></span>
             ) : (
                 <div className="user-photo">
-                    <div
-                        onClick={handleNavigate}
-                        style={{
-                            borderRadius: "50%",
-                            border: "0.5px solid rgba(0, 0, 0, 0.4)",
-                            width: "100%",
-                            height: "100%",
-                            cursor: "pointer",
-                            overflow: "hidden",
-                        }}
-                    >
+                    <div className="rounded01" onClick={handleNavigate}>
                         <img
-                            style={{
-                                maxWidth: "100%",
-                                width: "100%",
-                                verticalAlign: "middle",
-                            }}
+                            className="rounded02"
                             src={`https://cloudflare-ipfs.com/ipfs/Qmd3W5DuhgHirLHGVixi6V76LhCkZUz6pnFt5AJBiyvHye/avatar/${url}.jpg`}
                             alt={`${alt}_image`}
                             height={"100%"}

@@ -17,12 +17,12 @@
     position: relative;
 }
 
-.user-name:hover >span {
-  opacity: 0.5;
+.user-name:hover > span {
+    opacity: 0.5;
 }
 
-.user-photo-modal .user-name:hover>span{
-  opacity: 1;
+.user-photo-modal .user-name:hover > span {
+    opacity: 1;
 }
 
 .user-photo-modal-transition {
@@ -35,13 +35,12 @@
 }
 
 .user-photo-modal-transition .sideList005 {
-  height: 56px;
-  width: 56px;
+    height: 56px;
+    width: 56px;
 }
 
 .user-photo-modal-transition .listModal024 {
-  padding: 0;
-
+    padding: 0;
 }
 
 .user-photo-modal:hover {
@@ -57,4 +56,19 @@
 .user-photo:hover > .user-photo-modal-transition {
     visibility: visible;
     opacity: 1;
+}
+
+.rounded01 {
+    border-radius: 50%;
+    border: 0.5px solid rgba(0, 0, 0, 0.4);
+    width: 100%;
+    height: 100%;
+    cursor: pointer;
+    overflow: hidden;
+}
+
+.rounded02 {
+    max-width: 100%;
+    width: 100%;
+    vertical-align: middle;
 }

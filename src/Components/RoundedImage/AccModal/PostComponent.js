@@ -1,9 +1,13 @@
-import React from 'react'
+import React, { memo } from "react";
 
 const PostComponent = () => {
-  return (
-    <div>PostComponent</div>
-  )
-}
+    return (
+        <div className="accModal009">
+            <div className="accModal010">
+                <img src="" className="accModal011" alt="" />
+            </div>
+        </div>
+    );
+};
 
-export default PostComponent
+export default memo(PostComponent);
