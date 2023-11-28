@@ -16,55 +16,121 @@ const MobileSearchComponent = lazy(() => import("../Sidebar/MobileSearchComponen
 const Timeline = () => {
     const navigate = useNavigate();
     return (
-        <div className="timeline001">
-            <div className="mobileNavView">
-                <div
-                    className="side03"
-                    onClick={() => {
-                        navigate("/");
-                    }}
-                >
-                    <span className="side06"><InstagramTitle/></span>
-                    <span className="side07">
-                        <Instagram />
-                    </span>
+        <>
+            <div className="home_07">
+                <div className="mobileNavView">
+                    <div
+                        className="side03"
+                        onClick={() => {
+                            navigate("/");
+                        }}
+                    >
+                        <span className="side06">
+                            <InstagramTitle />
+                        </span>
+                        <span className="side07">
+                            <Instagram />
+                        </span>
+                    </div>
+                    <div
+                        className="timeline006"
+                        style={{
+                            display: "flex",
+                        }}
+                    >
+                        <Suspense fallback={<></>}>
+                            <MobileSearchComponent />
+                        </Suspense>
+                        {tabArr
+                            .filter((tab) => tab.title === "notifications")
+                            .map((item, index) => (
+                                <Fragment key={index}>{item.icon}</Fragment>
+                            ))}
+                    </div>
+                    {/* <Instagram/> */}
                 </div>
-                <div
-                    className="timeline006"
-                    style={{
-                        display: "flex",
-                    }}
-                >
-                    <Suspense fallback={<></>}>
-                        <MobileSearchComponent />
-                    </Suspense>
-                    {tabArr
-                        .filter((tab) => tab.title === "notifications")
-                        .map((item, index) => (
-                            <Fragment key={index}>{item.icon}</Fragment>
-                        ))}
-                </div>
-                {/* <Instagram/> */}
-            </div>
-            <div className="timeline002">
-                <div className="timeline003">
-                    <div className="timeline004">
-                        <Stories />
-                        <div className="timeline005">
-                            <TimelineIn />
+                <div className="home_09">
+                    <div className="home_10">
+                        <div
+                            style={{
+                                display: "grid",
+                                gridTemplateColumns: "66px",
+                                gridAutoFlow: "column",
+                                columnGap: "8px",
+                            }}
+                        >
+                            <Stories />
                         </div>
                     </div>
+                    <div
+                        style={{
+                            width: "100%",
+                            display: "flex",
+                            justifyContent: "center",
+                        }}
+                    >
+                        <TimelineIn />
+                    </div>
                 </div>
-                {window.innerWidth > 900 && (
-                    <Suspense fallback={<></>}>
-                        <RightSideBar />
-                    </Suspense>
-                )}
+            </div>
+            <div className="home_08">
                 <Suspense fallback={<></>}>
-                    <Outlet />
+                    <RightSideBar />
                 </Suspense>
             </div>
-        </div>
+            <Suspense fallback={<></>}>
+                <Outlet />
+            </Suspense>
+        </>
+        // <div className="timeline001">
+        //     <div className="mobileNavView">
+        //         <div
+        //             className="side03"
+        //             onClick={() => {
+        //                 navigate("/");
+        //             }}
+        //         >
+        //             <span className="side06">
+        //                 <InstagramTitle />
+        //             </span>
+        //             <span className="side07">
+        //                 <Instagram />
+        //             </span>
+        //         </div>
+        //         <div
+        //             className="timeline006"
+        //             style={{
+        //                 display: "flex",
+        //             }}
+        //         >
+        //             <Suspense fallback={<></>}>
+        //                 <MobileSearchComponent />
+        //             </Suspense>
+        //             {tabArr
+        //                 .filter((tab) => tab.title === "notifications")
+        //                 .map((item, index) => (
+        //                     <Fragment key={index}>{item.icon}</Fragment>
+        //                 ))}
+        //         </div>
+        //         {/* <Instagram/> */}
+        //     </div>
+        //     <div className="timeline002">
+        //         <div className="timeline003">
+        //             <div className="timeline004">
+        //                 <Stories />
+        //                 <div className="timeline005">
+        //                     <TimelineIn />
+        //                 </div>
+        //             </div>
+        //         </div>
+        //         {window.innerWidth > 900 && (
+
+        //         )}
+        //         <Suspense fallback={<></>}>
+        //             <Outlet />
+        //         </Suspense>
+        //     </div>
+        // </div>
     );
 };
 
