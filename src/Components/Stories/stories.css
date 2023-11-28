@@ -3,6 +3,10 @@
     margin-bottom: 8px;
 }
 
+li {
+    list-style: none;
+}
+
 .story002 {
     padding: 8px 0;
     overflow-y: hidden;
@@ -51,6 +55,7 @@
 .story008 {
     vertical-align: baseline;
     height: 100%;
+    width: 66px;
     padding: 0;
     margin: 0;
 }
@@ -103,6 +108,7 @@
 
 .story015 {
     white-space: nowrap;
+    text-overflow: ellipsis;
     max-width: 74px;
     padding: 0 2px;
     overflow: hidden;

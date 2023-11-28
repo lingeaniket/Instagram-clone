@@ -6,14 +6,15 @@ import "./stories.css";
 
 const Stories = () => {
     return (
-        <div className="story001">
+        <>
+        {/* <div className="story001">
             <div>
                 <div className="story002">
                     <div className="story003">
                         <div className="story004">
                             <div className="story005">
                                 <div className="story006">
-                                    <ul className="story007">
+                                    <ul className="story007"> */}
                                         {/* list map stories */}
                                         {[1, 2, 5, 9, 6, 3, 8, 7, 4, 11].map((val) => (
                                             <li key={val} className="story008">
@@ -25,20 +26,21 @@ const Stories = () => {
                                                             </div>
                                                         </div>
                                                         <div className="story014">
-                                                            <div className="story015">username</div>
+                                                            <div className="story015">{`${val} username`}</div>
                                                         </div>
                                                     </div>
                                                 </div>
                                             </li>
                                         ))}
-                                    </ul>
+                                    {/* </ul>
                                 </div>
                             </div>
                         </div>
                     </div>
                 </div>
             </div>
-        </div>
+        </div> */}
+        </>
     );
 };
 
