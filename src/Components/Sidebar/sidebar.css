@@ -5,7 +5,7 @@
 
 .side02 {
     padding: 8px 12px 20px;
-    border-right: 2px solid rgb(240, 240, 240);
+    border-right: 1px solid rgb(219, 219, 219);
     display: flex;
     flex-direction: column;
     align-items: flex-start;
@@ -40,11 +40,12 @@
 
 .side06 {
     font-size: 35px;
+    display: none;
     font-family: "Lobster Two", cursive;
 }
 
 .side07 {
-    display: none;
+    display: flex;
 }
 
 .side08 {
@@ -68,9 +69,9 @@
     display: none;
 }
 
-@media screen and (max-width: 1024px) {
+@media screen and (min-width: 1264px) {
     .side06 {
-        display: none;
+        display: block;
     }
 
     .side02 {
@@ -78,7 +79,7 @@
     }
 
     .side07 {
-        display: block;
+        display: none;
     }
 }
 
@@ -135,7 +136,7 @@
     .side04 {
         display: flex;
         background-color: white;
-        border-top: 2px solid rgb(240, 240, 240);
+        /* border-top: 2px solid rgb(240, 240, 240); */
     }
 
     .side04 > .tab01:nth-of-type(2),
