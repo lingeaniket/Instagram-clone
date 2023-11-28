@@ -26,19 +26,13 @@ body {
     width: 100vw;
 }
 
+body::-webkit-scrollbar {
+    display: none;
+}
+
 *,
 body {
     box-sizing: border-box;
-}
-
-.grid01 {
-    display: flex;
-}
-
-.span01 {
-    margin-left: auto;
-    width: calc(100% - 244px);
-    display: flex;
 }
 
 .w_15 {
@@ -55,20 +49,4 @@ body {
 
 .w_100 {
     width: 100%;
-}
-
-@media screen and (max-width: 1024px) {
-    .span01 {
-        width: calc(100% - 72px);
-    }
-}
-
-@media screen and (max-width: 768px) {
-    .span01 {
-        width: 100%;
-    }
-    .grid01 {
-        display: block;
-        position: relative;
-    }
 }
