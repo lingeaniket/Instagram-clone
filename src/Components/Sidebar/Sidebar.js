@@ -51,8 +51,6 @@ const Sidebar = () => {
     }, []);
 
     return (
-        <div className="side01">
-            <div className="side02">
                 <div className="side05">
                     <div
                         className="side03"
@@ -115,8 +113,10 @@ const Sidebar = () => {
                         </div>
                     )}
                 </div>
-            </div>
-        </div>
+        // <div className="side01">
+        //     <div className="side02">
+        //     </div>
+        // </div>
     );
 };
 
