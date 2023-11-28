@@ -3,7 +3,7 @@
     display: flex;
     align-items: center;
     height: 56px;
-    /* margin: 5px 0; */
+    justify-content: flex-start;
     padding: 12px;
     width: 100%;
 }
@@ -30,7 +30,7 @@
     height: 24px;
     font-size: 16px;
     font-weight: 400;
-    display: flex;
+    display: none;
     align-items: center;
 }
 
@@ -44,19 +44,14 @@
     border-radius: 50%;
 }
 
-
-@media screen and (max-width: 1024px) {
+@media screen and (min-width: 1264px) {
     .tab03 {
-        display: none;
-    }
-    .tab01 {
-        justify-content: center;
+        display: flex;
     }
 }
 
 @media screen and (max-width: 768px) {
-
-    .tab02 {
+    .tab01 {
         justify-content: center;
     }
 }
