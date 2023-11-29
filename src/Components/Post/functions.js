@@ -2,29 +2,34 @@ import { apiSite } from "../../Website/website";
 import { changeMode } from "../../Features/fullPostSlice";
 import axios from "axios";
 const userId = JSON.parse(localStorage.getItem("userId"));
-export const handleImageLiked = (imagelikeref, likeref, setLiked, liked, setLikes, id, postId) => {
+
+export const handleLikes = (liked, setLikes) => {
+    if (liked) {
+        setLikes((prev) => prev - 1);
+    } else {
+        setLikes((prev) => prev + 1);
+    }
+};
+
+// export const handleImageLiked = (liked, id, postId) => {
+//     if (!liked) handleLiked(liked, id, postId);
+// };
+
+export const animateLike = (imagelikeref) => {
     imagelikeref.current.classList.add("clicked");
     setTimeout(() => {
         imagelikeref.current.classList.remove("clicked");
     }, 1000);
-    if (!liked) handleLiked(likeref, setLiked, liked, setLikes, id, postId);
 };
 
-const animateDiv = (likeref) => {
+export const animateDiv = (likeref) => {
     likeref.current.classList.add("clicked");
     setTimeout(() => {
         likeref.current.classList.remove("clicked");
     }, 500);
 };
 
-export const handleLiked = async (likeref, setLiked, liked, setLikes, id, postId) => {
-    animateDiv(likeref);
-    setLiked((prev) => !prev);
-    if (liked) {
-        setLikes((prev) => prev - 1);
-    } else {
-        setLikes((prev) => prev + 1);
-    }
+export const handleLiked = async (liked, id, postId) => {
     if (liked) {
         await axios.put(`${apiSite}/posts/post-like`, {
             method: "unlike",
