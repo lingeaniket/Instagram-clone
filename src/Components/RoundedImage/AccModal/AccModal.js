@@ -1,4 +1,4 @@
-import React, { memo } from "react";
+import React, { memo, useCallback, useState } from "react";
 
 import List from "../../Profile/ProfileHeader/SingleList/List";
 import Arrow from "../../Icons/Arrow/Arrow";
@@ -7,6 +7,11 @@ import "./accModal.css";
 import PostComponent from "./PostComponent";
 
 const AccModal = ({ user }) => {
+    const [posts, setPosts] = useState(0);
+
+    const handleNoOfPosts = useCallback((post) => {
+        setPosts(post);
+    }, []);
     return (
         <div className="user-photo-modal user-photo-modal-transition">
             <div className="accModal001">
@@ -21,7 +26,7 @@ const AccModal = ({ user }) => {
                         <div className="accModal004">
                             <div>
                                 <div className="accModal005">
-                                    <span className="accModal006">77</span>
+                                    <span className="accModal006">{posts}</span>
                                 </div>
                             </div>
                             <div className="accModal007">
@@ -57,7 +62,7 @@ const AccModal = ({ user }) => {
                     </div>
                 </div>
                 <div>
-                    <PostComponent />
+                    <PostComponent id={user?.id} setPost={handleNoOfPosts} />
                 </div>
                 <div>
                     <div className="accModal012">
