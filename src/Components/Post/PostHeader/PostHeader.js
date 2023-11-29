@@ -8,6 +8,11 @@ import AccModal from "../../RoundedImage/AccModal/AccModal";
 
 const PostHeader = ({ userData }) => {
     const [loading, setLoading] = useState(true);
+    const [isAccOpen, setIsAccOpen] = useState(false);
+
+    const handleAccModal = () => {
+        setIsAccOpen(true);
+    };
 
     useEffect(() => {
         if (userData.id) {
@@ -35,7 +40,7 @@ const PostHeader = ({ userData }) => {
                     )}
                 </div>
                 <div className="post006">
-                    <div className="post007 user-name">
+                    <div className="post007 user-name" onMouseOver={handleAccModal}>
                         {loading ? (
                             <Skeleton
                                 variant="text"
@@ -48,7 +53,7 @@ const PostHeader = ({ userData }) => {
                         ) : (
                             <>
                                 <span>{userData.username}</span>
-                                <AccModal user={userData} />
+                                {isAccOpen && <AccModal user={userData} />}
                             </>
                         )}
                     </div>
