@@ -16,7 +16,7 @@ const List = ({ loading, user, type, userAcc = false, modalRequired, index = 0 }
             className="listModal024"
             style={{
                 position: "relative",
-                zIndex: 10000 - index - index,
+                zIndex: 1000 - index - index,
             }}
         >
             <div
