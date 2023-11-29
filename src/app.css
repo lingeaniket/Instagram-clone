@@ -14,6 +14,10 @@
     /* You can also specify additional font properties like font-weight and font-style here */
 }
 
+canvas {
+    display: none;
+}
+
 * {
     font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen-Sans, Ubuntu, Cantarell, "Helvetica Neue", sans-serif;
     font-size: 14px;
