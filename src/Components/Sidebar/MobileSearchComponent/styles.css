@@ -1,5 +1,5 @@
 .mobilev01 {
-    width: 268px;
+    max-width: 268px;
     position: relative;
     display: flex;
     flex-direction: column;
