@@ -5,10 +5,16 @@ import { useNavigate } from "react-router-dom";
 
 const RoundedImage = ({ url, alt, modalRequired = true, user }) => {
     const [loading, setLoading] = useState(true);
+    const [isAccOpen, setIsAccOpen] = useState(false);
+    
     const navigate = useNavigate();
 
     const handleNavigate = () => {
         navigate(`/p/${user.id}`);
+    };
+
+    const handleAcc = () => {
+        setIsAccOpen(true);
     };
 
     useEffect(() => {
@@ -21,7 +27,7 @@ const RoundedImage = ({ url, alt, modalRequired = true, user }) => {
             {loading ? (
                 <span></span>
             ) : (
-                <div className="user-photo">
+                <div className="user-photo" onMouseOver={handleAcc}>
                     <div className="rounded01" onClick={handleNavigate}>
                         <img
                             className="rounded02"
@@ -31,7 +37,7 @@ const RoundedImage = ({ url, alt, modalRequired = true, user }) => {
                             width={"100%"}
                         />
                     </div>
-                    {modalRequired && <AccModal user={user} />}
+                    {modalRequired && isAccOpen && <AccModal user={user} />}
                 </div>
             )}
         </>
