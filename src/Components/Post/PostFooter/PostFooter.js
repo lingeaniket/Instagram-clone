@@ -2,7 +2,7 @@ import { useDispatch } from "react-redux";
 import React, { Suspense, lazy, useState, memo } from "react";
 import { useNavigate, useSearchParams } from "react-router-dom";
 
-import { addComment, handleLiked, handlePost } from "../functions";
+import { addComment, animateDiv, handleLiked, handleLikes, handlePost } from "../functions";
 
 import Save from "../../Icons/Save/Save";
 import Like from "../../Icons/Like/Like";
@@ -35,6 +35,7 @@ const PostFooter = ({ setLiked, liked, setLikes, postId, userData, likes, post, 
 
     const [saved, setSaved] = useState(false);
     const [comment, setComment] = useState("");
+    const [postLikeTimer, setPostLikeTimer] = useState(null);
     const [openComments, setOpenComments] = useState(false);
 
     const [searchParams, setSearchParams] = useSearchParams();
@@ -56,7 +57,18 @@ const PostFooter = ({ setLiked, liked, setLikes, postId, userData, likes, post, 
     };
 
     const handleLike = () => {
-        handleLiked(likeref, setLiked, liked, setLikes, userData.id, postId);
+        if (postLikeTimer) {
+            clearTimeout(postLikeTimer);
+        }
+        handleLikes(liked, setLikes);
+
+        setPostLikeTimer(
+            setTimeout(() => {
+                handleLiked(liked, userData.id, postId);
+            }, 1000)
+        );
+        setLiked((prev) => !prev);
+        animateDiv(likeref);
     };
 
     const commentAdd = (e) => {

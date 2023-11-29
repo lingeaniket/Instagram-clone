@@ -7,7 +7,7 @@ import PostFooter from "./PostFooter/PostFooter";
 import ImageLike from "../Icons/ImageLike/ImageLike";
 
 import { apiSite } from "../../Website/website";
-import { handleImageLiked } from "./functions";
+import { handleLikes, animateDiv, animateLike, handleLiked } from "./functions";
 
 import "./post.css";
 import "../Timeline/TimelineIn/timelineIn.css";
@@ -18,18 +18,46 @@ const Post = ({ postId, id, type = "timeline", setStep }) => {
 
     const [post, setPost] = useState({});
     const [likes, setLikes] = useState(0);
+    const [imageLikeTimer, setImageLikeTimer] = useState(null);
     const [liked, setLiked] = useState(false);
     const [reload, setReload] = useState(false);
     const [loading, setLoading] = useState(true);
     const [userData, setUserData] = useState({});
     const [lcpImageUrl, setLcpImageUrl] = useState("");
+    const [lastTap, setLastTap] = useState(0);
     const [isImageLoaded, setIsImageLoaded] = useState(false);
 
     const likeref = useRef(null);
     const imagelikeref = useRef(null);
 
+    const handleImg2like = (event) => {
+        const now = Date.now();
+        const DOUBLE_TAP = 300;
+
+        // event.preventDefault();
+
+        if (now - lastTap < DOUBLE_TAP) {
+            handleImgLike();
+        }
+
+        setLastTap(now);
+    };
+
     const handleImgLike = () => {
-        handleImageLiked(imagelikeref, likeref, setLiked, liked, setLikes, userData.id, postId);
+        if (imageLikeTimer) {
+            clearTimeout(imageLikeTimer);
+        }
+        animateLike(imagelikeref);
+        if (!liked) {
+            animateDiv(likeref);
+            setImageLikeTimer(
+                setTimeout(() => {
+                    handleLiked(liked, userData.id, postId);
+                }, 1000)
+            );
+            handleLikes(liked, setLikes);
+            setLiked((prev) => !prev);
+        }
     };
 
     useEffect(() => {
@@ -72,7 +100,7 @@ const Post = ({ postId, id, type = "timeline", setStep }) => {
                 className="post008"
                 style={{
                     position: "relative",
-                    cursor: "pointer",
+                    cursor: "auto",
                 }}
             >
                 {!isImageLoaded ? (
@@ -85,10 +113,15 @@ const Post = ({ postId, id, type = "timeline", setStep }) => {
                 ) : (
                     <LazyLoadImage
                         onDoubleClick={handleImgLike}
+                        onTouchStart={handleImg2like}
                         style={{
                             objectFit: "cover",
                             aspectRatio: "1/1",
                             verticalAlign: "middle",
+                            touchAction: "manipulation",
+                            cursor: "pointer",
+                            userSelect: "none",
+                            WebkitTapHighlightColor: "transparent",
                         }}
                         alt=""
                         // height={'auto'}
@@ -97,7 +130,12 @@ const Post = ({ postId, id, type = "timeline", setStep }) => {
                         width={"100%"}
                     />
                 )}
-                <div className="heartIconDiv">
+                <div
+                    className="heartIconDiv"
+                    style={{
+                        cursor: "pointer",
+                    }}
+                >
                     <div ref={imagelikeref} className="heart_icon">
                         <ImageLike />
                     </div>
