@@ -18,23 +18,21 @@ const Post = ({ postId, id, type = "timeline", setStep }) => {
 
     const [post, setPost] = useState({});
     const [likes, setLikes] = useState(0);
-    const [imageLikeTimer, setImageLikeTimer] = useState(null);
     const [liked, setLiked] = useState(false);
     const [reload, setReload] = useState(false);
+    const [lastTap, setLastTap] = useState(0);
     const [loading, setLoading] = useState(true);
     const [userData, setUserData] = useState({});
     const [lcpImageUrl, setLcpImageUrl] = useState("");
-    const [lastTap, setLastTap] = useState(0);
+    const [imageLikeTimer, setImageLikeTimer] = useState(null);
     const [isImageLoaded, setIsImageLoaded] = useState(false);
 
     const likeref = useRef(null);
     const imagelikeref = useRef(null);
 
-    const handleImg2like = (event) => {
+    const handleImg2like = () => {
         const now = Date.now();
         const DOUBLE_TAP = 300;
-
-        // event.preventDefault();
 
         if (now - lastTap < DOUBLE_TAP) {
             handleImgLike();
