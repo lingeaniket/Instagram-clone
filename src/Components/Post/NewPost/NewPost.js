@@ -15,9 +15,8 @@ const NewPost = ({ setOpen }) => {
         }
     };
 
-    const handleClose = (e) => {
-        document.body.style.overflow = "auto";
-        setOpen(false);
+    const handleClose = () => {
+        setOpen();
     };
 
     const steps = ["Create new post", "Select a photo", "Review", "Create a new post", "Post sharing", "Post shared"];
