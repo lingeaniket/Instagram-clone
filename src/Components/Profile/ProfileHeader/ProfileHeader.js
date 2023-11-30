@@ -35,7 +35,7 @@ const ProfileHeader = ({ userData, userPosts, type }) => {
             <div className="profHead001">
                 <div className="profHead002">
                     <div className="profHead003">
-                        <RoundedImage url={userData.avatar} />
+                        <RoundedImage url={userData.avatar} modalRequired={false} user={userData} />
                     </div>
                 </div>
                 <div className="profHead004">
@@ -162,12 +162,14 @@ const ProfileHeader = ({ userData, userPosts, type }) => {
                             <>
                                 <div className="profHead010">
                                     <button className="profHead011">
-                                        <div style={{
-                                            display: 'flex',
-                                            justifyContent: 'center',
-                                            alignItems: 'center',
-                                            padding: '0 4px'
-                                        }}>
+                                        <div
+                                            style={{
+                                                display: "flex",
+                                                justifyContent: "center",
+                                                alignItems: "center",
+                                                padding: "0 4px",
+                                            }}
+                                        >
                                             <div className="profHead012">
                                                 Following
                                                 <div className="profHead013">
@@ -179,9 +181,11 @@ const ProfileHeader = ({ userData, userPosts, type }) => {
                                 </div>
                                 <div className="profHead010">
                                     <button className="profHead011">
-                                        <div style={{
-                                            minWidth: 0,
-                                        }}>
+                                        <div
+                                            style={{
+                                                minWidth: 0,
+                                            }}
+                                        >
                                             <div className="profHead012">Message</div>
                                         </div>
                                     </button>
