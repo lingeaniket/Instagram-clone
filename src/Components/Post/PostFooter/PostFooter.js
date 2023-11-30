@@ -8,11 +8,11 @@ import Save from "../../Icons/Save/Save";
 import Like from "../../Icons/Like/Like";
 import Share from "../../Icons/Share/Share";
 import Comment from "../Comment/Comment";
+import AccModal from "../../RoundedImage/AccModal/AccModal";
 import BackArrow from "../../Icons/BackArrow/BackArrow";
 import CommentIcon from "../../Icons/Comment/Comment";
 
 import { Skeleton } from "@mui/material";
-import AccModal from "../../RoundedImage/AccModal/AccModal";
 
 const CommentsComponent = lazy(() => import("../Fullpost/RightComponent/Comments/CommentsComponent"));
 

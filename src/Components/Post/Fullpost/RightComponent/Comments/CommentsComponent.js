@@ -14,6 +14,8 @@ import { addPostComment, addPostReply, updateComment, updateData, updateUuidv } 
 
 import { Skeleton } from "@mui/material";
 
+import "../../fullPost.css";
+
 const CommentsComponent = () => {
     const dispatch = useDispatch();
     const [searchParams] = useSearchParams();
@@ -232,7 +234,7 @@ const CommentsComponent = () => {
                                                 <div className="fullPost057">
                                                     <span className="fullPost058">
                                                         <time className="fullPost059" dateTime="2023-09-10T08:34:19.000Z">
-                                                        {post?.time ? timeElapsedFromCurrent(post.time) : <></>}
+                                                            {post?.time ? timeElapsedFromCurrent(post.time) : <></>}
                                                         </time>
                                                     </span>
                                                 </div>
