@@ -12,6 +12,7 @@ import BackArrow from "../../Icons/BackArrow/BackArrow";
 import CommentIcon from "../../Icons/Comment/Comment";
 
 import { Skeleton } from "@mui/material";
+import AccModal from "../../RoundedImage/AccModal/AccModal";
 
 const CommentsComponent = lazy(() => import("../Fullpost/RightComponent/Comments/CommentsComponent"));
 
@@ -93,6 +94,10 @@ const PostFooter = ({ setLiked, liked, setLikes, postId, userData, likes, post, 
         }
     };
 
+    const handlePostMain = () => {
+        handlePost(dispatch, navigate, userData, postId);
+    };
+
     const handleComment = (e) => {
         setComment(() => e.target.value);
     };
@@ -141,7 +146,11 @@ const PostFooter = ({ setLiked, liked, setLikes, postId, userData, likes, post, 
                     />
                 ) : (
                     <>
-                        <span className="post015">{userData?.username}</span> {post.caption}
+                        <span className="post015 user-name">
+                            {userData?.username}
+                            <AccModal user={userData} />
+                        </span>{" "}
+                        {post.caption}
                     </>
                 )}
             </div>
@@ -155,7 +164,7 @@ const PostFooter = ({ setLiked, liked, setLikes, postId, userData, likes, post, 
                     <Comment key={comment.id} comment={comment} post={post} id={userData.id} />
                 ))}
             </div>
-            <div className="post016" onClick={handlePost}>
+            <div className="post016" onClick={handlePostMain}>
                 {loading ? (
                     <Skeleton
                         variant="text"
