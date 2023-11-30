@@ -1,6 +1,7 @@
 import axios from "axios";
 import React, { memo, useEffect, useState } from "react";
 import { apiSite } from "../../../Website/website";
+import { Skeleton } from "@mui/material";
 
 const PostComponent = ({ id, setPost }) => {
     const [posts, setPosts] = useState([]);
@@ -22,7 +23,11 @@ const PostComponent = ({ id, setPost }) => {
             {posts.length === 0 ? (
                 <>
                     {Array.from({ length: 3 }).map((_, index) => (
-                        <div className="accModal010" key={index}></div>
+                        <div className="accModal010" key={index}>
+                            <Skeleton variant="rectangle" sx={{
+                                height: '100%'
+                            }}/>
+                        </div>
                     ))}
                 </>
             ) : (
