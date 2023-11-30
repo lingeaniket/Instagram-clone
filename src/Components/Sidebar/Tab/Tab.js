@@ -8,11 +8,16 @@ import RoundedImage from "../../RoundedImage/RoundedImage";
 
 import "./tab.css";
 
-const Tab = ({ tab, searchOpen, searchRef, id }) => {
+const Tab = ({ tab, searchOpen, searchRef, id, selectedTab, index, handleTab }) => {
     const navigate = useNavigate();
 
     const userId = JSON.parse(localStorage.getItem("userId"));
     const [userData, setUserData] = useState({});
+
+    const handleTabSelect = () => {
+        console.log(index)
+        handleTab(index);
+    };
 
     useEffect(() => {
         if (userId) {
@@ -25,8 +30,9 @@ const Tab = ({ tab, searchOpen, searchRef, id }) => {
     return (
         <div
             ref={tab.title === "search" ? searchRef : null}
-            className="tab01"
+            className={`tab01 ${selectedTab === index ? "selected" : ""}`}
             onClick={() => {
+                handleTabSelect();
                 if (tab?.route) {
                     navigate(`${tab?.route}`);
                 } else if (tab?.title === "search") {
@@ -34,7 +40,6 @@ const Tab = ({ tab, searchOpen, searchRef, id }) => {
                 }
             }}
         >
-            {/* {tab.title === "messages" && <div>{id}</div>} */}
             <div className="tab02">
                 {tab.title === "profile" ? (
                     <div className="tab04">
