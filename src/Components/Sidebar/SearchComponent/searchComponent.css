@@ -27,7 +27,7 @@
 
 .search001 {
     position: absolute;
-    left: 215px;
+    left: 60px;
 }
 
 .search002 {
@@ -154,18 +154,27 @@
     background-color: rgb(210, 210, 210);
 }
 
-.search013{
-  width:100%;
-  height:1px;
-  background-color:rgb(219,219,219);
-  }
+.search013 {
+    width: 100%;
+    height: 1px;
+    background-color: rgb(219, 219, 219);
+}
 
-  .search014{
-    width:100%;
-    display:flex;
-    flex-direction:column;
-    align-items:center;
-    height:100%;
-    overflow-y:auto;
-    position:relative;
+.search014 {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    height: 100%;
+    overflow-y: auto;
+    position: relative;
+}
+
+@media screen and (min-width: 1264px) {
+    .search001 {
+        left: 232px;
     }
+}
+@media screen and (max-width: 768px) {
+    
+}
