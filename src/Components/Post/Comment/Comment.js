@@ -8,6 +8,7 @@ import Like from "../../Icons/Like/Like";
 import { Skeleton } from "@mui/material";
 
 import "./comment.css";
+import AccModal from "../../RoundedImage/AccModal/AccModal";
 
 const Comment = ({ comment, post, id }) => {
     const userId = JSON.parse(localStorage.getItem("userId"));
@@ -53,7 +54,9 @@ const Comment = ({ comment, post, id }) => {
             ) : (
                 <>
                     <div className="comment_002">
-                        <span className="comment_003">{userData.username}</span>
+                        <span className="comment_003 user-name">{userData.username}
+                        <AccModal user={userData}/>
+                        </span>
                         {"  "}
                         {comment.text}
                     </div>
