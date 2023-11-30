@@ -1,5 +1,5 @@
-import { useNavigate } from "react-router-dom";
-import { Suspense, lazy, useEffect, useRef, useState, memo } from "react";
+import { useLocation, useNavigate } from "react-router-dom";
+import { Suspense, lazy, useEffect, useRef, useState, memo, useCallback } from "react";
 
 import { socket } from "../../App";
 import { tabArr } from "../ExtraData/extraData";
@@ -17,12 +17,15 @@ const NewPostMobile = lazy(() => import("../Post/NewPost/NewPostMobile"));
 
 const Sidebar = () => {
     const navigate = useNavigate();
+    const location = useLocation();
 
     const userId = JSON.parse(localStorage.getItem("userId"));
 
     const [id, setId] = useState(0);
     const [searchDiv, setSearchDiv] = useState(false);
     const [createOpen, setCreateOpen] = useState(false);
+    const [selectedTab, setSelectedTab] = useState(0);
+    const [lastSelection, setLastSelection] = useState(0);
 
     const searchRef = useRef(null);
 
@@ -35,13 +38,33 @@ const Sidebar = () => {
     };
 
     const handleCreate = () => {
-        if (createOpen) {
-            document.body.style.overflow = "auto";
-        } else {
-            document.body.style.overflow = "hidden";
-        }
+        setLastSelection(selectedTab);
+        document.body.style.overflow = "hidden";
+        setSelectedTab(4);
         setCreateOpen((prev) => !prev);
     };
+
+    const handleCloseCreate = () => {
+        setSelectedTab(lastSelection);
+        document.body.style.overflow = "auto";
+        setCreateOpen(false);
+    };
+    const handleSelectedTab = useCallback((id) => {
+        setSelectedTab(id);
+    }, []);
+
+    useEffect(() => {
+        console.log(location.pathname);
+        if (location.pathname.includes("explore")) {
+            setSelectedTab(2);
+        } else if (location.pathname.includes("profile")) {
+            setSelectedTab(5);
+        } else if(location.pathname.length === 1 && location.pathname.includes("/")) {
+            setSelectedTab(0);
+        } else {
+            setSelectedTab(-1)
+        }
+    }, [location]);
 
     useEffect(() => {
         socket.on("notification", () => {
@@ -72,19 +95,41 @@ const Sidebar = () => {
                 {tabArr.map((tab, i) => {
                     if (tab.title === "profile") {
                         if (userId) {
-                            return <Tab id={id} key={i} tab={tab} searchOpen={handleCollapse} searchRef={searchRef} />;
+                            return (
+                                <Tab
+                                    selectedTab={selectedTab}
+                                    index={i}
+                                    id={id}
+                                    key={i}
+                                    tab={tab}
+                                    searchOpen={handleCollapse}
+                                    searchRef={searchRef}
+                                    handleTab={handleSelectedTab}
+                                />
+                            );
                         } else {
                             return <></>;
                         }
                     } else if (tab.title === "create") {
                         return (
-                            <div key={i} className="tab01" onClick={handleCreate}>
+                            <div key={i} className={`tab01 ${selectedTab === i ? "selected" : ""}`} onClick={handleCreate}>
                                 <div className="tab02">{tab.icon}</div>
                                 <div className="tab03">{tab.title}</div>
                             </div>
                         );
                     }
-                    return <Tab id={id} key={i} tab={tab} searchOpen={handleCollapse} searchRef={searchRef} />;
+                    return (
+                        <Tab
+                            id={id}
+                            handleTab={handleSelectedTab}
+                            selectedTab={selectedTab}
+                            index={i}
+                            key={i}
+                            tab={tab}
+                            searchOpen={handleCollapse}
+                            searchRef={searchRef}
+                        />
+                    );
                 })}
             </div>
             <div className="w_100">
@@ -93,6 +138,9 @@ const Sidebar = () => {
                         title: "More",
                         icon: <MoreSettings />,
                     }}
+                    selectedTab={selectedTab}
+                    index={6}
+                    handleTab={handleSelectedTab}
                     searchRef={searchRef}
                 />
             </div>
@@ -101,7 +149,7 @@ const Sidebar = () => {
                 <div>
                     <span className="switchView01">
                         <Suspense fallback={<></>}>
-                            <NewPost setOpen={setCreateOpen} />
+                            <NewPost setOpen={handleCloseCreate} />
                         </Suspense>
                     </span>
                     <span className="switchView02">
