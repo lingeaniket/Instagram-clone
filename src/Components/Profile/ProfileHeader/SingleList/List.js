@@ -9,8 +9,14 @@ import "./list.css";
 import "../ListModal/listModal.css";
 import "../../../Message/message.css";
 import "../../../RoundedImage/styles.css";
+import { useNavigate } from "react-router-dom";
 
 const List = ({ loading, user, type, userAcc = false, modalRequired, index = 0 }) => {
+    const navigate = useNavigate();
+
+    const handleNavigate = () => {
+        navigate(`/p/${user?.id}`);
+    };
     return (
         <div
             className="listModal024"
@@ -81,7 +87,7 @@ const List = ({ loading, user, type, userAcc = false, modalRequired, index = 0 }
                                             width: "auto",
                                         }}
                                     >
-                                        <span className="messageIn034 user-name">
+                                        <span className="messageIn034 user-name" onClick={handleNavigate}>
                                             <span>{user?.username}</span>
                                             {modalRequired && <AccModal user={user} />}
                                         </span>
