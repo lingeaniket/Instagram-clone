@@ -5,13 +5,43 @@ import Arrow from "../../Icons/Arrow/Arrow";
 
 import "./accModal.css";
 import PostComponent from "./PostComponent";
+import { Skeleton } from "@mui/material";
+
+const Loading = ({ id }) => {
+    return (
+        <div
+            style={{
+                width: "100%",
+                display: "flex",
+                justifyContent: "center",
+            }}
+        >
+            {id === 1 ? (
+                <Skeleton
+                    sx={{
+                        width: "33%",
+                    }}
+                />
+            ) : (
+                <Skeleton
+                    sx={{
+                        width: "50%",
+                    }}
+                />
+            )}
+        </div>
+    );
+};
 
 const AccModal = ({ user }) => {
     const [posts, setPosts] = useState(0);
+    const [loading, setLoading] = useState(true);
 
     const handleNoOfPosts = useCallback((post) => {
+        setLoading(false);
         setPosts(post);
     }, []);
+
     return (
         <div className="user-photo-modal user-photo-modal-transition">
             <div className="accModal001">
@@ -25,38 +55,62 @@ const AccModal = ({ user }) => {
                         {/* list */}
                         <div className="accModal004">
                             <div>
-                                <div className="accModal005">
-                                    <span className="accModal006">{posts}</span>
-                                </div>
+                                {loading ? (
+                                    <Loading id={1} />
+                                ) : (
+                                    <div className="accModal005">
+                                        <span className="accModal006">{posts}</span>
+                                    </div>
+                                )}
                             </div>
                             <div className="accModal007">
-                                <div className="accModal008">
-                                    <span className="accModal006">posts</span>
-                                </div>
+                                {loading ? (
+                                    <Loading id={2} />
+                                ) : (
+                                    <div className="accModal008">
+                                        <span className="accModal006">posts</span>
+                                    </div>
+                                )}
                             </div>
                         </div>
                         <div className="accModal004">
                             <div>
-                                <div className="accModal005">
-                                    <span className="accModal006">{user?.followers?.length}</span>
-                                </div>
+                                {user?.followers ? (
+                                    <div className="accModal005">
+                                        <span className="accModal006">{user?.followers?.length}</span>
+                                    </div>
+                                ) : (
+                                    <Loading id={1} />
+                                )}
                             </div>
                             <div className="accModal007">
-                                <div className="accModal008">
-                                    <span className="accModal006">followers</span>
-                                </div>
+                                {user?.followers ? (
+                                    <div className="accModal008">
+                                        <span className="accModal006">followers</span>
+                                    </div>
+                                ) : (
+                                    <Loading id={2} />
+                                )}
                             </div>
                         </div>
                         <div className="accModal004">
                             <div>
-                                <div className="accModal005">
-                                    <span className="accModal006">{user?.followings?.length}</span>
-                                </div>
+                                {user?.followings ? (
+                                    <div className="accModal005">
+                                        <span className="accModal006">{user?.followings?.length}</span>
+                                    </div>
+                                ) : (
+                                    <Loading id={1} />
+                                )}
                             </div>
                             <div className="accModal007">
-                                <div className="accModal008">
-                                    <span className="accModal006">followings</span>
-                                </div>
+                                {user?.followings ? (
+                                    <div className="accModal008">
+                                        <span className="accModal006">followings</span>
+                                    </div>
+                                ) : (
+                                    <Loading id={2} />
+                                )}
                             </div>
                         </div>
                     </div>
