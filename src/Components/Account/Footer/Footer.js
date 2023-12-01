@@ -11,6 +11,7 @@ const Footer = () => {
     useEffect(() => {
         setData(() => tabs);
         setLang(() => languages);
+        console.log("updated");
     }, []);
 
     return (
