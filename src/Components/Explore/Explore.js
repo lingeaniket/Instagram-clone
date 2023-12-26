@@ -34,7 +34,7 @@ const Explore = () => {
 
     useEffect(() => {
         loadData();
-        console.log("updated")
+    
     }, []);
 
     return (
